@@ -558,5 +558,280 @@ footer {
     background-color: #242423;
 }
 
+/* Estilos para dispositivos móviles (≤ 768px) */
+@media (max-width: 768px) {
+    /* Header */
+    header {
+        flex-direction: column;
+        text-align: center;
+    }
 
+    .logo-container img {
+        height: 60px;
+        width: 90px;
+    }
 
+    .selected-language {
+        font-size: 14px;
+    }
+
+    /* Lugares */
+    .place-container {
+        padding: 50px 20px;
+    }
+
+    .place-container h1 {
+        font-size: 24px;
+    }
+
+    .place-container h3 {
+        font-size: 16px;
+    }
+
+    .places-container {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    /* Carrusel de actividades */
+    .activities-container h1 {
+        font-size: 24px;
+    }
+
+    /* Carrusel de actividades */
+    .carousel-container {
+        overflow-x: hidden;
+    }
+
+    .carousel-track {
+        display: flex;
+        transition: transform 0.5s ease-in-out;
+        width: 100%;
+    }
+
+    .carousel-slide {
+        min-width: 100%;
+    }
+
+    /* Ajuste final de la imagen y texto en cada tarjeta */
+    .activity-card {
+        width: 80%;
+        margin: 0 auto;
+        padding: 15px;
+        box-sizing: border-box;
+        text-align: center;
+    }
+
+    .activity-card img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 5px;
+        margin-bottom: 10px;
+    }
+
+    .activity-card h3 {
+        font-size: 18px;
+        margin: 10px 0;
+        color: #242423;
+    }
+
+    .activity-card p {
+        font-size: 14px;
+        line-height: 1.5;
+        color: #666;
+        padding: 0 5px;
+    }
+
+    /* Ajuste de los botones del carrusel de actividades */
+    .carousel-btn {
+        font-size: 24px;
+        top: 50%;
+        transform: translateY(-50%);
+        padding: 8px;
+        background: rgba(36, 36, 35, 0.8);
+        color: #FFFFFF;
+        border-radius: 50%;
+        position: absolute;
+    }
+
+    .prev-btn {
+        left: 10px;
+    }
+
+    .next-btn {
+        right: 10px;
+    }
+
+    /* Opiniones */
+    .opinions h1 {
+        font-size: 24px;
+    }
+
+    .opinions-container {
+        padding: 40px 15px;
+    }
+
+    .opinion-prev,
+    .opinion-next {
+        font-size: 24px;
+        padding: 8px;
+        background: rgba(0, 0, 0, 0.6); /* Fondo semitransparente para mejor visibilidad */
+        color: #FFFFFF;
+        border-radius: 50%;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    .opinion-prev {
+        left: 10px;
+    }
+
+    .opinion-next {
+        right: 10px;
+    }
+
+    /* Planes */
+    .plans-container h1 {
+        font-size: 24px;
+    }
+
+    .plans-container h3 {
+        font-size: 16px;
+    }
+
+    .plans {
+        flex-direction: column;
+        gap: 20px;
+        padding: 20px;
+    }
+
+    .plan_card {
+        width: 90%;
+        margin: auto;
+    }
+
+    /* Formulario de contacto */
+    .form {
+        padding: 30px 20px;
+    }
+
+    /* Footer */
+    footer {
+        padding: 20px;
+    }
+
+    .social-media {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    /* Botón flotante */
+    .floating-btn {
+        width: 60px;
+        height: 60px;
+        bottom: 20px;
+        right: 20px;
+    }
+}
+
+/* Estilos para tablets (entre 769px y 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+    /* Header */
+    header {
+        padding: 15px 30px;
+    }
+
+    .selected-language {
+        font-size: 15px;
+        padding: 8px 12px;
+    }
+
+    /* Lugares */
+    .places-container {
+        grid-template-columns: 1fr 1fr; /* Dos columnas en lugar de tres */
+        gap: 30px;
+    }
+
+    /* Carrusel de actividades */
+    .carousel-slide {
+        min-width: 50%; /* Dos tarjetas visibles en lugar de cuatro */
+    }
+
+    .activity-card {
+        width: 95%;
+    }
+
+    .carousel-btn {
+        font-size: 30px;
+        padding: 10px;
+        top: 45%;
+    }
+
+    .prev-btn {
+        left: 15px;
+    }
+
+    .next-btn {
+        right: 15px;
+    }
+
+    /* Opiniones */
+    .opinions h1 {
+        font-size: 28px;
+    }
+
+    .opinions-container {
+        padding: 50px 20px;
+    }
+
+    .opinion-prev,
+    .opinion-next {
+        font-size: 32px;
+        padding: 10px;
+        left: 20px;
+        right: 20px;
+    }
+
+    /* Planes */
+    .plans-container h1 {
+        font-size: 28px;
+    }
+
+    .plans-container h3 {
+        font-size: 18px;
+    }
+
+    .plans {
+        flex-wrap: wrap;
+        gap: 25px;
+        padding: 30px;
+    }
+
+    .plan_card {
+        width: 48%; /* Ajuste de ancho para dos tarjetas en pantalla */
+    }
+
+    /* Formulario de contacto */
+    .form {
+        padding: 40px 30px;
+    }
+
+    /* Footer */
+    footer {
+        padding: 30px;
+    }
+
+    .social-media {
+        gap: 15px;
+    }
+
+    /* Botón flotante */
+    .floating-btn {
+        width: 65px;
+        height: 65px;
+        bottom: 30px;
+        right: 30px;
+    }
+}
