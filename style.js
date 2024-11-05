@@ -66,18 +66,25 @@ function changeLanguage(lang) {
 
 /* Actividades */
 const carouselTrack = document.querySelector('.carousel-track');
-const carouselSlides = Array.from(document.querySelectorAll('.activity-card'));
+const carouselSlides = Array.from(document.querySelectorAll('.carousel-slide'));
 const prevBtn = document.querySelector('.prev-btn');
 const nextBtn = document.querySelector('.next-btn');
 
-const slidesToShow = 4;
+let slidesToShow = 4; // Cambiado de const a let
 let slideWidth = carouselSlides[0].clientWidth;
 let currentIndex = 0;
 
-window.addEventListener("load", () => {
+const updateSlideWidth = () => {
+    slidesToShow = window.innerWidth <= 768 ? 1 : 4; // 1 en móvil, 4 en escritorio
     slideWidth = carouselSlides[0].clientWidth;
-    carouselTrack.style.width = `${slideWidth * carouselSlides.length}px`;
-});
+    updateCarouselPosition();
+};
+
+// Inicializar el ancho del carrusel al cargar la página
+window.addEventListener("load", updateSlideWidth);
+
+// Actualizar el ancho del carrusel al redimensionar la ventana
+window.addEventListener("resize", updateSlideWidth);
 
 function updateCarouselPosition() {
     const scrollDistance = currentIndex * slideWidth;
@@ -118,6 +125,8 @@ nextBtn.addEventListener('click', () => {
     updateCarouselPosition();
     stopAutoScroll();
 });
+
+
 
 /* Opiniones */
 let currentSlide = 0;
