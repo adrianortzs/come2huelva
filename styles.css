@@ -5,17 +5,16 @@ body {
     color: #333;
 }
 
-/* Header */
+/*Estilos header*/
 header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 20px;
+    padding: 20px 40px;
     background-color: #242423; 
 }
 
 .logo-container img {
-    margin: 5px;
     height: 85px;
     width: 125px;
 }
@@ -28,7 +27,7 @@ header {
 .selected-language {
     background: none;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 20px;
     padding: 10px 15px;
     color: #CFDBD5;
     transition: color 0.3s ease;
@@ -47,7 +46,7 @@ header {
     background: none;
     border: none;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 20px;
     padding: 10px 15px;
     width: 100%;
     text-align: center;
@@ -63,29 +62,28 @@ header {
     display: block;
 }
 
-/* Lugares */
+/*Estilos lugares*/
 .place-container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 70px 20px;
+    padding: 80px 20px;
     text-align: center;
 }
 
 .place-container h1 {
     text-align: center;
-    font-size: 32px;
+    font-size: 35px;
     font-weight: bold;
     color: #242423;
-    margin-bottom: 30px;
     text-transform: uppercase;
     letter-spacing: 1px;
 }
 
 .place-container h3 {
-    font-size: 20px;
+    font-size: 22px;
     color: #666;
     font-weight: normal;
-    margin-bottom: 70px;
+    padding-top: 25px;
     max-width: 700px;
     margin-left: auto;
     margin-right: auto;
@@ -93,9 +91,10 @@ header {
 }
 
 .places-container {
+    margin-top: 80px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 40px;
+    gap: 50px;
 }
 
 .place {
@@ -122,10 +121,10 @@ header {
     background: rgba(0, 0, 0, 0.7);
     color: #fff;
     width: 100%;
-    padding: 20px;
+    padding-bottom: 20px;
     opacity: 0;
     transition: opacity 0.3s ease;
-    text-align: left;
+    text-align: center;
 }
 
 .place:hover .overlay {
@@ -138,21 +137,18 @@ header {
     color: #CFDBD5;
 }
 
-/* Carrusel de actividades */
+/*Estilos actividades*/
 .activities-container {
     position: relative;
-    max-width: 1400px;
+    max-width: 1700px;
     margin: auto;
-    overflow: hidden;
-    border-radius: 10px;
 }
 
 .activities-container h1 {
     text-align: center;
-    font-size: 32px;
+    font-size: 35px;
     font-weight: bold;
     color: #242423;
-    margin-bottom: 30px;
     text-transform: uppercase;
     letter-spacing: 1px;
 }
@@ -161,8 +157,7 @@ header {
     display: flex;
     overflow: hidden;
     width: 100%;
-    position: relative;
-    margin-top: 80px;
+    margin-top: 105px;
 }
 
 .carousel-track {
@@ -178,15 +173,14 @@ header {
 
 .activity-card {
     flex: 1;
-    margin: 0 10px;
+    margin: 0 15px;
     padding: 20px 20px;
     text-align: center;
     transition: box-shadow 0.3s ease;
-    width: calc(25% - 20px);
 }
 
 .activity-card:hover {
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
 }
 
 .activity-card img {
@@ -198,29 +192,27 @@ header {
 }
 
 .activity-card h3 {
-    font-size: 16px;
+    font-size: 22px;
     color: #242423;
     text-transform: uppercase;
-    margin-bottom: 5px;
     font-weight: bold;
     letter-spacing: 0.1em;
 }
 
 .activity-card p {
-    font-size: 16px;
+    font-size: 20px;
     color: #666;
     line-height: 1.6;
-    margin-bottom: 10px;
 }
 
 .carousel-btn {
     position: absolute;
-    top: 40%; /*Debería cambiar*/
+    top: 60%;
     transform: translateY(-50%);
     background: none;
     border: none;
-    color: #333533;
-    font-size: 30px;
+    color: #242423;
+    font-size: 50px;
     cursor: pointer;
     z-index: 1;
     opacity: 0.6;
@@ -232,34 +224,30 @@ header {
 }
 
 .prev-btn {
-    left: -5px;
+    left: -30px;
 }
 
 .next-btn {
-    right: -5px;
+    right: -57px;
 }
 
-.carousel-btn::before {
-    content: '';
-}
-
-/* Planes */
+/*Estilos planes*/
 .plans-container {
     text-align: center;
-    padding-top: 40px;
+    padding-top: 75px;
 }
 
 .plans-container h1 {
-    font-size: 32px;
+    font-size: 35px;
     font-weight: bold;
     color: #242423;
-    margin-bottom: 30px;
     text-transform: uppercase;
     letter-spacing: 1px;
 }
 
 .plans-container h3 {
-    font-size: 20px;
+    font-size: 22px;
+    padding-top: 25px;
     color: #666;
     font-weight: normal;
     max-width: 700px;
@@ -271,8 +259,8 @@ header {
 .plans {
     display: flex;
     justify-content: center;
-    gap: 40px;
-    padding: 50px;
+    gap: 50px;
+    margin-top: 80px;
     flex-wrap: wrap;
 }
 
@@ -281,7 +269,7 @@ header {
     border-radius: 15px;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
     overflow: hidden;
-    width: 350px;
+    width: 400px;
     text-align: left;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -294,10 +282,6 @@ header {
 .card_header {
     background-color: #F5CB5C;
     padding: 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: relative;
     font-size: 24px;
     font-weight: bold;
     color: #242423;
@@ -307,52 +291,49 @@ header {
     width: 100%;
     height: 250px;
     object-fit: cover;
-    border-bottom: 2px solid #E8EDDF;
 }
 
 .card_content {
     padding: 20px;
 }
 
-h4 {
-    font-size: 18px;
+.card_content h4 {
+    font-size: 22px;
     color: #242423;
     margin-bottom: 10px;
     font-weight: bold;
 }
 
-ul {
+.card_content ul {
     padding: 0;
     margin-bottom: 15px;
     list-style-type: none;
-}
-
-ul li {
-    margin-bottom: 5px;
     color: #666;
-    font-size: 16px;
+    font-size: 20px;
 }
 
 p {
-    font-size: 16px;
+    font-size: 20px;
     color: #666;
     line-height: 1.6;
 }
 
-/*Opiniones*/
-.opinions h1 {
+/*Estilos opiniones*/
+.opinions {
     text-align: center;
-    font-size: 32px;
+    margin-top: 120px;
+}
+
+.opinions h1 {
+    font-size: 35px;
     font-weight: bold;
     color: #242423;
-    margin-bottom: 20px;
+    margin-bottom: 80px;
     text-transform: uppercase;
     letter-spacing: 1px;
-    padding: 30px 0px;
 }
 
 .opinions-container {
-    text-align: center;
     padding: 70px 20px;
     position: relative;
     max-width: 800px;
@@ -360,12 +341,6 @@ p {
     background-color: #E8EDDF;
     border-radius: 10px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-}
-
-.opinion-carousel {
-    position: relative;
-    overflow: hidden;
-    width: 100%;
 }
 
 .opinion-slide {
@@ -383,7 +358,7 @@ p {
 }
 
 .opinion-slide p {
-    font-size: 20px;
+    font-size: 22px;
     color: #666;
     line-height: 1.6;
     margin-bottom: 20px;
@@ -391,29 +366,11 @@ p {
 }
 
 .opinion-slide span {
-    font-size: 18px;
+    font-size: 22px;
     color: #666;
     font-weight: bold;
     display: block;
     margin-top: 10px;
-}
-
-.carousel-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: none;
-    border: none;
-    color: #242423;
-    font-size: 40px;
-    cursor: pointer;
-    z-index: 1;
-    opacity: 0.6;
-    transition: opacity 0.3s ease;
-}
-
-.carousel-btn:hover {
-    opacity: 1;
 }
 
 .opinion-prev {
@@ -424,9 +381,9 @@ p {
     right: -100px;
 }
 
-/* Estilos del formulario de contacto */
+/*Estilos formulario*/
 .form-container {
-    padding-top: 30px;
+    padding-top: 65px;
 }
 
 .form {
@@ -443,14 +400,15 @@ p {
 }
 
 .form h1 {
-    font-size: 24px;
+    font-size: 30px;
     font-weight: 700;
     color: #333533;
     text-align: center;
 }
 
 .form span {
-    font-size: 14px;
+    margin-bottom: 10px;
+    font-size: 20px;
     color: #666;
     text-align: center;
 }
@@ -462,7 +420,7 @@ p {
 }
 
 .form_option label {
-    font-size: 16px;
+    font-size: 20px;
     font-weight: 600;
     margin-bottom: 4px;
     color: #333533;
@@ -475,7 +433,7 @@ p {
     border-radius: 8px;
     background-color: #f9f9f9;
     color: #333;
-    font-size: 16px;
+    font-size: 20px;
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -488,7 +446,7 @@ p {
 
 .form_option textarea {
     resize: vertical;
-    min-height: 120px;
+    min-height: 100px;
     max-height: 300px;
 }
 
@@ -498,7 +456,7 @@ p {
     padding: 15px;
     border: none;
     border-radius: 8px;
-    font-size: 18px;
+    font-size: 20px;
     font-weight: 700;
     cursor: pointer;
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
@@ -511,8 +469,9 @@ p {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-/* Footer */
+/*Estilos footer*/
 footer {
+    margin-top: 100px;
     background-color: #242423;
     padding: 40px 20px;
     text-align: center;
@@ -522,14 +481,13 @@ footer {
 .social-media {
     display: flex;
     justify-content: center;
-    gap: 20px;
 }
 
 .icon {
-    margin: 30px;
+    margin: 50px;
     color: #fff;
     text-decoration: none;
-    font-size: 20px;
+    font-size: 30px;
     transition: color 0.3s ease;
 }
 
@@ -537,20 +495,20 @@ footer {
     color: #F5CB5C;
 }
 
-/* Botón flotante para contacto */
+/*Estilos botón flotante*/
 .floating-btn {
     position: fixed;
-    bottom: 40px;
-    right: 40px;
+    bottom: 60px;
+    right: 60px;
     background-color: #F5CB5C;
     color: #fff;
     border: none;
     border-radius: 50%;
-    width: 70px;
-    height: 70px;
+    width: 90px;
+    height: 90px;
     cursor: pointer;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    font-size: 14px;
+    font-size: 20px;
     transition: background-color 0.3s ease;
 }
 
