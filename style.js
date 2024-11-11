@@ -127,7 +127,26 @@ nextBtn.addEventListener('click', () => {
 });
 
 
+const track = document.querySelector('.carousel-plan-track');
+const slide = Array.from(track.children);
+const nextButtonPlans = document.querySelector('.next-plan-btn');
+const prevButtonPlans = document.querySelector('.prev-plan-btn');
 
+
+function updateSlidePosition() {
+    const slideWidth = slide[0].getBoundingClientRect().width;
+    track.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+}
+
+nextButtonPlans.addEventListener('click', () => {
+    currentIndex = (currentIndex + 1) % slides.length;
+    updateSlidePosition();
+});
+
+prevButtonPlans.addEventListener('click', () => {
+    currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+    updateSlidePosition();
+});
 /* Opiniones */
 let currentSlide = 0;
 const slides = document.querySelectorAll('.opinion-slide');
