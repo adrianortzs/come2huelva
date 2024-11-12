@@ -323,6 +323,8 @@ p {
 .opinions {
     text-align: center;
     margin-top: 120px;
+    overflow: hidden;
+    position: relative;
 }
 
 .opinions h1 {
@@ -351,6 +353,7 @@ p {
     padding: 30px 20px;
     margin-bottom: 20px;
     text-align: center;
+    width: 100%;
 }
 
 .opinion-slide.active {
@@ -576,18 +579,22 @@ footer {
     }
 
     .carousel-container {
+        position: relative;
         overflow: hidden;
-        margin-top: 20px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
-
+    
     .carousel-track {
         display: flex;
-        transition: transform 0.5s ease-in-out;
-        width: 100%;
+        transition: transform 0.5s ease;
     }
-
+    
     .carousel-slide {
-        min-width: 100%;
+        flex: 0 0 100%;
+        box-sizing: border-box;
         display: flex;
         justify-content: center;
     }
@@ -619,8 +626,28 @@ footer {
         padding: 0 5px;
     }
 
-    .carousel-btn {
-        font-size: 24px;
+    .prev-btn-activities, .next-btn-activities,
+    .prev-btn-plans, .next-btn-plans {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 24px;       
+        width: 40px;
+        height: 40px;
+        border: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        z-index: 10;
+    }
+
+    .prev-btn-activities, .prev-btn-plans {
+        left: 10px;
+    }
+
+    .next-btn-activities, .next-btn-plans {
+        right: 10px;
     }
 
     .plans-container {
@@ -642,44 +669,6 @@ footer {
         overflow: hidden;
         display: flex;
         align-items: center;
-    }
-
-    .carousel-plan-track {
-        display: flex;
-        transition: transform 0.5s ease-in-out;
-        width: 100%;
-    }
-
-    .carousel-plan-slide {
-        min-width: 100%;
-        box-sizing: border-box;
-        padding: 0 100px;
-    }
-
-    .carousel-plan-btn {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        background: none;
-        border: none;
-        font-size: 40px;
-        color: #333;
-        cursor: pointer;
-        z-index: 1;
-        opacity: 0.5;
-        transition: opacity 0.3s ease;
-    }
-
-    .carousel-plan-btn:hover {
-        opacity: 1;
-    }
-
-    .prev-plan-btn {
-        left: 30px;
-    }
-
-    .next-plan-btn {
-        right: 30px;
     }
 
     .plan_card {
@@ -717,6 +706,10 @@ footer {
         max-width: 75%;
         padding: 40px 15px;
     }
+
+    .opinion-slide.active {
+        padding-left: 0px;
+    }
     
     .opinion-slide p {
         font-size: 18px;
@@ -736,11 +729,11 @@ footer {
     }
 
     .opinion-prev {
-        left: 5px;
+        left: -15px;
     }
 
     .opinion-next {
-        right: 5px;
+        right: -15px;
     }
 
     .form {
