@@ -322,6 +322,20 @@ function setupCarousel(trackSelector, prevBtnSelector, nextBtnSelector) {
         updateCarouselPosition();
         autoScrollInterval = setInterval(() => changeSlide(1), 5000);
     });
+
+    window.addEventListener("resize", () => {
+        // Pausar el autoscroll al redimensionar
+        clearInterval(autoScrollInterval);
+
+        // Calcular nuevamente la posición del carrusel y ajustar el índice
+        updateCarouselPosition();
+        
+        // Reiniciar el autoscroll con el tamaño de pantalla actualizado
+        autoScrollInterval = setInterval(() => changeSlide(1), 5000);
+    });
+
+    // Inicializar la posición del carrusel al cargar
+    updateCarouselPosition();
 }
 
 // Configura cada carrusel de manera independiente
@@ -344,7 +358,7 @@ function showSlide(index) {
     });
 }
 
-document.querySelector('.opinion-next').addEventListener('click', () => {
+document.querySelector('.opinion-next').addEventListener('click', (event) => {
     currentSlide = (currentSlide + 1) % totalSlides;
     showSlide(currentSlide);
 });
@@ -354,11 +368,10 @@ document.querySelector('.opinion-prev').addEventListener('click', () => {
     showSlide(currentSlide);
 });
 
-showSlide(currentSlide);
 
 document.querySelector('.form').addEventListener('submit', function(event) {
     event.preventDefault();
-
+    
     const formData = {
         name: document.getElementById('name').value,
         email: document.getElementById('email').value,
@@ -366,7 +379,7 @@ document.querySelector('.form').addEventListener('submit', function(event) {
         people: document.getElementById('people').value,
         message: document.getElementById('messsage').value
     };
-
+    
     fetch('http://localhost:3000/send-email', {
         method: 'POST',
         headers: {
@@ -390,4 +403,5 @@ function scrollToForm() {
 
 document.addEventListener("DOMContentLoaded", function() {
     changeLanguage('es');
+    showSlide(currentSlide);
 });
