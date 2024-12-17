@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,13 +7,13 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
-<section>
+<body>
     <header>
         <section class="logo-container">
-            <img src="images/logo.png" alt="Logo">
+            <img src="images/logo.png" alt="Logo Come2Huelva">
         </section>  
         <div class="language-selector">
-            <button class="selected-language" onclick="toggleLanguageMenu()"></button>
+            <button class="selected-language" onclick="toggleLanguageMenu()" type="button"></button>
             <div class="language-options">
                 <button onclick="changeLanguage('es')">Español</button>
                 <button onclick="changeLanguage('en')">English</button>
@@ -22,252 +22,252 @@
         </div>
     </header>
 
-    <section class="video-container">
-        <video controls autoplay loop>
-            <source src="images/video.mp4" type="video/mp4">
-            Tu navegador no soporta la etiqueta de video.
-        </video>
-    </section>
-    
-    <section class="place-container">
-            <h1>Maravillosos rincones de Huelva que debes visitar</h1>
-            <h3>Huelva, con su riqueza natural, histórica y cultural, te invita a descubrir una variedad de destinos encantadores. Desde playas vírgenes y paisajes naturales impresionantes hasta pueblos con encanto y vestigios históricos únicos, esta provincia andaluza tiene mucho que ofrecer.</h3>
-            <div class="places-container">
-                <div class="place">
-                    <img src="https://th.bing.com/th/id/OIP.sfqZR8AJaqSozpZSGxof8gHaE8?rs=1&pid=ImgDetMain" alt="Doñana">
-                    <div class="overlay">
-                        <h3>Doñana</h3>
-                    </div>
-                </div>
-                <div class="place">
-                    <img src="images/rocio.jpg" alt="El Rocío">
-                    <div class="overlay">
-                        <h3>El Rocío</h3>
-                    </div>
-                </div>
-                <div class="place">
-                    <img src="images/matalascañas.jpg" alt="Playa de Matalascañas">
-                    <div class="overlay">
-                        <h3>Playa de Matalascañas</h3>
-                    </div>
-                </div>
-                <div class="place">
-                    <img src="https://www.guiarepsol.com/content/dam/repsol-guia/contenidos-imagenes/viajar/vamos-de-excursion/gruta-maravillas-aracena-huelva/gr-cms-media-featured_images-none-cde88ac2-ab55-4819-afe9-c3313c6580eb-00-apertura.jpg" alt="Sierra de Aracena">
-                    <div class="overlay">
-                        <h3>Sierra de Aracena</h3>
-                    </div>
-                </div>
-                <div class="place">
-                    <img src="https://as1.ftcdn.net/v2/jpg/00/88/11/60/1000_F_88116063_UOsqP43XO2e4DklCZNnuoa60JAE7ywUI.jpg" alt="Las 3 Carabelas">
-                    <div class="overlay">
-                        <h3>Palos de la Frontera</h3>
-                    </div>
-                </div>
-                <div class="place">
-                    <img src="images/minas.webp" alt="Minas Río Tinto">
-                    <div class="overlay">
-                        <h3>Minas Río Tinto</h3>
-                    </div>
-                </div>
-            </div>
-    </section>
-
-    <section class="activities-container">
-        <h1>Descubre nuestras actividades para disfrutar en Huelva</h1>
-        <div class="carousel-container">
-            <div class="carousel-track activities">
-                <div class="carousel-slide">
-                    <div class="activity-card">
-                        <img src="images/playa_pesca.jpg" alt="Imagen de playa">
-                        <h3>Playa y pesca</h3>
-                        <p>Disfruta de un día perfecto bajo el sol mientras practicas pesca en las cristalinas aguas de la costa onubense. Una combinación única de relajación y aventura.</p>
-                    </div>
-                </div>
-                <div class="carousel-slide">
-                    <div class="activity-card">
-                        <img src="images/observaciones_astronomicas.jpg" alt="Imagen de observaciones astronómicas">
-                        <h3>Observaciones astronómicas</h3>
-                        <p>Maravíllate con la inmensidad del universo bajo los cielos despejados de Huelva, un lugar ideal para admirar estrellas, planetas y constelaciones.</p>
-                    </div>
-                </div>
-                <div class="carousel-slide">
-                    <div class="activity-card">
-                        <img src="https://www.civitatis.com/f/espana/huelva/galeria/travesia-ria-huelva.jpg" alt="Imagen barco por la ría de Huelva">
-                        <h3>Paseo en barco</h3>
-                        <p>Relájate mientras disfrutas de un paseo en barco por la ría. Navega entre paisajes naturales únicos y respira la tranquilidad del entorno.</p>
-                    </div>
-                </div>
-                <div class="carousel-slide">
-                    <div class="activity-card">
-                        <img src="images/parapente.jpg" alt="Imagen vuelo en parapente">
-                        <h3>Vuelo en parapente</h3>
-                        <p>Vuela sobre los impresionantes paisajes de Huelva en parapente. Siente la adrenalina mientras disfrutas de vistas panorámicas incomparables desde las alturas.</p>
-                    </div>
-                </div>
-                <div class="carousel-slide">
-                    <div class="activity-card">
-                        <img src="images/marisco.jpg" alt="Imagen de marisco">
-                        <h3>Marisco</h3>
-                        <p>Saborea lo mejor del mar con una degustación de mariscos frescos. Descubre los sabores auténticos que han hecho famosa la gastronomía de Huelva.</p>
-                    </div>
-                </div>
-                <div class="carousel-slide">
-                    <div class="activity-card">
-                        <img src="https://th.bing.com/th/id/R.b01327038d43c140c79d231fb2fee574?rik=KqKQFlPuK0288g&pid=ImgRaw&r=0" alt="Imagen de fotografía">
-                        <h3>Fotografía</h3>
-                        <p>Captura la belleza de Huelva a través de tu cámara. Desde paisajes naturales hasta la fauna del Parque de Doñana, las oportunidades son infinitas.</p>
-                    </div>
-                </div>
-                <div class="carousel-slide">
-                    <div class="activity-card">
-                        <img src="https://turismoysabores.cl/wp-content/uploads/2020/01/25.jpg" alt="Imagen de ibéricos">
-                        <h3>Ibéricos</h3>
-                        <p>Disfruta de una degustación de productos ibéricos de la más alta calidad. Jamones, embutidos y más te esperan en una experiencia gastronómica única.</p>
-                    </div>
-                </div>
-                <div class="carousel-slide">
-                    <div class="activity-card">
-                        <img src="https://www.rotasul.tur.br/uploads/images/2019/07/cinco-destinos-do-enoturismo-no-brasil-e-no-mundo-1562895528.jpg" alt="Imagen de enoturismo">
-                        <h3>Enoturismo</h3>
-                        <p>Descubre los secretos del vino con un recorrido por bodegas locales. Degusta vinos exquisitos y conoce el proceso de elaboración del vino onubense.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <button class="carousel-btn prev-btn-activities">&#10094;</button>
-        <button class="carousel-btn next-btn-activities">&#10095;</button>
-    </section>
-
-    <section class="plans-container">
-        <h1>Elige tu aventura perfecta en Huelva</h1>
-        <h3>Estos son algunos de nuestros mejores paquetes, todos completamente personalizables según sus necesidades y deseos de viaje:</h3>
-    
-        <div class="carousel-plans-container">
-            <div class="carousel-track plans">
-                <div class="carousel-slide">
-                    <div class="plan_card">
-                        <div class="card_header">
-                            <span>Fin de semana</span> 
-                        </div>
-                        <img src="images/plan1.jpg" alt="Imagen plan fin de semana" class="card_img">
-                        <div class="card_content">
-                            <h4>Destinos:</h4>
-                            <ul>
-                                <li>Doñana</li>
-                                <li>Playa de Matalascañas</li>
-                            </ul>
-                            <h4>La experiencia:</h4>
-                            <p>Sumérgete en la belleza de Doñana, una joya natural con paisajes impresionantes y una biodiversidad única...</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-slide">
-                    <div class="plan_card">
-                        <div class="card_header">
-                            <span>Semana</span>
-                        </div>
-                        <img src="images/plan2.jpeg" alt="Imagen plan semana" class="card_img">
-                        <div class="card_content">
-                            <h4>Destinos:</h4>
-                            <ul>
-                                <li>El Rocío</li>
-                                <li>Doñana</li>
-                                <li>Aracena</li>
-                                <li>Playa de Matalascañas</li>
-                                <li>Palos de la Frontera</li>
-                            </ul>
-                            <h4>La experiencia:</h4>
-                            <p>Descubre la esencia de Huelva con una experiencia que combina naturaleza, cultura e historia...</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-slide">
-                    <div class="plan_card">
-                        <div class="card_header">
-                            <span>Personalizado</span>
-                        </div>
-                        <img src="images/plan3.jpg" alt="Imagen plan personalizado" class="card_img">
-                        <div class="card_content">
-                            <h4>Destinos:</h4>
-                            <ul>
-                                <li>A tu elección</li>
-                            </ul>
-                            <h4>La experiencia:</h4>
-                            <p>Crea un plan a medida según tus preferencias para vivir Huelva de la forma que más te guste.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <button class="carousel-btn prev-btn-plans">&#10094;</button>
-            <button class="carousel-btn next-btn-plans">&#10095;</button>
-        </div>
-    </section>
-    
-    <section class="opinions">
-        <h1>Opiniones de nuestros visitantes</h1>
-        <section class="opinions-container">
-            <div class="opinion-carousel">
-                <div class="opinion-slide">
-                    <p>"Visitar Huelva fue una experiencia fantástica. Los paisajes son impresionantes y la atención de los guías Javier y Laura fue inmejorable. Nos hicieron sentir como en casa y nos llevaron a lugares que nunca habríamos descubierto por nuestra cuenta. Sin duda, lo mejor del viaje."</p>
-                    <span>- María González</span>
-                </div>
-                <div class="opinion-slide">
-                    <p>"Los guías Javier y Laura hicieron que nuestra visita a Huelva fuera especial. Conocían la historia y las tradiciones locales a la perfección, lo que hizo que cada lugar tuviera un significado único. Nos encantó su amabilidad y la forma en que se preocuparon por todos los detalles."</p>
-                    <span>- Carlos Martínez</span>
-                </div>
-                <div class="opinion-slide">
-                    <p>"La ruta por Huelva superó todas nuestras expectativas. Los guías Javier y Laura no solo nos mostraron los mejores rincones, sino que también nos compartieron anécdotas y secretos locales que hicieron la experiencia mucho más enriquecedora. ¡Totalmente recomendable para quienes busquen un viaje auténtico!"</p>
-                    <span>- Lucía Fernández</span>
-                </div>
-                <div class="opinion-slide">
-                    <p>"Visiting Huelva was truly remarkable. Our guides, Javier and Laura, were exceptional; they were knowledgeable, friendly, and took us to the most beautiful and hidden spots. Their passion for the region was contagious, and they made sure that every moment was memorable. Highly recommended!"</p>
-                    <span>- Sarah Johnson</span>
-                </div>
-                <div class="opinion-slide">
-                    <p>"Visiter Huelva a été une expérience inoubliable. Les guides Javier et Laura ont été formidables, toujours disponibles et prêts à partager leur connaissance et leur amour de la région. Ils nous ont fait découvrir des lieux magnifiques et raconté des histoires fascinantes. Je recommande vivement cette aventure."</p>
-                    <span>- Jean Dupont</span>
-                </div>
-            </div>
-            <button class="carousel-btn opinion-prev">&#10094;</button>
-            <button class="carousel-btn opinion-next">&#10095;</button>
+    <main>
+        <section class="video-container">
+            <video controls autoplay loop>
+                <source src="videos/video.mp4" type="video/mp4">
+                Tu navegador no soporta la etiqueta de video.
+            </video>
         </section>
-    </section>
+        <section class="place-container">
+                <h1>Maravillosos rincones de Huelva que debes visitar</h1>
+                <h3>Huelva, con su riqueza natural, histórica y cultural, te invita a descubrir una variedad de destinos encantadores. Desde playas vírgenes y paisajes naturales impresionantes hasta pueblos con encanto y vestigios históricos únicos, esta provincia andaluza tiene mucho que ofrecer.</h3>
+                <div class="places-container">
+                    <div class="place">
+                        <img src="images/lince.JPG" alt="Lince ibérico en Doñana">
+                        <div class="overlay">
+                            <h3>Doñana</h3>
+                        </div>
+                    </div>
+                    <div class="place">
+                        <img src="images/rocio.jpg" alt="Virgen del Rocío">
+                        <div class="overlay">
+                            <h3>El Rocío</h3>
+                        </div>
+                    </div>
+                    <div class="place">
+                        <img src="images/matalascañas.JPG" alt="Playa de Matalascañas">
+                        <div class="overlay">
+                            <h3>Playa de Matalascañas</h3>
+                        </div>
+                    </div>
+                    <div class="place">
+                        <img src="images/aracena.jpg" alt="Gruta de las maravillas">
+                        <div class="overlay">
+                            <h3>Sierra de Aracena</h3>
+                        </div>
+                    </div>
+                    <div class="place">
+                        <img src="https://as1.ftcdn.net/v2/jpg/00/88/11/60/1000_F_88116063_UOsqP43XO2e4DklCZNnuoa60JAE7ywUI.jpg" alt="Las 3 Carabelas">
+                        <div class="overlay">
+                            <h3>Palos de la Frontera</h3>
+                        </div>
+                    </div>
+                    <div class="place">
+                        <img src="images/minas.webp" alt="Minas Río Tinto">
+                        <div class="overlay">
+                            <h3>Minas Río Tinto</h3>
+                        </div>
+                    </div>
+                </div>
+        </section>
+        <section class="activities-container">
+            <h1>Descubre nuestras actividades para disfrutar en Huelva</h1>
+            <div class="carousel-container">
+                <div class="carousel-track activities">
+                    <div class="carousel-slide">
+                        <div class="activity-card">
+                            <img src="images/pesca2.JPG" alt="Persona pescando en la playa">
+                            <h3>Playa y pesca</h3>
+                            <p>Disfruta de un día perfecto bajo el sol mientras practicas pesca en las cristalinas aguas de la costa onubense. Una combinación única de relajación y aventura.</p>
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <div class="activity-card">
+                            <img src="images/observaciones_astronomicas.jpg" alt="Imagen de la luna">
+                            <h3>Observaciones astronómicas</h3>
+                            <p>Maravíllate con la inmensidad del universo bajo los cielos despejados de Huelva, un lugar ideal para admirar estrellas, planetas y constelaciones.</p>
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <div class="activity-card">
+                            <img src="images/paseo_barco.jpg" alt="Barco por la ría de Huelva">
+                            <h3>Paseo en barco</h3>
+                            <p>Relájate mientras disfrutas de un paseo en barco por la ría. Navega entre paisajes naturales únicos y respira la tranquilidad del entorno.</p>
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <div class="activity-card">
+                            <img src="images/parapente.jpg" alt="Persona volando en parapente">
+                            <h3>Vuelo en parapente</h3>
+                            <p>Vuela sobre los impresionantes paisajes de Huelva en parapente. Siente la adrenalina mientras disfrutas de vistas panorámicas incomparables desde las alturas.</p>
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <div class="activity-card">
+                            <img src="images/gambas.jpg" alt="Imagen de marisco">
+                            <h3>Marisco</h3>
+                            <p>Saborea lo mejor del mar con una degustación de mariscos frescos. Descubre los sabores auténticos que han hecho famosa la gastronomía de Huelva.</p>
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <div class="activity-card">
+                            <img src="https://th.bing.com/th/id/R.b01327038d43c140c79d231fb2fee574?rik=KqKQFlPuK0288g&pid=ImgRaw&r=0" alt="Imagen de fotografía">
+                            <h3>Fotografía</h3>
+                            <p>Captura la belleza de Huelva a través de tu cámara. Desde paisajes naturales hasta la fauna del Parque de Doñana, las oportunidades son infinitas.</p>
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <div class="activity-card">
+                            <img src="https://turismoysabores.cl/wp-content/uploads/2020/01/25.jpg" alt="Imagen de ibéricos">
+                            <h3>Ibéricos</h3>
+                            <p>Disfruta de una degustación de productos ibéricos de la más alta calidad. Jamones, embutidos y más te esperan en una experiencia gastronómica única.</p>
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <div class="activity-card">
+                            <img src="https://www.rotasul.tur.br/uploads/images/2019/07/cinco-destinos-do-enoturismo-no-brasil-e-no-mundo-1562895528.jpg" alt="Imagen de enoturismo">
+                            <h3>Enoturismo</h3>
+                            <p>Descubre los secretos del vino con un recorrido por bodegas locales. Degusta vinos exquisitos y conoce el proceso de elaboración del vino onubense.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-btn prev-btn-activities">&#10094;</button>
+            <button class="carousel-btn next-btn-activities">&#10095;</button>
+        </section>
 
-    <section class="form-container">
-        <form action="#" method="POST" class="form">
-            <h1>Déjanos tus datos y nos pondremos en contacto contigo</h1>
-            <span>Por favor, completa el siguiente formulario con tus datos de contacto. Nos comprometemos a responderte lo antes posible para atender tus consultas o proporcionarte más información. Tu privacidad es importante para nosotros; tus datos estarán protegidos y solo se utilizarán para este propósito.</span>
-            <div class="form_option">
-                <label for="name">Nombre(*):</label>
-                <input type="text" id="name" name="name" required>
+        <section class="plans-container">
+            <h1>Elige tu aventura perfecta en Huelva</h1>
+            <h3>Estos son algunos de nuestros mejores paquetes, todos completamente personalizables según sus necesidades y deseos de viaje:</h3>
+        
+            <div class="carousel-plans-container">
+                <div class="carousel-track plans">
+                    <div class="carousel-slide">
+                        <div class="plan_card">
+                            <div class="card_header">
+                                <span>Fin de semana</span> 
+                            </div>
+                            <img src="images/plan2.jpg" alt="Imagen plan fin de semana" class="card_img">
+                            <div class="card_content">
+                                <h4>Destinos:</h4>
+                                <ul>
+                                    <li>Doñana</li>
+                                    <li>Playa de Matalascañas</li>
+                                </ul>
+                                <h4>La experiencia:</h4>
+                                <p>Sumérgete en la belleza de Doñana, una joya natural con paisajes impresionantes y una biodiversidad única...</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <div class="plan_card">
+                            <div class="card_header">
+                                <span>Semana</span>
+                            </div>
+                            <img src="images/plan2.jpeg" alt="Imagen plan semana" class="card_img">
+                            <div class="card_content">
+                                <h4>Destinos:</h4>
+                                <ul>
+                                    <li>El Rocío</li>
+                                    <li>Doñana</li>
+                                    <li>Aracena</li>
+                                    <li>Playa de Matalascañas</li>
+                                    <li>Palos de la Frontera</li>
+                                </ul>
+                                <h4>La experiencia:</h4>
+                                <p>Descubre la esencia de Huelva con una experiencia que combina naturaleza, cultura e historia...</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <div class="plan_card">
+                            <div class="card_header">
+                                <span>Personalizado</span>
+                            </div>
+                            <img src="images/plan3.jpg" alt="Imagen plan personalizado" class="card_img">
+                            <div class="card_content">
+                                <h4>Destinos:</h4>
+                                <ul>
+                                    <li>A tu elección</li>
+                                </ul>
+                                <h4>La experiencia:</h4>
+                                <p>Crea un plan a medida según tus preferencias para vivir Huelva de la forma que más te guste.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-btn prev-btn-plans">&#10094;</button>
+                <button class="carousel-btn next-btn-plans">&#10095;</button>
             </div>
-            <div class="form_option">
-                <label for="email">Email(*):</label>
-                <input type="email" id="email" name="email" required>
-            </div>
-            <div class="form_option">
-                <label for="telf">Teléfono(*):</label>
-                <input type="tel" id="telf" name="telf" required>
-            </div>
-            <div class="form_option">
-                <label for="people">Número de personas(*):</label>
-                <input type="number" id="people" name="people" required min="1">
-            </div>
-            <div class="form_option">
-                <label for="message">Mensaje:</label>
-                <textarea id="messsage" name="message"></textarea>
-            </div>
-            <span>Todos los campos marcados con (*) son obligatorios.</span>
-            <div class="form_option">
-                <button type="submit">Enviar</button>
-            </div>
-        </form>
-    </section>
+        </section>
+
+        <section class="opinions">
+            <h1>Opiniones de nuestros visitantes</h1>
+            <section class="opinions-container">
+                <div class="opinion-carousel">
+                    <div class="opinion-slide">
+                        <p>"Visitar Huelva fue una experiencia fantástica. Los paisajes son impresionantes y la atención de los guías Javier y Laura fue inmejorable. Nos hicieron sentir como en casa y nos llevaron a lugares que nunca habríamos descubierto por nuestra cuenta. Sin duda, lo mejor del viaje."</p>
+                        <span>- María González</span>
+                    </div>
+                    <div class="opinion-slide">
+                        <p>"Los guías Javier y Laura hicieron que nuestra visita a Huelva fuera especial. Conocían la historia y las tradiciones locales a la perfección, lo que hizo que cada lugar tuviera un significado único. Nos encantó su amabilidad y la forma en que se preocuparon por todos los detalles."</p>
+                        <span>- Carlos Martínez</span>
+                    </div>
+                    <div class="opinion-slide">
+                        <p>"La ruta por Huelva superó todas nuestras expectativas. Los guías Javier y Laura no solo nos mostraron los mejores rincones, sino que también nos compartieron anécdotas y secretos locales que hicieron la experiencia mucho más enriquecedora. ¡Totalmente recomendable para quienes busquen un viaje auténtico!"</p>
+                        <span>- Lucía Fernández</span>
+                    </div>
+                    <div class="opinion-slide">
+                        <p>"Visiting Huelva was truly remarkable. Our guides, Javier and Laura, were exceptional; they were knowledgeable, friendly, and took us to the most beautiful and hidden spots. Their passion for the region was contagious, and they made sure that every moment was memorable. Highly recommended!"</p>
+                        <span>- Sarah Johnson</span>
+                    </div>
+                    <div class="opinion-slide">
+                        <p>"Visiter Huelva a été une expérience inoubliable. Les guides Javier et Laura ont été formidables, toujours disponibles et prêts à partager leur connaissance et leur amour de la région. Ils nous ont fait découvrir des lieux magnifiques et raconté des histoires fascinantes. Je recommande vivement cette aventure."</p>
+                        <span>- Jean Dupont</span>
+                    </div>
+                </div>
+                <button class="carousel-btn opinion-prev">&#10094;</button>
+                <button class="carousel-btn opinion-next">&#10095;</button>
+            </section>
+        </section>
+
+        <section class="form-container">
+            <form action="#" method="POST" class="form">
+                <h1>Déjanos tus datos y nos pondremos en contacto contigo</h1>
+                <span>Por favor, completa el siguiente formulario con tus datos de contacto. Nos comprometemos a responderte lo antes posible para atender tus consultas o proporcionarte más información. Tu privacidad es importante para nosotros; tus datos estarán protegidos y solo se utilizarán para este propósito.</span>
+                <div class="form_option">
+                    <label for="name">Nombre(*):</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form_option">
+                    <label for="email">Email(*):</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form_option">
+                    <label for="telf">Teléfono(*):</label>
+                    <input type="tel" id="telf" name="telf" required>
+                </div>
+                <div class="form_option">
+                    <label for="people">Número de personas(*):</label>
+                    <input type="number" id="people" name="people" required min="1">
+                </div>
+                <div class="form_option">
+                    <label for="message">Mensaje:</label>
+                    <textarea id="message" name="message"></textarea>
+                </div>
+                <span>Todos los campos marcados con (*) son obligatorios.</span>
+                <div class="form_option">
+                    <button type="submit">Enviar</button>
+                </div>
+            </form>
+        </section>
+    </main>
 
     <footer>
         <div class="social-media">
-            <a href="https://www.facebook.com/come2huelva" target="_blank" class="icon facebook"><i class="bi bi-facebook"></i></a>
-            <a href="https://www.instagram.com/come2huelva/" target="_blank" class="icon instagram"><i class="bi bi-instagram"></i></a>
+            <a href="https://www.facebook.com/come2huelva" target="_blank" rel="noopener noreferrer" class="icon facebook"><i class="bi bi-facebook"></i></a>
+            <a href="https://www.instagram.com/come2huelva/" target="_blank" rel="noopener noreferrer" class="icon instagram"><i class="bi bi-instagram"></i></a>
         </div>
     </footer>
 

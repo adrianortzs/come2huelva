@@ -1,11 +1,19 @@
-/* Paleta Colores */
 :root {
     --turquesa: #207E84;
     --amarillo: #FDCB58;
     --blanco: #FFFFFF;
     --azul: #68C1C5;
     --gris: #F2F2F2;
-  }
+}
+
+html {
+    box-sizing: border-box;
+    font-size: 62.5%; /* 1rem = 10px */
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
 
 body {
     font-family: 'Poppins', sans-serif;
@@ -13,22 +21,23 @@ body {
     padding: 0;
     color: #333;
     background-color: var(--gris);
+    font-size: 1.6rem;
+    line-height: 1.6;
 }
 
-/* Estilos Header */
 header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 30px 40px;
+    padding: 1rem 1.25rem;
     background-color: var(--turquesa); 
     position: relative;
     z-index: 10;
-    border-bottom: 5px solid var(--amarillo);
+    border-bottom: 0.3rem solid var(--amarillo);
 }
 
 .logo-container img {
-    height: 100px;
+    height: 5rem; 
     width: auto;
     display: block;
 }
@@ -41,9 +50,9 @@ header {
 .selected-language {
     background: none;
     cursor: pointer;
-    font-size: 34px;
+    font-size: 2rem;
     color: var(--blanco);
-    padding: 10px;
+    padding: 0.625rem;
     transition: color 0.3s ease;
     border: none;
     display: flex;
@@ -58,11 +67,11 @@ header {
     display: none;
     position: absolute;
     background-color: var(--turquesa);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.2);
     z-index: 1;
-    min-width: 120px;
-    border-radius: 8px;
-    top: 40px;
+    min-width: 7.5rem;
+    border-radius: 0.5rem;
+    top: calc(100% + 0.25rem);
     right: 0;
 }
 
@@ -70,13 +79,13 @@ header {
     background: none;
     border: none;
     cursor: pointer;
-    font-size: 30px;
-    padding: 10px;
+    font-size: 2rem;
+    padding: 0.625rem;
     width: 100%;
     text-align: left;
     color: var(--blanco);
     transition: background-color 0.3s ease;
-    border-radius: 4px;
+    border-radius: 0.25rem;
 }
 
 .language-options button:hover {
@@ -87,78 +96,76 @@ header {
     display: block;
 }
 
-/* Estilos Video */
 .video-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 30px 60px;
-    margin: 20px auto;
+    padding: 2rem 3.75rem;
+    margin: 1.25rem auto;
+    max-width: 110vh;
 }
 
 .video-container video {
     width: 100%;
-    max-width: 1200px;
+    max-width: 110vh;
     height: auto;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
+    box-shadow: 0 0.25rem 0.9375rem rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .video-container video:hover {
-    transform: scale(1.05);
+    transform: scale(1.03);
+    box-shadow: 0 0.4rem 1.2rem rgba(0,0,0,0.15);
 }
 
-/* Estilos Lugares */
 .place-container {
-    max-width: 1200px;
+    max-width: 140vh;
     margin: 0 auto;
-    padding: 80px 20px;
     text-align: center;
     background-color: var(--gris);
 }
 
 .place-container h1 {
-    font-size: 38px;
+    font-size: 2.375rem;
     font-weight: bold;
     color: #242423;
-    margin-bottom: 50px;
+    margin-bottom: 2.25rem;
     text-transform: uppercase;
-    letter-spacing: 2px;
-    text-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    letter-spacing: 0.125rem;
+    text-shadow: 0 0.1875rem 0.375rem rgba(0, 0, 0, 0.1);
 }
 
 .place-container h3 {
-    font-size: 23px;
+    font-size: 1.6rem;
     color: #666;
     font-weight: normal;
-    padding-top: 25px;
-    max-width: 700px;
-    margin-left: auto;
-    margin-right: auto;
+    max-width: 43.75rem;
+    margin: 0 auto;
     line-height: 1.8;
 }
 
 .places-container {
-    margin-top: 80px;
+    margin-top: 5rem;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 50px;
+    gap: 3.125rem;
 }
 
 .place {
     position: relative;
     overflow: hidden;
-    border-radius: 5px;
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box shadow 0.3s ease;
+    border-radius: 0.3125rem;
+    box-shadow: 0 0.375rem 0.9375rem rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: var(--blanco);
 }
 
 .place img {
     width: 100%;
-    height: 350px;
+    height: 21rem;
     object-fit: cover;
     transition: transform 0.3s ease;
+    display: block;
 }
 
 .place:hover img {
@@ -169,9 +176,8 @@ header {
     position: absolute;
     bottom: 0;
     background: rgba(0, 0, 0, 0.7);
-    color: var(--blanco);
     width: 100%;
-    padding-bottom: 20px;
+    padding: 1rem 0;
     opacity: 0;
     transition: opacity 0.3s ease;
     text-align: center;
@@ -183,36 +189,35 @@ header {
 
 .overlay h3 {
     margin: 0;
-    font-size: 23px;
-    color: var(--blanco);
+    font-size: 2rem;
     font-weight: bold;
+    color: var(--blanco);
 }
 
-/* Estilos Actividades */
 .activities-container {
     position: relative;
-    max-width: 1700px;
-    margin: auto;
-    padding: 80px 20px;
+    max-width: 170vh;
+    margin: 0 auto;
+    padding: 4rem 2rem;
     text-align: center;
     background-color: var(--gris);
 }
 
 .activities-container h1 {
-    font-size: 38px;
+    font-size: 2.375rem;
     font-weight: bold;
     color: #242423;
-    margin-bottom: 40px;
+    margin-bottom: 2.25rem;
     text-transform: uppercase;
-    letter-spacing: 2px;
-    text-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    letter-spacing: 0.125rem; 
+    text-shadow: 0 0.1875rem 0.375rem rgba(0, 0, 0, 0.1);
 }
 
 .carousel-container {
     display: flex;
     overflow: hidden;
     width: 100%;
-    margin-top: 80px;
+    margin-top: 5rem;
 }
 
 .carousel-track {
@@ -223,44 +228,57 @@ header {
 .carousel-slide {
     min-width: calc(100% / 4);
     box-sizing: border-box;
+    display: flex;
+    justify-content: center;
 }
 
+/* Tarjetas de actividades */
 .activity-card {
-    flex: 1;
-    margin: 0 15px;
-    padding: 20px 15px;
-    border-radius: 10px;
     background-color: var(--blanco);
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 1rem;
+    box-shadow: 0 0.4rem 1rem rgba(0, 0, 0, 0.1); /* Sombra más suave */
     transition: box-shadow 0.3s ease, transform 0.3s ease;
+    max-width: 25rem; /* Limitar el ancho de la tarjeta para evitar que el texto se extienda demasiado */
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem; 
+    box-sizing: border-box;
+    text-align: center;
+    margin: 0 1rem; /* Espacio horizontal entre tarjetas */
 }
 
 .activity-card:hover {
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0.6rem 1.5rem rgba(0, 0, 0, 0.15); 
+    transform: translateY(-0.5rem); /* Sutil levantamiento al hover */
 }
 
 .activity-card img {
     width: 100%;
-    height: 225px;
+    height: 15rem; /* Unificar la altura de las imágenes para que todas las tarjetas se vean uniformes */
     object-fit: cover;
-    border-radius: 5px;
-    margin-bottom: 15px;
+    border-radius: 0.5rem;
+    margin-bottom: 2rem;
 }
 
 .activity-card h3 {
-    font-size: 23px;
+    font-size: 2rem;
     color: #242423;
     text-transform: uppercase;
     font-weight: bold;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.05em;
+    margin-bottom: 1rem;
 }
 
 .activity-card p {
-    font-size: 21px;
-    color: #666;
-    line-height: 1.6;
+    font-size: 1.6rem;
+    color: #555;
+    line-height: 1.5;
+    margin: 0;
 }
 
+/* Botones del carrusel */
 .carousel-btn {
     position: absolute;
     top: 50%;
@@ -268,51 +286,48 @@ header {
     background: none;
     border: none;
     color: #242423;
-    font-size: 30px;
+    font-size: 3rem;
     cursor: pointer;
     z-index: 1;
     opacity: 0.6;
-    transition: opacity 0.3s ease;
+    transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 .carousel-btn:hover {
     opacity: 1;
+    transform: scale(1.1);
 }
 
-
 .prev-btn-activities {
-    left: -15px;
+    left: -2rem;
 }
 
 .next-btn-activities {
-    right: -15px;
+    right: -2rem;
 }
 
-/* Estilos Planes */
+/* Planes */
 .plans-container {
     text-align: center;
-    padding-top: 75px;
     background-color: var(--gris);
 }
 
 .plans-container h1 {
-    font-size: 38px;
+    font-size: 2.375rem;
     font-weight: bold;
     color: #242423;
-    margin-bottom: 40px;
+    margin-bottom: 2.25rem;
     text-transform: uppercase;
-    letter-spacing: 2px;
-    text-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    letter-spacing: 0.125rem;
+    text-shadow: 0 0.1875rem 0.375rem rgba(0, 0, 0, 0.1);
 }
 
 .plans-container h3 {
-    font-size: 23px;
-    padding-top: 25px;
+    font-size: 1.6rem;
     color: #666;
     font-weight: normal;
-    max-width: 700px;
-    margin-left: auto;
-    margin-right: auto;
+    max-width: 70rem;
+    margin: 0 auto;
     line-height: 1.8;
 }
 
@@ -322,21 +337,21 @@ header {
     align-items: center;
     overflow: hidden;
     margin: 0 auto;
-    padding: 20px 0;
+    padding: 4rem 0;
 }
 
 .plans {
-    gap: 50px;
+    gap: 3rem;
 }
 
 .plan_card {
     background-color: var(--turquesa);
-    border-radius: 15px;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 1.5rem;
+    box-shadow: 0 0.6rem 2rem rgba(0, 0, 0, 0.1);
     overflow: hidden;
     width: 100%;
     text-align: left;
-    max-width: 400px;
+    max-width: 35rem;
     display: flex;
     flex-direction: column;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -344,13 +359,13 @@ header {
 
 .plan_card:hover {
     transform: scale(1.05);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.2);
 }
 
 .card_header {
     background-color: var(--amarillo);
-    padding: 20px;
-    font-size: 23px;
+    padding: 1rem;
+    font-size: 2rem;
     font-weight: bold;
     color: #242423;
     text-align: center;
@@ -358,76 +373,73 @@ header {
 
 .card_img {
     width: 100%;
-    height: 250px;
+    height: 20rem;
     object-fit: cover;
 }
 
 .card_content {
-    padding: 20px;
+    padding: 0 2rem;
     flex-grow: 1;
 }
 
 .card_content h4 {
-    font-size: 23px;
+    font-size: 1.8rem;
     color: var(--blanco);
-    margin-bottom: 10px;
+    margin-bottom: 0.8rem;
     font-weight: bold;
 }
 
 .card_content ul {
     padding: 0;
-    margin-bottom: 15px;
     list-style-type: none;
     color: var(--blanco);
-    font-size: 21px;
+    font-size: 1.6rem;
     line-height: 1.6;
 }
 
-p {
-    font-size: 21px;
+.card_content p {
+    font-size: 1.6rem;
     color: var(--blanco);
     line-height: 1.6;
 }
 
 .prev-btn-plans,
-    .next-btn-plans {
-        display: none;
-    }
+.next-btn-plans {
+    display: none;
+}
 
-/* Estilos Opiniones */
+/* Opiniones */
 .opinions {
     text-align: center;
-    padding: 50px 20px;
     position: relative;
     background-color: var(--gris);
 }
 
 .opinions h1 {
-    font-size: 38px;
+    font-size: 2.375rem;
     font-weight: bold;
     color: #242423;
-    margin-bottom: 50px;
+    margin-bottom: 5rem;
     text-transform: uppercase;
-    letter-spacing: 2px;
-    text-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    letter-spacing: 0.125rem;
+    text-shadow: 0 0.1875rem 0.375rem rgba(0, 0, 0, 0.1);
 }
 
 .opinions-container {
-    padding: 60px 30px;
+    padding: 5rem 2.5rem;
     position: relative;
-    max-width: 1000px;
+    max-width: 120vh;
     margin: 0 auto;
     background-color: var(--blanco);
-    border-radius: 12px;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+    border-radius: 0.6rem;
+    box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.2);
 }
 
 .opinion-slide {
     display: none;
     opacity: 0;
     transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out;
-    padding: 30px 20px;
-    margin-bottom: 20px;
+    padding: 3rem 2rem;
     text-align: center;
 }
 
@@ -438,52 +450,53 @@ p {
 }
 
 .opinion-slide p {
-    font-size: 23px;
+    font-size: 1.8rem;
     color: #555;
-    line-height: 1.8;
-    margin-bottom: 20px;
+    line-height: 1.6;
+    margin-bottom: 3rem;
     font-style: italic;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.1);
 }
 
 .opinion-slide span {
-    font-size: 23px;
+    font-size: 1.8rem;
     color: #333533;
     font-weight: bold;
     display: block;
-    margin-top: 20px;
+    margin-top: 2rem;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 0.1rem;
 }
 
-.carousel-btn {
+.opinion-prev, .opinion-next {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    font-size: 38px;
+    font-size: 3rem;
     background: none;
     border: none;
-    width: 60px;
-    height: 60px;
+    width: 6rem;
+    height: 6rem;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-.carousel-btn:hover {
+.opinion-prev:hover,
+.opinion-next:hover {
     transform: scale(1.1);
 }
 
 .opinion-prev {
-    left: 20px;
+    left: 0rem;
 }
 
 .opinion-next {
-    right: 20px;
+    right: 0rem;
 }
 
-/* Estilos Formulario */
+/* Formulario */
 .form-container {
-    padding: 80px 20px;
+    padding: 6rem 1rem;
     background-color: var(--gris);
     display: flex;
     justify-content: center;
@@ -493,74 +506,74 @@ p {
 .form {
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 1.5rem;
     background-color: var(--blanco);
-    padding: 70px 50px;
-    border-radius: 12px;
-    max-width: 800px;
+    padding: 3.5rem 2.5rem;
+    border-radius: 0.6rem;
+    max-width: 70rem;
     width: 100%;
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1.2rem 4rem rgba(0, 0, 0, 0.1);
     font-family: 'Arial', sans-serif;
 }
 
 .form h1 {
-    font-size: 38px;
+    font-size: 2.375rem;
     font-weight: 700;
     color: #333533;
     text-align: center;
-    margin-bottom: 15px;
+    margin-bottom: 1.5rem;
 }
 
 .form span {
-    font-size: 23px;
+    font-size: 1.6rem;
     color: #666;
     text-align: center;
-    line-height: 1.8;
+    line-height: 1.6;
 }
 
 .form_option {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 1.5rem;
 }
 
 .form_option label {
-    font-size: 23px;
+    font-size: 1.6rem;
     font-weight: 600;
     color: #333533;
 }
 
 .form_option input,
 .form_option textarea {
-    padding: 15px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
+    padding: 1.5rem;
+    border: 0.1rem solid #ddd;
+    border-radius: 0.8rem;
     background-color: var(--gris);
     color: #333;
-    font-size: 23px;
+    font-size: 1.6rem;
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .form_option input:focus,
 .form_option textarea:focus {
     border-color: var(--amarillo);
-    box-shadow: 0 0 5px rgba(245, 203, 92, 0.5);
+    box-shadow: 0 0 0.5rem rgba(245, 203, 92, 0.5);
     outline: none;
 }
 
 .form_option textarea {
     resize: vertical;
-    min-height: 150px;
-    max-height: 400px;
+    min-height: 15rem;
+    max-height: 40rem;
 }
 
 .form_option button {
     background-color: var(--amarillo);
     color: var(--blanco);
-    padding: 20px;
+    padding: 1.5rem;
     border: none;
-    border-radius: 8px;
-    font-size: 23px;
+    border-radius: 0.8rem;
+    font-size: 1.6rem;
     font-weight: 700;
     cursor: pointer;
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
@@ -570,29 +583,28 @@ p {
 .form_option button:hover {
     background-color: var(--turquesa);
     color: var(--blanco);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0.4rem 1.5rem rgba(0, 0, 0, 0.3);
 }
 
-/* Estilos Footer */
+/* Footer */
 footer {
     background-color: var(--turquesa);
-    padding: 40px 20px;
+    padding: 2rem 2.5rem;
     color: var(--blanco);
     position: relative;
-    border-top: 5px solid var(--amarillo);
+    border-top: 0.3rem solid var(--amarillo);
 }
 
 footer .social-media {
     display: flex;
     justify-content: center;
-    gap: 100px;
-    margin: 20px 0;
+    gap: 10rem;
 }
 
 footer .icon {
     color: var(--blanco);
     text-decoration: none;
-    font-size: 36px;
+    font-size: 2rem;
     transition: transform 0.3s ease, color 0.3s ease;
 }
 
@@ -601,92 +613,84 @@ footer .icon:hover {
     transform: scale(1.2);
 }
 
-/*Estilos botón flotante*/
+/* Botón flotante */
 .floating-btn {
     position: fixed;
-    bottom: 60px;
-    right: 60px;
+    bottom: 3rem;
+    right: 3rem;
     background-color: var(--amarillo);
     color: var(--blanco);
     border: none;
     border-radius: 50%;
-    width: 110px;
-    height: 110px;
+    width: 8rem;
+    height: 8rem;
     cursor: pointer;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    font-size: 23px;
-    transition: background-color 0.3s ease;
+    box-shadow: 0 0.4rem 1rem rgba(0, 0, 0, 0.2);
+    font-size: 1.8rem;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .floating-btn:hover {
     background-color: var(--turquesa);
+    transform: scale(1.05);
 }
 
-/* Estilos para dispositivos móviles */
-@media (max-width: 768px) {
-    /* Estilos Header */
+/* Responsive - Móvil */
+@media (max-width: 76.8rem) { /*768px*/
     header {
-        padding: 15px 20px;
+        padding: 1.5rem 2rem;
     }
 
     .logo-container img {
-        height: 70px;
+        height: 7rem;
     }
 
     .selected-language {
-        font-size: 21px;
+        font-size: 2rem;
     }
 
     .language-options {
-        min-width: 100px;
+        min-width: 10rem;
     }
 
     .language-options button {
-        font-size: 19px;
-        padding: 8px 12px;
+        font-size: 1.9rem;
+        padding: 0.8rem 1.2rem;
     }
 
-    /* Estilos Video */
     .video-container {
-        padding: 15px 30px;
+        padding: 1.5rem 3rem;
     }
 
-    .video-container video {
-        max-width: 100%;
-        border-radius: 5px;
-    }
-
-    /* Estilos Lugares */
     .place-container {
-        padding: 40px 10px;
+        padding: 4rem 1rem;
     }
 
     .places-container {
         grid-template-columns: 1fr;
-        gap: 25px;
+        gap: 2.5rem;
     }
 
     .place-container h1 {
-        font-size: 28px;
+        font-size: 2.8rem;
     }
 
     .place-container h3 {
-        font-size: 21px;
+        font-size: 2.1rem;
     }
 
     .overlay h3 {
-        font-size: 21px;
+        font-size: 2.1rem;
     }
 
-    /* Estilos Actividades */
     .activities-container {
-        padding: 40px 10px;
+        padding: 4rem 1rem;
         width: 100%;
         overflow: hidden;
     }
 
     .activities-container h1 {
-        font-size: 28px;
+        font-size: 2.8rem;
     }
 
     .carousel-container {
@@ -702,41 +706,40 @@ footer .icon:hover {
 
     .activity-card {
         width: 90%;
-        max-width: 320px;
+        max-width: 32rem;
     }
 
     .activity-card img {
         height: auto;
-        max-height: 200px;
+        max-height: 20rem;
     }
 
     .activity-card h3 {
-        font-size: 21px;
+        font-size: 2.1rem;
     }
 
     .activity-card p {
-        font-size: 19px;
+        font-size: 1.9rem;
     }
 
     .prev-btn-activities {
-        left: 60px;
+        left: 6rem;
     }
 
     .next-btn-activities {
-        right: 60px;
+        right: 6rem;
     }
 
-    /* Estilos Planes */
     .plans-container {
-        padding-top: 30px;
+        padding-top: 3rem;
     }
 
     .plans-container h1 {
-        font-size: 28px;
+        font-size: 2.8rem;
     }
 
     .plans-container h3 {
-        font-size: 23px;
+        font-size: 2.3rem;
     }
 
     .carousel-plans-container {
@@ -749,7 +752,7 @@ footer .icon:hover {
     }
 
     .plans {
-        gap: 0px;
+        gap: 0;
     }
 
     .plans-container .carousel-slide {
@@ -769,95 +772,92 @@ footer .icon:hover {
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
-        font-size: 28px;
+        font-size: 2.8rem;
         border: none;
         cursor: pointer;
         background: none;
         z-index: 10;
-        width: 30px;
-        height: 30px;
-        line-height: 40px;
+        width: 3rem;
+        height: 3rem;
+        line-height: 4rem;
         transition: background-color 0.3s ease;
     }
 
     .prev-btn-plans {
-        left: 5px;
+        left: 0.5rem;
     }
 
     .next-btn-plans {
-        right: 5px;
+        right: 0.5rem;
     }
 
-    /* Estilos Opiniones */
     .opinions h1 {
-        font-size: 28px;
+        font-size: 2.8rem;
     }
 
     .opinions-container {
-        padding: 30px 15px;
+        padding: 3rem 1.5rem;
         max-width: 90%;
     }
 
     .opinion-slide p {
-        font-size: 19px;
+        font-size: 1.9rem;
     }
 
     .opinion-slide span {
-        font-size: 19px;
+        font-size: 1.9rem;
     }
 
     .carousel-btn {
-        width: 50px;
-        height: 50px;
-        font-size: 28px;
+        width: 5rem;
+        height: 5rem;
+        font-size: 2.8rem;
     }
 
-    /* Estilos Formulario */
     .form-container {
-        padding: 40px 10px;
+        padding: 4rem 1rem;
     }
 
     .form {
-        padding: 35px 25px;
+        padding: 3.5rem 2.5rem;
         max-width: 90%;
     }
 
     .form h1 {
-        font-size: 28px;
+        font-size: 2.8rem;
     }
 
     .form span {
-        font-size: 19px;
+        font-size: 1.9rem;
     }
 
     .form_option label {
-        font-size: 19px;
+        font-size: 1.9rem;
     }
 
     .form_option input,
     .form_option textarea {
-        font-size: 19px;
+        font-size: 1.9rem;
     }
 
     .form_option button {
-        padding: 15px;
-        font-size: 19px;
+        padding: 1.5rem;
+        font-size: 1.9rem;
     }
 
-    /* Estilos Footer */
     footer {
-        padding: 20px 10px;
+        padding: 2rem 1rem;
     }
 
     footer .icon {
-        font-size: 23px;
+        font-size: 2.3rem;
     }
 
     .floating-btn {
-        width: 80px;
-        height: 80px;
-        bottom: 40px;
-        right: 40px;
-        font-size: 18px;
+        width: 8rem;
+        height: 8rem;
+        bottom: 4rem;
+        right: 4rem;
+        font-size: 1.8rem;
     }
 }
