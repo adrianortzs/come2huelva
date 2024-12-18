@@ -232,38 +232,37 @@ header {
     justify-content: center;
 }
 
-/* Tarjetas de actividades */
 .activity-card {
     background-color: var(--blanco);
-    border-radius: 1rem;
-    box-shadow: 0 0.4rem 1rem rgba(0, 0, 0, 0.1); /* Sombra más suave */
+    border-radius: 0.6rem;
+    box-shadow: 0 0.4rem 1rem rgba(0, 0, 0, 0.1);
     transition: box-shadow 0.3s ease, transform 0.3s ease;
-    max-width: 25rem; /* Limitar el ancho de la tarjeta para evitar que el texto se extienda demasiado */
+    max-width: 24rem;
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 2rem; 
+    padding: 1rem; 
     box-sizing: border-box;
     text-align: center;
-    margin: 0 1rem; /* Espacio horizontal entre tarjetas */
+    margin: 0 1rem;
 }
 
 .activity-card:hover {
     box-shadow: 0 0.6rem 1.5rem rgba(0, 0, 0, 0.15); 
-    transform: translateY(-0.5rem); /* Sutil levantamiento al hover */
+    transform: translateY(-0.5rem);
 }
 
 .activity-card img {
     width: 100%;
-    height: 15rem; /* Unificar la altura de las imágenes para que todas las tarjetas se vean uniformes */
+    height: 15rem;
     object-fit: cover;
-    border-radius: 0.5rem;
-    margin-bottom: 2rem;
+    border-radius: 0.6rem;
+    margin-bottom: 1rem;
 }
 
 .activity-card h3 {
-    font-size: 2rem;
+    font-size: 1.6rem;
     color: #242423;
     text-transform: uppercase;
     font-weight: bold;
@@ -274,11 +273,10 @@ header {
 .activity-card p {
     font-size: 1.6rem;
     color: #555;
-    line-height: 1.5;
+    line-height: 1.6;
     margin: 0;
 }
 
-/* Botones del carrusel */
 .carousel-btn {
     position: absolute;
     top: 50%;
@@ -286,7 +284,7 @@ header {
     background: none;
     border: none;
     color: #242423;
-    font-size: 3rem;
+    font-size: 2rem;
     cursor: pointer;
     z-index: 1;
     opacity: 0.6;
@@ -299,14 +297,13 @@ header {
 }
 
 .prev-btn-activities {
-    left: -2rem;
+    left: 0rem;
 }
 
 .next-btn-activities {
-    right: -2rem;
+    right: -1.5rem;
 }
 
-/* Planes */
 .plans-container {
     text-align: center;
     background-color: var(--gris);
@@ -408,7 +405,6 @@ header {
     display: none;
 }
 
-/* Opiniones */
 .opinions {
     text-align: center;
     position: relative;
@@ -494,7 +490,6 @@ header {
     right: 0rem;
 }
 
-/* Formulario */
 .form-container {
     padding: 6rem 1rem;
     background-color: var(--gris);
@@ -586,7 +581,6 @@ header {
     box-shadow: 0 0.4rem 1.5rem rgba(0, 0, 0, 0.3);
 }
 
-/* Footer */
 footer {
     background-color: var(--turquesa);
     padding: 2rem 2.5rem;
@@ -613,7 +607,6 @@ footer .icon:hover {
     transform: scale(1.2);
 }
 
-/* Botón flotante */
 .floating-btn {
     position: fixed;
     bottom: 3rem;
@@ -635,62 +628,67 @@ footer .icon:hover {
     transform: scale(1.05);
 }
 
-/* Responsive - Móvil */
 @media (max-width: 76.8rem) { /*768px*/
-    header {
-        padding: 1.5rem 2rem;
-    }
-
     .logo-container img {
-        height: 7rem;
+        height: 4rem;
     }
 
     .selected-language {
-        font-size: 2rem;
+        font-size: 1.5rem;
     }
 
     .language-options {
-        min-width: 10rem;
+        min-width: 4rem;
     }
 
     .language-options button {
-        font-size: 1.9rem;
-        padding: 0.8rem 1.2rem;
+        font-size: 1.4rem;
     }
 
     .video-container {
         padding: 1.5rem 3rem;
     }
 
-    .place-container {
-        padding: 4rem 1rem;
-    }
-
     .places-container {
         grid-template-columns: 1fr;
-        gap: 2.5rem;
+        gap: 2rem;
+        justify-items: center;
+        width: 100%;
+        margin: 0 auto;
+        padding: 0 1rem;
+    }
+    
+    .place {
+        width: 80%;
+        max-width: none;
+        margin: 0 auto;
+    }
+    
+    .place img {
+        width: 100%;
+        height: 22rem;
+        object-fit: cover;
     }
 
     .place-container h1 {
-        font-size: 2.8rem;
+        font-size: 1.8rem;
     }
 
     .place-container h3 {
-        font-size: 2.1rem;
+        font-size: 1.5rem;
     }
 
     .overlay h3 {
-        font-size: 2.1rem;
+        font-size: 1.8rem;
     }
 
     .activities-container {
-        padding: 4rem 1rem;
         width: 100%;
         overflow: hidden;
     }
 
     .activities-container h1 {
-        font-size: 2.8rem;
+        font-size: 1.8rem;
     }
 
     .carousel-container {
@@ -711,35 +709,31 @@ footer .icon:hover {
 
     .activity-card img {
         height: auto;
-        max-height: 20rem;
+        max-height: 18rem;
     }
 
     .activity-card h3 {
-        font-size: 2.1rem;
+        font-size: 1.5rem;
     }
 
     .activity-card p {
-        font-size: 1.9rem;
+        font-size: 1.5rem;
     }
 
     .prev-btn-activities {
-        left: 6rem;
+        left: 14rem;
     }
 
     .next-btn-activities {
-        right: 6rem;
-    }
-
-    .plans-container {
-        padding-top: 3rem;
+        right: 14rem;
     }
 
     .plans-container h1 {
-        font-size: 2.8rem;
+        font-size: 1.8rem;
     }
 
     .plans-container h3 {
-        font-size: 2.3rem;
+        font-size: 1.5rem;
     }
 
     .carousel-plans-container {
@@ -763,7 +757,27 @@ footer .icon:hover {
     }
 
     .plans-container .plan_card {
-        max-width: 90%;
+        max-width: 80%;
+    }
+
+    .card_header {
+        font-size: 1.6rem;
+    }
+
+    .card_img {
+        height: 18rem;
+    }
+
+    .card_content h4 {
+        font-size: 1.5;
+    }
+
+    .card_content ul {
+        font-size: 1.4rem;
+    }
+
+    .card_content p {
+        font-size: 1.5rem;
     }
 
     .plans-container .prev-btn-plans,
@@ -772,7 +786,7 @@ footer .icon:hover {
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
-        font-size: 2.8rem;
+        font-size: 2.2rem;
         border: none;
         cursor: pointer;
         background: none;
@@ -784,80 +798,71 @@ footer .icon:hover {
     }
 
     .prev-btn-plans {
-        left: 0.5rem;
+        left: 2rem;
     }
 
     .next-btn-plans {
-        right: 0.5rem;
+        right: 2rem;
     }
 
     .opinions h1 {
-        font-size: 2.8rem;
+        font-size: 1.8rem;
     }
 
     .opinions-container {
         padding: 3rem 1.5rem;
-        max-width: 90%;
+        max-width: 80%;
     }
 
     .opinion-slide p {
-        font-size: 1.9rem;
+        font-size: 1.6rem;
     }
 
     .opinion-slide span {
-        font-size: 1.9rem;
+        font-size: 1.6rem;
     }
 
     .carousel-btn {
-        width: 5rem;
-        height: 5rem;
-        font-size: 2.8rem;
-    }
-
-    .form-container {
-        padding: 4rem 1rem;
+        width: 3rem;
+        height: 3rem;
+        font-size: 3rem;
     }
 
     .form {
-        padding: 3.5rem 2.5rem;
+        padding: 3rem 2rem;
         max-width: 90%;
     }
 
     .form h1 {
-        font-size: 2.8rem;
+        font-size: 1.8rem;
     }
 
     .form span {
-        font-size: 1.9rem;
+        font-size: 1.6rem;
     }
 
     .form_option label {
-        font-size: 1.9rem;
+        font-size: 1.6rem;
     }
 
     .form_option input,
     .form_option textarea {
-        font-size: 1.9rem;
+        font-size: 1.6rem;
     }
 
     .form_option button {
-        padding: 1.5rem;
-        font-size: 1.9rem;
-    }
-
-    footer {
-        padding: 2rem 1rem;
+        font-size: 1.6rem;
     }
 
     footer .icon {
-        font-size: 2.3rem;
+        font-size: 1.8rem;
     }
 
     .floating-btn {
-        width: 8rem;
-        height: 8rem;
-        bottom: 4rem;
-        right: 4rem;
-        font-size: 1.8rem;
+        width: 6.5rem;
+        height: 6.5rem;
+        bottom: 3rem;
+        right: 3rem;
+        font-size: 1.4rem;
     }
 }
