@@ -8,7 +8,7 @@
 
 html {
     box-sizing: border-box;
-    font-size: 62.5%; /* 1rem = 10px */
+    font-size: 62.5%;
 }
 
 *, *:before, *:after {
@@ -96,91 +96,116 @@ header {
     display: block;
 }
 
+/* INTRODUCCION */
+
+.introduction-container {
+    padding: 60px 20px;
+    text-align: center;
+    font-size: 1.7rem;
+    line-height: 1.6;
+    border-radius: 10px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.introduction-container span {
+    display: block;
+    margin-bottom: 20px;
+    font-weight: 300;
+}
+
+/* VIDEO */
+
 .video-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 2rem 3.75rem;
-    margin: 1.25rem auto;
-    max-width: 110vh;
+    position: relative;
+    width: 80%;
+    max-width: 800px;
+    margin: auto;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 .video-container video {
     width: 100%;
-    max-width: 110vh;
     height: auto;
-    box-shadow: 0 0.25rem 0.9375rem rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    object-fit: cover;
+    display: block;
 }
 
-.video-container video:hover {
-    transform: scale(1.03);
-    box-shadow: 0 0.4rem 1.2rem rgba(0,0,0,0.15);
-}
+/* VISITAS */
 
 .place-container {
-    max-width: 140vh;
+    max-width: 1200px;
     margin: 0 auto;
     text-align: center;
-    background-color: var(--gris);
+    padding: 3rem 1rem;
 }
 
 .place-container h1 {
-    font-size: 2.375rem;
+    font-size: 3rem;
     font-weight: bold;
     color: #242423;
-    margin-bottom: 2.25rem;
+    margin-bottom: 2rem;
     text-transform: uppercase;
-    letter-spacing: 0.125rem;
-    text-shadow: 0 0.1875rem 0.375rem rgba(0, 0, 0, 0.1);
+    letter-spacing: 0.1rem;
+    text-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
 }
 
-.place-container h3 {
-    font-size: 1.6rem;
-    color: #666;
-    font-weight: normal;
-    max-width: 43.75rem;
-    margin: 0 auto;
-    line-height: 1.8;
+.place-container span {
+    font-size: 1.7rem;
+    color: #333;
+    display: block;
+    margin: 1rem auto;
+    max-width: 800px;
+    line-height: 1.6;
 }
 
 .places-container {
-    margin-top: 5rem;
+    margin-top: 3rem;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 3.125rem;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    justify-content: center;
 }
 
 .place {
     position: relative;
     overflow: hidden;
-    border-radius: 0.3125rem;
-    box-shadow: 0 0.375rem 0.9375rem rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     background: var(--blanco);
 }
 
 .place img {
     width: 100%;
-    height: 21rem;
+    height: 250px;
     object-fit: cover;
     transition: transform 0.3s ease;
     display: block;
+    border-radius: 10px;
+}
+
+.place:hover {
+    transform: scale(1.02);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
 
 .place:hover img {
-    transform: scale(1.05);
+    transform: scale(1.08);
 }
 
 .overlay {
     position: absolute;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(0, 0, 0, 0.75);
     width: 100%;
-    padding: 1rem 0;
+    padding: 1.5rem 1rem;
     opacity: 0;
     transition: opacity 0.3s ease;
     text-align: center;
+    border-radius: 10px;
 }
 
 .place:hover .overlay {
@@ -189,10 +214,23 @@ header {
 
 .overlay h3 {
     margin: 0;
-    font-size: 2rem;
+    font-size: 1.9rem;
     font-weight: bold;
     color: var(--blanco);
+    text-transform: uppercase;
 }
+
+.overlay span {
+    font-size: 1.3rem;
+    color: #f1f1f1;
+    display: block;
+    margin-top: 0.5rem;
+    line-height: 1.4;
+    max-width: 90%;
+    margin: 0 auto;
+}
+
+/* ACTIVIDADES */
 
 .activities-container {
     position: relative;
@@ -200,17 +238,25 @@ header {
     margin: 0 auto;
     padding: 4rem 2rem;
     text-align: center;
-    background-color: var(--gris);
 }
 
 .activities-container h1 {
-    font-size: 2.375rem;
+    font-size: 3rem;
     font-weight: bold;
     color: #242423;
     margin-bottom: 2.25rem;
     text-transform: uppercase;
     letter-spacing: 0.125rem; 
     text-shadow: 0 0.1875rem 0.375rem rgba(0, 0, 0, 0.1);
+}
+
+.activities-container span {
+    font-size: 1.7rem;
+    color: #333;
+    display: block;
+    margin: 1rem auto;
+    max-width: 800px;
+    line-height: 1.6;
 }
 
 .carousel-container {
@@ -262,7 +308,7 @@ header {
 }
 
 .activity-card h3 {
-    font-size: 1.6rem;
+    font-size: 1.9rem;
     color: #242423;
     text-transform: uppercase;
     font-weight: bold;
@@ -271,7 +317,7 @@ header {
 }
 
 .activity-card p {
-    font-size: 1.6rem;
+    font-size: 1.3rem;
     color: #555;
     line-height: 1.6;
     margin: 0;
@@ -304,13 +350,154 @@ header {
     right: -1.5rem;
 }
 
+.carousel-container.teaching {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.carousel-track.teaching {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 10px;
+}
+
+.carousel-slide.teaching {
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+}
+
+/* GASTRONOMIA */
+
+.gastronomy-container {
+    padding: 50px 20px;
+    text-align: center;
+}
+
+.gastronomy-container h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #242423;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.gastronomy-container span {
+    display: block;
+    max-width: 800px;
+    margin: 0 auto 15px;
+    font-size: 1.7rem;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Estilo del carrusel */
+.carousel-container.gastronomy {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    padding: 20px 0;
+}
+
+.carousel-track.gastronomy {
+    display: flex;
+    gap: 20px;
+    transition: transform 0.5s ease-in-out;
+    width: 100%; /* Ocupa el 100% del contenedor */
+    max-width: 1300px; /* Ajusta esto si tu contenedor es más pequeño */
+    overflow: hidden; /* Evita desbordamientos */
+}
+
+.carousel-slide.gastronomy {
+    flex: 0 0 calc(100% / 6); /* Cada tarjeta ocupa 1/6 del ancho total */
+    max-width: calc(100% / 6);
+    max-width: 220px;
+    scroll-snap-align: center;
+    display: flex;
+    justify-content: center;
+}
+
+.gastronomy-card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+    padding: 15px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.gastronomy-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+.gastronomy-card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.gastronomy-card h3 {
+    font-size: 1.7rem;
+    color: #242423;
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.gastronomy-card span {
+    font-size: 1.3rem;
+    color: #555;
+    display: block;
+    line-height: 1.4;
+}
+
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #242423;
+    font-size: 2rem;
+    cursor: pointer;
+    z-index: 1;
+    opacity: 0.6;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.carousel-btn:hover {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+.prev-btn-gastronomy {
+    left: 0;
+}
+
+.next-btn-gastronomy {
+    right: 0;
+}
+
+/* TRAVESIAS */
+
 .plans-container {
     text-align: center;
-    background-color: var(--gris);
 }
 
 .plans-container h1 {
-    font-size: 2.375rem;
+    font-size: 3rem;
     font-weight: bold;
     color: #242423;
     margin-bottom: 2.25rem;
@@ -319,8 +506,16 @@ header {
     text-shadow: 0 0.1875rem 0.375rem rgba(0, 0, 0, 0.1);
 }
 
+.plans-container span {
+    display: block;
+    max-width: 800px;
+    margin: 0 auto 15px;
+    font-size: 1.7rem;
+    line-height: 1.6;
+}
+
 .plans-container h3 {
-    font-size: 1.6rem;
+    font-size: 1.7rem;
     color: #666;
     font-weight: normal;
     max-width: 70rem;
@@ -380,7 +575,7 @@ header {
 }
 
 .card_content h4 {
-    font-size: 1.8rem;
+    font-size: 1.7rem;
     color: var(--blanco);
     margin-bottom: 0.8rem;
     font-weight: bold;
@@ -607,6 +802,11 @@ footer .icon:hover {
     transform: scale(1.2);
 }
 
+.about-us {
+    text-decoration: none;
+    color: var(--blanco);
+}
+
 .floating-btn {
     position: fixed;
     bottom: 3rem;
@@ -627,6 +827,38 @@ footer .icon:hover {
     background-color: var(--turquesa);
     transform: scale(1.05);
 }
+
+.sobre-nosotros {
+    background-color: var(--gris); /* Fondo gris suave */
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.sobre-nosotros .contenedor {
+    max-width: 800px;
+    margin: auto;
+    font-family: 'Georgia', serif;
+    color: var(--turquesa);
+}
+
+.sobre-nosotros h2 {
+    font-size: 36px;
+    color: var(--turquesa);
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.sobre-nosotros p {
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 15px;
+    color: #333; /* Texto oscuro para mejor legibilidad */
+}
+
+.sobre-nosotros strong {
+    color: var(--amarillo);
+}
+
 
 @media (max-width: 76.8rem) { /*768px*/
     .logo-container img {

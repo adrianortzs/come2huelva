@@ -339,6 +339,7 @@ function setupCarousel(trackSelector, prevBtnSelector, nextBtnSelector) {
 }
 
 // Configura cada carrusel de manera independiente
+setupCarousel('.carousel-track.gastronomy', '.prev-btn-gastronomy', '.next-btn-gastronomy');
 setupCarousel('.carousel-track.activities', '.prev-btn-activities', '.next-btn-activities');
 setupCarousel('.carousel-track.plans', '.prev-btn-plans', '.next-btn-plans');
 

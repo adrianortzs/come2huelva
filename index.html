@@ -10,7 +10,7 @@
 <body>
     <header>
         <section class="logo-container">
-            <img src="images/logo.png" alt="Logo Come2Huelva">
+            <img src="images/logo.png" alt="Come2Huelva">
         </section>  
         <div class="language-selector">
             <button class="selected-language" onclick="toggleLanguageMenu()" type="button"></button>
@@ -23,77 +23,153 @@
     </header>
 
     <main>
+        <section class="introduction-container">
+            <span>Imagina un lugar donde cada rincón cuenta una historia, cada sabor te conecta con la tierra, y cada momento queda grabado en el corazón.</span>
+            <span>Con nosotros no serás un turista. Queremos que vivas Huelva como nosotros la vivimos, con nuestros paisajes y nuestras tradiciones. Te invitamos a descubrir una Huelva auténtica con quienes la conocen y la aman profundamente.</span>
+            <span>Esto no es un viaje; es una  vivencia inolvidable que queremos que recuerdes para siempre.</span>
+            <span>Queremos enseñarte nuestra Huelva desde dentro: la que se respira en los pueblos, se saborea en sus platos, y se camina entre pinares y marismas. Todo desde el respeto, el cariño y el orgullo por lo que somos.</span>
+        </section>
         <section class="video-container">
-            <video controls autoplay loop>
+            <video autoplay loop muted playsinline controls controlslist="nofullscreen nodownload noplaybackrate">
                 <source src="videos/video.mp4" type="video/mp4">
-                Tu navegador no soporta la etiqueta de video.
+                Tu navegador no soporta la etiqueta de video
             </video>
         </section>
         <section class="place-container">
-                <h1>Maravillosos rincones de Huelva que debes visitar</h1>
-                <h3>Huelva, con su riqueza natural, histórica y cultural, te invita a descubrir una variedad de destinos encantadores. Desde playas vírgenes y paisajes naturales impresionantes hasta pueblos con encanto y vestigios históricos únicos, esta provincia andaluza tiene mucho que ofrecer.</h3>
+                <h1>Sumérgete en nuestra tierra</h1>
+                <span>Huelva no es solo un destino, es un lugar para sentir, para vivir con los ojos, el alma y el corazón. Queremos que descubras con nosotros el encanto de Doñana, la devoción de El Rocío, la calma infinita de las playas de Matalascañas o el misterio de las minas de Río Tinto. Juntos exploraremos cada lugar como solo nosotros lo conocemos, sintiendo su esencia y conectando con su historia. De nuestra mano, cada rincón tendrá un sentido profundo y único.</span>
+                <span>Cada lugar que visitemos te hablará de nuestra tierra, de su gente y de su historia.</span>
+                <span>Come2Huelva es una puerta abierta a la esencia de nuestra tierra.</span>
                 <div class="places-container">
+                    <div class="place">
+                        <img src="images/matalascañas2.jpg" alt="Playa de Matalascañas">
+                        <div class="overlay">
+                            <h3>Matalascañas</h3>
+                            <span>Playas vírgenes kilométricas. Médanos con huellas de nuestros ancestros, elefantes y uros (toros) gigantes.</span>
+                        </div>
+                    </div>
                     <div class="place">
                         <img src="images/lince.JPG" alt="Lince ibérico en Doñana">
                         <div class="overlay">
-                            <h3>Doñana</h3>
+                            <h3>Parque Nacional de Doñana</h3>
+                            <span>Vive los 4 ecosistemas de Doñana; Playas, bosques, dunas y marismas. Ecosistemas de ciervos, jabalís, linces, zorros, águilas imperiales, garzas, patos, paso de ballenas, delfines, tiburones ballenas, tortugas y miles y miles de pinos piñoneros, enebros , tomillo y romero, …. un paraje natural único en el planeta tierra.</span>
                         </div>
                     </div>
                     <div class="place">
                         <img src="images/rocio.jpg" alt="Virgen del Rocío">
                         <div class="overlay">
                             <h3>El Rocío</h3>
+                            <span>Conoce la historia de la virgen de El Rocío: el pocito, la panadería, el acebuchal centenario, la madre y la marisma. “El Rocío no es como el Oeste, el oeste es como El Rocío“. Conoce la relación de los mustang con la yegua marismeña y la de los toros de rodeo con la vaca mostrenca.</span>
                         </div>
                     </div>
                     <div class="place">
-                        <img src="images/matalascañas2.jpg" alt="Playa de Matalascañas">
+                        <img src="images/almonte.jpg" alt="Almonte">
                         <div class="overlay">
-                            <h3>Playa de Matalascañas</h3>
-                        </div>
-                    </div>
-                    <div class="place">
-                        <img src="images/aracena.jpg" alt="Gruta de las maravillas">
-                        <div class="overlay">
-                            <h3>Sierra de Aracena</h3>
-                        </div>
-                    </div>
-                    <div class="place">
-                        <img src="https://as1.ftcdn.net/v2/jpg/00/88/11/60/1000_F_88116063_UOsqP43XO2e4DklCZNnuoa60JAE7ywUI.jpg" alt="Las 3 Carabelas">
-                        <div class="overlay">
-                            <h3>Palos de la Frontera</h3>
+                            <h3>Almonte</h3>
+                            <span>La venida de la virgen y el recorrido de la pastora. Las flores de papel y la catedral efímera. Descubre de dónde vienen los disparos al aire que tantas veces hemos visto en las películas del oeste (salves de escopeta)</span>
                         </div>
                     </div>
                     <div class="place">
                         <img src="https://www.abc4.com/wp-content/uploads/sites/4/2023/04/BinghamCanyonMine_ABC4Utah-1.jpeg?w=1752&h=986&crop=1" alt="Minas Río Tinto">
                         <div class="overlay">
-                            <h3>Minas Río Tinto</h3>
+                            <h3>Río Tinto</h3>
+                            <span>Un paseo en el tren minero y visitas a los paisajes mineros.</span>
+                        </div>
+                    </div>
+                    <div class="place">
+                        <img src="images/aracena.jpg" alt="Gruta de las maravillas">
+                        <div class="overlay">
+                            <h3>Aracena y Jabugo</h3>
+                            <span>Visitamos la sierra para probar su jamón y sus ibéricos y adentrarnos en la tierra para ver la increíble Gruta de las Maravillas.</span>
+                        </div>
+                    </div>
+                    <div class="place">
+                        <img src="https://as1.ftcdn.net/v2/jpg/00/88/11/60/1000_F_88116063_UOsqP43XO2e4DklCZNnuoa60JAE7ywUI.jpg" alt="Las 3 Carabelas">
+                        <div class="overlay">
+                            <h3>Lugares Colombinos</h3>
+                            <span>La Rábida y Palos de la Frontera donde ver la réplica de las carabelas con las que Colón cruzó el océano atlántico para descubrir el nuevo mundo.</span>
+                        </div>
+                    </div>
+                    <div class="place">
+                        <img src="https://turismosierradearacena.com/wp-content/uploads/2016/04/Castillo-Cortegana-Casa-Rural-Sierra-de-Huelva-05.png" alt="Castillo">
+                        <div class="overlay">
+                            <h3>Castillos y fortalezas</h3>
+                            <span>Visitamos los castillos de Niebla y Cortegana.</span>
+                        </div>
+                    </div>
+                    <div class="place">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/20150830_jrj_y_platero.jpg/330px-20150830_jrj_y_platero.jpg" alt="Moguer">
+                        <div class="overlay">
+                            <h3>Moguer</h3>
+                            <span>Cuna Juan Ramón Jiménez: Platero y yo</span>
                         </div>
                     </div>
                 </div>
         </section>
         <section class="activities-container">
-            <h1>Descubre nuestras actividades para disfrutar en Huelva</h1>
+            <h1>Momentos que dejan huella</h1>
+            <span>En Come2Huelva creamos recuerdos que se quedan contigo para siempre.</span>
+            <span>Queremos que descubras algo nuevo en cada experiencia. Que no solo vivas el momento, sino que te emociones. Por eso, buscamos que cada propuesta tenga algo único, auténtico, diferente. Algo que nunca hayas hecho antes y que recordarás con una sonrisa y con nostalgia el resto de tu vida.</span>
+            <span>Desde la serenidad de observar las estrellas en el silencio de Doñana a través de un telescopio, hasta la alegría desbordante de una fiesta rociera entre palmas y sones flamencos. Cada experiencia está pensada para que la vivas como un amigo más, no como un turista.</span>
+            <span>Vivir Huelva con nosotros es conectar con lo auténtico, dejarse llevar por los sentidos, y guardar cada instante como una pequeña joya de vida.</span>
+            <span>Porque hay lugares que se visitan, y otros …que se gravan en el corazón.</span>
+
+            <span>En Come2Huelva, con cada actividad que te proponemos queremos que DESCUBRAS algo nuevo.  Buscamos hacer cosas que no hayas hecho antes para que tus recuerdos sean inolvidables. No queremos que vivas el momento sin más, queremos que lo sientas.</span>
+            <span>Come2Huelva es una puerta abierta a la esencia de nuestra tierra. Desde la serenidad de observar las estrellas en el silencio de Doñana, hasta la emoción de una fiesta rociera llena de música. Cada experiencia ha sido pensada para que la sientas con nosotros, como un amigo, como alguien de aquí.</span>
+            <span>Es nuestra manera de mostrarte Huelva desde dentro, compartiendo nuestra cultura, nuestro paisaje y nuestras tradiciones como solo los locales sabemos hacerlo.</span>
+            <span>Vivir Huelva con nosotros significa conectar de una forma real y profunda, dejando que cada momento se quede contigo para siempre.</span>
             <div class="carousel-container">
                 <div class="carousel-track activities">
                     <div class="carousel-slide">
                         <div class="activity-card">
-                            <img src="images/pesca2.JPG" alt="Persona pescando en la playa">
-                            <h3>Playa y pesca</h3>
-                            <p>Disfruta de un día perfecto bajo el sol mientras practicas pesca en las cristalinas aguas de la costa onubense. Una combinación única de relajación y aventura.</p>
+                            <img src="images/caminando.jpg" alt="Persona paseando por la playa">
+                            <h3>Paseo por la playa</h3>
                         </div>
                     </div>
                     <div class="carousel-slide">
                         <div class="activity-card">
-                            <img src="images/observaciones_astronomicas.jpg" alt="Imagen de la luna">
-                            <h3>Observaciones astronómicas</h3>
-                            <p>Maravíllate con la inmensidad del universo bajo los cielos despejados de Huelva, un lugar ideal para admirar estrellas, planetas y constelaciones.</p>
+                            <img src="images/pesca2.JPG" alt="Persona pescando en la playa">
+                            <h3>Pesca</h3>
+                            <p>Aprende a pescar desde la orilla. Relájate y desarrolla la madre de las ciencias (la paciencia) mientras charlas con tus compañeros en un paraje natural único. Nosotros nos encargamos de tramitar la licencia necesaria.</p>
                         </div>
                     </div>
                     <div class="carousel-slide">
                         <div class="activity-card">
                             <img src="images/paseo_barco.jpg" alt="Barco por la ría de Huelva">
-                            <h3>Paseo en barco</h3>
-                            <p>Relájate mientras disfrutas de un paseo en barco por la ría. Navega entre paisajes naturales únicos y respira la tranquilidad del entorno.</p>
+                            <h3>Paseos en barco</h3>
+                            <p>Salidas en barco por la costa de Huelva o el Paraje Natural de las Marismas del Odiel.</p>
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <div class="activity-card">
+                            <img src="images/observaciones_astronomicas.jpg" alt="Imagen de la luna">
+                            <h3>Astronómia</h3>
+                            <p>Conoce mejor el cielo mientras aprendes a utilizar un telescopio con tus propias manos.</p>
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <div class="activity-card">
+                            <img src="images/cometa.JPG" alt="Cometa">
+                            <h3>Vuelo cometa</h3>
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <div class="activity-card">
+                            <img src="images/fiesta-rociera.JPG" alt="Fiesta Rociera">
+                            <h3>Fiesta Rociera</h3>
+                            <p>Vive una fiesta rociera como la vivimos nosotros. Anímate a cantar y bailar una sevillana.</p>
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <div class="activity-card">
+                            <img src="images/perros.jpg" alt="Paseo carriola">
+                            <h3>Paseo carriola</h3>
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <div class="activity-card">
+                            <img src="images/paseo_camello.JPG" alt="Paseo a camello">
+                            <h3>Paseos a caballo o camello</h3>
                         </div>
                     </div>
                     <div class="carousel-slide">
@@ -105,94 +181,145 @@
                     </div>
                     <div class="carousel-slide">
                         <div class="activity-card">
-                            <img src="images/gambas.jpg" alt="Imagen de marisco">
-                            <h3>Marisco</h3>
-                            <p>Saborea lo mejor del mar con una degustación de mariscos frescos. Descubre los sabores auténticos que han hecho famosa la gastronomía de Huelva.</p>
+                            <img src="images/senderismo.jpg" alt="Senderismo">
+                            <h3>Senderismo</h3>
                         </div>
                     </div>
                     <div class="carousel-slide">
                         <div class="activity-card">
-                            <img src="https://th.bing.com/th/id/R.b01327038d43c140c79d231fb2fee574?rik=KqKQFlPuK0288g&pid=ImgRaw&r=0" alt="Imagen de fotografía">
-                            <h3>Fotografía</h3>
-                            <p>Captura la belleza de Huelva a través de tu cámara. Desde paisajes naturales hasta la fauna del Parque de Doñana, las oportunidades son infinitas.</p>
+                            <img src="images/bicicleta.jpg" alt="Bicicleta">
+                            <h3>Bicicleta</h3>
                         </div>
                     </div>
                     <div class="carousel-slide">
                         <div class="activity-card">
-                            <img src="images/jamon.jpg" alt="Imagen de ibéricos">
-                            <h3>Ibéricos</h3>
-                            <p>Disfruta de una degustación de productos ibéricos de la más alta calidad. Jamones, embutidos y más te esperan en una experiencia gastronómica única.</p>
-                        </div>
-                    </div>
-                    <div class="carousel-slide">
-                        <div class="activity-card">
-                            <img src="images/gastronomia.JPG" alt="Imagen de enoturismo">
-                            <h3>Enoturismo</h3>
-                            <p>Descubre los secretos del vino con un recorrido por bodegas locales. Degusta vinos exquisitos y conoce el proceso de elaboración del vino onubense.</p>
+                            <img src="images/flamencos.JPG" alt="Observación de aves">
+                            <h3>Observación de aves</h3>
                         </div>
                     </div>
                 </div>
             </div>
             <button class="carousel-btn prev-btn-activities">&#10094;</button>
             <button class="carousel-btn next-btn-activities">&#10095;</button>
+            <h1>Diviértete aprendiendo algo nuevo (CLASES PRACTICAS)</h1>
+            <div class="carousel-container teaching">
+                <div class="carousel-track teaching">
+                    <div class="carousel-slide teaching">
+                        <div class="activity-card">
+                            <img src="images/clases-de-cocina.jpg" alt="Preparando un arroz">
+                            <h3>Clases de cocina andaluza</h3>
+                            <p>Talleres de cocina para aprender a preparar un arroz con marisco o arroz ibérico</p>
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <div class="activity-card">
+                            <img src="images/clases-de-fotografia.jpg" alt="Preparando las cámaras">
+                            <h3>Clases de fotografía</h3>
+                            <p>Aprende a utilizar una cámara reflex. Trae la tuya o te prestamos una.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="gastronomy-container">
+            <h1>Bocados de Huelva</h1>
+            <span>En Huelva, la comida es encuentro, amistad, emoción. Para nosotros, tiene tanta importancia que la hemos puesto en el corazón de nuestro nombre.</span>
+            <span>Comer en Huelva es como hacer el amor. Cada plato es una historia de amor y cariño que estremece tus sentidos. Nuestras materias primas, de calidad excepcional. El jamón ibérico de Jabugo, las gambas frescas de nuestras costas, nuestros chocos y cocinas, y todo ello acompañado con nuestros vinos del Condado. Con nosotros, no solo probarás la comida: la vivirás.</span>
+            <span>Te llevaremos a los rincones donde nosotros mismos disfrutamos de la mejor gastronomía, rodeados de amigos y de historias; el verdadero espíritu de nuestra tierra.</span>
+            <span>Porque en Huelva, comer es celebrar, y contigo … queremos celebrarlo todo.</span>
+            <div class="carousel-container gastronomy">
+                <div class="carousel-track gastronomy">
+                    <div class="carousel-slide gastronomy">
+                        <div class="gastronomy-card">
+                            <img src="images/jamon.jpg" alt="Imagen de ibéricos">
+                            <h3>Ibéricos y jamón</h3>
+                            <span>Barbacoa de productos ibéricos y jamón de Jabugo con cortador de Jamón.</span>
+                        </div>
+                    </div>
+                    <div class="carousel-slide gastronomy">
+                        <div class="gastronomy-card">
+                            <img src="images/gamba-de-huelva.jpg" alt="Imagen de marisco">
+                            <h3>Mariscos y pescados</h3>
+                            <span>Degustación de mariscos y pescados frescos de la costa de Huelva.</span>
+                        </div>
+                    </div>
+                    <div class="carousel-slide gastronomy">
+                        <div class="gastronomy-card">
+                            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiuymhA_eVBjZ5Jz5jrhs23jktMSgAgcSA-gYreusjtpfyb7yGkRlstQnMCvCc65BqFvxAPoZxcIDUIOT7Vlnr_95i8MfJmY9fxXzdXsfiCOZXbRiA5_fN06gbwVB1A2PTcMUMJkfSHqpns/s1600/P4199406.JPG" alt="Imagen de carne">
+                            <h3>Come Doñana</h3>
+                            <span>Carne de caza (ciervo, jabalí) y prueba la vaca mostrenca.</span>
+                        </div>
+                    </div>
+                    <div class="carousel-slide gastronomy">
+                        <div class="gastronomy-card">
+                            <img src="images/vinos.JPG" alt="Imagen de enoturismo">
+                            <h3>La sangre del condado</h3>
+                            <span>Vinos de las bodegas de la comarca del Condado de Huelva, como el vino de naranja.</span>
+                        </div>
+                    </div>
+                    <div class="carousel-slide gastronomy">
+                        <div class="gastronomy-card">
+                            <img src="https://publish.purewow.net/wp-content/uploads/sites/2/2022/07/types-of-berries_universal.jpg?fit=2050%2C1100" alt="Imagen de berrys">
+                            <h3>Berrys</h3>
+                            <span>Fresas, arándanos, frambuesas, arándanos y moras para toda europa.</span>
+                        </div>
+                    </div>
+                    <div class="carousel-slide gastronomy">
+                        <div class="gastronomy-card">
+                            <img src="http://www.almonte.es/export/sites/almonte/es/.galleries/imagenes-noticias/Noticias-2020/NOVIEMBRE/Dia-05/pinares-de-Almonte.jpg" alt="Imagen de piñones">
+                            <h3>Piñones de Doñana</h3>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-btn prev-btn-gastronomy">&#10094;</button>
+                <button class="carousel-btn next-btn-gastronomy">&#10095;</button>
+            </div>
         </section>
 
         <section class="plans-container">
-            <h1>Elige tu aventura perfecta en Huelva</h1>
-            <h3>Estos son algunos de nuestros mejores paquetes, todos completamente personalizables según sus necesidades y deseos de viaje:</h3>
-        
+            <h1>Nuestras travesías</h1>
+            <span>Estás a punto de comenzar un viaje de descubrimiento como antaño lo hicieron nuestros antepasados para llegar al Nuevo Mundo. Embárcate en una de nuestras travesías y disfruta descubriendo una tierra de descubridores.</span>
+            <span>En Come2Huelva lo tenemos claro: viajar es mucho más que moverse de un lugar a otro. Es conectar con un destino, con su gente, con su historia y sus sabores.</span>
+            <span>Nuestros planes han sido cuidadosamente diseñados para que solo tengas que preocuparte de una cosa: DISFRUTAR. Nosotros nos encargamos de todo: transporte, alojamiento, comidas, actividades, experiencias, y lo más importante, acompañarte como guías locales que conocen cada rincón y cada secreto de esta tierra.</span>
+            <span>Nuestros planes son el resultado de muchos años compartiendo Huelva con amigos de todo el mundo. Hemos reunido lo mejor de nuestra tierra en itinerarios completos que mezclan naturaleza, cultura, gastronomía y tradición, para que tú seas parte de Huelva y Huelva sea parte de ti.</span>
+            <span>¿Tienes 4 días? ¿10? ¿O quieres algo hecho a tu medida?</span>
+            <span>Todo empieza con una decisión... elige vivirla y déjate llevar. Nosotros nos encargamos de que sea inolvidable.</span>
             <div class="carousel-plans-container">
                 <div class="carousel-track plans">
                     <div class="carousel-slide">
                         <div class="plan_card">
                             <div class="card_header">
-                                <span>Fin de semana</span> 
+                                <span>🌊 Brisa de Huelva – 4 días</span> 
                             </div>
                             <img src="images/plan2.jpg" alt="Imagen plan fin de semana" class="card_img">
                             <div class="card_content">
-                                <h4>Destinos:</h4>
-                                <ul>
-                                    <li>Doñana</li>
-                                    <li>Playa de Matalascañas</li>
-                                </ul>
-                                <h4>La experiencia:</h4>
-                                <p>Sumérgete en la belleza de Doñana, una joya natural con paisajes impresionantes y una biodiversidad única...</p>
+                                <p>Una escapada perfecta para quienes quieren conocer la esencia de Huelva en pocos días.</p>
+                                <p>Playas, marismas, pinares, buena comida y rincones inolvidables en un viaje guiado y con todo incluido.</p>
                             </div>
                         </div>
                     </div>
                     <div class="carousel-slide">
                         <div class="plan_card">
                             <div class="card_header">
-                                <span>Semana</span>
+                                <span>🌿 Huelva sin prisa – 10 días</span>
                             </div>
                             <img src="images/plan.jpg" alt="Imagen plan semana" class="card_img">
                             <div class="card_content">
-                                <h4>Destinos:</h4>
-                                <ul>
-                                    <li>El Rocío</li>
-                                    <li>Doñana</li>
-                                    <li>Aracena</li>
-                                    <li>Playa de Matalascañas</li>
-                                    <li>Palos de la Frontera</li>
-                                </ul>
-                                <h4>La experiencia:</h4>
-                                <p>Descubre la esencia de Huelva con una experiencia que combina naturaleza, cultura e historia...</p>
+                                <p>Un viaje completo para descubrir Huelva con los cinco sentidos. Para aquellos que quieren vivir varias experiencias en el mismo viaje.</p>
+                                <p>Desde Doñana hasta la Sierra de Aracena y descubriendo lo lugares Colombinos. Ideal para quienes quieren conocer lo que esta tierra ofrece de forma cercana  y profunda.</p>
                             </div>
                         </div>
                     </div>
                     <div class="carousel-slide">
                         <div class="plan_card">
                             <div class="card_header">
-                                <span>Personalizado</span>
+                                <span>✨ Experiencia Personalizada</span>
                             </div>
                             <img src="images/plan3.jpg" alt="Imagen plan personalizado" class="card_img">
                             <div class="card_content">
-                                <h4>Destinos:</h4>
-                                <ul>
-                                    <li>A tu elección</li>
-                                </ul>
-                                <h4>La experiencia:</h4>
-                                <p>Crea un plan a medida según tus preferencias para vivir Huelva de la forma que más te guste.</p>
+                                <p>Si tienes otros tiempos o necesidades, creamos tu experiencia a medida.</p>
+                                <p>Nos adaptamos a ti: ¿Quieres vivir una experiencia única? ¿Quieres sorprender a alguien?</p>
+                                <p>Tú nos cuentas, nosotros lo diseñamos y lo organizamos todo.</p>
                             </div>
                         </div>
                     </div>
@@ -268,6 +395,7 @@
         <div class="social-media">
             <a href="https://www.facebook.com/come2huelva" target="_blank" rel="noopener noreferrer" class="icon facebook"><i class="bi bi-facebook"></i></a>
             <a href="https://www.instagram.com/come2huelva/" target="_blank" rel="noopener noreferrer" class="icon instagram"><i class="bi bi-instagram"></i></a>
+            <a href="about-us.html" class="about-us">Sobre nosotros</a>
         </div>
     </footer>
 
