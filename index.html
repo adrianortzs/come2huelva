@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Come2Huelva</title>
+    <link rel="icon" type="image/png" href="images/logo-16x16.png">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
@@ -11,7 +12,16 @@
     <header>
         <section class="logo-container">
             <img src="images/logo.png" alt="Come2Huelva">
-        </section>  
+        </section>
+        <nav>
+            <ul>
+                <li><a href="#places">Visitas</a></li>
+                <li><a href="#activities">Actividades</a></li>
+                <li><a href="#gastronomy">Gastronomía</a></li>
+                <li>Travesías</li>
+                <li>Sobre nosotros</li>
+            </ul>
+        </nav>
         <div class="language-selector">
             <button class="selected-language" onclick="toggleLanguageMenu()" type="button"></button>
             <div class="language-options">
@@ -21,7 +31,6 @@
             </div>
         </div>
     </header>
-
     <main>
         <section class="introduction-container">
             <span>Imagina un lugar donde cada rincón cuenta una historia, cada sabor te conecta con la tierra, y cada momento queda grabado en el corazón.</span>
@@ -29,23 +38,25 @@
             <span>Esto no es un viaje; es una  vivencia inolvidable que queremos que recuerdes para siempre.</span>
             <span>Queremos enseñarte nuestra Huelva desde dentro: la que se respira en los pueblos, se saborea en sus platos, y se camina entre pinares y marismas. Todo desde el respeto, el cariño y el orgullo por lo que somos.</span>
         </section>
+        
         <section class="video-container">
             <video autoplay loop muted playsinline controls controlslist="nofullscreen nodownload noplaybackrate">
                 <source src="videos/video.mp4" type="video/mp4">
-                Tu navegador no soporta la etiqueta de video
+                Tu navegador no soporta la etiqueta de video.
             </video>
         </section>
-        <section class="place-container">
+
+        <section class="place-container" id="places">
                 <h1>Sumérgete en nuestra tierra</h1>
                 <span>Huelva no es solo un destino, es un lugar para sentir, para vivir con los ojos, el alma y el corazón. Queremos que descubras con nosotros el encanto de Doñana, la devoción de El Rocío, la calma infinita de las playas de Matalascañas o el misterio de las minas de Río Tinto. Juntos exploraremos cada lugar como solo nosotros lo conocemos, sintiendo su esencia y conectando con su historia. De nuestra mano, cada rincón tendrá un sentido profundo y único.</span>
                 <span>Cada lugar que visitemos te hablará de nuestra tierra, de su gente y de su historia.</span>
                 <span>Come2Huelva es una puerta abierta a la esencia de nuestra tierra.</span>
                 <div class="places-container">
                     <div class="place">
-                        <img src="images/matalascañas2.jpg" alt="Playa de Matalascañas">
+                        <img src="images/matalascañas.jpg" alt="Playa de Matalascañas">
                         <div class="overlay">
                             <h3>Matalascañas</h3>
-                            <span>Playas vírgenes kilométricas. Médanos con huellas de nuestros ancestros, elefantes y uros (toros) gigantes.</span>
+                            <span>Playas vírgenes kilométricas. Médanos con huellas de nuestros ancestros, elefantes y uros (toros)gigantes.</span>
                         </div>
                     </div>
                     <div class="place">
@@ -70,7 +81,7 @@
                         </div>
                     </div>
                     <div class="place">
-                        <img src="https://www.abc4.com/wp-content/uploads/sites/4/2023/04/BinghamCanyonMine_ABC4Utah-1.jpeg?w=1752&h=986&crop=1" alt="Minas Río Tinto">
+                        <img src="images/minas.jpg" alt="Minas Río Tinto">
                         <div class="overlay">
                             <h3>Río Tinto</h3>
                             <span>Un paseo en el tren minero y visitas a los paisajes mineros.</span>
@@ -106,14 +117,14 @@
                     </div>
                 </div>
         </section>
-        <section class="activities-container">
+
+        <section class="activities-container" id="activities">
             <h1>Momentos que dejan huella</h1>
             <span>En Come2Huelva creamos recuerdos que se quedan contigo para siempre.</span>
             <span>Queremos que descubras algo nuevo en cada experiencia. Que no solo vivas el momento, sino que te emociones. Por eso, buscamos que cada propuesta tenga algo único, auténtico, diferente. Algo que nunca hayas hecho antes y que recordarás con una sonrisa y con nostalgia el resto de tu vida.</span>
             <span>Desde la serenidad de observar las estrellas en el silencio de Doñana a través de un telescopio, hasta la alegría desbordante de una fiesta rociera entre palmas y sones flamencos. Cada experiencia está pensada para que la vivas como un amigo más, no como un turista.</span>
             <span>Vivir Huelva con nosotros es conectar con lo auténtico, dejarse llevar por los sentidos, y guardar cada instante como una pequeña joya de vida.</span>
             <span>Porque hay lugares que se visitan, y otros …que se gravan en el corazón.</span>
-
             <span>En Come2Huelva, con cada actividad que te proponemos queremos que DESCUBRAS algo nuevo.  Buscamos hacer cosas que no hayas hecho antes para que tus recuerdos sean inolvidables. No queremos que vivas el momento sin más, queremos que lo sientas.</span>
             <span>Come2Huelva es una puerta abierta a la esencia de nuestra tierra. Desde la serenidad de observar las estrellas en el silencio de Doñana, hasta la emoción de una fiesta rociera llena de música. Cada experiencia ha sido pensada para que la sientas con nosotros, como un amigo, como alguien de aquí.</span>
             <span>Es nuestra manera de mostrarte Huelva desde dentro, compartiendo nuestra cultura, nuestro paisaje y nuestras tradiciones como solo los locales sabemos hacerlo.</span>
@@ -128,23 +139,23 @@
                     </div>
                     <div class="carousel-slide">
                         <div class="activity-card">
-                            <img src="images/pesca2.JPG" alt="Persona pescando en la playa">
+                            <img src="images/pesca.JPG" alt="Persona pescando en la playa">
                             <h3>Pesca</h3>
-                            <p>Aprende a pescar desde la orilla. Relájate y desarrolla la madre de las ciencias (la paciencia) mientras charlas con tus compañeros en un paraje natural único. Nosotros nos encargamos de tramitar la licencia necesaria.</p>
+                            <span>Aprende a pescar desde la orilla. Relájate y desarrolla la madre de las ciencias (la paciencia) mientras charlas con tus compañeros en un paraje natural único. Nosotros nos encargamos de tramitar la licencia necesaria.</span>
                         </div>
                     </div>
                     <div class="carousel-slide">
                         <div class="activity-card">
                             <img src="images/paseo_barco.jpg" alt="Barco por la ría de Huelva">
                             <h3>Paseos en barco</h3>
-                            <p>Salidas en barco por la costa de Huelva o el Paraje Natural de las Marismas del Odiel.</p>
+                            <span>Salidas en barco por la costa de Huelva o el Paraje Natural de las Marismas del Odiel.</span>
                         </div>
                     </div>
                     <div class="carousel-slide">
                         <div class="activity-card">
                             <img src="images/observaciones_astronomicas.jpg" alt="Imagen de la luna">
                             <h3>Astronómia</h3>
-                            <p>Conoce mejor el cielo mientras aprendes a utilizar un telescopio con tus propias manos.</p>
+                            <span>Conoce mejor el cielo mientras aprendes a utilizar un telescopio con tus propias manos.</span>
                         </div>
                     </div>
                     <div class="carousel-slide">
@@ -157,12 +168,12 @@
                         <div class="activity-card">
                             <img src="images/fiesta-rociera.JPG" alt="Fiesta Rociera">
                             <h3>Fiesta Rociera</h3>
-                            <p>Vive una fiesta rociera como la vivimos nosotros. Anímate a cantar y bailar una sevillana.</p>
+                            <span>Vive una fiesta rociera como la vivimos nosotros. Anímate a cantar y bailar una sevillana.</span>
                         </div>
                     </div>
                     <div class="carousel-slide">
                         <div class="activity-card">
-                            <img src="images/perros.jpg" alt="Paseo carriola">
+                            <img src="" alt="Paseo carriola">
                             <h3>Paseo carriola</h3>
                         </div>
                     </div>
@@ -176,7 +187,7 @@
                         <div class="activity-card">
                             <img src="images/parapente.jpg" alt="Persona volando en parapente">
                             <h3>Vuelo en parapente</h3>
-                            <p>Vuela sobre los impresionantes paisajes de Huelva en parapente. Siente la adrenalina mientras disfrutas de vistas panorámicas incomparables desde las alturas.</p>
+                            <span>Vuela sobre los impresionantes paisajes de Huelva en parapente. Siente la adrenalina mientras disfrutas de vistas panorámicas incomparables desde las alturas.</span>
                         </div>
                     </div>
                     <div class="carousel-slide">
@@ -198,10 +209,10 @@
                         </div>
                     </div>
                 </div>
+                <button class="carousel-btn prev-btn-activities">&#10094;</button>
+                <button class="carousel-btn next-btn-activities">&#10095;</button>
             </div>
-            <button class="carousel-btn prev-btn-activities">&#10094;</button>
-            <button class="carousel-btn next-btn-activities">&#10095;</button>
-            <h1>Diviértete aprendiendo algo nuevo (CLASES PRACTICAS)</h1>
+            <!-- <h1>Diviértete aprendiendo algo nuevo (CLASES PRACTICAS)</h1>
             <div class="carousel-container teaching">
                 <div class="carousel-track teaching">
                     <div class="carousel-slide teaching">
@@ -219,9 +230,10 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </section>
-        <section class="gastronomy-container">
+
+        <section class="gastronomy-container" id="gastronomy">
             <h1>Bocados de Huelva</h1>
             <span>En Huelva, la comida es encuentro, amistad, emoción. Para nosotros, tiene tanta importancia que la hemos puesto en el corazón de nuestro nombre.</span>
             <span>Comer en Huelva es como hacer el amor. Cada plato es una historia de amor y cariño que estremece tus sentidos. Nuestras materias primas, de calidad excepcional. El jamón ibérico de Jabugo, las gambas frescas de nuestras costas, nuestros chocos y cocinas, y todo ello acompañado con nuestros vinos del Condado. Con nosotros, no solo probarás la comida: la vivirás.</span>
