@@ -227,9 +227,14 @@ const translations = {
     }
 };
 
+function scrollToForm() {
+    document.querySelector('.form-container').scrollIntoView({ behavior: 'smooth' });
+};
+
 function toggleLanguageMenu() {
     document.querySelector('.language-options').classList.toggle('show');
-}
+};
+
 
 window.onclick = function(event) {
     if (!event.target.matches('.selected-language')) {
@@ -237,6 +242,7 @@ window.onclick = function(event) {
     }
 };
 
+/* ---LANGUAGE--- */
 function changeLanguage(lang) {
     const languageButton = document.querySelector('.selected-language');
     if (lang === 'es') {
@@ -246,54 +252,86 @@ function changeLanguage(lang) {
     } else if (lang === 'fr') {
         languageButton.innerHTML = 'Français &#9662;';
     }
-    document.querySelector('.language-options').classList.remove('show');
-
-    document.querySelector('.place-container h1').textContent = translations[lang].header;
-    document.querySelector('.place-container h3').textContent = translations[lang].subtitle;
-
-    document.querySelector('.activities-container h1').textContent = translations[lang].activitiesTitle;
+    const langMenu = document.querySelector('.language-options');
+    if (langMenu) langMenu.classList.remove('show');
+    // INDEX.HTML SECTIONS
+    const placeHeader = document.querySelector('.place-container h1');
+    if (placeHeader) placeHeader.textContent = translations[lang].header;
+    const placeSubtitle = document.querySelector('.place-container span');
+    if (placeSubtitle) placeSubtitle.textContent = translations[lang].subtitle;
+    const activitiesHeader = document.querySelector('.activities-container h1');
+    if (activitiesHeader) activitiesHeader.textContent = translations[lang].activitiesTitle;
     const activityCards = document.querySelectorAll('.activity-card');
-    translations[lang].activities.forEach((activity, index) => {
-        if (activityCards[index]) {
-            activityCards[index].querySelector('h3').textContent = activity.title;
-            activityCards[index].querySelector('p').textContent = activity.description;
-        }
-    });
-
-    document.querySelector('.plans-container h1').textContent = translations[lang].planHeader;
-    document.querySelector('.plans-container h3').textContent = translations[lang].planDescription;
+    if (activityCards.length && translations[lang].activities) {
+        translations[lang].activities.forEach((activity, index) => {
+            if (activityCards[index]) {
+                const h3 = activityCards[index].querySelector('h3');
+                const span = activityCards[index].querySelector('span');
+                if (h3) h3.textContent = activity.title;
+                if (span) span.textContent = activity.description;
+            }
+        });
+    }
+    const plansHeader = document.querySelector('.plans-container h1');
+    if (plansHeader) plansHeader.textContent = translations[lang].planHeader;
+    const plansDesc = document.querySelector('.plans-container h3');
+    if (plansDesc) plansDesc.textContent = translations[lang].planDescription;
     const planCards = document.querySelectorAll('.plan_card');
-    translations[lang].plans.forEach((plan, index) => {
-        if (planCards[index]) {
-            planCards[index].querySelector('.card_header span').textContent = plan.title;
-            planCards[index].querySelector('h4:nth-of-type(1)').textContent = translations[lang].planLabels.destinations;
-            planCards[index].querySelector('ul').textContent = plan.destinations;
-            planCards[index].querySelector('h4:nth-of-type(2)').textContent = translations[lang].planLabels.experience;
-            planCards[index].querySelector('.card_content p').textContent = plan.experience;
-        }
-    });
-
-    document.querySelector('.opinions h1').textContent = translations[lang].opinionsTitle;
-    
-    document.querySelector('.form-container h1').textContent = translations[lang].contactTitle;
-    document.querySelector('.form-container span').textContent = translations[lang].contactDescription;
-    document.querySelector('label[for="name"]').textContent = translations[lang].formLabels.name;
-    document.querySelector('label[for="email"]').textContent = translations[lang].formLabels.email;
-    document.querySelector('label[for="telf"]').textContent = translations[lang].formLabels.phone;
-    document.querySelector('label[for="people"]').textContent = translations[lang].formLabels.people;
-    document.querySelector('label[for="message"]').textContent = translations[lang].formLabels.message;
-    document.querySelector('.form_option button').textContent = translations[lang].submitButton;
-    document.querySelector('.form-container span:last-of-type').textContent = translations[lang].requiredFields;
-
-    document.querySelector('.floating-btn').textContent = translations[lang].floatingButton;
+    if (planCards.length && translations[lang].plans) {
+        translations[lang].plans.forEach((plan, index) => {
+            if (planCards[index]) {
+                const headerSpan = planCards[index].querySelector('.card_header span');
+                const h4s = planCards[index].querySelectorAll('h4');
+                const ul = planCards[index].querySelector('ul');
+                const contentSpan = planCards[index].querySelector('.card_content span');
+                if (headerSpan) headerSpan.textContent = plan.title;
+                if (h4s[0]) h4s[0].textContent = translations[lang].planLabels.destinations;
+                if (ul) ul.textContent = plan.destinations;
+                if (h4s[1]) h4s[1].textContent = translations[lang].planLabels.experience;
+                if (contentSpan) contentSpan.textContent = plan.experience;
+            }
+        });
+    }
+    const opinionsHeader = document.querySelector('.opinions h1');
+    if (opinionsHeader) opinionsHeader.textContent = translations[lang].opinionsTitle;
+    // FORM
+    const formHeader = document.querySelector('.form-container h1');
+    if (formHeader) formHeader.textContent = translations[lang].contactTitle;
+    const formDesc = document.querySelector('.form-container span');
+    if (formDesc) formDesc.textContent = translations[lang].contactDescription;
+    const labelName = document.querySelector('label[for="name"]');
+    if (labelName) labelName.textContent = translations[lang].formLabels.name;
+    const labelEmail = document.querySelector('label[for="email"]');
+    if (labelEmail) labelEmail.textContent = translations[lang].formLabels.email;
+    const labelTelf = document.querySelector('label[for="telf"]');
+    if (labelTelf) labelTelf.textContent = translations[lang].formLabels.phone;
+    const labelPeople = document.querySelector('label[for="people"]');
+    if (labelPeople) labelPeople.textContent = translations[lang].formLabels.people;
+    const labelMessage = document.querySelector('label[for="message"]');
+    if (labelMessage) labelMessage.textContent = translations[lang].formLabels.message;
+    const submitBtn = document.querySelector('.form_option button');
+    if (submitBtn) submitBtn.textContent = translations[lang].submitButton;
+    // ABOUT-US.HTML SECTIONS
+    const aboutUsHeader = document.querySelector('.about-us-container h1');
+    if (aboutUsHeader) {
+        if (lang === 'es') aboutUsHeader.textContent = 'Sobre nosotros';
+        else if (lang === 'en') aboutUsHeader.textContent = 'About us';
+        else if (lang === 'fr') aboutUsHeader.textContent = 'À propos de nous';
+    }
+    const ourSecretHeader = document.querySelector('.our-secret-container h1');
+    if (ourSecretHeader) {
+        if (lang === 'es') ourSecretHeader.textContent = 'Nuestro secreto';
+        else if (lang === 'en') ourSecretHeader.textContent = 'Our secret';
+        else if (lang === 'fr') ourSecretHeader.textContent = 'Notre secret';
+    }
 }
 
-// Función para configurar el carrusel
+/* ---CAROUSELS--- */
 function setupCarousel(trackSelector, prevBtnSelector, nextBtnSelector) {
     const carouselTrack = document.querySelector(trackSelector);
-    const carouselSlides = Array.from(carouselTrack.querySelectorAll('.carousel-slide'));
     const prevBtn = document.querySelector(prevBtnSelector);
     const nextBtn = document.querySelector(nextBtnSelector);
+    const carouselSlides = Array.from(carouselTrack.querySelectorAll('.carousel-slide'));
     let currentIndex = 0;
 
     function updateCarouselPosition() {
@@ -303,10 +341,14 @@ function setupCarousel(trackSelector, prevBtnSelector, nextBtnSelector) {
 
     function changeSlide(direction) {
         const totalSlides = carouselSlides.length;
-        const slidesToShow = window.innerWidth <= 768 ? 1 : 4; 
-        const maxIndex = totalSlides - slidesToShow;
-
-        currentIndex = Math.max(0, Math.min(currentIndex + direction, maxIndex));
+        const slidesToShow = window.innerWidth <= 768 ? 1 : 4;
+        const maxIndex = Math.max(0, totalSlides - slidesToShow);
+        currentIndex += direction;
+        if (currentIndex > maxIndex) {
+            currentIndex = 0;
+        } else if (currentIndex < 0) {
+            currentIndex = maxIndex;
+        }
         updateCarouselPosition();
     }
 
@@ -315,39 +357,26 @@ function setupCarousel(trackSelector, prevBtnSelector, nextBtnSelector) {
 
     let autoScrollInterval = setInterval(() => {
         changeSlide(1);
-    }, 5000);
+    }, 3500);
 
     window.addEventListener("resize", () => {
         clearInterval(autoScrollInterval);
         updateCarouselPosition();
-        autoScrollInterval = setInterval(() => changeSlide(1), 5000);
+        autoScrollInterval = setInterval(() => changeSlide(1), 3500);
     });
 
-    window.addEventListener("resize", () => {
-        // Pausar el autoscroll al redimensionar
-        clearInterval(autoScrollInterval);
-
-        // Calcular nuevamente la posición del carrusel y ajustar el índice
-        updateCarouselPosition();
-        
-        // Reiniciar el autoscroll con el tamaño de pantalla actualizado
-        autoScrollInterval = setInterval(() => changeSlide(1), 5000);
-    });
-
-    // Inicializar la posición del carrusel al cargar
     updateCarouselPosition();
 }
 
-// Configura cada carrusel de manera independiente
-setupCarousel('.carousel-track.gastronomy', '.prev-btn-gastronomy', '.next-btn-gastronomy');
 setupCarousel('.carousel-track.activities', '.prev-btn-activities', '.next-btn-activities');
+setupCarousel('.carousel-track.gastronomy', '.prev-btn-gastronomy', '.next-btn-gastronomy');
 setupCarousel('.carousel-track.plans', '.prev-btn-plans', '.next-btn-plans');
 
-
-let currentSlide = 0;
+/* ---OPINIONS--- */
 const slides = document.querySelectorAll('.opinion-slide');
-const totalSlides = slides.length;
-
+const nextBtn = document.querySelector('.opinion-next');
+const prevBtn = document.querySelector('.opinion-prev');
+let currentSlide = 0;
 function showSlide(index) {
     slides.forEach((slide, i) => {
         slide.classList.remove('active');
@@ -358,51 +387,46 @@ function showSlide(index) {
         }
     });
 }
-
-document.querySelector('.opinion-next').addEventListener('click', (event) => {
-    currentSlide = (currentSlide + 1) % totalSlides;
-    showSlide(currentSlide);
-});
-
-document.querySelector('.opinion-prev').addEventListener('click', () => {
-    currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-    showSlide(currentSlide);
-});
-
-
-document.querySelector('.form').addEventListener('submit', function(event) {
-    event.preventDefault();
-    
-    const formData = {
-        name: document.getElementById('name').value,
-        email: document.getElementById('email').value,
-        phone: document.getElementById('telf').value,
-        people: document.getElementById('people').value,
-        message: document.getElementById('messsage').value
-    };
-    
-    fetch('http://localhost:3000/send-email', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(formData)
-    })
-    .then(response => response.text())
-    .then(result => {
-        alert('Correo enviado exitosamente!');
-        document.querySelector('.form').reset();
-    })
-    .catch(error => {
-        alert('Hubo un error al enviar el correo: ' + error);
+if (nextBtn && prevBtn && slides.length) {
+    nextBtn.addEventListener('click', () => {
+        currentSlide = (currentSlide + 1) % slides.length;
+        showSlide(currentSlide);
     });
-});
-
-function scrollToForm() {
-    document.querySelector('.form-container').scrollIntoView({ behavior: 'smooth' });
+    prevBtn.addEventListener('click', () => {
+        currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+        showSlide(currentSlide);
+    });
 }
+showSlide(0);
+
+/* ---FORM--- */
+const form = document.querySelector('.form');
+    if (form) {
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('telf').value,
+                people: document.getElementById('people').value,
+                message: document.getElementById('message').value
+            };
+            fetch('http://localhost:3000/send-email', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData)
+            })
+            .then(response => response.text())
+            .then(result => {
+                alert('Correo enviado exitosamente!');
+                form.reset();
+            })
+            .catch(error => {
+                alert('Hubo un error al enviar el correo: ' + error);
+            });
+        });
+    }
 
 document.addEventListener("DOMContentLoaded", function() {
     changeLanguage('es');
-    showSlide(currentSlide);
 });

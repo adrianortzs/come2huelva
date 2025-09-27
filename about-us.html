@@ -3,21 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sobre nosotros</title>
+    <title>Come2Huelva</title>
+    <link rel="icon" type="image/png" href="images/logo-16x16.png">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 <body>
-    <section id="sobre-nosotros" class="sobre-nosotros">
-        <div class="contenedor">
-            <h2>Sobre Nosotros</h2>
-            <span class="section-header">Somos Javier y Laura, dos hermanos Almonteños orgullosos de nuestras raíces y profundamente enamorados de nuestra tierra.</span>
+    <header>
+        <section class="logo-container">
+            <img src="images/logo.png" alt="Come2Huelva">
+        </section>
+        <nav>
+            <ul>
+                <li><a href="index.html#places">Visitas</a></li>
+                <li><a href="index.html#plans">Travesías</a></li>
+                <li><a href="index.html#activities">Actividades</a></li>
+                <li><a href="index.html#gastronomy">Gastronomía</a></li>
+            </ul>
+        </nav>
+        <div class="language-selector">
+            <button class="selected-language" onclick="toggleLanguageMenu()" type="button"></button>
+            <div class="language-options">
+                <button onclick="changeLanguage('es')">Español</button>
+                <button onclick="changeLanguage('en')">English</button>
+                <button onclick="changeLanguage('fr')">Français</button>
+            </div>
+        </div>
+    </header>
+    <main>
+        <section class="about-us-container">
+            <h1>Sobre nosotros</h1>
+            <span id="bold">Somos Javier y Laura, dos hermanos Almonteños orgullosos de nuestras raíces y profundamente enamorados de nuestra tierra.</span>
             <span>Tras estudiar fuera, vivir en varios países y viajar por medio mundo, siempre hemos estado orgullosos de haber nacido en una tierra con una identidad única.</span>
             <span>A lo largo de los años hemos traído a decenas de grupos de amigos de toda España, de Portugal, de Irlanda, Reino Unido, Bélgica, Holanda, Francia, Italia, Perú, Ecuador, Venezuela, Brasil, EEUU, Australia y muchas otras partes del mundo para que conocieran lo que nosotros llamamos “casa”.</span>
             <span>Tras tantas experiencias, hemos aprendido que un viaje inolvidable es aquel en el que te permites dedicar a cada momento el tiempo que se merece. Sentir cada instante con calma, con los cinco sentidos y con el corazón. Disfrutar de cada paisaje, cada atardecer, cada persona que se conoce, cada sorbo de vino o cada nuevo sabor que se prueba. Eso es lo que realmente convierte un viaje en una experiencia de vida.</span>
             <span>Promovemos un turismo en que aprender a disfrutar de cada momento.</span>
-            <span>“Para nosotros, viajar es detenerse, respirar, saborear, mirar y sentir.”</span>
+            <span id="italic-yellow">“Para nosotros, viajar es detenerse, respirar, saborear, mirar y sentir.”</span>
             <span>Así nace Come2Huelva.</span>
+        </section>
+        <div class="section-divider"></div>
+        <section class="our-secret-container">
+            <h1>Nuestro secreto</h1>
+            <span>Ponerle mucho cariño a lo que hacemos y respetar 3 claves:</span>
+            <span>1. Grupos reducidos. Buscamos un entorno familiar/amigable en el que compartir vivencias y momentos. Máximo 8 personas.</span>
+            <span>2. Los tiempos. No buscamos verlo todo corriendo. Buscamos que te relajes y disfrutes de cada lugar y cada momento con las personas que te rodean.</span>
+            <span>3. Guías locales: Los guías seremos personas locales enamorados de Huelva. Esencial para vivir Huelva con su cultura, su historia y sus tradiciones.</span>
+            <span id="italic-yellow">Nota: Si buscas recorrer Huelva para hacer fotos de los lugares sin más, podemos recomendarte otras agencias o incluso ayudarte a organizar una ruta para que la hagas por tu cuenta. Nuestra propuesta es otra.</span>
+        </section>
+    </main>
+    <footer>
+        <div class="social-media">
+            <a href="https://www.facebook.com/come2huelva" target="_blank" rel="noopener noreferrer" class="icon facebook"><i class="bi bi-facebook"></i></a>
+            <a href="https://www.instagram.com/come2huelva/" target="_blank" rel="noopener noreferrer" class="icon instagram"><i class="bi bi-instagram"></i></a>
         </div>
-    </section>
+    </footer>
+    <script src="style.js" defer></script>
 </body>
 </html>
