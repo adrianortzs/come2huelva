@@ -279,6 +279,9 @@ nav li a:hover {
 .activities-container, .gastronomy-container {
     position: relative;
 }
+.plans-container {
+    position: relative;
+}
 .carousel-container {
     position: relative;
     overflow: hidden;
@@ -620,94 +623,98 @@ footer .icon:hover {
 
 /* ---MEDIA QUERIES--- */
 
-@media (max-width: 900px) {
-    header,
+/* ---TABLET--- */
+@media (max-width: 1024px) {
+    html { font-size: 65%; }
+    header {
+      padding: 1.5rem 3vw;
+      gap: 1rem;
+    }
+    .logo-container img { height: 48px; }
+    nav ul { gap: 2rem; }
     main > section,
     .opinions-container,
     .form {
-        padding-left: 2vw;
-        padding-right: 2vw;
+      padding-left: 5vw;
+      padding-right: 5vw;
     }
-    .logo-container img {
-        height: 40px;
+    .section-divider {
+      width: 90%;
+      margin: 2.5rem auto;
     }
+    .places-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 3rem;
+    }
+    .carousel-track.activities,
+    .carousel-track.gastronomy { gap: 0; }
+    .carousel-track.activities .carousel-slide,
+    .carousel-track.gastronomy .carousel-slide { min-width: 50%; padding: 0 0.75rem; }
+    .carousel-track.plans { gap: 2rem; }
+    .carousel-track.plans .carousel-slide { min-width: auto; padding: 0; }
+    .activity-card, .gastronomy-card { max-width: 360px; }
+    .plan_card { max-width: 40rem; }
+    .carousel-btn {
+        height: 3rem; width: 3rem; font-size: 1.8rem;
+    }
+    .opinions-container { max-width: 80vw; }
+    .floating-btn {
+        width: 5.5rem; height: 5.5rem; font-size: 1.8rem;
+        bottom: 2.5rem; right: 2.5rem;
+    }
+    footer .social-media { gap: 6rem; }
+}
+
+/* ---MOBILE--- */
+@media (max-width: 768px) {
+    html { font-size: 58%; }
+    header {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem 2vw;
+    }
+    .logo-container img { height: 36px; }
     nav ul {
-        gap: 1.5rem;
+        gap: 1rem;
+        flex-wrap: wrap;
+    }
+    main > section {
+        padding: 2rem 4vw;
+        margin: 2rem auto;
     }
     .section-divider {
         width: 95%;
         margin: 2rem auto;
     }
-    .places-container,
-    .carousel-track,
-    .carousel-track.gastronomy,
-    .carousel-track.plans {
+    .places-container {
         grid-template-columns: 1fr;
         gap: 2rem;
-        flex-direction: column;
     }
-    .carousel-slide,
-    .carousel-slide.gastronomy,
-    .carousel-slide.plans {
-        min-width: 100%;
-        padding: 0;
+    .places-container .place {
+        width: 60vw;
+        max-width: 60vw;
+        margin-left: auto;
+        margin-right: auto;
     }
-    .activity-card,
-    .gastronomy-card,
-    .plan_card {
-        max-width: 100%;
-    }
-    .floating-btn {
-        width: 5rem;
-        height: 5rem;
-        font-size: 1.5rem;
-        bottom: 2rem;
-        right: 2rem;
-    }
-    footer .social-media {
-        gap: 3rem;
-    }
-}
-
-@media (max-width: 600px) {
-    header {
-        flex-direction: column;
-        gap: 1rem;
-        padding: 1rem 1vw;
-    }
-    nav ul {
-        gap: 1rem;
-        flex-wrap: wrap;
-    }
-    .logo-container img {
-        height: 32px;
-    }
-    main > section {
-        padding: 2rem 1vw;
-        margin: 2rem auto;
-    }
-    .places-container {
-        gap: 1rem;
+    .places-container .place img {
+        height: 200px;
+        object-fit: cover;
     }
     .carousel-container,
     .carousel-plans-container {
-        padding: 2rem 0;
+        padding: 2rem 0rem;
         gap: 1rem;
     }
-    .carousel-track,
-    .carousel-track.gastronomy,
-    .carousel-track.plans {
+    .carousel-track {
         flex-direction: row;
         gap: 0;
         transition: transform 0.5s;
     }
-    .carousel-slide,
-    .carousel-slide.gastronomy,
-    .carousel-slide.plans {
-        min-width: 100vw;
-        max-width: 100vw;
+    .carousel-slide {
+        min-width: 100%;
+        max-width: 100%;
         padding: 0;
-        flex: 0 0 100vw;
+        flex: 0 0 100%;
         box-sizing: border-box;
         justify-content: center;
         align-items: center;
@@ -715,34 +722,15 @@ footer .icon:hover {
     .activity-card,
     .gastronomy-card,
     .plan_card {
-        max-width: 95vw;
+        max-width: 60vw;
         margin: 0 auto;
     }
     .opinions-container {
-        padding: 2rem 1vw;
+        padding: 2rem 2vw;
     }
     .opinion-slide {
-        padding: 2rem 1vw;
+        padding: 2rem 2vw;
     }
-    .form {
-        padding: 1rem;
-    }
-    .floating-btn {
-        width: 4rem;
-        height: 4rem;
-        font-size: 1.2rem;
-        bottom: 1rem;
-        right: 1rem;
-    }
-    footer {
-        padding: 1rem 1vw;
-    }
-    footer .social-media {
-        gap: 1.5rem;
-    }
-}
-
-@media (max-width: 600px) {
     .carousel-btn,
     .prev-btn-activities,
     .next-btn-activities,
@@ -752,11 +740,28 @@ footer .icon:hover {
     .next-btn-plans,
     .opinion-prev,
     .opinion-next {
-        font-size: 1.5rem;
-        height: 2.5rem;
-        width: 2.5rem;
+        font-size: 1.6rem;
+        height: 2.8rem;
+        width: 2.8rem;
         padding: 0.2rem 0.3rem;
-        left: 0.5rem;
-        right: 0.5rem;
+    }
+    .plans-container .prev-btn-plans,
+    .plans-container .next-btn-plans {
+        display: flex;
+        position: absolute;
+        top: 25%;
+        transform: translateY(-50%);
+    }
+    .plans-container .prev-btn-plans { left: 1rem; }
+    .plans-container .next-btn-plans { right: 1rem; }
+    .floating-btn {
+        width: 5rem; height: 5rem; font-size: 1.6rem;
+        bottom: 1.5rem; right: 1.5rem;
+    }
+    footer {
+        padding: 1rem 2vw;
+    }
+    footer .social-media {
+        gap: 4rem;
     }
 }

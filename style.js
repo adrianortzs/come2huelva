@@ -446,9 +446,10 @@ function changeLanguage(lang) {
     const t = translations[lang];
 
     const navLinks = document.querySelectorAll('nav ul li a');
-    translations[lang].navLinks.forEach((text, i) => {
-    if (navLinks[i]) navLinks[i].textContent = text;
-    });
+    const navTexts = translations[lang].navLinks;
+    for (let i = 0; i < Math.min(navLinks.length, navTexts.length); i++) {
+        navLinks[i].textContent = navTexts[i];
+    }
 
     const languageButton = document.querySelector('.selected-language');
     if (languageButton) {
@@ -603,14 +604,30 @@ function setupCarousel(trackSelector, prevBtnSelector, nextBtnSelector) {
     const carouselSlides = Array.from(carouselTrack.querySelectorAll('.carousel-slide'));
     let currentIndex = 0;
 
+    function getStepSize() {
+        const firstSlide = carouselSlides[0];
+        if (!firstSlide) return 0;
+        const slideWidth = firstSlide.getBoundingClientRect().width;
+        const styles = window.getComputedStyle(carouselTrack);
+        const gapValue = parseFloat(styles.columnGap || styles.gap || '0');
+        const gap = Number.isNaN(gapValue) ? 0 : gapValue;
+        return slideWidth + gap;
+    }
+
     function updateCarouselPosition() {
-        const slideWidth = carouselSlides[0].offsetWidth;
-        carouselTrack.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+        const step = getStepSize();
+        carouselTrack.style.transform = `translateX(-${currentIndex * step}px)`;
+    }
+
+    function getSlidesToShow() {
+        if (window.innerWidth <= 768) return 1;
+        if (window.innerWidth <= 1024) return 2;
+        return 4;
     }
 
     function changeSlide(direction) {
         const totalSlides = carouselSlides.length;
-        const slidesToShow = window.innerWidth <= 768 ? 1 : 4;
+        const slidesToShow = getSlidesToShow();
         const maxIndex = Math.max(0, totalSlides - slidesToShow);
         currentIndex += direction;
         if (currentIndex > maxIndex) {
