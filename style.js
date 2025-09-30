@@ -715,4 +715,19 @@ const form = document.querySelector('.form');
 
 document.addEventListener("DOMContentLoaded", function() {
     changeLanguage('es');
+    const header = document.querySelector('header');
+    const menuToggle = document.querySelector('.menu-toggle');
+    if (menuToggle && header) {
+        menuToggle.addEventListener('click', function() {
+            const isOpen = header.classList.toggle('nav-open');
+            menuToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        });
+    }
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > 768 && header) {
+            header.classList.remove('nav-open');
+            const btn = document.querySelector('.menu-toggle');
+            if (btn) btn.setAttribute('aria-expanded', 'false');
+        }
+    });
 });
