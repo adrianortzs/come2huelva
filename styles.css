@@ -1,17 +1,15 @@
 :root {
-    --brown: #af8d54;
-    --dark: #12271e;
-    --white: #FFFFFF;
-    --turquesa: #207E84;
-    --amarillo: #FDCB58;
-    --azul: #68C1C5;
-    --gris: #F2F2F2;
-    --gris-oscuro: #333;
+    --gold-brown: #af8d54;
+    --dark-green: #12271e;
+    --white: #FDFBF7;
+    --light-grey: #F2F2F2;
+    --dark-grey: #888888;
+
     --sombra: 0 8px 32px rgba(32, 126, 132, 0.12);
     --sombra-hover: 0 16px 48px rgba(32, 126, 132, 0.18);
     --radius: 1.5rem;
     --transition: 0.3s cubic-bezier(.4,2,.3,1);
-    /* spacing scale */
+
     --space-1: 0.5rem;
     --space-2: 1rem;
     --space-3: 1.5rem;
@@ -31,42 +29,35 @@ html {
 }
 
 body {
-    font-family: 'Montserrat', sans-serif;
     margin: 0;
     padding: 0;
-    color: var(--gris-oscuro);
-    background: var(--dark);
+    background: var(--dark-green);
+    font-family: 'Source Sans Pro', sans-serif;
 }
-
-/* ---DIVIDER--- */
 
 .section-divider {
     width: 80%;
     height: 2px;
-    background: linear-gradient(to right, var(--dark), var(--brown));
-    margin: var(--space-6) auto;
+    background: linear-gradient(to right, var(--dark-green), var(--gold-brown));
+    margin: var(--space-8) auto;
     border-radius: 1px;
     opacity: 0.15;
 }
 
-/* ---SECTIONS--- */
-
 main > section {
     margin: var(--space-8) auto;
-    padding: var(--space-6) 3vw;
+    padding: var(--space-4) 4vw;
 }
-
-/* ---GENERAL--- */
 
 .place-container h1, .activities-container h1, .gastronomy-container h1, .plans-container h1, .opinions h1, .form h1, .about-us-container h1, .our-secret-container h1 {
     font-size: clamp(2.2rem, 2vw + 1.6rem, 3.2rem);
-    font-family: 'Playfair Display', serif;
+    font-family: 'Cormorant Garamond', serif;
     font-weight: 700;
     text-align: center;
     text-transform: uppercase;
-    margin-bottom: var(--space-4);
+    margin-bottom: var(--space-6);
     letter-spacing: 0.12rem;
-    color: var(--brown);
+    color: var(--gold-brown);
 }
 .place-container span, .activities-container span, .gastronomy-container span, .plans-container span, .about-us-container span, .our-secret-container span {
     font-size: clamp(1.6rem, 0.7vw + 1.2rem, 1.9rem);
@@ -75,14 +66,14 @@ main > section {
     max-width: 1300px;
     line-height: 1.9;
     text-align: justify;
-    color: var(--white);
+    color: var(--light-grey);
 }
 #bold {
     font-weight: 600;
 }
 #italic-yellow {
     font-style: italic;
-    color: var(--brown);
+    color: var(--gold-brown);
 }
 
 /* ---HEADER--- */
@@ -92,9 +83,8 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 1rem 4vw;
-    background-color: var(--dark);
-    color: var(--white);
-    border-bottom: 0.5rem solid var(--brown);
+    background-color: var(--dark-green);
+    border-bottom: 0.5rem solid var(--gold-brown);
     box-shadow: 0 2px 12px rgba(32,126,132,0.08);
     position: sticky;
     top: 0;
@@ -110,7 +100,7 @@ header {
 }
 .logo-container img {
     height: auto;
-    width: 75px;
+    width: 70px;
 }
 nav ul {
     display: flex;
@@ -129,26 +119,21 @@ nav ul li a {
     color: var(--white);
     text-decoration: none;
     padding: 0.6rem 1.2rem;
-    border-radius: 0.5rem;
-    transition: background var(--transition), color var(--transition);
 }
 nav li a:hover {
-    background: var(--brown);
-    color: var(--dark);
+    color: var(--gold-brown);
 }
 .language-selector {
     position: relative;
 }
 .selected-language {
-    background: var(--brown);
-    color: var(--dark);
+    background: none;
+    color: var(--white);
     border: none;
     padding: 0.8rem 1.6rem;
-    border-radius: 0.5rem;
     cursor: pointer;
     font-weight: 600;
     font-size: clamp(1.4rem, 0.5vw + 1.1rem, 1.7rem);
-    box-shadow: 0 2px 8px rgba(32,126,132,0.08);
 }
 .language-options {
     display: none;
@@ -164,7 +149,7 @@ nav li a:hover {
 .language-options button {
     background: none;
     border: none;
-    color: var(--dark);
+    color: var(--dark-green);
     font-weight: 600;
     padding: 1rem 2rem;
     width: 100%;
@@ -174,8 +159,8 @@ nav li a:hover {
     transition: background var(--transition), color var(--transition);
 }
 .language-options button:hover {
-    background: var(--brown);
-    color: var(--dark);
+    background: var(--light-grey);
+    color: var(--dark-green);
 }
 .language-options.show {
     display: block;
@@ -192,7 +177,7 @@ nav li a:hover {
     max-width: 1300px;
 }
 .introduction-container span {
-    color: var(--white);
+    color: var(--light-grey);
     font-size: clamp(1.7rem, 0.8vw + 1.2rem, 2rem);
 }
 .introduction-container span:first-child {
@@ -201,7 +186,7 @@ nav li a:hover {
 }
 .introduction-container span:last-child {
     font-style: italic;
-    color: var(--brown);
+    color: var(--gold-brown);
     font-size: clamp(1.8rem, 0.9vw + 1.3rem, 2.1rem);
 }
 
@@ -222,11 +207,11 @@ nav li a:hover {
 /* ---PLACES--- */
 
 .places-container {
-    margin-top: var(--space-6);
+    margin-top: var(--space-8);
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-    gap: var(--space-6);
-    padding-bottom: var(--space-4);
+    grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+    gap: var(--space-8);
+    padding-bottom: var(--space-3);
 }
 .place {
     position: relative;
@@ -317,9 +302,8 @@ nav li a:hover {
     padding: 0 1rem;
 }
 .activity-card, .gastronomy-card {
-    background: var(--gris);
+    background: var(--light-grey);
     border-radius: var(--radius);
-    box-shadow: var(--sombra);
     max-width: 280px;
     width: 100%;
     display: flex;
@@ -327,11 +311,10 @@ nav li a:hover {
     overflow: hidden;
     padding: 0 0 1.5rem; 
     text-align: center;
-    border: 1px solid #e0e0e0;
+    border: 1px solid var(--dark-grey);
     transition: box-shadow var(--transition), transform var(--transition);
 }
 .activity-card:hover, .gastronomy-card:hover {
-    box-shadow: var(--sombra-hover); 
     transform: translateY(-8px) scale(1.03);
 }
 .activity-card img, .gastronomy-card img {
@@ -343,7 +326,7 @@ nav li a:hover {
 }
 .activity-card h3, .gastronomy-card h3 {
     font-size: clamp(1.4rem, 0.6vw + 1rem, 1.8rem);
-    color: var(--gris-oscuro);
+    color: var(--dark-green);
     text-transform: uppercase;
     letter-spacing: 0.06rem;
     font-weight: 600;
@@ -351,7 +334,7 @@ nav li a:hover {
 }
 .activity-card span, .gastronomy-card span {
     font-size: clamp(1.3rem, 0.35vw + 1rem, 1.5rem);
-    color: var(--gris-oscuro);
+    color: var(--dark-green);
     line-height: 1.8;
     margin: 1rem auto 0;
     max-width: 85%;
@@ -368,12 +351,12 @@ nav li a:hover {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: var(--gris);
+    background: var(--light-grey);
     border: none;
     border-radius: 50%;
     padding: 0.4rem 0.6rem;
     font-size: clamp(1.8rem, 0.8vw + 1.4rem, 2.2rem);
-    color: var(--dark);
+    color: var(--dark-green);
     cursor: pointer;
     z-index: 2;
     box-shadow: 0 2px 6px rgba(32,126,132,0.10);
@@ -385,10 +368,10 @@ nav li a:hover {
     transform: scale(1.1);
 }
 .prev-btn-activities, .prev-btn-gastronomy {
-    left: 1rem;
+    left: 1.5rem;
 }
 .next-btn-activities, .next-btn-gastronomy {
-    right: 1rem;
+    right: 1.5rem;
 }
 
 /* ---PLANS--- */
@@ -408,7 +391,6 @@ nav li a:hover {
 }
 .plan_card {
     border-radius: var(--radius);
-    box-shadow: var(--sombra);
     overflow: hidden;
     width: 100%;
     text-align: left;
@@ -416,14 +398,12 @@ nav li a:hover {
     display: flex;
     flex-direction: column;
     transition: box-shadow var(--transition), transform var(--transition);
-    background: var(--gris);
+    background: var(--light-grey);
 }
 .plan_card:hover {
-    box-shadow: var(--sombra-hover);
     transform: translateY(-8px) scale(1.03);
 }
 .card_header {
-    background-color: var(--gris);
     padding: 1rem;
     font-size: clamp(1.8rem, 0.8vw + 1.4rem, 2.2rem);
     font-weight: 600;
@@ -431,7 +411,7 @@ nav li a:hover {
     text-align: center;
 }
 .card_header span {
-    color: var(--gris-oscuro);
+    color: var(--dark-green);
 }
 .card_img {
     width: 100%;
@@ -440,18 +420,17 @@ nav li a:hover {
 }
 .card_content {
     padding: 1.2rem;
-    background-color: var(--gris);
     flex-grow: 1;
 }
 .card_content span {
     font-size: clamp(1.55rem, 0.7vw + 1.2rem, 1.85rem);
-    color: var(--gris-oscuro);
+    color: var(--dark-green);
     line-height: 1.9;
 }
 .plans-container .personalized-plan {
     font-size: clamp(2rem, 1vw + 1.6rem, 2.6rem);
     font-weight: 700;
-    color: var(--brown);
+    color: var(--gold-brown);
     display: block;
     margin: var(--space-4) 0 var(--space-2) 0;
 }
@@ -467,7 +446,7 @@ nav li a:hover {
     position: relative;
     max-width: 1000px;
     margin: 0 auto;
-    background-color: var(--gris);
+    background-color: var(--light-grey);
     border-radius: var(--radius);
     box-shadow: var(--sombra);
 }
@@ -489,7 +468,7 @@ nav li a:hover {
 }
 .opinion-slide p {
     font-size: clamp(1.7rem, 0.8vw + 1.3rem, 2rem);
-    color: var(--gris-oscuro);
+    color: var(--dark-green);
     line-height: 1.9;
     margin-bottom: var(--space-4);
     font-style: italic;
@@ -497,7 +476,7 @@ nav li a:hover {
 }
 .opinion-slide span {
     font-size: clamp(1.6rem, 0.6vw + 1.2rem, 1.9rem);
-    color: var(--dark);
+    color: var(--dark-green);
     font-weight: bold;
     display: block;
     margin-top: var(--space-2);
@@ -527,16 +506,19 @@ nav li a:hover {
     display: flex;
     flex-direction: column;
     gap: var(--space-3);
-    background: var(--gris);
+    background: var(--light-grey);
     padding: var(--space-6);
     border-radius: var(--radius);
     max-width: 70rem;
     width: 100%;
     box-shadow: var(--sombra);
 }
+.form h1 {
+    color: var(--dark-green);
+}
 .form span {
     font-size: clamp(1.55rem, 0.7vw + 1.2rem, 1.9rem);
-    color: var(--gris-oscuro);
+    color: var(--dark-green);
     text-align: justify;
     line-height: 1.9;
     margin-bottom: var(--space-2);
@@ -548,7 +530,7 @@ nav li a:hover {
 .form_option label {
     font-size: clamp(1.5rem, 0.6vw + 1.2rem, 1.8rem);
     font-weight: 600;
-    color: var(--brown);
+    color: var(--dark-green);
 }
 .form_option input,
 .form_option textarea {
@@ -556,13 +538,13 @@ nav li a:hover {
     border: 0.1rem solid #D9D9D9;
     border-radius: 0.5rem;
     background: #D9D9D9;
-    color: var(--gris-oscuro);
+    color: var(--dark-green);
     font-size: 1.6rem;
     margin-top: var(--space-1);
 }
 .form_option input:focus,
 .form_option textarea:focus {
-    border-color: var(--brown);
+    border-color: var(--gold-brown);
     box-shadow: 0 0 0.5rem rgba(175, 141, 84, 0.5);
     outline: none;
 }
@@ -571,8 +553,8 @@ nav li a:hover {
     min-height: 90px;
 }
 .form_option button {
-    background: var(--dark);
-    color: var(--white);
+    background: #D9D9D9;
+    color: var(--dark-green);
     padding: 1.2rem 1.4rem;
     border: none;
     border-radius: 0.5rem;
@@ -583,8 +565,8 @@ nav li a:hover {
     transition: background var(--transition), color var(--transition), box-shadow var(--transition);
 }
 .form_option button:hover {
-    background: var(--brown);
-    color: var(--dark);
+    background: var(--gold-brown);
+    color: var(--dark-green);
     box-shadow: 0 0.4rem 1.5rem rgba(18,39,30,0.15);
 }
 
@@ -593,9 +575,9 @@ nav li a:hover {
 footer {
     position: relative;
     padding: 2rem 0rem;
-    background-color: var(--dark);
-    color: var(--white);
-    border-top: 0.5rem solid var(--brown);
+    background-color: var(--dark-green);
+    color: var(--light-grey);
+    border-top: 0.5rem solid var(--gold-brown);
     border-radius: var(--radius) var(--radius) 0 0;
     box-shadow: 0 -2px 12px rgba(18,39,30,0.08);
 }
@@ -605,13 +587,13 @@ footer .social-media {
     gap: 7rem;
 }
 footer .icon {
-    color: var(--white);
+    color: var(--light-grey);
     text-decoration: none;
     font-size: clamp(1.8rem, 0.7vw + 1.4rem, 2.2rem);
     transition: color var(--transition), transform var(--transition);
 }
 footer .icon:hover {
-    color: var(--brown);
+    color: var(--gold-brown);
     transform: scale(1.2);
 }
 
@@ -621,8 +603,8 @@ footer .icon:hover {
     position: fixed;
     bottom: 3rem;
     right: 3rem;
-    background: var(--gris);
-    color: var(--dark);
+    background: var(--gold-brown);
+    color: var(--dark-green);
     border: none;
     border-radius: 50%;
     width: 6.5rem;
@@ -634,9 +616,17 @@ footer .icon:hover {
     z-index: 99;
 }
 .floating-btn:hover {
-    transform: scale(1.1);
-    background: var(--brown);
-    color: var(--dark);
+    transform: scale(1.2);
+}
+
+.about-us-image {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    box-shadow: var(--sombra);
+    margin: var(--space-6) auto;
+    display: block;
+    object-fit: cover;
 }
 
 /* ---MEDIA QUERIES--- */
@@ -648,7 +638,7 @@ footer .icon:hover {
       padding: 1.5rem 3vw;
       gap: 1rem;
     }
-    .logo-container img { height: 48px; }
+    .logo-container img { width: 60px; }
     nav ul { gap: 2rem; }
     main > section,
     .opinions-container,
