@@ -454,6 +454,7 @@ function toggleLanguageMenu() {
     setExpanded(btn, willShow);
 };
 
+// Close language menu when clicking outside
 window.onclick = function(event) {
     const menu = document.querySelector('.language-options');
     const btn = document.querySelector('.selected-language');
@@ -632,7 +633,7 @@ function changeLanguage(lang) {
     }
 }
 
-/* ---CAROUSELS (Modular) --- */
+/* ---CAROUSELS--- */
 function createCarousel({ trackSelector, prevBtnSelector, nextBtnSelector, slidesPerView = { mobile: 1, tablet: 2, desktop: 4 }, auto = true, interval = 3500 }) {
     const carouselTrack = document.querySelector(trackSelector);
     const prevBtn = document.querySelector(prevBtnSelector);
@@ -718,38 +719,10 @@ function createCarousel({ trackSelector, prevBtnSelector, nextBtnSelector, slide
     });
 }
 
-// Activities and Gastronomy: default behavior (1/2/4)
 createCarousel({ trackSelector: '.carousel-track.activities', prevBtnSelector: '.prev-btn-activities', nextBtnSelector: '.next-btn-activities' });
 createCarousel({ trackSelector: '.carousel-track.gastronomy', prevBtnSelector: '.prev-btn-gastronomy', nextBtnSelector: '.next-btn-gastronomy' });
-// Plans: tablet should show one per view like mobile
 createCarousel({ trackSelector: '.carousel-track.plans', prevBtnSelector: '.prev-btn-plans', nextBtnSelector: '.next-btn-plans', slidesPerView: { mobile: 1, tablet: 1, desktop: 4 } });
-
-/* ---OPINIONS--- */
-const slides = document.querySelectorAll('.opinion-slide');
-const nextBtn = document.querySelector('.opinion-next');
-const prevBtn = document.querySelector('.opinion-prev');
-let currentSlide = 0;
-function showSlide(index) {
-    slides.forEach((slide, i) => {
-        slide.classList.remove('active');
-        slide.style.display = 'none';
-        if (i === index) {
-            slide.classList.add('active');
-            slide.style.display = 'block';
-        }
-    });
-}
-if (nextBtn && prevBtn && slides.length) {
-    nextBtn.addEventListener('click', () => {
-        currentSlide = (currentSlide + 1) % slides.length;
-        showSlide(currentSlide);
-    });
-    prevBtn.addEventListener('click', () => {
-        currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-        showSlide(currentSlide);
-    });
-}
-showSlide(0);
+createCarousel({ trackSelector: '.carousel-track.opinions', prevBtnSelector: '.prev-btn-opinions', nextBtnSelector: '.next-btn-opinions', slidesPerView: { mobile: 1, tablet: 1, desktop: 1 }, auto: true, interval: 5000 });
 
 /* ---FORM--- */
 const form = document.querySelector('.form');
