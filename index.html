@@ -21,12 +21,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Source+Sans+Pro:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
+    <a class="skip-link" href="#main-content">Saltar al contenido</a>
     <header>
         <section class="logo-container">
             <img src="images/logonuevo.jpeg" alt="Come2Huelva">
         </section>
         <button class="menu-toggle" type="button" aria-label="Menú" aria-expanded="false" aria-controls="site-nav"><i class="bi bi-list"></i></button>
-        <nav id="site-nav">
+        <nav id="site-nav" aria-label="Navegación principal">
             <ul>
                 <li><a href="#places">Visitas</a></li>
                 <li><a href="#plans">Travesías</a></li>
@@ -36,22 +37,21 @@
             </ul>
         </nav>
         <div class="language-selector">
-            <button class="selected-language" onclick="toggleLanguageMenu()" type="button">Español &#9662;</button>
-            <div class="language-options">
-                <button onclick="changeLanguage('es')">Español</button>
-                <button onclick="changeLanguage('en')">English</button>
-                <button onclick="changeLanguage('fr')">Français</button>
+            <button class="selected-language" onclick="toggleLanguageMenu()" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="lang-menu">Español &#9662;</button>
+            <div class="language-options" id="lang-menu" role="menu" aria-label="Seleccionar idioma">
+                <button onclick="changeLanguage('es')" role="menuitem">Español</button>
+                <button onclick="changeLanguage('en')" role="menuitem">English</button>
+                <button onclick="changeLanguage('fr')" role="menuitem">Français</button>
             </div>
         </div>
     </header>
-    <main>
+    <main id="main-content">
         <section class="introduction-container">
             <span>Imagina un lugar donde cada rincón cuenta una historia, cada sabor te conecta con la tierra y cada momento queda grabado en el corazón.</span>
             <span>Queremos que vivas Huelva como nosotros la vivimos. Te invitamos a descubrir una Huelva auténtica con quienes la conocen y la aman profundamente. Esto no es un viaje; es una  vivencia inolvidable que queremos que recuerdes para siempre.</span>
             <span>NO SEAS UN TURISTA.</span>
             <span>“Ven a vivir nuestras cultura y nuestras tradiciones”</span>
         </section>
-        <div class="section-divider"></div>
         <section class="video-container">
             <video autoplay loop playsinline controls controlslist="nodownload noplaybackrate">
                 <source src="videos/video.mp4" type="video/mp4">Tu navegador no soporta la etiqueta de video

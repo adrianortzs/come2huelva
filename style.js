@@ -427,23 +427,59 @@ const translations = {
   }
 };
 
+// --- Utilities ---
+function $(selector, root = document) { return root.querySelector(selector); }
+function $$(selector, root = document) { return Array.from(root.querySelectorAll(selector)); }
+function debounce(fn, wait) {
+    let t;
+    return function(...args) {
+        clearTimeout(t);
+        t = setTimeout(() => fn.apply(this, args), wait);
+    };
+}
+function setExpanded(el, expanded) {
+    if (el) el.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+}
+
 function scrollToForm() {
     document.querySelector('.form-container').scrollIntoView({ behavior: 'smooth' });
 };
 
 function toggleLanguageMenu() {
-    document.querySelector('.language-options').classList.toggle('show');
+    const menu = document.querySelector('.language-options');
+    const btn = document.querySelector('.selected-language');
+    if (!menu || !btn) return;
+    const willShow = !menu.classList.contains('show');
+    menu.classList.toggle('show');
+    setExpanded(btn, willShow);
 };
 
 window.onclick = function(event) {
-    if (!event.target.matches('.selected-language')) {
-        document.querySelector('.language-options').classList.remove('show');
+    const menu = document.querySelector('.language-options');
+    const btn = document.querySelector('.selected-language');
+    if (!menu || !btn) return;
+    if (!event.target.closest('.language-selector')) {
+        menu.classList.remove('show');
+        setExpanded(btn, false);
     }
 };
 
+// Close language menu with Escape
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        const menu = document.querySelector('.language-options');
+        const btn = document.querySelector('.selected-language');
+        if (menu && menu.classList.contains('show')) {
+            menu.classList.remove('show');
+            if (btn) setExpanded(btn, false);
+        }
+    }
+});
+
 /* ---LANGUAGE--- */
 function changeLanguage(lang) {
-    const t = translations[lang];
+    try { localStorage.setItem('lang', lang); } catch (e) {}
+    const t = translations[lang] || translations['es'];
 
     const navLinks = document.querySelectorAll('nav ul li a');
     const navTexts = translations[lang].navLinks;
@@ -596,12 +632,14 @@ function changeLanguage(lang) {
     }
 }
 
-/* ---CAROUSELS--- */
-function setupCarousel(trackSelector, prevBtnSelector, nextBtnSelector) {
+/* ---CAROUSELS (Modular) --- */
+function createCarousel({ trackSelector, prevBtnSelector, nextBtnSelector, slidesPerView = { mobile: 1, tablet: 2, desktop: 4 }, auto = true, interval = 3500 }) {
     const carouselTrack = document.querySelector(trackSelector);
     const prevBtn = document.querySelector(prevBtnSelector);
     const nextBtn = document.querySelector(nextBtnSelector);
+    if (!carouselTrack || !prevBtn || !nextBtn) return;
     const carouselSlides = Array.from(carouselTrack.querySelectorAll('.carousel-slide'));
+    if (!carouselSlides.length) return;
     let currentIndex = 0;
 
     function getStepSize() {
@@ -620,9 +658,9 @@ function setupCarousel(trackSelector, prevBtnSelector, nextBtnSelector) {
     }
 
     function getSlidesToShow() {
-        if (window.innerWidth <= 768) return 1;
-        if (window.innerWidth <= 1024) return 2;
-        return 4;
+        if (window.innerWidth <= 768) return slidesPerView.mobile ?? 1;
+        if (window.innerWidth <= 1024) return slidesPerView.tablet ?? slidesPerView.mobile ?? 1;
+        return slidesPerView.desktop ?? 4;
     }
 
     function changeSlide(direction) {
@@ -641,22 +679,50 @@ function setupCarousel(trackSelector, prevBtnSelector, nextBtnSelector) {
     prevBtn.addEventListener('click', () => changeSlide(-1));
     nextBtn.addEventListener('click', () => changeSlide(1));
 
-    let autoScrollInterval = setInterval(() => {
-        changeSlide(1);
-    }, 3500);
+    let autoScrollInterval = null;
+    let resumeTimer = null;
+    function startAuto() {
+        if (!auto) return;
+        stopAuto();
+        autoScrollInterval = setInterval(() => changeSlide(1), interval);
+    }
+    function stopAuto() {
+        if (autoScrollInterval) clearInterval(autoScrollInterval);
+        autoScrollInterval = null;
+    }
+    function pauseTemporarily(timeoutMs = 4000) {
+        stopAuto();
+        if (resumeTimer) clearTimeout(resumeTimer);
+        resumeTimer = setTimeout(() => startAuto(), timeoutMs);
+    }
 
-    window.addEventListener("resize", () => {
-        clearInterval(autoScrollInterval);
+    const onResize = debounce(() => {
         updateCarouselPosition();
-        autoScrollInterval = setInterval(() => changeSlide(1), 3500);
-    });
+        startAuto();
+    }, 150);
+    window.addEventListener('resize', onResize);
 
+    // Init
     updateCarouselPosition();
+    startAuto();
+
+    // Pause on hover (desktop)
+    carouselTrack.addEventListener('mouseenter', () => stopAuto());
+    carouselTrack.addEventListener('mouseleave', () => startAuto());
+
+    // Pause temporarily on interaction (useful for smaller devices)
+    ['pointerdown', 'click', 'touchstart'].forEach(evt => {
+        carouselTrack.addEventListener(evt, () => pauseTemporarily());
+        prevBtn.addEventListener(evt, () => pauseTemporarily());
+        nextBtn.addEventListener(evt, () => pauseTemporarily());
+    });
 }
 
-setupCarousel('.carousel-track.activities', '.prev-btn-activities', '.next-btn-activities');
-setupCarousel('.carousel-track.gastronomy', '.prev-btn-gastronomy', '.next-btn-gastronomy');
-setupCarousel('.carousel-track.plans', '.prev-btn-plans', '.next-btn-plans');
+// Activities and Gastronomy: default behavior (1/2/4)
+createCarousel({ trackSelector: '.carousel-track.activities', prevBtnSelector: '.prev-btn-activities', nextBtnSelector: '.next-btn-activities' });
+createCarousel({ trackSelector: '.carousel-track.gastronomy', prevBtnSelector: '.prev-btn-gastronomy', nextBtnSelector: '.next-btn-gastronomy' });
+// Plans: tablet should show one per view like mobile
+createCarousel({ trackSelector: '.carousel-track.plans', prevBtnSelector: '.prev-btn-plans', nextBtnSelector: '.next-btn-plans', slidesPerView: { mobile: 1, tablet: 1, desktop: 4 } });
 
 /* ---OPINIONS--- */
 const slides = document.querySelectorAll('.opinion-slide');
@@ -718,17 +784,45 @@ const menuToggle = document.querySelector('.menu-toggle');
 if (menuToggle && header) {
   menuToggle.addEventListener('click', function() {
     const isOpen = header.classList.toggle('nav-open');
-    menuToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    setExpanded(menuToggle, isOpen);
   });
 }
+
+// Close nav on outside click and Escape, and when clicking a nav link (tablet/mobile)
+document.addEventListener('click', function(e) {
+  if (!header) return;
+  const nav = header.querySelector('nav');
+  const isInsideHeader = e.target.closest('header');
+  const isNavLink = e.target.closest('nav a');
+  if (isNavLink) {
+    header.classList.remove('nav-open');
+    if (menuToggle) setExpanded(menuToggle, false);
+    return;
+  }
+  if (!isInsideHeader && header.classList.contains('nav-open')) {
+    header.classList.remove('nav-open');
+    if (menuToggle) setExpanded(menuToggle, false);
+  }
+});
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape' && header && header.classList.contains('nav-open')) {
+    header.classList.remove('nav-open');
+    if (menuToggle) setExpanded(menuToggle, false);
+  }
+});
 window.addEventListener('resize', function() {
   if (window.innerWidth > 768 && header) {
     header.classList.remove('nav-open');
     const btn = document.querySelector('.menu-toggle');
-    if (btn) btn.setAttribute('aria-expanded', 'false');
+    if (btn) setExpanded(btn, false);
   }
 });
 
 document.addEventListener("DOMContentLoaded", function() {
-    changeLanguage('es');
+    let initialLang = 'es';
+    try {
+        const saved = localStorage.getItem('lang');
+        if (saved && translations[saved]) initialLang = saved;
+    } catch (e) {}
+    changeLanguage(initialLang);
 });

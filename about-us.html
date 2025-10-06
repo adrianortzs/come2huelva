@@ -21,12 +21,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Source+Sans+Pro:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
+    <a class="skip-link" href="#main-content">Saltar al contenido</a>
     <header>
         <section class="logo-container">
             <img src="images/logonuevo.jpeg" alt="Come2Huelva">
         </section>
         <button class="menu-toggle" type="button" aria-label="Menú" aria-expanded="false" aria-controls="site-nav"><i class="bi bi-list"></i></button>
-        <nav id="site-nav">
+        <nav id="site-nav" aria-label="Navegación principal">
             <ul>
                 <li><a href="index.html#places">Visitas</a></li>
                 <li><a href="index.html#plans">Travesías</a></li>
@@ -36,15 +37,15 @@
             </ul>
         </nav>
         <div class="language-selector">
-            <button class="selected-language" onclick="toggleLanguageMenu()" type="button">Español &#9662;</button>
-            <div class="language-options">
-                <button onclick="changeLanguage('es')">Español</button>
-                <button onclick="changeLanguage('en')">English</button>
-                <button onclick="changeLanguage('fr')">Français</button>
+            <button class="selected-language" onclick="toggleLanguageMenu()" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="lang-menu">Español &#9662;</button>
+            <div class="language-options" id="lang-menu" role="menu" aria-label="Seleccionar idioma">
+                <button onclick="changeLanguage('es')" role="menuitem">Español</button>
+                <button onclick="changeLanguage('en')" role="menuitem">English</button>
+                <button onclick="changeLanguage('fr')" role="menuitem">Français</button>
             </div>
         </div>
     </header>
-    <main>
+    <main id="main-content">
         <section class="about-us-container">
             <h1>Sobre nosotros</h1>
             <span id="bold">Somos Javier y Laura, dos hermanos Almonteños orgullosos de nuestras raíces y profundamente enamorados de nuestra tierra.</span>
