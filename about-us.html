@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Come2Huelva</title>
-    <meta name="description" content="Conoce a Come2Huelva: guías locales que diseñan experiencias auténticas en Huelva con grupos reducidos y trato cercano.">
+    <title>Sobre nosotros | Come2Huelva</title>
+    <meta name="description" content="Conoce a los guías locales de Come2Huelva. Experiencias auténticas, grupos reducidos y amor por Huelva y su gastronomía andaluza.">
     <meta name="theme-color" content="#12271e">
+    <link rel="canonical" href="https://www.come2huelva.com/about-us.html">
     <meta property="og:type" content="website">
     <meta property="og:title" content="Sobre nosotros · Come2Huelva">
     <meta property="og:description" content="Javier y Laura: pasión por Huelva, grupos reducidos y guías locales. Descubre nuestra filosofía.">
@@ -15,7 +16,7 @@
     <meta name="twitter:title" content="Sobre nosotros · Come2Huelva">
     <meta name="twitter:description" content="Experiencias auténticas en Huelva guiadas por locales, con calma y cariño.">
     <meta name="twitter:image" content="images/logo.png">
-    <link rel="icon" type="image/png" href="images/logo-16x16.png">
+    <link rel="icon" type="image/png" href="images/favicon.png">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Source+Sans+Pro:wght@300;400;600&display=swap" rel="stylesheet">
@@ -34,6 +35,7 @@
                 <li><a href="index.html#activities">Actividades</a></li>
                 <li><a href="index.html#gastronomy">Gastronomía</a></li>
                 <li><a href="about-us.html">Sobre nosotros</a></li>
+                <li><a href="index.html#" class="header-cta" onclick="scrollToForm()">Reservar tu tour</a></li>
             </ul>
         </nav>
         <div class="language-selector">
@@ -46,8 +48,8 @@
         </div>
     </header>
     <main id="main-content">
-        <section class="about-us-container">
-            <h1>Sobre nosotros</h1>
+        <section class="about-us-container reveal" aria-labelledby="about-title">
+            <h1 id="about-title">Sobre nosotros: guías locales en Huelva</h1>
             <span id="bold">Somos Javier y Laura, dos hermanos Almonteños orgullosos de nuestras raíces y profundamente enamorados de nuestra tierra.</span>
             <span>Tras estudiar fuera, vivir en varios países y viajar por medio mundo, siempre hemos estado orgullosos de haber nacido en una tierra con una identidad única.</span>
             <span>A lo largo de los años hemos traído a decenas de grupos de amigos de toda España, de Portugal, de Irlanda, Reino Unido, Bélgica, Holanda, Francia, Italia, Perú, Ecuador, Venezuela, Brasil, EEUU, Australia y muchas otras partes del mundo para que conocieran lo que nosotros llamamos “casa”.</span>
@@ -55,11 +57,11 @@
             <span>Promovemos un turismo en que aprender a disfrutar de cada momento.</span>
             <span id="italic-yellow">“Para nosotros, viajar es detenerse, respirar, saborear, mirar y sentir.”</span>
             <span>Así nace Come2Huelva.</span>
-            <img src="images/sobrenosotros.jpg" alt="Javier y Laura de Come2Huelva" class="about-us-image">
+            <img src="images/sobrenosotros.jpg" alt="Javier y Laura, guías locales de Come2Huelva" class="about-us-image" loading="lazy">
         </section>
         <div class="section-divider"></div>
-        <section class="our-secret-container">
-            <h1>Nuestro secreto</h1>
+        <section class="our-secret-container reveal" aria-labelledby="secret-title">
+            <h2 id="secret-title">Nuestro secreto</h2>
             <span>Ponerle mucho cariño a lo que hacemos y respetar 3 claves:</span>
             <span>1. Grupos reducidos. Buscamos un entorno familiar/amigable en el que compartir vivencias y momentos. Máximo 8 personas.</span>
             <span>2. Los tiempos. No buscamos verlo todo corriendo. Buscamos que te relajes y disfrutes de cada lugar y cada momento con las personas que te rodean.</span>
@@ -71,6 +73,9 @@
         <div class="social-media">
             <a href="https://www.facebook.com/come2huelva" target="_blank" rel="noopener noreferrer" class="icon facebook"><i class="bi bi-facebook"></i></a>
             <a href="https://www.instagram.com/come2huelva/" target="_blank" rel="noopener noreferrer" class="icon instagram"><i class="bi bi-instagram"></i></a>
+            <div class="footer-cta">
+                <a class="btn btn-outline" href="index.html#plans">Ver planes</a>
+            </div>
         </div>
     </footer>
     <script src="style.js" defer></script>

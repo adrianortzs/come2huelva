@@ -122,6 +122,8 @@ const translations = {
       message: "Mensaje:"
     },
     submitButton: "Enviar",
+    headerCta: "Reservar tu tour",
+    footerCta: "Ver planes",
     aboutUsHeader: "Sobre nosotros",
     aboutUsSpans: [
       "Somos Javier y Laura, dos hermanos Almonteños orgullosos de nuestras raíces y profundamente enamorados de nuestra tierra.",
@@ -264,6 +266,8 @@ const translations = {
       message: "Message:"
     },
     submitButton: "Send",
+    headerCta: "Book your tour",
+    footerCta: "View plans",
     aboutUsHeader: "About us",
     aboutUsSpans: [
       "We are Javier and Laura, two siblings from Almonte, proud of our roots and deeply in love with our land.",
@@ -406,6 +410,8 @@ const translations = {
       message: "Message :"
     },
     submitButton: "Envoyer",
+    headerCta: "Réserver votre tour",
+    footerCta: "Voir les plans",
     aboutUsHeader: "À propos de nous",
     aboutUsSpans: [
       "Nous sommes Javier et Laura, deux frères et sœurs d'Almonte, fiers de nos racines et profondément amoureux de notre terre.",
@@ -614,6 +620,13 @@ function changeLanguage(lang) {
     const submitBtn = document.querySelector('.form_option button');
     if (submitBtn && t.submitButton) submitBtn.textContent = t.submitButton;
 
+    // Update CTA buttons
+    const headerCta = document.querySelector('.header-cta');
+    if (headerCta && t.headerCta) headerCta.textContent = t.headerCta;
+    
+    const footerCta = document.querySelector('.footer-cta .btn-outline');
+    if (footerCta && t.footerCta) footerCta.textContent = t.footerCta;
+
     const aboutUsHeader = document.querySelector('.about-us-container h1');
     if (aboutUsHeader && t.aboutUsHeader) aboutUsHeader.textContent = t.aboutUsHeader;
     const aboutUsSpans = document.querySelectorAll('.about-us-container span');
@@ -623,7 +636,7 @@ function changeLanguage(lang) {
         });
     }
 
-    const ourSecretHeader = document.querySelector('.our-secret-container h1');
+    const ourSecretHeader = document.querySelector('#secret-title');
     if (ourSecretHeader && t.ourSecretHeader) ourSecretHeader.textContent = t.ourSecretHeader;
     const ourSecretSpans = document.querySelectorAll('.our-secret-container span');
     if (ourSecretSpans.length && t.ourSecretSpans) {
@@ -798,4 +811,30 @@ document.addEventListener("DOMContentLoaded", function() {
         if (saved && translations[saved]) initialLang = saved;
     } catch (e) {}
     changeLanguage(initialLang);
+  // Mark current nav link
+  const currentPath = location.pathname.split('/').pop() || 'index.html';
+  document.querySelectorAll('nav a').forEach(a => {
+    const href = a.getAttribute('href');
+    if (!href) return;
+    const hrefFile = href.includes('#') ? href.split('#')[0] : href;
+    if (hrefFile === currentPath || (currentPath === 'index.html' && href.startsWith('#'))) {
+      a.setAttribute('aria-current', 'page');
+    }
+  });
+    // Scroll reveal
+    const revealEls = Array.from(document.querySelectorAll('.reveal'));
+    if ('IntersectionObserver' in window) {
+        const io = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('reveal-visible');
+                    io.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15 });
+        revealEls.forEach(el => io.observe(el));
+    } else {
+        // Fallback
+        revealEls.forEach(el => el.classList.add('reveal-visible'));
+    }
 });

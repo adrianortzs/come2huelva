@@ -4,9 +4,9 @@
     --white: #FDFBF7;
     --light-grey: #F2F2F2;
     --dark-grey: #888888;
+    --ink: #0f1b16;
     --sombra: 0 8px 32px rgba(32, 126, 132, 0.12);
     --sombra-hover: 0 16px 48px rgba(32, 126, 132, 0.18);
-    --radius: 1.5rem;
     --transition: 0.3s cubic-bezier(.4,2,.3,1);
 }
 
@@ -14,6 +14,7 @@ html {
     box-sizing: border-box;
     font-size: 62.5%;
     scroll-behavior: smooth;
+    scroll-padding-top: 8rem;
 }
 
 *, *:before, *:after {
@@ -23,8 +24,11 @@ html {
 body {
     margin: 0;
     padding: 0;
-    background: var(--dark-green);
+    background: var(--light-grey);
     font-family: 'Source Sans Pro', sans-serif;
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 .skip-link {
@@ -41,36 +45,45 @@ body {
     top: 1rem;
     width: auto;
     height: auto;
-    background: var(--gold-brown);
-    color: var(--dark-green);
+    background: var(--white);
+    color: var(--ink);
     padding: 0.6rem 1rem;
     border-radius: 0.5rem;
     z-index: 1000;
 }
 
+/* Visually hidden utility for accessible-only labels */
+.visually-hidden {
+    position: absolute !important;
+    height: 1px; width: 1px;
+    overflow: hidden;
+    clip: rect(1px, 1px, 1px, 1px);
+    white-space: nowrap;
+}
+
+/* ---GENERAL STYLES--- */
 .section-divider {
-    width: 80%;
-    height: 2px;
-    background: linear-gradient(to right, var(--dark-green), var(--gold-brown));
-    margin: 4rem auto;
+    width: 84%;
+    height: 1px;
+    background: linear-gradient(to right, rgba(18,39,30,0.25), rgba(175,141,84,0.35));
+    margin: 5rem auto;
     border-radius: 1px;
-    opacity: 0.15;
+    opacity: 0.4;
 }
-
 main > section {
-    margin: 4rem auto;
-    padding: 2rem 4vw;
+    margin: 5rem auto;
+    padding: 3rem 5vw;
 }
-
-.place-container h1, .activities-container h1, .gastronomy-container h1, .plans-container h1, .opinions h1, .form h1, .about-us-container h1, .our-secret-container h1 {
+.place-container h1, .activities-container h1, .gastronomy-container h1, .plans-container h1, .opinions h1, .form h1, .about-us-container h1, .our-secret-container h1,
+.place-container h2, .activities-container h2, .gastronomy-container h2, .plans-container h2, .opinions h2, .form h2, .about-us-container h2, .our-secret-container h2 {
     font-size: clamp(2.2rem, 2vw + 1.6rem, 3.2rem);
     font-family: 'Cormorant Garamond', serif;
     font-weight: 700;
     text-align: center;
     text-transform: uppercase;
-    margin-bottom: 3rem;
+    margin-bottom: 3.5rem;
     letter-spacing: 0.12rem;
-    color: var(--gold-brown);
+    color: var(--ink);
 }
 .place-container span, .activities-container span, .gastronomy-container span, .plans-container span, .about-us-container span, .our-secret-container span {
     font-size: clamp(1.6rem, 0.7vw + 1.2rem, 1.9rem);
@@ -79,7 +92,7 @@ main > section {
     max-width: 1300px;
     line-height: 1.9;
     text-align: justify;
-    color: var(--light-grey);
+    color: var(--ink);
 }
 #bold {
     font-weight: 600;
@@ -90,15 +103,14 @@ main > section {
 }
 
 /* ---HEADER--- */
-
 header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 4vw;
+    padding: 1.2rem 4vw;
     background-color: var(--dark-green);
-    border-bottom: 0.5rem solid var(--gold-brown);
-    box-shadow: 0 2px 12px rgba(32,126,132,0.08);
+    border-bottom: 0.3rem solid rgba(175,141,84,0.45);
+    box-shadow: 0 6px 24px rgba(18,39,30,0.12);
     position: sticky;
     top: 0;
     z-index: 100;
@@ -106,7 +118,7 @@ header {
 .menu-toggle {
     display: none;
     background: none;
-    color: var(--light-grey);
+    color: var(--white);
     border: none;
     cursor: pointer;
     font-size: 2.4rem;
@@ -129,7 +141,7 @@ nav li {
     cursor: pointer;
 }
 nav ul li a {
-    color: var(--light-grey);
+    color: var(--white);
     text-decoration: none;
     padding: 0.6rem 1.2rem;
 }
@@ -144,12 +156,53 @@ nav ul li a:focus-visible,
 nav li a:hover {
     color: var(--gold-brown);
 }
+.header-cta {
+    padding: 0.6rem 1.2rem;
+    border-radius: 999px;
+    border: 1px solid rgba(175,141,84,0.6);
+    color: var(--gold-brown) !important;
+    transition: background var(--transition), color var(--transition), transform var(--transition);
+}
+.header-cta:hover {
+    background: rgba(175,141,84,0.1);
+    transform: translateY(-1px);
+}
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    font-weight: 600;
+    letter-spacing: 0.02rem;
+    text-decoration: none;
+    cursor: pointer;
+}
+.btn-primary {
+    background: var(--gold-brown);
+    color: var(--ink);
+    padding: 0.9rem 1.4rem;
+    border: 1px solid var(--gold-brown);
+    box-shadow: 0 8px 24px rgba(175,141,84,0.25);
+}
+.btn-primary:hover {
+    box-shadow: 0 12px 32px rgba(175,141,84,0.35);
+    transform: translateY(-1px);
+}
+.btn-outline {
+    background: transparent;
+    color: var(--gold-brown);
+    padding: 0.8rem 1.4rem;
+    border: 1px solid rgba(175,141,84,0.5);
+}
+.btn-outline:hover {
+    background: rgba(175,141,84,0.08);
+}
 .language-selector {
     position: relative;
 }
 .selected-language {
     background: none;
-    color: var(--light-grey);
+    color: var(--white);
     border: none;
     padding: 0.8rem 1.6rem;
     cursor: pointer;
@@ -171,7 +224,7 @@ nav li a:hover {
 .language-options button {
     background: none;
     border: none;
-    color: var(--dark-green);
+    color: var(--ink);
     font-weight: 600;
     padding: 1rem 2rem;
     width: 100%;
@@ -181,28 +234,27 @@ nav li a:hover {
     transition: background var(--transition), color var(--transition);
 }
 .language-options button:hover {
-    background: var(--light-grey);
-    color: var(--dark-green);
+    background: var(--white);
 }
 .language-options.show {
     display: block;
 }
 
 /* ---INTRODUCTION--- */
-
 .introduction-container {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
     text-align: justify;
     line-height: 1.9;
-    margin: 4rem 6vw;
-    background: var(--light-grey);
-    opacity: 0.95;
-    border-radius: var(--radius);
+    margin: 5rem 6vw;
+    background: var(--white);
+    opacity: 1;
+    border-radius: 0.5rem;
+    box-shadow: var(--sombra);
 }
 .introduction-container span {
-    color: var(--dark-green);
+    color: var(--ink);
     font-size: clamp(1.7rem, 0.8vw + 1.2rem, 2rem);
 }
 .introduction-container span:first-child {
@@ -216,7 +268,6 @@ nav li a:hover {
 }
 
 /* ---VIDEO--- */
-
 .video-container {
     margin: 6rem auto;
     max-width: 1150px;
@@ -224,13 +275,12 @@ nav li a:hover {
 .video-container video {
     width: 100%;
     height: auto;
-    border-radius: var(--radius);
+    border-radius: 0.5rem;
     box-shadow: 0 8px 25px rgba(32,126,132,0.15), 0 12px 40px rgba(32,126,132,0.10);
     background: #000;
 }
 
 /* ---PLACES--- */
-
 .place-container {
     padding-top: 0;
     padding-bottom: 3.5rem;
@@ -245,17 +295,18 @@ nav li a:hover {
 .place {
     position: relative;
     overflow: hidden;
-    border-radius: var(--radius);
-    background: var(--dark-green);
+    border-radius: 0.5rem;
+    background: var(--light-grey);
     transition: box-shadow var(--transition), transform var(--transition);
+    box-shadow: var(--sombra);
 }
 .place img {
     display: block;
     object-fit: cover;
     width: 100%;
     height: 280px;
-    border-top-left-radius: var(--radius);
-    border-top-right-radius: var(--radius);
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
     transition: transform var(--transition);
 }
 .place:hover {
@@ -273,10 +324,10 @@ nav li a:hover {
     padding: 2rem 1rem;
     opacity: 0;
     text-align: center;
-    border-bottom-left-radius: var(--radius);
-    border-bottom-right-radius: var(--radius);
+    border-bottom-left-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
     backdrop-filter: blur(3px);
-    color: var(--light-grey);
+    color: var(--white);
     max-height: 230px;
     overflow: hidden;
     transition: opacity var(--transition);
@@ -299,14 +350,13 @@ nav li a:hover {
     display: block;
     text-align: justify;
     line-height: 1.8;
-    color: var(--light-grey);
+    color: var(--white);
 }
 
 /* ---ACTIVITIES  &&  GASTRONOMY--- */
-
 .activities-container, .gastronomy-container {
     position: relative;
-    padding: 0 4vh;
+    padding: 0 6vh;
 }
 .plans-container {
     position: relative;
@@ -331,9 +381,9 @@ nav li a:hover {
     padding: 0 1rem;
 }
 .activity-card, .gastronomy-card {
-    background: var(--light-grey);
-    opacity: 0.95;
-    border-radius: var(--radius);
+    background: var(--white);
+    opacity: 1;
+    border-radius: 0.5rem;
     max-width: 280px;
     width: 100%;
     display: flex;
@@ -341,8 +391,9 @@ nav li a:hover {
     overflow: hidden;
     padding: 0 0 1.5rem; 
     text-align: center;
-    border: 1px solid var(--dark-grey);
+    border: 1px solid rgba(18,39,30,0.08);
     transition: box-shadow var(--transition), transform var(--transition);
+    box-shadow: var(--sombra);
 }
 .activity-card:hover, .gastronomy-card:hover {
     transform: translateY(-8px) scale(1.03);
@@ -351,12 +402,12 @@ nav li a:hover {
     width: 100%;
     height: 180px;
     object-fit: cover;
-    border-top-left-radius: var(--radius);
-    border-top-right-radius: var(--radius);
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
 }
 .activity-card h3, .gastronomy-card h3 {
     font-size: clamp(1.4rem, 0.6vw + 1rem, 1.8rem);
-    color: var(--dark-green);
+    color: var(--ink);
     text-transform: uppercase;
     letter-spacing: 0.06rem;
     font-weight: 600;
@@ -364,7 +415,7 @@ nav li a:hover {
 }
 .activity-card span, .gastronomy-card span {
     font-size: clamp(1.3rem, 0.35vw + 1rem, 1.5rem);
-    color: var(--dark-green);
+    color: var(--ink);
     line-height: 1.8;
     margin: 1rem auto 0;
     max-width: 85%;
@@ -385,7 +436,7 @@ nav li a:hover {
     border: none;
     padding: 0.4rem 0.6rem;
     font-size: clamp(1.8rem, 0.8vw + 1.4rem, 2.2rem);
-    color: var(--light-grey);
+    color: var(--ink);
     cursor: pointer;
     z-index: 2;
     opacity: 0.95;
@@ -403,7 +454,6 @@ nav li a:hover {
 }
 
 /* ---PLANS--- */
-
 .plans-container {
     padding-top: 0;
 }
@@ -428,7 +478,7 @@ nav li a:hover {
     flex: 0 0 100%;
 }
 .plan_card {
-    border-radius: var(--radius);
+    border-radius: 0.5rem;
     overflow: hidden;
     width: 100%;
     text-align: justify;
@@ -436,8 +486,9 @@ nav li a:hover {
     display: flex;
     flex-direction: column;
     transition: box-shadow var(--transition), transform var(--transition);
-    background: var(--light-grey);
-    opacity: 0.95;
+    background: var(--white);
+    opacity: 1;
+    box-shadow: var(--sombra);
 }
 .plan_card:hover {
     transform: translateY(-8px) scale(1.03);
@@ -453,7 +504,7 @@ nav li a:hover {
     align-items: center;
 }
 .card_header span {
-    color: var(--dark-green);
+    color: var(--ink);
 }
 .card_img {
     width: 100%;
@@ -467,13 +518,13 @@ nav li a:hover {
 }
 .card_content span {
     font-size: clamp(1.55rem, 0.7vw + 1.2rem, 1.85rem);
-    color: var(--dark-green);
+    color: var(--ink);
     line-height: 1.9;
 }
 .plans-container .personalized-plan {
     font-size: clamp(2rem, 1vw + 1.6rem, 2.6rem);
     font-weight: 700;
-    color: var(--gold-brown);
+    color: var(--ink);
     display: block;
     margin: 2rem 0 1rem 0;
 }
@@ -483,7 +534,6 @@ nav li a:hover {
 }
 
 /* ---OPINIONS--- */
-
 .opinions {
     padding-top: 0;
     position: relative;
@@ -493,9 +543,9 @@ nav li a:hover {
     margin: 0 auto;
 }
 .opinion-card {
-    background: var(--light-grey);
-    opacity: 0.95;
-    border-radius: var(--radius);
+    background: var(--white);
+    opacity: 1;
+    border-radius: 0.5rem;
     padding: 3rem 2.5rem;
     text-align: center;
     max-width: 800px;
@@ -509,7 +559,7 @@ nav li a:hover {
 }
 .opinion-card p {
     font-size: clamp(1.7rem, 0.8vw + 1.3rem, 2rem);
-    color: var(--dark-green);
+    color: var(--ink);
     line-height: 1.9;
     margin-bottom: 2rem;
     font-style: italic;
@@ -517,27 +567,21 @@ nav li a:hover {
 }
 .opinion-card span {
     font-size: clamp(1.6rem, 0.6vw + 1.2rem, 1.9rem);
-    color: var(--dark-green);
+    color: var(--ink);
     font-weight: bold;
     display: block;
     margin-top: 1rem;
     text-transform: uppercase;
     letter-spacing: 0.08rem;
 }
-.prev-btn-opinions,
-.next-btn-opinions {
-    left: auto;
-    right: auto;
-}
 .prev-btn-opinions {
-    left: 3rem;
+    left: 10rem;
 }
 .next-btn-opinions {
-    right: 3rem;
+    right: 10rem;
 }
 
 /* ---FORM--- */
-
 .form-container {
     display: flex;
     justify-content: center;
@@ -547,20 +591,20 @@ nav li a:hover {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
-    background: var(--light-grey);
-    opacity: 0.95;
+    background: var(--white);
+    opacity: 1;
     padding: 3rem;
-    border-radius: var(--radius);
+    border-radius: 0.5rem;
     max-width: 70rem;
     width: 100%;
     box-shadow: var(--sombra);
 }
 .form h1 {
-    color: var(--dark-green);
+    color: var(--ink);
 }
 .form span {
     font-size: clamp(1.55rem, 0.7vw + 1.2rem, 1.9rem);
-    color: var(--dark-green);
+    color: var(--ink);
     text-align: justify;
     line-height: 1.9;
     margin-bottom: 1rem;
@@ -572,15 +616,15 @@ nav li a:hover {
 .form_option label {
     font-size: clamp(1.5rem, 0.6vw + 1.2rem, 1.8rem);
     font-weight: 600;
-    color: var(--dark-green);
+    color: var(--ink);
 }
 .form_option input,
 .form_option textarea {
     padding: 0.9rem 1.2rem;
-    border: 0.1rem solid #D9D9D9;
-    border-radius: 0.5rem;
-    background: #D9D9D9;
-    color: var(--dark-green);
+    border: 0.1rem solid rgba(18,39,30,0.15);
+    border-radius: 0.8rem;
+    background: #FAFAFA;
+    color: var(--ink);
     font-size: 1.6rem;
     margin-top: 0.5rem;
 }
@@ -595,38 +639,55 @@ nav li a:hover {
     min-height: 90px;
 }
 .form_option button {
-    background: #D9D9D9;
-    color: var(--dark-green);
-    padding: 1.2rem 1.4rem;
-    border: none;
+    background: var(--gold-brown);
+    color: var(--ink);
+    padding: 1.2rem 1.6rem;
+    border: 1px solid var(--gold-brown);
     border-radius: 0.5rem;
     font-size: clamp(1.6rem, 0.6vw + 1.2rem, 1.9rem);
-    font-weight: 600;
+    font-weight: 700;
     cursor: pointer;
     text-align: center;
-    transition: background var(--transition), color var(--transition), box-shadow var(--transition);
+    transition: background var(--transition), color var(--transition), box-shadow var(--transition), transform var(--transition);
 }
 .form_option button:hover {
-    background: var(--dark-green);
-    color: var(--light-grey);
-    box-shadow: 0 0.4rem 1.5rem rgba(18,39,30,0.15);
+    box-shadow: 0 12px 32px rgba(175,141,84,0.35);
+    transform: translateY(-1px);
 }
 
 /* ---FOOTER--- */
-
 footer {
     position: relative;
-    padding: 2rem 0rem;
+    padding: 2.5rem 0rem;
     background-color: var(--dark-green);
-    color: var(--light-grey);
-    border-top: 0.5rem solid var(--gold-brown);
-    border-radius: var(--radius) var(--radius) 0 0;
+    color: var(--white);
+    border-top: 0.3rem solid rgba(175,141,84,0.45);
+    border-radius: 1.5rem 1.5rem 0 0;
     box-shadow: 0 -2px 12px rgba(18,39,30,0.08);
 }
 footer .social-media {
     display: flex;
     justify-content: center;
+    align-items: center;
     gap: 7rem;
+}
+footer .footer-cta {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1.2rem;
+}
+footer .footer-cta .btn-outline {
+    color: var(--gold-brown);
+    border-color: rgba(175,141,84,0.6);
+    font-size: clamp(1.5rem, 0.55vw + 1.15rem, 1.9rem);
+    padding: 0.45rem 1.3rem;
+    border-radius: 999px;
+}
+footer .footer-cta .btn-outline:hover {
+    background: rgba(175,141,84,0.1);
+}
+footer .social-media .footer-cta {
+    margin-bottom: 0;
 }
 footer .icon {
     color: var(--light-grey);
@@ -639,33 +700,16 @@ footer .icon:hover {
     transform: scale(1.2);
 }
 
-/* ---FLOATING BUTTON--- */
-
-.floating-btn {
-    position: fixed;
-    bottom: 3rem;
-    right: 3rem;
-    background: var(--gold-brown);
-    color: var(--dark-green);
-    border: none;
-    border-radius: 50%;
-    width: 6.5rem;
-    height: 6.5rem;
-    font-size: 2rem;
-    cursor: pointer;
-    box-shadow: 0 8px 25px rgba(32,126,132,0.15), 0 12px 40px rgba(32,126,132,0.10);
-    transition: background var(--transition), color var(--transition), transform var(--transition);
-    z-index: 99;
+/* ---ABOUT US--- */
+.about-us-container {
+    padding-top: 0.5rem;
 }
-.floating-btn:hover {
-    transform: scale(1.2);
-}
-
 .about-us-image {
     width: 100%;
     max-width: 500px;
     height: auto;
     box-shadow: var(--sombra);
+    border: 1px solid var(--light-grey);
     margin: 3rem auto;
     display: block;
     object-fit: cover;
@@ -673,42 +717,96 @@ footer .icon:hover {
 
 /* ---MEDIA QUERIES--- */
 
+/* ---SMALL TABLET--- */
+@media (max-width: 900px) and (min-width: 769px) {
+    .carousel-container {
+        padding: 2.5rem 0.5rem;
+    }
+    .carousel-track.activities .carousel-slide,
+    .carousel-track.gastronomy .carousel-slide {
+        min-width: 33.333%;
+        padding: 0 0.5rem;
+    }
+    .activity-card, .gastronomy-card {
+        max-width: 100%;
+    }
+    .prev-btn-activities, .prev-btn-gastronomy {
+        left: 2rem;
+    }
+    .next-btn-activities, .next-btn-gastronomy {
+        right: 2rem;
+    }
+}
+
 /* ---TABLET--- */
 @media (max-width: 1024px) {
-    html { font-size: 65%; }
+    html {
+        font-size: 65%;
+    }
     header {
       padding: 1.5rem 3vw;
       gap: 1rem;
     }
-    .menu-toggle { display: inline-flex; align-items: center; justify-content: center; }
-    header nav { display: none; width: 100%; }
-    header.nav-open nav { display: block; }
+    .menu-toggle {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+    header nav {
+        display: none;
+        width: 100%;
+    }
+    header.nav-open nav {
+        display: block;
+    }
+    header.nav-open .menu-toggle {
+        display: none;
+    }
     header nav ul {
         flex-direction: column;
-        gap: 0;
+        gap: 1rem;
         width: 100%;
-        opacity: 0.95;
+        border-radius: 0.8rem;
+        box-shadow: 0 8px 32px rgba(18,39,30,0.08);
         overflow: hidden;
         z-index: 10;
-        margin-top: 1rem;
+        margin-top: 2rem;
+        padding: 1rem 0;
     }
     header nav ul li a { 
         display: block;
         width: 100%; 
-        padding: 1rem 2rem; 
-        color: var(--light-grey);
-        font-weight: 600;
-        text-align: left;
+        padding: 0.7rem 2rem;
+        color: var(--ink);
+        font-weight: 500;
+        text-align: center;
         cursor: pointer;
-        font-size: 1.5rem;
-        transition: background var(--transition), color var(--transition);
+        font-size: 1.6rem;
+        transition: all var(--transition);
+        letter-spacing: 0.03rem;
+        background: var(--white);
+        border-radius: 999px;
+        border: 1px solid var(--gold-brown);
     }
     header nav ul li a:hover {
-        background: var(--light-grey);
-        color: var(--dark-green);
+        background: var(--dark-green);
+        color: var(--gold-brown);
     }
-    .logo-container img { width: 60px; }
-    nav ul { gap: 2rem; }
+    header nav ul li a[aria-current="page"]:hover {
+        background: var(--dark-green);
+        color: var(--gold-brown);
+    }
+    header nav ul li a[aria-current="page"] {
+        background: var(--light-grey);
+        color: var(--ink);
+        font-weight: 600;
+    }
+    .logo-container img {
+        width: 60px;
+    }
+    nav ul {
+        gap: 2rem;
+    }
     main > section,
     .opinions-container,
     .form {
@@ -716,22 +814,41 @@ footer .icon:hover {
       padding-right: 5vw;
     }
     .section-divider {
-      width: 90%;
-      margin: 2.5rem auto;
+        width: 90%;
+        margin: 3rem auto;
     }
     .places-container {
         grid-template-columns: repeat(2, 1fr);
         gap: 3rem;
     }
     .carousel-track.activities,
-    .carousel-track.gastronomy { gap: 0; }
+    .carousel-track.gastronomy {
+        gap: 0;
+    }
     .carousel-track.activities .carousel-slide,
-    .carousel-track.gastronomy .carousel-slide { min-width: 50%; padding: 0 0.75rem; }
-    .carousel-track.plans { gap: 0; }
-    .carousel-track.plans .carousel-slide { min-width: 100%; max-width: 100%; padding: 0; flex: 0 0 100%; }
-    .plan_card { max-width: 60vw; margin: 0 auto; }
-    .activity-card, .gastronomy-card { max-width: 360px; }
-    .plan_card { max-width: 40rem; }
+    .carousel-track.gastronomy .carousel-slide {
+        min-width: 50%;
+        padding: 0 0.75rem;
+    }
+    .carousel-track.plans {
+        gap: 0;
+    }
+    .carousel-track.plans .carousel-slide {
+        min-width: 100%;
+        max-width: 100%;
+        padding: 0;
+        flex: 0 0 100%;
+    }
+    .plan_card {
+        max-width: 60vw;
+        margin: 0 auto;
+    }
+    .activity-card, .gastronomy-card {
+        max-width: 360px;
+    }
+    .plan_card {
+        max-width: 40rem;
+    }
     .carousel-btn {
         height: 3rem; width: 3rem; font-size: 1.8rem;
     }
@@ -742,44 +859,86 @@ footer .icon:hover {
         top: 25%;
         transform: translateY(-50%);
     }
-    .plans-container .prev-btn-plans { left: 12.5rem; }
-    .plans-container .next-btn-plans { right: 12.5rem; }
-    .opinions-container { max-width: 80vw; }
-    .floating-btn {
-        width: 5.5rem; height: 5.5rem; font-size: 1.8rem;
-        bottom: 2.5rem; right: 2.5rem;
+    .plans-container .prev-btn-plans {
+        left: 6rem;
     }
-    footer .social-media { gap: 6rem; }
+    .plans-container .next-btn-plans {
+        right: 6rem;
+    }
+    .opinions-container {
+        max-width: 80vw;
+    }
+    .prev-btn-opinions {
+        left: 6rem;
+    }
+    .next-btn-opinions {
+        right: 6rem;
+    }
+    footer .social-media {
+        gap: 4.5rem;
+    }
 }
 
 /* ---MOBILE--- */
 @media (max-width: 768px) {
-    html { font-size: 60%; }
-    header nav ul li a {
-        padding: 0.8rem 1.8rem;
+    html {
+        font-size: 60%;
     }
-    .logo-container img { width: 55px; }
+    header nav ul li a {
+        padding: 0.7rem 2rem;
+        background: var(--white);
+        border-radius: 999px;
+        border: 1px solid var(--gold-brown);
+        color: var(--ink);
+        font-weight: 500;
+        text-align: center;
+        transition: all var(--transition);
+        letter-spacing: 0.03rem;
+    }
+    header nav ul li a:hover {
+        background: var(--dark-green);
+        color: var(--gold-brown);
+    }
+    header nav ul li a[aria-current="page"] {
+        background: var(--light-grey);
+        color: var(--ink);
+        font-weight: 600;
+    }
+    header nav ul li a[aria-current="page"]:hover {
+        background: var(--dark-green);
+        color: var(--gold-brown);
+    }
+    .logo-container img {
+        width: 55px;
+    }
     main > section {
         padding: 2rem 4vw;
         margin: 2rem auto;
     }
     .section-divider {
         width: 95%;
-        margin: 2rem auto;
+        margin: 2.4rem auto;
     }
     .places-container {
         grid-template-columns: 1fr;
         gap: 2.5rem;
+        justify-items: center;
+        padding: 0 5vw;
     }
     .places-container .place {
-        width: 60vw;
-        max-width: 60vw;
-        margin-left: auto;
-        margin-right: auto;
+        width: 100%;
+        max-width: 100%;
+        margin: 0 auto;
     }
     .places-container .place img {
-        height: 200px;
+        height: 220px;
+        width: 100%;
         object-fit: cover;
+        object-position: center;
+    }
+    .places-container .place .overlay {
+        font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+        padding: 0.8rem 1rem;
     }
     .carousel-container,
     .carousel-plans-container {
@@ -831,23 +990,105 @@ footer .icon:hover {
         top: 25%;
         transform: translateY(-50%);
     }
-    .plans-container .prev-btn-plans { left: 3rem; }
-    .plans-container .next-btn-plans { right: 3rem; }
+    .plans-container .prev-btn-plans {
+        left: 3rem;
+    }
+    .plans-container .next-btn-plans {
+        right: 3rem;
+    }
     .prev-btn-opinions,
     .next-btn-opinions {
         display: flex;
         position: absolute;
     }
-    .prev-btn-opinions { left: 1rem; }
-    .next-btn-opinions { right: 1rem; }
-    .floating-btn {
-        width: 5rem; height: 5rem; font-size: 1.6rem;
-        bottom: 1.5rem; right: 1.5rem;
+    .prev-btn-opinions {
+        left: 1rem;
+    }
+    .next-btn-opinions {
+        right: 1rem;
     }
     footer {
-        padding: 1rem 2vw;
+        padding: 1.4rem 2vw;
     }
     footer .social-media {
-        gap: 4rem;
+        gap: 3rem;
+    }
+    .about-us-image {
+        max-width: 85vw;
     }
 }
+
+/* ---VERY SMALL MOBILE--- */
+@media (max-width: 450px) {
+    .places-container {
+        justify-items: center;
+        padding: 0 5vw;
+    }
+    .places-container .place {
+        width: 100%;
+        max-width: 100%;
+        padding: 0;
+        margin: 1rem auto;
+        overflow: hidden;
+        border-radius: 0.5rem;
+    }
+    .places-container .place img {
+        height: 200px;
+        width: 100%;
+        object-fit: cover;
+        object-position: center;
+        display: block;
+    }
+    .places-container .place .overlay {
+        font-size: clamp(1rem, 2.2vw, 1.4rem);
+        padding: 0.6rem 0.8rem;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    .carousel-container {
+        padding: 1.5rem 0.5rem;
+    }
+    .prev-btn-activities {
+        left: 1rem !important;
+    }
+    .next-btn-activities {
+        right: 1rem !important;
+    }
+    .prev-btn-gastronomy {
+        left: 1rem !important;
+    }
+    .next-btn-gastronomy {
+        right: 1rem !important;
+    }
+    .prev-btn-opinions {
+        left: 1rem !important;
+    }
+    .next-btn-opinions {
+        right: 1rem !important;
+    }
+    .plans-container .prev-btn-plans {
+        left: 1rem !important;
+    }
+    .plans-container .next-btn-plans {
+        right: 1rem !important;
+    }
+    .carousel-plans-container .prev-btn-plans {
+        left: 1rem !important;
+    }
+    .carousel-plans-container .next-btn-plans {
+        right: 1rem !important;
+    }
+    .carousel-btn {
+        height: 2.5rem;
+        width: 2.5rem;
+        font-size: 1.4rem;
+    }
+}
+
+/* --- Subtle Scroll Reveal --- */
+.reveal { opacity: 0; transform: translateY(18px); transition: opacity 700ms ease, transform 700ms ease; }
+.reveal.reveal-visible { opacity: 1; transform: translateY(0); }
