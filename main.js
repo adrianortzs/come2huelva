@@ -115,12 +115,6 @@
       const lang = currentLanguage || CONFIG.DEFAULT_LANGUAGE;
       const titles = defaultTitles[lang] || defaultTitles.es;
       
-      const closeLabels = {
-        es: 'Cerrar',
-        en: 'Close',
-        fr: 'Fermer'
-      };
-      
       const toast = document.createElement('div');
       toast.className = `toast ${type}`;
       toast.innerHTML = `
@@ -129,7 +123,6 @@
           <div class="toast-title">${title || titles[type]}</div>
           <div class="toast-message">${message}</div>
         </div>
-        <button class="toast-close" aria-label="${closeLabels[lang] || closeLabels.es}">×</button>
       `;
       
       this.container.appendChild(toast);
@@ -139,9 +132,6 @@
           toast.classList.add('show');
         });
       });
-      
-      const closeBtn = toast.querySelector('.toast-close');
-      closeBtn.addEventListener('click', () => this.hide(toast));
       
       if (duration > 0) {
         setTimeout(() => this.hide(toast), duration);
@@ -210,7 +200,31 @@
   window.scrollToForm = function() {
     const formContainer = $('.form-container');
     if (formContainer) {
-      formContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      const header = $('header');
+      const headerHeight = header ? header.offsetHeight : 80;
+      const elementPosition = formContainer.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.scrollY - headerHeight;
+      
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+  };
+
+  // ==================== SCROLL TO INTRODUCTION ====================
+  window.scrollToIntroduction = function() {
+    const introContainer = $('#introduction');
+    if (introContainer) {
+      const header = $('header');
+      const headerHeight = header ? header.offsetHeight : 80;
+      const elementPosition = introContainer.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.scrollY - headerHeight;
+      
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
     }
   };
 
@@ -751,11 +765,14 @@
     const button = $('.selected-language');
     if (button) {
       const labels = {
-        es: 'Español &#9662;',
-        en: 'English &#9662;',
-        fr: 'Français &#9662;'
+        es: 'Español',
+        en: 'English',
+        fr: 'Français'
       };
-      updateHTML(button, labels[lang] || labels.es);
+      const span = button.querySelector('span');
+      if (span) {
+        updateText(span, labels[lang] || labels.es);
+      }
     }
 
     // Close language menu

@@ -24,7 +24,8 @@
     <meta name="twitter:description" content="Naturaleza, cultura y sabor con guías locales. Travesías y actividades personalizadas.">
     <meta name="twitter:image" content="images/logonuevo.webp">
     <link rel="icon" type="image/png" href="images/favicon.webp">
-    <link rel="stylesheet" href="styles.min.css">
+    <!-- <link rel="stylesheet" href="styles.min.css"> -->
+     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Source+Sans+Pro:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
@@ -36,7 +37,7 @@
     </div>
     <header>
         <section class="logo-container">
-            <img src="images/logonuevo.webp" alt="Come2Huelva">
+            <img src="images/logonuevo.webp" alt="Come2Huelva" onclick="scrollToIntroduction()" style="cursor: pointer;">
         </section>
         <button class="menu-toggle" type="button" aria-label="Menú" aria-expanded="false" aria-controls="site-nav"><i class="bi bi-list"></i></button>
         <nav id="site-nav" aria-label="Navegación principal">
@@ -46,11 +47,14 @@
                 <li><a href="#activities">Actividades</a></li>
                 <li><a href="#gastronomy">Gastronomía</a></li>
                 <li><a href="about-us.html">Sobre nosotros</a></li>
-                <li><a href="#" class="header-cta" onclick="scrollToForm()">Reservar tu tour</a></li>
+                <li><a href="javascript:void(0);" class="header-cta" onclick="scrollToForm()">Reservar tu tour</a></li>
             </ul>
         </nav>
         <div class="language-selector">
-            <button class="selected-language" onclick="toggleLanguageMenu()" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="lang-menu">Español &#9662;</button>
+            <button class="selected-language" onclick="toggleLanguageMenu()" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="lang-menu">
+                <i class="bi bi-globe"></i>
+                <span>Español</span>
+            </button>
             <div class="language-options" id="lang-menu" role="menu" aria-label="Seleccionar idioma">
                 <button onclick="changeLanguage('es')" role="menuitem">Español</button>
                 <button onclick="changeLanguage('en')" role="menuitem">English</button>
@@ -59,7 +63,7 @@
         </div>
     </header>
     <main id="main-content">
-        <section class="introduction-container reveal" aria-labelledby="intro-title">
+        <section class="introduction-container reveal" aria-labelledby="intro-title" id="introduction">
             <h2 id="intro-title" class="visually-hidden">Huelva tours y experiencias locales</h2>
             <span>Imagina un lugar donde cada rincón cuenta una historia, cada sabor te conecta con la tierra y cada momento queda grabado en el corazón.</span>
             <span>Queremos que vivas Huelva como nosotros la vivimos. Te invitamos a descubrir una Huelva auténtica con quienes la conocen y la aman profundamente. Esto no es un viaje; es una  vivencia inolvidable que queremos que recuerdes para siempre.</span>
@@ -314,7 +318,7 @@
                             <div class="card_header">
                                 <span>🌊 Disfruta Huelva - 4 - 5 días</span>
                             </div>
-                            <img src="images/plan.webp" alt="minas rio tinto" class="card_img">
+                            <img src="images/plangirado.webp" alt="minas rio tinto" class="card_img">
                             <div class="card_content">
                                 <span>Escapada de puente o finde largo en la que conocer la esencia de Huelva y hacer algunas actividades/experiencias adicionales.</span>
                             </div>
@@ -455,6 +459,7 @@
       "touristType": ["Ecoturismo", "Gastronomía andaluza"]
     }
     </script>
-    <script src="main.min.js" defer></script>
+    <!-- <script src="main.min.js" defer></script> -->
+    <script src="main.js" defer></script>
 </body>
 </html>
