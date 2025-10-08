@@ -79,6 +79,9 @@
     });
   };
 
+  // ==================== CURRENT LANGUAGE ====================
+  let currentLanguage = CONFIG.DEFAULT_LANGUAGE;
+
   // ==================== TOAST NOTIFICATIONS ====================
   const Toast = {
     container: null,
@@ -103,11 +106,19 @@
         info: 'ℹ'
       };
       
-      const titles = {
-        success: title || '¡Éxito!',
-        error: title || 'Error',
-        warning: title || 'Atención',
-        info: title || 'Información'
+      const defaultTitles = {
+        es: { success: '¡Éxito!', error: 'Error', warning: 'Atención', info: 'Información' },
+        en: { success: 'Success!', error: 'Error', warning: 'Warning', info: 'Information' },
+        fr: { success: 'Succès !', error: 'Erreur', warning: 'Attention', info: 'Information' }
+      };
+      
+      const lang = currentLanguage || CONFIG.DEFAULT_LANGUAGE;
+      const titles = defaultTitles[lang] || defaultTitles.es;
+      
+      const closeLabels = {
+        es: 'Cerrar',
+        en: 'Close',
+        fr: 'Fermer'
       };
       
       const toast = document.createElement('div');
@@ -115,10 +126,10 @@
       toast.innerHTML = `
         <div class="toast-icon">${icons[type]}</div>
         <div class="toast-content">
-          <div class="toast-title">${titles[type]}</div>
+          <div class="toast-title">${title || titles[type]}</div>
           <div class="toast-message">${message}</div>
         </div>
-        <button class="toast-close" aria-label="Cerrar">×</button>
+        <button class="toast-close" aria-label="${closeLabels[lang] || closeLabels.es}">×</button>
       `;
       
       this.container.appendChild(toast);
@@ -364,6 +375,20 @@
       headerCta: "Reservar tu tour",
       footerCtaIndex: "Conócenos",
       footerCtaAbout: "Ver planes",
+      notifications: {
+        success: {
+          title: "¡Mensaje enviado!",
+          message: "Tu mensaje ha sido enviado correctamente. Te contactaremos pronto."
+        },
+        errorTitle: "Error de envío",
+        errorMessage: "No pudimos enviar tu mensaje. Por favor, inténtalo más tarde o contáctanos directamente.",
+        timeoutTitle: "Tiempo agotado",
+        timeoutMessage: "La solicitud ha tardado demasiado. Por favor, inténtalo de nuevo.",
+        requiredTitle: "Campos incompletos",
+        requiredMessage: "Por favor, completa todos los campos requeridos.",
+        invalidEmailTitle: "Email inválido",
+        invalidEmailMessage: "Por favor, introduce un email válido."
+      },
       aboutUsHeader: "Sobre nosotros",
       aboutUsSpans: [
         "Somos Javier y Laura, dos hermanos Almonteños orgullosos de nuestras raíces y profundamente enamorados de nuestra tierra.",
@@ -509,6 +534,20 @@
       headerCta: "Book your tour",
       footerCtaIndex: "Get to know us",
       footerCtaAbout: "View plans",
+      notifications: {
+        success: {
+          title: "Message sent!",
+          message: "Your message has been sent successfully. We'll contact you soon."
+        },
+        errorTitle: "Sending error",
+        errorMessage: "We couldn't send your message. Please try again later or contact us directly.",
+        timeoutTitle: "Request timeout",
+        timeoutMessage: "The request took too long. Please try again.",
+        requiredTitle: "Incomplete fields",
+        requiredMessage: "Please fill in all required fields.",
+        invalidEmailTitle: "Invalid email",
+        invalidEmailMessage: "Please enter a valid email address."
+      },
       aboutUsHeader: "About us",
       aboutUsSpans: [
         "We are Javier and Laura, two siblings from Almonte, proud of our roots and deeply in love with our land.",
@@ -654,6 +693,20 @@
       headerCta: "Réserver votre tour",
       footerCtaIndex: "Faites-nous connaissance",
       footerCtaAbout: "Voir les plans",
+      notifications: {
+        success: {
+          title: "Message envoyé !",
+          message: "Votre message a été envoyé avec succès. Nous vous contacterons bientôt."
+        },
+        errorTitle: "Erreur d'envoi",
+        errorMessage: "Nous n'avons pas pu envoyer votre message. Veuillez réessayer plus tard ou nous contacter directement.",
+        timeoutTitle: "Délai d'attente dépassé",
+        timeoutMessage: "La demande a pris trop de temps. Veuillez réessayer.",
+        requiredTitle: "Champs incomplets",
+        requiredMessage: "Veuillez remplir tous les champs requis.",
+        invalidEmailTitle: "Email invalide",
+        invalidEmailMessage: "Veuillez saisir une adresse email valide."
+      },
       aboutUsHeader: "À propos de nous",
       aboutUsSpans: [
         "Nous sommes Javier et Laura, deux frères et sœurs d'Almonte, fiers de nos racines et profondément amoureux de notre terre.",
@@ -682,6 +735,7 @@
       lang = CONFIG.DEFAULT_LANGUAGE;
     }
 
+    currentLanguage = lang;
     storage.set(CONFIG.STORAGE_KEY, lang);
     const t = translations[lang];
 
@@ -994,14 +1048,17 @@
         message: $('#message')?.value || ''
       };
       
+      const lang = currentLanguage || CONFIG.DEFAULT_LANGUAGE;
+      const t = translations[lang];
+      
       if (!formData.name || !formData.email || !formData.message) {
-        Toast.warning('Por favor, completa todos los campos requeridos.', 'Campos incompletos');
+        Toast.warning(t.notifications.requiredMessage, t.notifications.requiredTitle);
         return;
       }
       
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!emailRegex.test(formData.email)) {
-        Toast.warning('Por favor, introduce un email válido.', 'Email inválido');
+        Toast.warning(t.notifications.invalidEmailMessage, t.notifications.invalidEmailTitle);
         return;
       }
       
@@ -1025,16 +1082,16 @@
           throw new Error(`HTTP error! status: ${response.status}`);
         }
         
-        Toast.success('Tu mensaje ha sido enviado correctamente. Te contactaremos pronto.', '¡Mensaje enviado!');
+        Toast.success(t.notifications.success.message, t.notifications.success.title);
         form.reset();
       } catch (error) {
         Loading.hide();
         console.error('Form submission error:', error);
         
         if (error.name === 'AbortError') {
-          Toast.error('La solicitud ha tardado demasiado. Por favor, inténtalo de nuevo.', 'Tiempo agotado');
+          Toast.error(t.notifications.timeoutMessage, t.notifications.timeoutTitle);
         } else {
-          Toast.error('No pudimos enviar tu mensaje. Por favor, inténtalo más tarde o contáctanos directamente.', 'Error de envío');
+          Toast.error(t.notifications.errorMessage, t.notifications.errorTitle);
         }
       }
     });
