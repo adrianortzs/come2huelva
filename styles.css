@@ -101,6 +101,142 @@ main > section {
     font-style: italic;
     color: var(--gold-brown);
 }
+.reveal { opacity: 0; transform: translateY(18px); transition: opacity 700ms ease, transform 700ms ease; }
+.reveal.reveal-visible { opacity: 1; transform: translateY(0); }
+
+/* --- NOTIFICATIONS --- */
+.toast-container {
+    position: fixed;
+    top: 2rem;
+    right: 2rem;
+    z-index: 9999;
+    pointer-events: none;
+}
+.toast {
+    background: var(--white);
+    color: var(--ink);
+    padding: 1.8rem 2.5rem;
+    border-radius: 1rem;
+    box-shadow: 0 12px 48px rgba(18, 39, 30, 0.15);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    min-width: 320px;
+    max-width: 450px;
+    pointer-events: auto;
+    opacity: 0;
+    transform: translateX(120%);
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    border-left: 4px solid var(--gold-brown);
+}
+.toast.show {
+    opacity: 1;
+    transform: translateX(0);
+}
+.toast.hide {
+    opacity: 0;
+    transform: translateX(120%);
+}
+.toast-icon {
+    flex-shrink: 0;
+    width: 2.8rem;
+    height: 2.8rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+}
+.toast-content {
+    flex: 1;
+}
+.toast-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 0.3rem;
+    color: var(--ink);
+}
+.toast-message {
+    font-size: 1.4rem;
+    line-height: 1.5;
+    color: var(--dark-grey);
+}
+.toast-close {
+    flex-shrink: 0;
+    background: none;
+    border: none;
+    color: var(--dark-grey);
+    font-size: 2rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    line-height: 1;
+    opacity: 0.6;
+    transition: opacity 0.3s ease;
+}
+.toast-close:hover {
+    opacity: 1;
+}
+.toast.success {
+    border-left-color: #4caf50;
+}
+.toast.success .toast-icon {
+    background: rgba(76, 175, 80, 0.1);
+    color: #4caf50;
+}
+.toast.error {
+    border-left-color: #f44336;
+}
+.toast.error .toast-icon {
+    background: rgba(244, 67, 54, 0.1);
+    color: #f44336;
+}
+.toast.warning {
+    border-left-color: var(--gold-brown);
+}
+.toast.warning .toast-icon {
+    background: rgba(175, 141, 84, 0.1);
+    color: var(--gold-brown);
+}
+.toast.info {
+    border-left-color: #2196f3;
+}
+.toast.info .toast-icon {
+    background: rgba(33, 150, 243, 0.1);
+    color: #2196f3;
+}
+
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(18, 39, 30, 0.7);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9998;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+.loading-overlay.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+.loading-spinner {
+    width: 6rem;
+    height: 6rem;
+    border: 4px solid rgba(253, 251, 247, 0.2);
+    border-top-color: var(--gold-brown);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
 
 /* ---HEADER--- */
 header {
@@ -850,7 +986,9 @@ footer .icon:hover {
         max-width: 40rem;
     }
     .carousel-btn {
-        height: 3rem; width: 3rem; font-size: 1.8rem;
+        height: 3rem;
+        width: 3rem;
+        font-size: 1.8rem;
     }
     .plans-container .prev-btn-plans,
     .plans-container .next-btn-plans {
@@ -883,6 +1021,31 @@ footer .icon:hover {
 @media (max-width: 768px) {
     html {
         font-size: 60%;
+    }
+    .toast-container {
+        top: 1rem;
+        right: 1rem;
+        left: 1rem;
+    }
+    
+    .toast {
+        min-width: auto;
+        width: 100%;
+        padding: 1.5rem 2rem;
+    }
+    
+    .toast-icon {
+        width: 2.4rem;
+        height: 2.4rem;
+        font-size: 1.4rem;
+    }
+    
+    .toast-title {
+        font-size: 1.6rem;
+    }
+    
+    .toast-message {
+        font-size: 1.3rem;
     }
     header nav ul li a {
         padding: 0.7rem 2rem;
@@ -1088,7 +1251,3 @@ footer .icon:hover {
         font-size: 1.4rem;
     }
 }
-
-/* --- Subtle Scroll Reveal --- */
-.reveal { opacity: 0; transform: translateY(18px); transition: opacity 700ms ease, transform 700ms ease; }
-.reveal.reveal-visible { opacity: 1; transform: translateY(0); }

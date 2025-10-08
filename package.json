@@ -1,15 +1,36 @@
 {
-  "name": "huelva-tourism",
-  "version": "1.0.0",
-  "description": "",
-  "main": "style.js",
+  "name": "come2huelva",
+  "version": "2.0.0",
+  "description": "Come2Huelva - Premium tourism website for Huelva, Spain. Local tours and authentic experiences.",
+  "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "optimize:images": "node optimize-images.js",
+    "minify:css": "cssnano styles.css styles.min.css",
+    "minify:js": "terser main.js -c -m -o main.min.js --source-map",
+    "build": "npm run optimize:images && npm run minify:css && npm run minify:js",
+    "start": "npx http-server -p 8080 -c-1",
+    "validate": "echo 'Running validation...' && node -c main.js"
   },
-  "keywords": [],
+  "keywords": [
+    "huelva",
+    "tourism",
+    "tours",
+    "travel",
+    "andalusia",
+    "doñana",
+    "local-guides",
+    "experiences"
+  ],
   "author": "Adrián Ortiz Suárez",
   "license": "ISC",
   "dependencies": {
     "bootstrap-icons": "^1.11.3"
+  },
+  "devDependencies": {
+    "cssnano": "^6.0.0",
+    "cssnano-cli": "^1.0.5",
+    "http-server": "^14.1.1",
+    "sharp": "^0.32.6",
+    "terser": "^5.19.0"
   }
 }

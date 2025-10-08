@@ -7,27 +7,36 @@
     <meta name="description" content="Huelva tours y experiencias locales con guías de confianza. Descubre Doñana, El Rocío, playas, sierra y gastronomía andaluza con travesías personalizadas.">
     <meta name="theme-color" content="#12271e">
     <link rel="canonical" href="https://www.come2huelva.com/">
+    <link rel="alternate" hreflang="es" href="https://www.come2huelva.com/">
+    <link rel="alternate" hreflang="en" href="https://www.come2huelva.com/en/">
+    <link rel="alternate" hreflang="fr" href="https://www.come2huelva.com/fr/">
+    <link rel="alternate" hreflang="x-default" href="https://www.come2huelva.com/">
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.come2huelva.com/">
     <meta property="og:title" content="Huelva Tours con guías locales | Come2Huelva">
     <meta property="og:description" content="Experiencias auténticas en Huelva: naturaleza, cultura y gastronomía andaluza con guías locales.">
-    <meta property="og:image" content="images/logonuevo.jpeg">
+    <meta property="og:image" content="https://www.come2huelva.com/images/logonuevo.webp">
     <meta property="og:locale" content="es_ES">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Huelva Tours con guías locales | Come2Huelva">
     <meta name="twitter:description" content="Naturaleza, cultura y sabor con guías locales. Travesías y actividades personalizadas.">
-    <meta name="twitter:image" content="images/logonuevo.jpeg">
-    <link rel="icon" type="image/png" href="images/favicon.png">
-    <link rel="stylesheet" href="styles.css">
+    <meta name="twitter:image" content="images/logonuevo.webp">
+    <link rel="icon" type="image/png" href="images/favicon.webp">
+    <link rel="stylesheet" href="styles.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Source+Sans+Pro:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
     <a class="skip-link" href="#main-content">Saltar al contenido</a>
+    <div class="toast-container" id="toast-container"></div>
+    <div class="loading-overlay" id="loading-overlay">
+        <div class="loading-spinner"></div>
+    </div>
     <header>
         <section class="logo-container">
-            <img src="images/logonuevo.jpeg" alt="Come2Huelva">
+            <img src="images/logonuevo.webp" alt="Come2Huelva">
         </section>
         <button class="menu-toggle" type="button" aria-label="Menú" aria-expanded="false" aria-controls="site-nav"><i class="bi bi-list"></i></button>
         <nav id="site-nav" aria-label="Navegación principal">
@@ -70,63 +79,63 @@
                 <span id="italic-yellow">“Cada rincón te hablará de nuestra tierra, de su gente y de su historia.”</span>
                 <div class="places-container">
                     <div class="place" role="article" aria-label="Parque Nacional de Doñana">
-                        <img src="images/lugar1.JPG" alt="Lince ibérico en Doñana, Parque Nacional" loading="lazy">
+                        <img src="images/lugar1.JPG.webp" alt="Lince ibérico en Doñana, Parque Nacional" loading="lazy">
                         <div class="overlay">
                             <h3>Parque Nacional de Doñana</h3>
                             <span>Vive los 4 ecosistemas de Doñana; playas, bosques, dunas y marismas. Hábitat de ciervos, jabalís, linces, zorros, águilas imperiales, garzas, paso de ballenas, delfines, tiburones ballenas, tortugas y miles y miles de pinos piñoneros, enebros, tomillo y romero; un <span class="u-info">paraje natural único en el planeta.</span></span>
                         </div>
                     </div>
                     <div class="place" role="article" aria-label="El Rocío">
-                        <img src="images/lugar2.jpg" alt="Santuario de El Rocío al atardecer" loading="lazy">
+                        <img src="images/lugar2.webp" alt="Santuario de El Rocío al atardecer" loading="lazy">
                         <div class="overlay">
                             <h3>El Rocío</h3>
                             <span>Conoce la aldea donde se celebra <u>la mayor romería de España</u> y <u>la segunda mayor de Europa</u> en honor a la Virgen de El Rocío. Admira la majestuosidad de “El Abuelo” (<u>Monumento Natural</u>), siéntate a la sombra de este acebuche de más de 600 años e imagina todo lo que ha podido “ver”.</span>
                         </div>
                     </div>
                     <div class="place">
-                        <img src="images/lugar3.jpg" alt="almonte">
+                        <img src="images/lugar3.webp" alt="Camino de la Pastora en Almonte, Huelva" loading="lazy">
                         <div class="overlay">
                             <h3>Almonte</h3>
                             <span>Recorre el <strong>Camino de la Pastora</strong>, un itinerario que revive la venida de la Virgen de El Rocío al pueblo de Almonte cada siete años. Catedrales efímeras y pasillos de flores de papel hechas a mano engalanan las calles del pueblo para su señora, mientras los Almonteños la reciben con salves de escopetas.</span>
                         </div>
                     </div>
                     <div class="place">
-                        <img src="images/lugar4.jpg" alt="costa de la luz matalascañas">
+                        <img src="images/lugar4.webp" alt="Playa de Matalascañas, Costa de la Luz, Huelva" loading="lazy">
                         <div class="overlay">
                             <h3>Costa de la luz</h3>
                             <span>Caminemos juntos por <u>la playa mas larga de Europa</u>. Playa de arena dorada con dunas móviles y acantilados fósiles únicos en Europa (<u>Monumento Natural</u>). Más de 60 km de litoral de playa virgen que conforman mas del 30% de las playas vírgenes de toda España.</span>
                         </div>
                     </div>
                     <div class="place">
-                        <img src="images/lugar5.jpg" alt=" aracena gruta de las maravillas">
+                        <img src="images/lugar5.webp" alt="Gruta de las Maravillas en Aracena, Sierra de Huelva" loading="lazy">
                         <div class="overlay">
                             <h3>Sierra de Aracena y picos de Aroche</h3>
                             <span>Recorre senderos entre encinas y castaños hasta llegar a las entrañas de la tierra y descubrir la mágica <strong>Gruta de las Maravillas</strong> (<u>Monumento Natural</u>). Después, deleita tus sentidos con los sabores de la sierra: embutidos ibéricos y el inconfundible jamón de <strong>Jabugo D.O.P</strong>.</span>
                         </div>
                     </div>
                     <div class="place">
-                        <img src="images/lugar6.jpg" alt="minas rio tinto">
+                        <img src="images/lugar6.webp" alt="Minas de Río Tinto, cuenca minera de Huelva" loading="lazy">
                         <div class="overlay">
                             <h3>Cuenca minera y Rio Tinto</h3>
                             <span>Adentrémonos en un paisaje que parece de otro planeta. Déjate sorprender por las minas a cielo abierto <u>más grandes del mundo</u> con más de 5.000 años de actividad. Subamos a un tren minero junto a un río tan rojo como el color del vino tinto, en el que la NASA estudia la vida en Marte.</span>
                         </div>
                     </div>
                     <div class="place">
-                        <img src="images/lugar7.jpg" alt="las 3 carabelas">
+                        <img src="images/lugar7.webp" alt="Réplicas de las tres carabelas de Colón en Palos de la Frontera, Huelva" loading="lazy">
                         <div class="overlay">
                             <h3>Lugares Colombinos</h3>
                             <span>Embarquemos en las réplicas a tamaño real en las que Colón zarpó desde Palos de la Frontera para cruzar el océano Atlántico y descubrir el “Nuevo Mundo”. Una vez en cubierta, entenderás perfectamente lo INCREIBLE de aquella hazaña.</span>
                         </div>
                     </div>
                     <div class="place">
-                        <img src="images/lugar8.png" alt="castillos y fortalezas">
+                        <img src="images/lugar8.webp" alt="Castillo medieval de Niebla y fortalezas de Huelva" loading="lazy">
                         <div class="overlay">
                             <h3>Castillos y fortalezas</h3>
                             <span>Viajemos en el tiempo visitando <strong>el castillo medieval de Niebla</strong>, <u>primer lugar en Europa</u> en el que se usó la pólvora, o <strong>los castillos de Cortegana</strong>, Aracena, Cumbres Mayores, Aroche, Encinasola o de Santa Olalla de Cala donde cada piedra cuenta una batalla, una leyenda y sueños de antaño.</span>
                         </div>
                     </div>
                     <div class="place">
-                        <img src="images/lugar9.jpg" alt="moguer literario juan ramon jimenez">
+                        <img src="images/lugar9.webp" alt="Casa natal de Juan Ramón Jiménez en Moguer, Huelva" loading="lazy">
                         <div class="overlay">
                             <h3>Moguer literario</h3>
                             <span>Sumérgete en la cuna del Nobel <strong>Juan Ramón Jiménez</strong> y pasea por las calles que le inspiraron para escribir <em>Platero y yo</em>. Descubre su casa natal, sus rincones blancos y el ambiente literario de un pueblo donde poesía, mar y tradición conviven de forma natural.</span>
@@ -144,77 +153,77 @@
                 <div class="carousel-track activities">
                     <div class="carousel-slide">
                         <div class="activity-card">
-                            <img src="images/actividad1.jpg" alt="Paseo por la playa en Huelva" loading="lazy">
+                            <img src="images/actividad1.webp" alt="Paseo por la playa en Huelva" loading="lazy">
                             <h3>Las huellas del tiempo</h3>
                             <span>Siente como tu pies desnudos se hunden en la fina arena dorada dejando una huella tras otra con cada paso que das. Siente el frescor de las olas entre tus dedos, las mismas que borran las huellas que fuiste dejando para que todo quede como si nunca nadie la hubiese pisado allí.</span>
                         </div>
                     </div>
                     <div class="carousel-slide">
                         <div class="activity-card">
-                            <img src="images/actividad2.JPG" alt="Pesca tradicional en la costa de Huelva" loading="lazy">
+                            <img src="images/actividad2.JPG.webp" alt="Pesca tradicional en la costa de Huelva" loading="lazy">
                             <h3>Tierra de pescadores</h3>
                             <span>Relájate y ejercita la paciencia, tan ausente en esta época.  Aprende a pescar en un paraje natural único mientras cierras los ojos e inspiras profundamente la brisa del océano que golpea tu cara; escucha el romper de las olas justo frente a ti.</span>
                         </div>
                     </div>
                     <div class="carousel-slide">
                         <div class="activity-card">
-                            <img src="images/actividad3.jpg" alt="Paseo en barco por la ría de Huelva" loading="lazy">
+                            <img src="images/actividad3.webp" alt="Paseo en barco por la ría de Huelva" loading="lazy">
                             <h3>Huelva Marinera</h3>
                             <span>Naveguemos por la costa como antaño lo hicieron nuestros antepasados y como, aún a día de hoy, lo siguen haciendo nuestros marineros. Disfruta de unas vistas diferentes de la costa y de un baño refrescante.</span>
                         </div>
                     </div>
                     <div class="carousel-slide">
                         <div class="activity-card">
-                            <img src="images/actividad4.jpg" alt="Observación astronómica con telescopio" loading="lazy">
+                            <img src="images/actividad4.webp" alt="Observación astronómica con telescopio" loading="lazy">
                             <h3>Orientacíon celeste</h3>
                             <span>Aprende a orientarte en la noche y descubre los secretos del firmamento mientras aprendes a utilizar un telescopio con tus propias manos. Podrás ver los cráteres de la luna y hacer tu primera fotografía astronómica con tu teléfono móvil a través del telescopio.</span>
                         </div>
                     </div>
                     <div class="carousel-slide">
                         <div class="activity-card">
-                            <img src="images/actividad5.JPG" alt="Volar cometa de tracción en la playa" loading="lazy">
+                            <img src="images/actividad5.JPG.webp" alt="Volar cometa de tracción en la playa" loading="lazy">
                             <h3>La fuerza del viento</h3>
                             <span>Aprende a dirigir una cometa de tracción y siente la fuerza del viento en tus propias manos. Descansa y asimila la importancia que tenía aprovechar correctamente los vientos para la navegación a vela que llevó a Colón al descubrimiento del “Nuevo Mundo”.</span>
                         </div>
                     </div>
                     <div class="carousel-slide">
                         <div class="activity-card">
-                            <img src="images/actividad6.JPG" alt="Ambiente rociero en Almonte" loading="lazy">
+                            <img src="images/actividad6.JPG.webp" alt="Ambiente rociero en Almonte" loading="lazy">
                             <h3>Fervor Rociero</h3>
                             <span>El Rocío lleva asociado una parte muy espiritual. El Rocío es fe pero también es amistad, es compartir, es recordar a los que ya no están, es un cante y es un baile por sevillanas entre amigos. Como dice la sevillana “Almonte a mi me ha enseñado que el Rocío es todo el año, no solo la romería”.</span>
                         </div>
                     </div>
                     <div class="carousel-slide">
                         <div class="activity-card">
-                            <img src="images/actividad7.jpg" alt="Paseo en coche de caballos" loading="lazy">
+                            <img src="images/actividad7.webp" alt="Paseo en coche de caballos" loading="lazy">
                             <h3>Paseo en carriola</h3>
                             <span>Disfruta de una afición local como es salir con amigos a pasear en coche de caballos. Aunque en muchas ciudades se trata de un atractivo turístico, aquí, en Huelva, es una afición tradicional asociada a un estilo de vida vinculado al caballo.</span>
                         </div>
                     </div>
                     <div class="carousel-slide">
                         <div class="activity-card">
-                            <img src="images/actividad8.JPG" alt="Paseo a caballo por Doñana" loading="lazy">
+                            <img src="images/actividad8.JPG.webp" alt="Paseo a caballo por Doñana" loading="lazy">
                             <h3>Paseo a caballo</h3>
                             <span>Móntate sobre un caballo y siente lo que es controlar un animal de 500Kg. Imagina ir acompañado de miles de caballos tal y como se hace el camino de El Rocío. Ahora, mira hacía abajo para imaginarte como nos vieron los indígenas americanos cuando llegaba un español a caballo.</span>
                         </div>
                     </div>
                     <div class="carousel-slide">
                         <div class="activity-card">
-                            <img src="images/actividad9.JPG" alt="Ruta de senderismo entre pinares" loading="lazy">
+                            <img src="images/actividad9.JPG.webp" alt="Ruta de senderismo entre pinares" loading="lazy">
                             <h3>Senderismo</h3>
                             <span>Perdámonos caminando por una senda entre pinares, elige una buena vara como apoyo y analicemos la flora y la fauna local. Oye el cante de los pájaros y vamos a  intentar distinguirlos e identificarlos.</span>
                         </div>
                     </div>
                     <div class="carousel-slide">
                         <div class="activity-card">
-                            <img src="images/actividad10.jpg" alt="Cocina de arroz con marisco" loading="lazy">
+                            <img src="images/actividad10.webp" alt="Cocina de arroz con marisco" loading="lazy">
                             <h3>Cocina con Huelva</h3>
                             <span>Aprende a preparar un arroz con materias primas de la zona. Disfrutemos cocinando un arroz con marisco o un arroz ibérico para posteriormente deleitar nuestro paladar con el exquisito sabor de Huelva y cocinado por uno mismo.</span>
                         </div>
                     </div>
                     <div class="carousel-slide">
                         <div class="activity-card">
-                            <img src="images/actividad11.JPG" alt="Observación de aves con teleobjetivo" loading="lazy">
+                            <img src="images/actividad11.JPG.webp" alt="Observación de aves con teleobjetivo" loading="lazy">
                             <h3>“Cacería” fotográfica</h3>
                             <span>Los locales conocen Doñana con el nombre de “El Coto” por su origen como coto de caza, afición y tradición que perdura en la zona. Cojamos una cámara con zoom y vayamos a “cazar” las mejores fotografías de animales. Mantente oculto, localiza la presa, apunta y dispara.</span>
                         </div>
@@ -235,35 +244,35 @@
                 <div class="carousel-track gastronomy">
                     <div class="carousel-slide gastronomy">
                         <div class="gastronomy-card">
-                            <img src="images/gastronomia1.JPG" alt="Jamón ibérico y chacinas de la Sierra" loading="lazy">
+                            <img src="images/gastronomia1.JPG.webp" alt="Jamón ibérico y chacinas de la Sierra" loading="lazy">
                             <h3>Ibéricos y chacinas</h3>
                             <span>Presa paleta, secreto, lagartito, abanico, jamón, caña de lomo, presita embuchada, morcón y muchas otras delicias ibéricas que nunca antes habrás probado.</span>
                         </div>
                     </div>
                     <div class="carousel-slide gastronomy">
                         <div class="gastronomy-card">
-                            <img src="images/gastronomia2.jpg" alt="Mariscos y pescados frescos de Huelva" loading="lazy">
+                            <img src="images/gastronomia2.webp" alt="Mariscos y pescados frescos de Huelva" loading="lazy">
                             <h3>Mariscos y pescados</h3>
                             <span>Gambas blancas, coquinas, chocos , corvinatas, anchovas, lubinas y doradas salvajes, todo fresco y de nuestras costas.</span>
                         </div>
                     </div>
                     <div class="carousel-slide gastronomy">
                         <div class="gastronomy-card">
-                            <img src="images/gastronomia3.jpg" alt="Carnes de caza de Doñana" loading="lazy">
+                            <img src="images/gastronomia3.webp" alt="Carnes de caza de Doñana" loading="lazy">
                             <h3>Come Doñana</h3>
                             <span>Calderetas de carnes de caza de jabalí y ciervo de Doñana. No te querrás quedar sin probar la Vaca Mostrenca, raza exclusiva de Doñana.</span>
                         </div>
                     </div>
                     <div class="carousel-slide gastronomy">
                         <div class="gastronomy-card">
-                            <img src="images/gastronomia4.jpg" alt="Vinos del Condado de Huelva" loading="lazy">
+                            <img src="images/gastronomia4.webp" alt="Vinos del Condado de Huelva" loading="lazy">
                             <h3>La sangre del Condado</h3>
                             <span>Vinos de las bodegas del Condado de Huelva donde se produjo en primer Vermut en España. Destacar el Vino de Naranja y el exclusivo brandy Luis Felipe.</span>
                         </div>
                     </div>
                     <div class="carousel-slide gastronomy">
                         <div class="gastronomy-card">
-                            <img src="images/gastronomia5.jfif" alt="Berries y piñones de Huelva" loading="lazy">
+                            <img src="images/gastronomia5.webp" alt="Berries y piñones de Huelva" loading="lazy">
                             <h3>Berries y piñones</h3>
                             <span>Fresas, arándanos, frambuesas y moras. El 50% de la fresa mundial proviene de Huelva. El piñón mediterráneo es un producto gourmet y muy exclusivo siendo Huelva su mayor motor productivo a nivel mundial.</span>
                         </div>
@@ -294,7 +303,7 @@
                             <div class="card_header">
                                 <span>🌊 Brisa de Huelva – (Finde: 2 noches)</span>
                             </div>
-                            <img src="images/plan2.jpg" alt="playa matalascañas" class="card_img">
+                            <img src="images/plan2.webp" alt="playa matalascañas" class="card_img">
                             <div class="card_content">
                                 <span>Una escapada perfecta para quienes quieren conocer la esencia de Huelva en pocos días.</span>
                             </div>
@@ -305,7 +314,7 @@
                             <div class="card_header">
                                 <span>🌊 Disfruta Huelva - 4 - 5 días</span>
                             </div>
-                            <img src="images/plan.jpg" alt="minas rio tinto" class="card_img">
+                            <img src="images/plan.webp" alt="minas rio tinto" class="card_img">
                             <div class="card_content">
                                 <span>Escapada de puente o finde largo en la que conocer la esencia de Huelva y hacer algunas actividades/experiencias adicionales.</span>
                             </div>
@@ -316,7 +325,7 @@
                             <div class="card_header">
                                 <span>🌿 Huelva sin prisa – 7 días o más</span>
                             </div>
-                            <img src="images/plan3.jpg" alt="diversion plan de escapada" class="card_img">
+                            <img src="images/plan3.webp" alt="diversion plan de escapada" class="card_img">
                             <div class="card_content">
                                 <span>Un viaje completo para descubrir Huelva con los cinco sentidos. Para aquellos que quieren vivir varias experiencias en el mismo viaje. Ideal para quienes quieren conocer lo que esta tierra ofrece de forma cercana  y profunda.</span>
                             </div>
@@ -446,6 +455,6 @@
       "touristType": ["Ecoturismo", "Gastronomía andaluza"]
     }
     </script>
-    <script src="style.js" defer></script>
+    <script src="main.min.js" defer></script>
 </body>
 </html>
