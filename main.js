@@ -11,7 +11,7 @@
   // ==================== CONFIGURATION ====================
   const CONFIG = {
     API: {
-      EMAIL_ENDPOINT: 'http://localhost:3000/send-email',
+      EMAIL_ENDPOINT: 'https://mihuelva-hw2j.onrender.com/send-email',
       TIMEOUT: 10000
     },
     CAROUSEL: {
