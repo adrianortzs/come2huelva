@@ -1,0 +1,18 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://www.come2huelva.com/sitemap.xml
+
+# Disallow admin and backend areas
+Disallow: /back-end/
+Disallow: /node_modules/
+Disallow: /.git/
+Disallow: /.vscode/
+
+# Allow search engines to index images
+User-agent: Googlebot-Image
+Allow: /images/
+
+# Crawl delay (optional, remove if not needed)
+# Crawl-delay: 1

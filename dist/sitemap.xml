@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <!-- Homepage -->
+  <url>
+    <loc>https://www.come2huelva.com/</loc>
+    <lastmod>2025-10-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.come2huelva.com/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.come2huelva.com/en/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.come2huelva.com/fr/"/>
+  </url>
+  
+  <!-- About Us -->
+  <url>
+    <loc>https://www.come2huelva.com/about-us.html</loc>
+    <lastmod>2025-10-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.come2huelva.com/about-us.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.come2huelva.com/en/about-us.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.come2huelva.com/fr/about-us.html"/>
+  </url>
+
+</urlset>
