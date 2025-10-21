@@ -5,9 +5,18 @@
     {
       "src": "dist/**/*",
       "use": "@vercel/static"
+    },
+    {
+      "src": "api/send-email.js",
+      "use": "@vercel/node"
     }
   ],
   "routes": [
+    {
+      "src": "/api/send-email",
+      "dest": "/api/send-email.js",
+      "methods": ["POST", "OPTIONS"]
+    },
     {
       "src": "/(.*)",
       "dest": "/dist/$1"
