@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Guías locales | Come2Huelva</title>
     <meta name="description" content="Huelva tours y experiencias locales con guías de confianza. Descubre Doñana, El Rocío, playas, sierra y gastronomía andaluza con travesías personalizadas.">
+    <meta name="keywords" content="Huelva tours, Doñana, El Rocío, turismo Huelva, guías locales, gastronomía andaluza, experiencias auténticas">
+    <meta name="author" content="Come2Huelva">
+    <meta name="robots" content="index, follow">
     <meta name="theme-color" content="#12271e">
     <link rel="canonical" href="https://www.come2huelva.com/">
     <link rel="alternate" hreflang="es" href="https://www.come2huelva.com/">
@@ -13,6 +16,7 @@
     <link rel="alternate" hreflang="x-default" href="https://www.come2huelva.com/">
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.come2huelva.com/">
     <meta property="og:title" content="Huelva Tours con guías locales | Come2Huelva">
@@ -24,8 +28,36 @@
     <meta name="twitter:description" content="Naturaleza, cultura y sabor con guías locales. Travesías y actividades personalizadas.">
     <meta name="twitter:image" content="images/logonuevo.webp">
     <link rel="icon" type="image/png" href="images/favicon.webp">
+    <link rel="manifest" href="manifest.json">
     <link rel="stylesheet" href="styles.min.css">
     <!-- <link rel="stylesheet" href="styles.css"> -->
+    
+    <!-- Schema.org structured data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "TouristAttraction",
+      "name": "Come2Huelva - Tours y Experiencias Locales",
+      "description": "Descubre Huelva con guías locales. Experiencias auténticas en Doñana, El Rocío, playas y gastronomía andaluza.",
+      "url": "https://www.come2huelva.com",
+      "image": "https://www.come2huelva.com/images/logonuevo.webp",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Huelva",
+        "addressRegion": "Andalucía",
+        "addressCountry": "ES"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "37.2578",
+        "longitude": "-6.9507"
+      },
+      "offers": {
+        "@type": "Offer",
+        "description": "Tours y experiencias personalizadas en Huelva"
+      }
+    }
+    </script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Source+Sans+Pro:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
@@ -37,9 +69,12 @@
     </div>
     <header>
         <section class="logo-container">
-            <img src="images/logonuevo.webp" alt="Come2Huelva" onclick="scrollToIntroduction()" style="cursor: pointer;">
+            <img src="images/logonuevo.webp" alt="Come2Huelva" loading="eager" onclick="scrollToIntroduction()">
         </section>
-        <button class="menu-toggle" type="button" aria-label="Menú" aria-expanded="false" aria-controls="site-nav"><i class="bi bi-list"></i></button>
+        <button class="menu-toggle" type="button" aria-label="Abrir menú de navegación" aria-expanded="false" aria-controls="site-nav">
+            <span class="sr-only">Menú</span>
+            <i class="bi bi-list" aria-hidden="true"></i>
+        </button>
         <nav id="site-nav" aria-label="Navegación principal">
             <ul>
                 <li><a href="#places">Visitas</a></li>
@@ -63,23 +98,33 @@
         </div>
     </header>
     <main id="main-content">
+        <section class="video-container reveal" aria-label="Video de presentación de Huelva tours">
+            <div class="video-wrapper">
+                <video id="hero-video" loop playsinline controls controlslist="nodownload noplaybackrate" preload="metadata" poster="images/logonuevo.jpg?v=2">
+                    <source src="videos/video.mp4?v=2" type="video/mp4">Tu navegador no soporta la etiqueta de video
+                </video>
+                <div class="video-overlay" id="video-overlay">
+                    <button class="play-button" id="play-button" aria-label="Reproducir video">
+                        <i class="bi bi-play-fill"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
         <section class="introduction-container reveal" aria-labelledby="intro-title" id="introduction">
             <h2 id="intro-title" class="visually-hidden">Huelva tours y experiencias locales</h2>
-            <span>Imagina un lugar donde cada rincón cuenta una historia, cada sabor te conecta con la tierra y cada momento queda grabado en el corazón.</span>
-            <span>Queremos que vivas Huelva como nosotros la vivimos. Te invitamos a descubrir una Huelva auténtica con quienes la conocen y la aman profundamente. Esto no es un viaje; es una  vivencia inolvidable que queremos que recuerdes para siempre.</span>
+            <span class="intro-bold">Imagina un lugar donde cada rincón cuenta una historia, cada sabor te conecta con la tierra y cada momento queda grabado en el corazón.</span>
+            <span>Queremos que vivas Huelva como nosotros la vivimos.</span>
+            <span>Te invitamos a descubrir una Huelva auténtica con quienes la conocen y la aman profundamente.</span>
+            <span>Esto no es un viaje; es una  vivencia inolvidable que queremos que recuerdes para siempre.</span>
             <span>NO SEAS UN TURISTA.</span>
             <span>“Ven a vivir nuestras cultura y nuestras tradiciones”</span>
-        </section>
-        <section class="video-container reveal" aria-label="Video de presentación de Huelva tours">
-            <video autoplay loop playsinline controls controlslist="nodownload noplaybackrate" preload="metadata" poster="video/14.jpg">
-                <source src="videos/video.mp4" type="video/mp4">Tu navegador no soporta la etiqueta de video
-            </video>
         </section>
         <div class="section-divider" id="places"></div>
         <section class="place-container reveal" aria-labelledby="places-title">
                 <h1 id="places-title">Huelva Tours: lugares imprescindibles</h1>
                 <span id="bold">Huelva no es solo un destino, es un lugar para sentir con el alma y el corazón.</span>
-                <span>Queremos que descubras el encanto de Doñana, el fervor Rociero, la calma de las playas infinitas y las profundidades de la tierra en la Gruta de las Maravillas. Juntos te mostraremos cada lugar como solo nosotros lo conocemos, sintiendo su esencia y conectando con su historia.</span>
+                <span>Queremos que descubras el encanto de Doñana, el fervor Rociero, la calma de las playas infinitas y las profundidades de la tierra en la Gruta de las Maravillas.</span>
+                <span>Juntos te mostraremos cada lugar como solo nosotros lo conocemos, sintiendo su esencia y conectando con su historia.</span>
                 <span id="italic-yellow">“Cada rincón te hablará de nuestra tierra, de su gente y de su historia.”</span>
                 <div class="places-container">
                     <div class="place" role="article" aria-label="Parque Nacional de Doñana">
@@ -151,7 +196,8 @@
         <section class="activities-container reveal" aria-labelledby="activities-title">
             <h1 id="activities-title">Actividades y experiencias locales</h1>
             <span id="bold">No vengas solo a ver, trae el corazón abierto para sentir cada emoción y deja que Huelva cale en ti.</span>
-            <span>Queremos que cada experiencia te sorprenda, que aprendas algo nuevo y lo integres como propio. Nuestro objetivo es que se te escape una sonrisa cuando recuerdes la experiencia vivida, porque no fuiste un turista, fuiste parte de la historia.</span>
+            <span>Queremos que cada experiencia te sorprenda, que aprendas algo nuevo y lo integres como propio.</span>
+            <span>Nuestro objetivo es que se te escape una sonrisa cuando recuerdes la experiencia vivida, porque no fuiste un turista, fuiste parte de la historia.</span>
             <span id="italic-yellow">“Porque hay lugares que se visitan, y otros …que se gravan en el corazón.”</span>
             <div class="carousel-container">
                 <div class="carousel-track activities">
@@ -179,7 +225,7 @@
                     <div class="carousel-slide">
                         <div class="activity-card">
                             <img src="images/actividad4.webp" alt="Observación astronómica con telescopio" loading="lazy">
-                            <h3>Orientacíon celeste</h3>
+                            <h3>Astronomía</h3>
                             <span>Aprende a orientarte en la noche y descubre los secretos del firmamento mientras aprendes a utilizar un telescopio con tus propias manos. Podrás ver los cráteres de la luna y hacer tu primera fotografía astronómica con tu teléfono móvil a través del telescopio.</span>
                         </div>
                     </div>
@@ -241,7 +287,8 @@
         <section class="gastronomy-container reveal" aria-labelledby="gastronomy-title">
             <h1 id="gastronomy-title">Gastronomía andaluza: bocados de Huelva</h1>
             <span id="bold">En Huelva, la comida es encuentro, es amistad, es emoción.</span>
-            <span>Comer en Huelva es como hacer el amor. Cada cucharada, una caricia; cada plato, una historia de amor que estremecerá tus sentidos. Con nosotros, no solo probarás la comida: <strong>la vivirás</strong>.</span>
+            <span>Comer en Huelva es como hacer el amor. Cada cucharada, una caricia; cada plato, una historia de amor que estremecerá tus sentidos.</span>
+            <span>Con nosotros, no solo probarás la comida: <strong>la vivirás</strong>.</span>
             <span>Te llevaremos a los rincones donde nosotros mismos disfrutamos de la mejor gastronomía, rodeados de amigos y de historias; el verdadero espíritu de nuestra tierra.</span>
             <span id="italic-yellow">“Para nosotros, comer es celebrar, y contigo … queremos celebrarlo todo.”</span>
             <div class="carousel-container">
@@ -297,7 +344,8 @@
         <section class="plans-container reveal" aria-labelledby="plans-title">
             <h1 id="plans-title">Travesías y tours por Huelva</h1>
             <span id="bold">Viajar es mucho más que ir a un destino. Es conectar con un lugar y con su gente, con su historia y sus sabores.</span>
-            <span>Nuestras travesías han sido diseñados para que solo tengas que preocuparte de una cosa: DISFRUTAR. Nosotros nos encargamos de TODO para que sea inolvidable: transporte, alojamiento, comidas, actividades, experiencias, y lo más importante, <strong>acompañarte como guías locales</strong> que conocen cada rincón y cada secreto de esta tierra.</span>
+            <span>Nuestras travesías han sido diseñados para que solo tengas que preocuparte de una cosa: DISFRUTAR.</span>
+            <span>Nosotros nos encargamos de TODO para que sea inolvidable: transporte, alojamiento, comidas, actividades, experiencias, y lo más importante, <strong>acompañarte como guías locales</strong> que conocen cada rincón y cada secreto de esta tierra.</span>
             <span>Hemos reunido lo mejor de nuestra tierra mezclando naturaleza, cultura, gastronomía y tradición, para que <strong>tú seas parte de Huelva y Huelva sea parte de ti</strong>.</span>
             <span id="italic-yellow">“Todo empieza con una decisión... elige vivirla y déjate llevar.”</span>
             <div class="carousel-plans-container">
@@ -460,6 +508,6 @@
     }
     </script>
     <script src="main.min.js" defer></script>
-    <!-- <script src="main.js" defer></script> -->
+    <!-- <script type="module" src="main.js" defer></script> -->
 </body>
 </html>
