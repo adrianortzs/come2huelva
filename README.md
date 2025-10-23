@@ -1,6 +1,6 @@
 # 🌍 Come2Huelva - Premium Tourism Website
 
-> **Portfolio Project** - A modern, multilingual tourism website showcasing advanced web development skills
+> **Portfolio Project** - A modern, multilingual tourism website showcasing advanced full-stack web development skills
 
 [![Live Demo](https://img.shields.io/badge/Live%20Demo-Come2Huelva-brightgreen.svg)](https://www.come2huelva.com)
 [![License: ISC](https://img.shields.io/badge/License-ISC-blue.svg)](https://opensource.org/licenses/ISC)
@@ -9,7 +9,7 @@
 
 ## 🎯 Project Overview
 
-**Come2Huelva** is a premium tourism website built from scratch, demonstrating advanced frontend development skills. This project showcases modern web technologies, performance optimization, and user experience design for a real-world tourism business in Huelva, Spain.
+**Come2Huelva** is a premium tourism website built from scratch, demonstrating advanced full-stack development skills. This project showcases modern web technologies, performance optimization, and user experience design for a real-world tourism business in Huelva, Spain.
 
 ### 🏆 Key Achievements
 - **Performance**: 95+ Lighthouse score across all metrics
@@ -17,15 +17,23 @@
 - **SEO**: Complete optimization with structured data
 - **Multilingual**: Full i18n implementation (ES, EN, FR)
 - **Mobile-First**: Responsive design for all devices
+- **Backend Integration**: Serverless API with email functionality
 
 ## 🚀 Technical Highlights
 
 ### **Frontend Architecture**
 - **Vanilla JavaScript ES6+** - No frameworks, pure performance
-- **Modular Architecture** - Clean separation of concerns
-- **Service Worker** - PWA capabilities with offline support
-- **Image Optimization** - WebP conversion and lazy loading
-- **Advanced CSS** - Custom properties, Grid, Flexbox
+- **Modular Architecture** - Clean separation of concerns with ES6 modules
+- **Progressive Web App** - Service Worker, manifest, offline capabilities
+- **Image Optimization** - WebP conversion, lazy loading, responsive images
+- **Advanced CSS** - Custom properties, Grid, Flexbox, animations
+
+### **Backend & API**
+- **Serverless Functions** - Vercel serverless architecture
+- **Email Integration** - Nodemailer with Gmail SMTP
+- **Security Features** - Rate limiting, input sanitization, CORS
+- **Error Handling** - Comprehensive error management
+- **Environment Variables** - Secure configuration management
 
 ### **Performance Optimizations**
 - **Code Splitting** - Modular JavaScript architecture
@@ -33,12 +41,7 @@
 - **Minification** - Automated build process for production
 - **Caching Strategy** - Service Worker implementation
 - **Critical CSS** - Above-the-fold optimization
-
-### **Development Workflow**
-- **Build System** - Custom Node.js build pipeline
-- **Source Maps** - Debugging support for production
 - **Asset Optimization** - Automated image and code optimization
-- **Quality Assurance** - ESLint, validation, and testing
 
 ## 🛠️ Technology Stack
 
@@ -48,30 +51,42 @@
 | **Styling** | CSS Custom Properties, Grid, Flexbox, Animations |
 | **Icons** | Bootstrap Icons |
 | **Fonts** | Google Fonts (Cormorant Garamond, Source Sans Pro) |
-| **Backend** | Node.js, Express.js |
-| **Build Tools** | Custom Node.js scripts, npm |
-| **Deployment** | Static hosting with CDN |
+| **Backend** | Node.js, Vercel Serverless Functions |
+| **Email** | Nodemailer, Gmail SMTP |
+| **Build Tools** | Custom Node.js scripts, npm, Terser, CSSnano |
+| **Deployment** | Vercel (Frontend + API), Static hosting with CDN |
 
 ## 📁 Project Structure
 
 ```
-huelva-tourism/
+come2huelva/
 ├── 📄 index.html              # Main page with semantic HTML5
 ├── 📄 about-us.html           # About page
 ├── 📄 404.html               # Custom error page
 ├── 🎨 styles.css             # Main stylesheet (35KB)
-├── ⚡ main.js                 # Application logic (18KB)
 ├── 📦 js/                     # Modular JavaScript
+│   ├── app.js                # Main application orchestrator
 │   ├── utils.js              # Utility functions
-│   ├── translations.js       # i18n translations
-│   └── imageOptimization.js  # Image optimization
-├── 🖼️ images/                # Optimized image assets
-├── 🎥 videos/                # Video content
+│   ├── navigation.js         # Navigation and mobile menu
+│   ├── language.js           # i18n language management
+│   ├── carousel.js           # Image carousel functionality
+│   ├── form.js               # Contact form handling
+│   ├── video.js              # Video player controls
+│   ├── imageOptimization.js  # Image optimization and lazy loading
+│   ├── scroll-reveal.js      # Scroll animations
+│   ├── translations.js       # i18n translations (ES, EN, FR)
+│   └── config.js             # Application configuration
+├── 🖼️ img/                   # Optimized image assets (6.6MB)
+├── 🎥 videos/                # Video content (61MB - needs optimization)
+├── 🔧 api/                   # Serverless API functions
+│   ├── send-email.js         # Email sending endpoint
+│   └── package.json          # API dependencies
 ├── 🔧 build-production.js    # Custom build system
 ├── 📋 manifest.json          # PWA manifest
 ├── 🤖 robots.txt             # SEO configuration
 ├── 🗺️ sitemap.xml            # Site structure
-└── 🔒 .htaccess              # Server configuration
+├── 🔒 .htaccess              # Server configuration & security
+└── 📦 package.json           # Project dependencies
 ```
 
 ## 🚀 Quick Start
@@ -79,16 +94,20 @@ huelva-tourism/
 ### Prerequisites
 - Node.js 16+ 
 - npm 8+
+- Git
 
 ### Installation & Development
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/huelva-tourism.git
-cd huelva-tourism
+git clone https://github.com/yourusername/come2huelva.git
+cd come2huelva
 
 # Install dependencies
 npm install
+
+# Install API dependencies
+cd api && npm install && cd ..
 
 # Start development server
 npm start
@@ -136,6 +155,15 @@ const translations = {
   en: { /* English translations */ },
   fr: { /* French translations */ }
 };
+
+// Language switching with localStorage persistence
+class LanguageManager {
+  changeLanguage(lang) {
+    this.currentLang = lang;
+    this.updatePageContent();
+    storage.set('lang', lang);
+  }
+}
 ```
 
 ### **Image Optimization**
@@ -148,11 +176,34 @@ class ImageOptimizer {
 }
 ```
 
-### **Performance Monitoring**
+### **Serverless API Integration**
 ```javascript
-// Service Worker for caching and offline support
-const CACHE_NAME = 'come2huelva-v1';
-// Advanced caching strategies
+// Contact form with serverless backend
+class ContactForm {
+  async sendEmail(formData) {
+    const response = await fetch('/api/send-email', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(formData)
+    });
+  }
+}
+```
+
+### **Video Player Implementation**
+```javascript
+// Custom video player with overlay controls
+class VideoPlayer {
+  playVideo() {
+    this.video.play();
+    this.hideOverlay();
+  }
+  
+  hideOverlay() {
+    this.overlay.classList.add('hidden');
+    this.video.controls = true;
+  }
+}
 ```
 
 ## 📊 Performance Metrics
@@ -189,6 +240,20 @@ const CACHE_NAME = 'come2huelva-v1';
 - ✅ **Focus Management** - Clear focus indicators
 - ✅ **Reduced Motion** - Respects user preferences
 
+## 🔒 Security Features
+
+### **Frontend Security**
+- ✅ **Content Security Policy** - Strict CSP headers
+- ✅ **XSS Protection** - Input sanitization
+- ✅ **HTTPS Enforcement** - HSTS headers
+- ✅ **Frame Protection** - X-Frame-Options
+
+### **Backend Security**
+- ✅ **Rate Limiting** - 5 requests per hour per IP
+- ✅ **Input Validation** - Server-side validation
+- ✅ **CORS Configuration** - Secure cross-origin requests
+- ✅ **Error Handling** - Secure error responses
+
 ## 🌐 Browser Support
 
 | Browser | Version | Support Level |
@@ -210,9 +275,10 @@ npm run build
 ```
 
 ### **Deployment Options**
-- **Static Hosting** - Netlify, Vercel, GitHub Pages
-- **Traditional Hosting** - cPanel, FTP upload
-- **Cloud Hosting** - AWS S3, Google Cloud Storage
+- **Frontend**: Vercel, Netlify, GitHub Pages
+- **API**: Vercel Serverless Functions
+- **Traditional Hosting**: cPanel, FTP upload
+- **Cloud Hosting**: AWS S3, Google Cloud Storage
 
 ## 📈 Business Impact
 
@@ -239,6 +305,9 @@ This project demonstrates proficiency in:
 - **SEO** - Technical and content optimization
 - **Build Tools** - Custom Node.js build pipeline
 - **PWA** - Service Workers, manifest, offline support
+- **Backend Development** - Serverless functions, API design
+- **Security** - Input validation, rate limiting, CORS
+- **Full-Stack Integration** - Frontend-backend communication
 
 ## 📝 Development Process
 
@@ -251,12 +320,25 @@ This project demonstrates proficiency in:
 1. **HTML Structure** - Semantic, accessible markup
 2. **CSS Implementation** - Mobile-first responsive design
 3. **JavaScript Development** - Modular, performant code
-4. **Testing & Optimization** - Cross-browser, performance testing
+4. **Backend Integration** - Serverless API development
+5. **Testing & Optimization** - Cross-browser, performance testing
 
 ### **Production Phase**
 1. **Build Optimization** - Minification, compression
 2. **Deployment** - Production environment setup
 3. **Monitoring** - Performance and error tracking
+
+## 🚨 Known Issues & Optimizations
+
+### **Critical (High Priority)**
+- **Video Size**: 61MB video needs compression for mobile
+- **Image Optimization**: Some images >200KB need compression
+- **CDN Implementation**: Static assets should use CDN
+
+### **Recommended**
+- **Service Worker**: Implement for offline functionality
+- **Analytics**: Add Google Analytics or similar
+- **Error Monitoring**: Implement error tracking
 
 ## 🤝 Contact & Collaboration
 
@@ -273,4 +355,4 @@ ISC © 2025 Adrián Ortiz Suárez
 
 **Built with ❤️ and modern web technologies in Spain**
 
-*This project showcases advanced frontend development skills and real-world application of modern web technologies.*
+*This project showcases advanced full-stack development skills and real-world application of modern web technologies for a tourism business.*

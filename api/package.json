@@ -1,0 +1,8 @@
+{
+  "name": "come2huelva-api",
+  "version": "1.0.0",
+  "description": "Come2Huelva serverless API",
+  "dependencies": {
+    "nodemailer": "^6.9.15"
+  }
+}

@@ -1,0 +1,20 @@
+export const CONFIG = {
+  API: {
+    EMAIL_ENDPOINT: '/api/send-email',
+    TIMEOUT: 10000
+  },
+  CAROUSEL: {
+    DEFAULT_INTERVAL: 3500,
+    PAUSE_DURATION: 4000,
+    RESIZE_DEBOUNCE: 150
+  },
+  BREAKPOINTS: {
+    MOBILE: 768,
+    TABLET: 1024
+  },
+  STORAGE_KEYS: {
+    LANGUAGE: 'lang'
+  },
+  DEFAULT_LANGUAGE: 'es',
+  INTERSECTION_THRESHOLD: 0.15
+};

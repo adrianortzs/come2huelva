@@ -1,9 +1,0 @@
-services:
-  - type: static
-    name: come2huelva
-    env: static
-    buildCommand: npm install && npm run build
-    staticPublishPath: ./dist
-    routes:
-      - path: /*
-        destination: /index.html

@@ -13,13 +13,19 @@
   "categories": ["travel", "tourism", "lifestyle"],
   "icons": [
     {
-      "src": "images/favicon.webp",
+      "src": "img/favicon.webp",
+      "sizes": "16x16",
+      "type": "image/webp",
+      "purpose": "any"
+    },
+    {
+      "src": "img/logonuevo.webp",
       "sizes": "192x192",
       "type": "image/webp",
       "purpose": "any maskable"
     },
     {
-      "src": "images/logonuevo.webp",
+      "src": "img/logonuevo.webp",
       "sizes": "512x512",
       "type": "image/webp",
       "purpose": "any"
@@ -27,7 +33,7 @@
   ],
   "screenshots": [
     {
-      "src": "images/logonuevo.webp",
+      "src": "img/logonuevo.webp",
       "sizes": "1280x720",
       "type": "image/webp",
       "form_factor": "wide"
