@@ -1,0 +1,11 @@
+{
+  "buildCommand": "npm install && npm run build",
+  "buildDir": "dist",
+  "staticDir": "dist",
+  "routes": [
+    {
+      "path": "/*",
+      "destination": "/index.html"
+    }
+  ]
+}

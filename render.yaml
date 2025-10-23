@@ -4,21 +4,6 @@ services:
     env: static
     buildCommand: npm install && npm run build
     staticPublishPath: ./dist
-    headers:
-      - path: /*
-        headers:
-          - key: Cache-Control
-            value: public, max-age=3600
-      - path: /images/*
-        headers:
-          - key: Cache-Control
-            value: public, max-age=31536000
-      - path: /videos/*
-        headers:
-          - key: Cache-Control
-            value: public, max-age=31536000
     routes:
-      - path: /api/*
-        destination: https://your-api-domain.onrender.com/$1
       - path: /*
         destination: /index.html
