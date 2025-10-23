@@ -8,17 +8,19 @@ package-lock.json
 .env.production
 .env.development
 
-# Build outputs (keep dist/ for Vercel deployment)
-# dist/ - Commented out for Vercel deployment
-*.min.js
-*.min.css
-*.min.js.map
+# Large media files (use CDN instead)
+*.mp4
+*.mov
+*.avi
+*.mkv
+video/
+videos/
 
-# Development files
-main.js
-styles.css
-js/
-build-production.js
+# Build outputs (keep for Render)
+dist/main.min.js
+dist/main.min.js.map
+dist/styles.min.css
+dist/main.bundled.js
 
 # IDE and editor files
 .vscode/
@@ -54,3 +56,9 @@ coverage/
 # Temporary folders
 tmp/
 temp/
+
+# Misc
+.gitattributes
+*.heic
+.vercelignore
+vercel.json

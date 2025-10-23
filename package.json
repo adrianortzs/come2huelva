@@ -7,6 +7,7 @@
     "build": "node build-production.js",
     "minify": "node build-production.js",
     "start": "npx http-server -p 8080 -c-1",
+    "test-render": "node test-render-locally.js",
     "validate": "echo 'Running validation...' && node -c main.js"
   },
   "keywords": [

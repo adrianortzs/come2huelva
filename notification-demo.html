@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notification Demo | Come2Huelva</title>
+    <link rel="stylesheet" href="styles.min.css">
+    <style>
+        .demo-container {
+            max-width: 800px;
+            margin: 5rem auto;
+            padding: 3rem;
+            background: white;
+            border-radius: 1rem;
+            box-shadow: 0 8px 32px rgba(18, 39, 30, 0.1);
+        }
+        
+        .demo-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3rem;
+            color: #12271e;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .demo-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .demo-btn {
+            padding: 1.2rem 2rem;
+            border: 2px solid;
+            border-radius: 0.8rem;
+            font-size: 1.6rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: white;
+        }
+        
+        .demo-btn.success {
+            border-color: #4caf50;
+            color: #4caf50;
+        }
+        
+        .demo-btn.success:hover {
+            background: #4caf50;
+            color: white;
+        }
+        
+        .demo-btn.error {
+            border-color: #f44336;
+            color: #f44336;
+        }
+        
+        .demo-btn.error:hover {
+            background: #f44336;
+            color: white;
+        }
+        
+        .demo-btn.warning {
+            border-color: #af8d54;
+            color: #af8d54;
+        }
+        
+        .demo-btn.warning:hover {
+            background: #af8d54;
+            color: white;
+        }
+        
+        .demo-btn.info {
+            border-color: #2196f3;
+            color: #2196f3;
+        }
+        
+        .demo-btn.info:hover {
+            background: #2196f3;
+            color: white;
+        }
+        
+        .demo-btn.loading {
+            border-color: #12271e;
+            color: #12271e;
+        }
+        
+        .demo-btn.loading:hover {
+            background: #12271e;
+            color: white;
+        }
+        
+        .note {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 0.8rem;
+            border-left: 4px solid #af8d54;
+            margin-top: 3rem;
+        }
+        
+        .note h3 {
+            font-size: 1.8rem;
+            color: #12271e;
+            margin-bottom: 1rem;
+        }
+        
+        .note p {
+            font-size: 1.4rem;
+            line-height: 1.6;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <!-- Toast Container -->
+    <div class="toast-container" id="toast-container"></div>
+    
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loading-overlay">
+        <div class="loading-spinner"></div>
+    </div>
+    
+    <div class="demo-container">
+        <h1 class="demo-title">Notification System Demo</h1>
+        
+        <div class="demo-buttons">
+            <button class="demo-btn success" onclick="showSuccessDemo()">
+                ✓ Success
+            </button>
+            
+            <button class="demo-btn error" onclick="showErrorDemo()">
+                ✕ Error
+            </button>
+            
+            <button class="demo-btn warning" onclick="showWarningDemo()">
+                ⚠ Warning
+            </button>
+            
+            <button class="demo-btn info" onclick="showInfoDemo()">
+                ℹ Info
+            </button>
+            
+            <button class="demo-btn loading" onclick="showLoadingDemo()">
+                ⌛ Loading
+            </button>
+        </div>
+        
+        <div class="note">
+            <h3>🎨 Features</h3>
+            <p>
+                <strong>✨ Premium Design:</strong> Elegant animations with spring physics<br>
+                <strong>📱 Fully Responsive:</strong> Adapts to mobile and desktop<br>
+                <strong>🎯 Auto-dismiss:</strong> Disappears after 5 seconds<br>
+                <strong>👆 Manual Close:</strong> Click × to dismiss<br>
+                <strong>♿ Accessible:</strong> ARIA labels and keyboard support<br>
+                <strong>🎭 Multiple Types:</strong> Success, Error, Warning, Info<br>
+                <strong>⏳ Loading State:</strong> Full-screen overlay with spinner
+            </p>
+        </div>
+    </div>
+    
+    <script src="main.min.js"></script>
+    <script>
+        function showSuccessDemo() {
+            Toast.success('Tu mensaje ha sido enviado correctamente. Te contactaremos pronto.', '¡Mensaje enviado!');
+        }
+        
+        function showErrorDemo() {
+            Toast.error('No pudimos enviar tu mensaje. Por favor, inténtalo más tarde.', 'Error de envío');
+        }
+        
+        function showWarningDemo() {
+            Toast.warning('Por favor, completa todos los campos requeridos.', 'Campos incompletos');
+        }
+        
+        function showInfoDemo() {
+            Toast.info('Recuerda que nuestros tours son en grupos reducidos de máximo 8 personas.', 'Información');
+        }
+        
+        function showLoadingDemo() {
+            Loading.show();
+            setTimeout(() => {
+                Loading.hide();
+                Toast.success('¡Carga completada!', 'Listo');
+            }, 2000);
+        }
+    </script>
+</body>
+</html>
+

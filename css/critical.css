@@ -1,0 +1,133 @@
+/**
+ * Critical CSS for above-the-fold content
+ * This should be inlined in the <head> for optimal performance
+ */
+
+/* Critical styles for immediate rendering */
+:root {
+    --gold-brown: #af8d54;
+    --dark-green: #12271e;
+    --white: #FDFBF7;
+    --light-grey: #F2F2F2;
+    --ink: #0f1b16;
+    --transition: 0.3s cubic-bezier(.4,2,.3,1);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background: var(--light-grey);
+    font-family: 'Source Sans Pro', sans-serif;
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Header critical styles */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: var(--white);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    transition: var(--transition);
+}
+
+.logo-container img {
+    height: 60px;
+    width: auto;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.logo-container img:hover {
+    transform: scale(1.05);
+}
+
+/* Navigation critical styles */
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    color: var(--ink);
+    cursor: pointer;
+    padding: 0.5rem;
+    transition: var(--transition);
+}
+
+/* Hero section critical styles */
+.hero-section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--dark-green) 0%, var(--gold-brown) 100%);
+    color: var(--white);
+    text-align: center;
+    padding: 2rem;
+}
+
+/* Loading overlay */
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    transition: opacity 0.5s ease;
+}
+
+.loading-overlay.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid var(--light-grey);
+    border-top: 4px solid var(--gold-brown);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Skip link for accessibility */
+.skip-link {
+    position: absolute;
+    left: -9999px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    text-decoration: none;
+}
+
+.skip-link:focus {
+    left: 1rem;
+    top: 1rem;
+    width: auto;
+    height: auto;
+    background: var(--white);
+    color: var(--ink);
+    padding: 0.6rem 1rem;
+    border: 2px solid var(--gold-brown);
+    border-radius: 0.25rem;
+    z-index: 1060;
+}
