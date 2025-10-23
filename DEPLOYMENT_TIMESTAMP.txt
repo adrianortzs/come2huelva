@@ -1,0 +1,5 @@
+DEPLOYMENT TIMESTAMP: 2025-10-23 FINAL FIX
+Build includes: dist/js/ folder with all modules
+Status: READY FOR PRODUCTION
+Last updated: NOW
+Commit: cc7813d with critical fix for js/ folder copy
