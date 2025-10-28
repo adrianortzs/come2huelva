@@ -8,7 +8,9 @@
     "minify": "node build-production.js",
     "start": "npx http-server -p 8080 -c-1",
     "test-render": "node test-render-locally.js",
-    "validate": "echo 'Running validation...' && node -c main.js"
+    "validate": "echo 'Running validation...' && node -c main.js",
+    "dev": "vercel dev",
+    "deploy": "vercel --prod"
   },
   "keywords": [
     "huelva",
@@ -23,7 +25,8 @@
   "author": "Adrián Ortiz Suárez",
   "license": "ISC",
   "dependencies": {
-    "bootstrap-icons": "^1.11.3"
+    "bootstrap-icons": "^1.11.3",
+    "nodemailer": "^6.9.7"
   },
   "devDependencies": {
     "cssnano": "^6.0.0",

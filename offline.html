@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sin conexión - Come2Huelva</title>
+    <meta name="description" content="No tienes conexión a internet. Algunas funciones pueden no estar disponibles.">
+    <link rel="icon" type="image/png" href="img/favicon.webp">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Source Sans Pro', sans-serif;
+            background: linear-gradient(135deg, #12271e 0%, #1a3d2e 100%);
+            color: #FDFBF7;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+        
+        .offline-container {
+            max-width: 600px;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 1rem;
+            padding: 3rem 2rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .offline-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        
+        h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2.5rem, 4vw, 3.5rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #af8d54;
+        }
+        
+        .subtitle {
+            font-size: clamp(1.4rem, 2vw, 1.8rem);
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .description {
+            font-size: clamp(1.2rem, 1.5vw, 1.4rem);
+            line-height: 1.6;
+            margin-bottom: 2.5rem;
+            opacity: 0.8;
+        }
+        
+        .retry-btn {
+            background: linear-gradient(135deg, #af8d54 0%, #c49f6a 100%);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 0.5rem;
+            font-size: 1.4rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(175, 141, 84, 0.3);
+            margin: 0.5rem;
+        }
+        
+        .retry-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(175, 141, 84, 0.4);
+        }
+        
+        .retry-btn:active {
+            transform: translateY(0);
+        }
+        
+        .features {
+            margin-top: 2rem;
+            text-align: left;
+        }
+        
+        .features h3 {
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+            color: #af8d54;
+        }
+        
+        .features ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .features li {
+            padding: 0.5rem 0;
+            font-size: 1.2rem;
+            opacity: 0.8;
+        }
+        
+        .features li::before {
+            content: "✓";
+            color: #af8d54;
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+        
+        .connection-status {
+            margin-top: 2rem;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 0.5rem;
+            border-left: 4px solid #dc3545;
+        }
+        
+        .connection-status.online {
+            border-left-color: #28a745;
+        }
+        
+        .status-text {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        
+        @media (max-width: 768px) {
+            .offline-container {
+                padding: 2rem 1.5rem;
+            }
+            
+            .retry-btn {
+                width: 100%;
+                margin: 0.5rem 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="offline-container">
+        <div class="offline-icon">🔌</div>
+        <h1>Sin conexión</h1>
+        <p class="subtitle">No tienes conexión a internet</p>
+        <p class="description">
+            No te preocupes, algunas funciones de Come2Huelva siguen disponibles offline. 
+            Cuando recuperes la conexión, podrás acceder a todo el contenido.
+        </p>
+        
+        <div class="connection-status" id="connectionStatus">
+            <div class="status-text" id="statusText">Verificando conexión...</div>
+        </div>
+        
+        <button class="retry-btn" onclick="checkConnection()">
+            🔄 Intentar de nuevo
+        </button>
+        
+        <div class="features">
+            <h3>Funciones disponibles offline:</h3>
+            <ul>
+                <li>Navegación por la página principal</li>
+                <li>Visualización de imágenes y videos</li>
+                <li>Información sobre tours y actividades</li>
+                <li>Formulario de contacto (se enviará cuando tengas conexión)</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        function checkConnection() {
+            const statusElement = document.getElementById('connectionStatus');
+            const statusText = document.getElementById('statusText');
+            
+            if (navigator.onLine) {
+                statusElement.classList.add('online');
+                statusText.textContent = '¡Conexión restaurada! Redirigiendo...';
+                setTimeout(() => {
+                    window.location.href = '/';
+                }, 2000);
+            } else {
+                statusElement.classList.remove('online');
+                statusText.textContent = 'Sin conexión a internet';
+            }
+        }
+        
+        window.addEventListener('online', () => {
+            checkConnection();
+        });
+        
+        window.addEventListener('offline', () => {
+            checkConnection();
+        });
+        
+        checkConnection();
+        
+        setInterval(checkConnection, 5000);
+    </script>
+</body>
+</html>
