@@ -40,15 +40,6 @@
           "value": "/"
         }
       ]
-    },
-    {
-      "source": ": /:all.(css|js|webp|jpg|jpeg|png|svg|ico|woff|woff2|ttf|eot|mp4)",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=31536000, immutable"
-        }
-      ]
     }
   ],
   "rewrites": [
