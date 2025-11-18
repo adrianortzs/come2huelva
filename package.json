@@ -1,7 +1,7 @@
 {
   "name": "come2huelva",
   "version": "2.0.0",
-  "description": "Come2Huelva - Premium tourism website for Huelva, Spain. Local tours and authentic experiences.",
+  "description": "Página web premium de turismo en Huelva, tours con guías locales.",
   "main": "main.js",
   "engines": {
     "node": ">=20"
@@ -32,6 +32,7 @@
     "nodemailer": "^6.9.7"
   },
   "devDependencies": {
+    "cssbeautify": "^0.3.1",
     "cssnano": "^6.0.0",
     "cssnano-cli": "^1.0.5",
     "http-server": "^14.1.1",

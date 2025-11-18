@@ -1,1 +1,104 @@
-import{Navigation as e}from"./navigation.js";import{initLanguageManager as o}from"./language.js";import{initCarousels as s}from"./carousel.js";import{initForm as t}from"./form.js";import{initScrollReveal as i}from"./scroll-reveal.js";import{initVideoPlayer as r}from"./video.js";import{initServiceWorker as a}from"./sw-register.js";const l=new class{constructor(){this.modules={},this.init()}init(){"loading"===document.readyState?document.addEventListener("DOMContentLoaded",()=>this.initializeModules()):this.initializeModules()}initializeModules(){try{this.modules.navigation=new e,this.modules.languageManager=o(),this.modules.carousels=s(),this.modules.form=t(),this.modules.scrollReveal=i(),this.modules.videoPlayer=r(),this.modules.serviceWorker=a()}catch(e){console.error("Error initializing app:",e)}}destroy(){this.modules.carousels&&this.modules.carousels.forEach(e=>e.destroy?.()),this.modules.scrollReveal&&this.modules.scrollReveal.destroy?.(),this.modules.videoPlayer&&this.modules.videoPlayer.destroy?.()}};"undefined"!=typeof window&&(window.app=l,window.scrollToForm=()=>{const e=document.querySelector(".form-container");e&&e.scrollIntoView({behavior:"smooth",block:"start"})},window.toggleLanguageMenu=()=>{const e=document.querySelector(".language-options"),o=document.querySelector(".selected-language");e&&o&&(e.classList.toggle("show"),o.setAttribute("aria-expanded",e.classList.contains("show")))},window.changeLanguage=e=>{l.modules.languageManager&&l.modules.languageManager.changeLanguage(e)});export default l;
+import { Navigation } from "./navigation.js";
+import { initLanguageManager } from "./language.js";
+import { initCarousels } from "./carousel.js";
+import { initForm } from "./form.js";
+import { initScrollReveal } from "./scroll-reveal.js";
+import { initVideoPlayer } from "./video.js";
+import { initServiceWorker } from "./sw-register.js";
+
+class App {
+  constructor() {
+    this.modules = {};
+    this.init();
+  }
+
+  init() {
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", () => this.initializeModules());
+    } else {
+      this.initializeModules();
+    }
+  }
+
+  initializeModules() {
+    try {
+      this.modules.navigation = new Navigation();
+      this.modules.languageManager = initLanguageManager();
+      this.modules.carousels = initCarousels();
+      this.modules.form = initForm();
+      this.modules.scrollReveal = initScrollReveal();
+      this.modules.videoPlayer = initVideoPlayer();
+      this.modules.serviceWorker = initServiceWorker();
+      this.handleHashNavigation();
+    } catch (error) {
+      console.error("Error initializing app:", error);
+    }
+  }
+
+  handleHashNavigation() {
+    const hash = window.location.hash;
+    if (!hash) return;
+    
+    const targetId = hash.substring(1);
+    setTimeout(() => {
+      if (targetId === "form") {
+        const formContainer = document.querySelector(".form-container");
+        if (formContainer) {
+          formContainer.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      } else {
+        const target = document.getElementById(targetId) || 
+                      document.querySelector(`.${targetId}`) || 
+                      document.querySelector(`[data-id="${targetId}"]`);
+        if (target) {
+          target.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }
+    }, 150);
+  }
+
+  destroy() {
+    if (this.modules.carousels) {
+      this.modules.carousels.forEach(carousel => {
+        if (carousel && typeof carousel.destroy === "function") {
+          carousel.destroy();
+        }
+      });
+    }
+    if (this.modules.scrollReveal && typeof this.modules.scrollReveal.destroy === "function") {
+      this.modules.scrollReveal.destroy();
+    }
+    if (this.modules.videoPlayer && typeof this.modules.videoPlayer.destroy === "function") {
+      this.modules.videoPlayer.destroy();
+    }
+  }
+}
+
+if (typeof window !== "undefined") {
+  window.app = new App();
+  
+  window.scrollToForm = () => {
+    const formContainer = document.querySelector(".form-container");
+    if (formContainer) {
+      formContainer.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+  
+  window.toggleLanguageMenu = () => {
+    const menu = document.querySelector(".language-options");
+    const button = document.querySelector(".selected-language");
+    if (menu && button) {
+      const isExpanded = !menu.classList.contains("show");
+      menu.classList.toggle("show");
+      button.setAttribute("aria-expanded", isExpanded ? "true" : "false");
+    }
+  };
+  
+  window.changeLanguage = (lang) => {
+    if (window.app && window.app.modules && window.app.modules.languageManager) {
+      window.app.modules.languageManager.changeLanguage(lang);
+    }
+  };
+}
+
+export default window.app;
