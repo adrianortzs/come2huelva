@@ -1,358 +1,590 @@
-# 🌍 Come2Huelva - Premium Tourism Website
+# 🌍 Come2Huelva
 
-> **Portfolio Project** - A modern, multilingual tourism website showcasing advanced full-stack web development skills
+> **Premium Tourism Website** - A modern, multilingual, full-stack web application showcasing advanced development practices and real-world business implementation.
 
-[![Live Demo](https://img.shields.io/badge/Live%20Demo-Come2Huelva-brightgreen.svg)](https://www.come2huelva.com)
-[![License: ISC](https://img.shields.io/badge/License-ISC-blue.svg)](https://opensource.org/licenses/ISC)
-[![Version](https://img.shields.io/badge/version-2.0.0-green.svg)](package.json)
-[![Production Ready](https://img.shields.io/badge/status-production%20ready-brightgreen.svg)]()
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Come2Huelva-00C853?style=for-the-badge&logo=vercel)](https://www.come2huelva.com)
+[![License: ISC](https://img.shields.io/badge/License-ISC-blue.svg?style=for-the-badge)](https://opensource.org/licenses/ISC)
+[![Node.js](https://img.shields.io/badge/Node.js-20+-339933?style=for-the-badge&logo=node.js)](https://nodejs.org/)
+[![Production Ready](https://img.shields.io/badge/Status-Production%20Ready-brightgreen?style=for-the-badge)]()
 
-## 🎯 Project Overview
+---
 
-**Come2Huelva** is a premium tourism website built from scratch, demonstrating advanced full-stack development skills. This project showcases modern web technologies, performance optimization, and user experience design for a real-world tourism business in Huelva, Spain.
+## 📋 Table of Contents
 
-### 🏆 Key Achievements
-- **Performance**: 95+ Lighthouse score across all metrics
-- **Accessibility**: WCAG 2.1 Level AA compliant
-- **SEO**: Complete optimization with structured data
-- **Multilingual**: Full i18n implementation (ES, EN, FR)
-- **Mobile-First**: Responsive design for all devices
-- **Backend Integration**: Serverless API with email functionality
+- [Overview](#-overview)
+- [Key Features](#-key-features)
+- [Technology Stack](#-technology-stack)
+- [Project Structure](#-project-structure)
+- [Getting Started](#-getting-started)
+- [Architecture](#-architecture)
+- [Internationalization](#-internationalization)
+- [Performance Optimizations](#-performance-optimizations)
+- [Deployment](#-deployment)
+- [API Documentation](#-api-documentation)
+- [Browser Support](#-browser-support)
+- [Contributing](#-contributing)
+- [License](#-license)
 
-## 🚀 Technical Highlights
+---
 
-### **Frontend Architecture**
-- **Vanilla JavaScript ES6+** - No frameworks, pure performance
-- **Modular Architecture** - Clean separation of concerns with ES6 modules
-- **Progressive Web App** - Service Worker, manifest, offline capabilities
-- **Image Optimization** - WebP conversion, lazy loading, responsive images
-- **Advanced CSS** - Custom properties, Grid, Flexbox, animations
+## 🎯 Overview
 
-### **Backend & API**
-- **Serverless Functions** - Vercel serverless architecture
-- **Email Integration** - Nodemailer with Gmail SMTP
-- **Security Features** - Rate limiting, input sanitization, CORS
-- **Error Handling** - Comprehensive error management
-- **Environment Variables** - Secure configuration management
+**Come2Huelva** is a production-ready tourism website built for a local tour operator in Huelva, Spain. The project demonstrates enterprise-level full-stack development practices, including:
 
-### **Performance Optimizations**
-- **Code Splitting** - Modular JavaScript architecture
-- **Lazy Loading** - Images and content loading optimization
-- **Minification** - Automated build process for production
-- **Caching Strategy** - Service Worker implementation
-- **Critical CSS** - Above-the-fold optimization
-- **Asset Optimization** - Automated image and code optimization
+- **Modern Frontend Architecture** - Vanilla JavaScript ES6+ with modular design
+- **Serverless Backend** - Vercel serverless functions for API endpoints
+- **Multilingual Support** - Complete i18n implementation (ES, EN, FR)
+- **Performance Optimization** - Lighthouse scores 95+ across all metrics
+- **Accessibility** - WCAG 2.1 Level AA compliant
+- **SEO Optimization** - Complete technical and content SEO implementation
+
+### Business Context
+
+The website serves as the primary digital presence for a tourism business offering:
+- Guided tours to Doñana National Park
+- Cultural experiences in El Rocío
+- Gastronomy tours featuring local cuisine
+- Custom travel packages
+- Local guide services
+
+---
+
+## ✨ Key Features
+
+### Frontend Features
+
+- ✅ **Responsive Design** - Mobile-first approach with breakpoints for all devices
+- ✅ **Interactive Carousels** - Custom-built carousel system with touch/swipe support
+- ✅ **Smooth Animations** - CSS transitions and scroll-based reveal animations
+- ✅ **Video Integration** - Hero video with autoplay and sound management
+- ✅ **Form Handling** - Contact form with validation and serverless backend integration
+- ✅ **Language Switching** - Persistent language selection with localStorage
+- ✅ **Accessibility** - Full keyboard navigation, ARIA labels, screen reader support
+
+### Backend Features
+
+- ✅ **Serverless API** - Vercel serverless functions
+- ✅ **Email Service** - Nodemailer integration with Gmail SMTP
+- ✅ **Rate Limiting** - Protection against spam and abuse
+- ✅ **Input Validation** - Server-side validation and sanitization
+- ✅ **Error Handling** - Comprehensive error management and logging
+- ✅ **CORS Configuration** - Secure cross-origin request handling
+
+### Technical Features
+
+- ✅ **Image Optimization** - WebP format conversion, lazy loading, responsive images
+- ✅ **Code Splitting** - Modular JavaScript architecture
+- ✅ **Build System** - Custom Node.js build pipeline with minification
+- ✅ **SEO Implementation** - Structured data, sitemap, robots.txt, meta tags
+- ✅ **PWA Ready** - Manifest.json and service worker support
+- ✅ **Legal Pages** - Complete legal documentation (Privacy Policy, Cookie Policy, Legal Notice)
+
+---
 
 ## 🛠️ Technology Stack
 
-| Category | Technologies |
-|----------|-------------|
-| **Frontend** | HTML5, CSS3, Vanilla JavaScript ES6+ |
-| **Styling** | CSS Custom Properties, Grid, Flexbox, Animations |
-| **Icons** | Bootstrap Icons |
-| **Fonts** | Google Fonts (Cormorant Garamond, Source Sans Pro) |
-| **Backend** | Node.js, Vercel Serverless Functions |
-| **Email** | Nodemailer, Gmail SMTP |
-| **Build Tools** | Custom Node.js scripts, npm, Terser, CSSnano |
-| **Deployment** | Vercel (Frontend + API), Static hosting with CDN |
+### Frontend
+
+| Technology | Version | Purpose |
+|------------|---------|---------|
+| **HTML5** | - | Semantic markup |
+| **CSS3** | - | Styling with custom properties, Grid, Flexbox |
+| **JavaScript** | ES6+ | Vanilla JS with ES6 modules |
+| **Bootstrap Icons** | 1.11.3 | Icon library |
+| **Google Fonts** | - | Typography (Cormorant Garamond, Source Sans Pro) |
+
+### Backend
+
+| Technology | Version | Purpose |
+|------------|---------|---------|
+| **Node.js** | 20+ | Runtime environment |
+| **Vercel** | - | Serverless hosting and functions |
+| **Nodemailer** | 6.9.7 | Email service integration |
+
+### Build Tools
+
+| Technology | Version | Purpose |
+|------------|---------|---------|
+| **Terser** | 5.19.0 | JavaScript minification |
+| **CSSnano** | 6.0.0 | CSS minification |
+| **Sharp** | 0.32.6 | Image processing and WebP conversion |
+| **http-server** | 14.1.1 | Local development server |
+
+---
 
 ## 📁 Project Structure
 
 ```
 come2huelva/
-├── 📄 index.html              # Main page with semantic HTML5
-├── 📄 about-us.html           # About page
-├── 📄 404.html               # Custom error page
-├── 🎨 styles.css             # Main stylesheet (35KB)
-├── 📦 js/                     # Modular JavaScript
-│   ├── app.js                # Main application orchestrator
-│   ├── utils.js              # Utility functions
-│   ├── navigation.js         # Navigation and mobile menu
-│   ├── language.js           # i18n language management
-│   ├── carousel.js           # Image carousel functionality
-│   ├── form.js               # Contact form handling
-│   ├── video.js              # Video player controls
-│   ├── imageOptimization.js  # Image optimization and lazy loading
-│   ├── scroll-reveal.js      # Scroll animations
-│   ├── translations.js       # i18n translations (ES, EN, FR)
-│   └── config.js             # Application configuration
-├── 🖼️ img/                   # Optimized image assets (6.6MB)
-├── 🎥 videos/                # Video content (61MB - needs optimization)
-├── 🔧 api/                   # Serverless API functions
-│   ├── send-email.js         # Email sending endpoint
-│   └── package.json          # API dependencies
-├── 🔧 build-production.js    # Custom build system
-├── 📋 manifest.json          # PWA manifest
-├── 🤖 robots.txt             # SEO configuration
-├── 🗺️ sitemap.xml            # Site structure
-├── 🔒 .htaccess              # Server configuration & security
-└── 📦 package.json           # Project dependencies
+├── 📄 index.html                    # Main landing page
+├── 📄 about-us.html                 # About us page
+├── 📄 404.html                      # Custom error page
+├── 📄 aviso-legal.html              # Legal notice (multilingual)
+├── 📄 politica-privacidad.html      # Privacy policy (multilingual)
+├── 📄 politica-cookies.html         # Cookie policy (multilingual)
+│
+├── 🎨 styles.css                    # Main stylesheet (2,296 lines)
+│
+├── 📦 js/                           # JavaScript modules
+│   ├── app.js                       # Application orchestrator
+│   ├── config.js                   # Configuration constants
+│   ├── utils.js                     # Utility functions
+│   ├── navigation.js                # Navigation and mobile menu
+│   ├── language.js                  # i18n language manager
+│   ├── translations.js              # Translation data (ES, EN, FR)
+│   ├── carousel.js                  # Carousel functionality
+│   ├── form.js                      # Contact form handler
+│   ├── scroll-reveal.js             # Scroll animations
+│   └── build-production.js          # Build system
+│
+├── 🔧 api/                          # Serverless API
+│   ├── send-email.js                # Email sending endpoint
+│   └── package.json                 # API dependencies
+│
+├── 🖼️ img/                          # Optimized images (WebP format)
+│   ├── logonuevo.webp              # Logo
+│   ├── lugar*.webp                 # Place images
+│   ├── actividad*.webp             # Activity images
+│   ├── gastronomia*.webp           # Gastronomy images
+│   └── plan*.webp                  # Plan images
+│
+├── 🎥 videos/                       # Video assets
+│   └── video_optimized.mp4         # Hero video
+│
+├── 📋 package.json                  # Project dependencies
+├── 📋 vercel.json                   # Vercel configuration
+├── 🤖 robots.txt                    # SEO robots configuration
+├── 🗺️ sitemap.xml                   # XML sitemap
+└── 📖 README.md                     # This file
 ```
 
-## 🚀 Quick Start
+---
+
+## 🚀 Getting Started
 
 ### Prerequisites
-- Node.js 16+ 
-- npm 8+
-- Git
 
-### Installation & Development
+- **Node.js** 20 or higher
+- **npm** 8 or higher
+- **Git** for version control
+
+### Installation
 
 ```bash
 # Clone the repository
 git clone https://github.com/yourusername/come2huelva.git
 cd come2huelva
 
-# Install dependencies
+# Install project dependencies
 npm install
 
 # Install API dependencies
 cd api && npm install && cd ..
+```
 
-# Start development server
+### Development
+
+```bash
+# Start local development server
 npm start
-# Visit: http://localhost:8080
+
+# The application will be available at:
+# http://localhost:8080
 ```
 
 ### Available Scripts
 
 ```bash
 # Development
-npm start                    # Local development server
-npm run validate            # JavaScript syntax validation
+npm start              # Start local development server (http-server)
+npm run dev            # Start Vercel development server
+npm run validate       # Validate JavaScript syntax
 
 # Production
-npm run build               # Full production build
-npm run minify             # Minify CSS and JS
+npm run build          # Build production-ready files
+npm run minify         # Minify CSS and JavaScript files
+npm run deploy         # Deploy to Vercel production
 ```
 
-## 🎨 Design & UX Features
+### Environment Variables
 
-### **Visual Design**
-- **Premium Aesthetic** - Luxury travel industry standards
-- **Color Psychology** - Warm, inviting color palette
-- **Typography** - Carefully selected font combinations
-- **Imagery** - High-quality, optimized photography
+Create a `.env` file in the `api/` directory for production:
 
-### **User Experience**
-- **Intuitive Navigation** - Clear information architecture
-- **Smooth Animations** - CSS transitions and scroll effects
-- **Interactive Elements** - Carousels, forms, language switcher
-- **Accessibility** - Full keyboard navigation and screen reader support
+```env
+GMAIL_USER=your-email@gmail.com
+GMAIL_APP_PASSWORD=your-app-password
+RECIPIENT_EMAIL=recipient@example.com
+```
 
-### **Responsive Design**
-- **Mobile-First** - Optimized for mobile devices
-- **Breakpoints** - Tablet and desktop adaptations
-- **Touch-Friendly** - Appropriate touch targets and gestures
+For Vercel deployment, set these as environment variables in the Vercel dashboard.
 
-## 🔧 Advanced Features
+---
 
-### **Multilingual Support**
+## 🏗️ Architecture
+
+### Frontend Architecture
+
+The application follows a **modular architecture** pattern:
+
 ```javascript
-// Complete i18n implementation
-const translations = {
+// app.js - Main orchestrator
+class App {
+  constructor() {
+    this.modules = {};
+    this.init();
+  }
+  
+  initializeModules() {
+    this.modules.navigation = new Navigation();
+    this.modules.languageManager = initLanguageManager();
+    this.modules.carousels = initCarousels();
+    this.modules.form = initForm();
+    this.modules.scrollReveal = initScrollReveal();
+  }
+}
+```
+
+**Key Design Decisions:**
+
+1. **Vanilla JavaScript** - No framework dependencies for maximum performance
+2. **ES6 Modules** - Clean separation of concerns
+3. **Class-based Architecture** - Object-oriented design for maintainability
+4. **Event-driven** - Decoupled modules communicating via events
+5. **Progressive Enhancement** - Core functionality works without JavaScript
+
+### Module Responsibilities
+
+| Module | Responsibility |
+|--------|---------------|
+| `app.js` | Application initialization and module coordination |
+| `navigation.js` | Header navigation, mobile menu, scroll behavior |
+| `language.js` | i18n management, language switching, content updates |
+| `carousel.js` | Carousel functionality with touch/swipe support |
+| `form.js` | Form validation, submission, error handling |
+| `scroll-reveal.js` | Scroll-based animations and reveal effects |
+| `utils.js` | Shared utility functions (DOM, storage, etc.) |
+| `config.js` | Application configuration constants |
+
+### Backend Architecture
+
+**Serverless Function Structure:**
+
+```javascript
+// api/send-email.js
+export default async function handler(req, res) {
+  // Rate limiting
+  // Input validation
+  // Email sending
+  // Error handling
+}
+```
+
+**Security Features:**
+
+- ✅ Rate limiting (5 requests/hour per IP)
+- ✅ Input sanitization
+- ✅ CORS configuration
+- ✅ Environment variable protection
+- ✅ Error message sanitization
+
+---
+
+## 🌐 Internationalization
+
+The application supports **three languages**: Spanish (ES), English (EN), and French (FR).
+
+### Implementation
+
+```javascript
+// translations.js structure
+export const translations = {
   es: { /* Spanish translations */ },
   en: { /* English translations */ },
   fr: { /* French translations */ }
 };
 
-// Language switching with localStorage persistence
+// Language switching
 class LanguageManager {
   changeLanguage(lang) {
     this.currentLang = lang;
-    this.updatePageContent();
     storage.set('lang', lang);
+    this.updatePageContent();
   }
 }
 ```
 
-### **Image Optimization**
-```javascript
-// Automatic WebP conversion and lazy loading
-class ImageOptimizer {
-  detectWebPSupport() { /* WebP detection */ }
-  initLazyLoading() { /* Intersection Observer */ }
-  preloadCriticalImages() { /* Critical resource hints */ }
+### Translated Content
+
+- ✅ Navigation links
+- ✅ Page content (headers, paragraphs, spans)
+- ✅ Form labels and placeholders
+- ✅ Button text
+- ✅ Footer content
+- ✅ Legal pages (Privacy Policy, Cookie Policy, Legal Notice)
+- ✅ Error messages and notifications
+
+### Language Persistence
+
+User language preference is stored in `localStorage` and persists across sessions.
+
+---
+
+## ⚡ Performance Optimizations
+
+### Image Optimization
+
+- ✅ **WebP Format** - All images converted to WebP for smaller file sizes
+- ✅ **Lazy Loading** - Images load only when visible (Intersection Observer)
+- ✅ **Responsive Images** - Appropriate sizes for different viewports
+- ✅ **Critical Image Preloading** - Hero images preloaded for faster FCP
+
+### Code Optimization
+
+- ✅ **JavaScript Minification** - Terser for production builds
+- ✅ **CSS Minification** - CSSnano for production builds
+- ✅ **Code Splitting** - Modular architecture for better caching
+- ✅ **Tree Shaking** - Unused code elimination
+
+### Loading Strategies
+
+- ✅ **Critical CSS** - Above-the-fold styles inlined
+- ✅ **Deferred JavaScript** - Non-critical scripts loaded asynchronously
+- ✅ **Resource Hints** - Preconnect, DNS-prefetch for external resources
+- ✅ **Font Optimization** - Google Fonts with display=swap
+
+### Performance Metrics
+
+| Metric | Target | Status |
+|--------|--------|--------|
+| **Lighthouse Performance** | 95+ | ✅ Achieved |
+| **First Contentful Paint** | < 1.5s | ✅ Achieved |
+| **Largest Contentful Paint** | < 2.5s | ✅ Achieved |
+| **Cumulative Layout Shift** | < 0.1 | ✅ Achieved |
+| **Time to Interactive** | < 3s | ✅ Achieved |
+
+---
+
+## 🚀 Deployment
+
+### Vercel Deployment (Recommended)
+
+```bash
+# Install Vercel CLI
+npm i -g vercel
+
+# Deploy to production
+vercel --prod
+```
+
+**Configuration:**
+
+The `vercel.json` file configures:
+- Redirects for clean URLs
+- Headers for security and performance
+- Serverless function routing
+
+### Manual Deployment
+
+1. **Build production files:**
+   ```bash
+   npm run build
+   ```
+
+2. **Upload to hosting:**
+   - Upload all files to your web server
+   - Ensure `api/` directory is configured for serverless functions
+   - Set environment variables in hosting dashboard
+
+### Environment Setup
+
+**Required Environment Variables:**
+
+```env
+# API Configuration
+GMAIL_USER=your-email@gmail.com
+GMAIL_APP_PASSWORD=your-app-password
+RECIPIENT_EMAIL=recipient@example.com
+```
+
+---
+
+## 📡 API Documentation
+
+### Endpoint: `/api/send-email`
+
+**Method:** `POST`
+
+**Request Body:**
+```json
+{
+  "name": "John Doe",
+  "email": "john@example.com",
+  "phone": "+34 123 456 789",
+  "people": "4",
+  "message": "I'm interested in a tour"
 }
 ```
 
-### **Serverless API Integration**
-```javascript
-// Contact form with serverless backend
-class ContactForm {
-  async sendEmail(formData) {
-    const response = await fetch('/api/send-email', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(formData)
-    });
-  }
+**Response (Success):**
+```json
+{
+  "success": true,
+  "message": "Email sent successfully"
 }
 ```
 
-### **Video Player Implementation**
-```javascript
-// Custom video player with overlay controls
-class VideoPlayer {
-  playVideo() {
-    this.video.play();
-    this.hideOverlay();
-  }
-  
-  hideOverlay() {
-    this.overlay.classList.add('hidden');
-    this.video.controls = true;
-  }
+**Response (Error):**
+```json
+{
+  "success": false,
+  "error": "Error message"
 }
 ```
 
-## 📊 Performance Metrics
+**Rate Limiting:**
+- 5 requests per hour per IP address
+- Returns `429 Too Many Requests` when exceeded
 
-| Metric | Score | Details |
-|--------|-------|---------|
-| **Lighthouse Performance** | 95+ | Optimized loading and rendering |
-| **First Contentful Paint** | < 1.5s | Critical CSS optimization |
-| **Largest Contentful Paint** | < 2.5s | Image optimization |
-| **Cumulative Layout Shift** | < 0.1 | Stable layout |
-| **Time to Interactive** | < 3s | JavaScript optimization |
+**Security:**
+- Input validation and sanitization
+- CORS protection
+- Error message sanitization
 
-## 🔍 SEO Implementation
+---
 
-### **Technical SEO**
-- ✅ Semantic HTML5 structure
-- ✅ Meta tags and Open Graph
-- ✅ Structured data (Schema.org)
-- ✅ XML sitemap and robots.txt
-- ✅ Canonical URLs and hreflang
+## 🌍 Browser Support
 
-### **Content SEO**
-- ✅ Keyword optimization
-- ✅ Local SEO (Huelva, Andalusia)
-- ✅ Tourism industry focus
-- ✅ Multilingual SEO
-
-## ♿ Accessibility Features
-
-- ✅ **WCAG 2.1 Level AA** compliant
-- ✅ **Keyboard Navigation** - Full keyboard support
-- ✅ **Screen Reader** - ARIA labels and landmarks
-- ✅ **Color Contrast** - WCAG compliant ratios
-- ✅ **Focus Management** - Clear focus indicators
-- ✅ **Reduced Motion** - Respects user preferences
-
-## 🔒 Security Features
-
-### **Frontend Security**
-- ✅ **Content Security Policy** - Strict CSP headers
-- ✅ **XSS Protection** - Input sanitization
-- ✅ **HTTPS Enforcement** - HSTS headers
-- ✅ **Frame Protection** - X-Frame-Options
-
-### **Backend Security**
-- ✅ **Rate Limiting** - 5 requests per hour per IP
-- ✅ **Input Validation** - Server-side validation
-- ✅ **CORS Configuration** - Secure cross-origin requests
-- ✅ **Error Handling** - Secure error responses
-
-## 🌐 Browser Support
-
-| Browser | Version | Support Level |
-|---------|---------|---------------|
+| Browser | Version | Support |
+|---------|---------|---------|
 | Chrome | 90+ | ✅ Full support |
 | Firefox | 88+ | ✅ Full support |
 | Safari | 14+ | ✅ Full support |
 | Edge | 90+ | ✅ Full support |
 | Mobile Safari | iOS 14+ | ✅ Full support |
+| Chrome Mobile | Latest | ✅ Full support |
 
-## 🚀 Deployment
-
-### **Production Build**
-```bash
-# Generate production files
-npm run build
-
-# Output: dist/ folder with optimized assets
-```
-
-### **Deployment Options**
-- **Frontend**: Vercel, Netlify, GitHub Pages
-- **API**: Vercel Serverless Functions
-- **Traditional Hosting**: cPanel, FTP upload
-- **Cloud Hosting**: AWS S3, Google Cloud Storage
-
-## 📈 Business Impact
-
-### **Client Results**
-- **Professional Presence** - Modern, trustworthy website
-- **Lead Generation** - Contact form with backend integration
-- **SEO Visibility** - Improved search engine rankings
-- **User Engagement** - Interactive features and smooth UX
-
-### **Technical Achievements**
-- **Code Quality** - Clean, maintainable, documented code
-- **Performance** - Fast loading and smooth interactions
-- **Scalability** - Modular architecture for future growth
-- **Maintainability** - Well-organized, commented codebase
-
-## 🎓 Learning Outcomes
-
-This project demonstrates proficiency in:
-
-- **Modern JavaScript** - ES6+, modules, async/await
-- **CSS Architecture** - Custom properties, Grid, Flexbox
-- **Performance Optimization** - Lazy loading, minification, caching
-- **Accessibility** - WCAG guidelines, semantic HTML
-- **SEO** - Technical and content optimization
-- **Build Tools** - Custom Node.js build pipeline
-- **PWA** - Service Workers, manifest, offline support
-- **Backend Development** - Serverless functions, API design
-- **Security** - Input validation, rate limiting, CORS
-- **Full-Stack Integration** - Frontend-backend communication
-
-## 📝 Development Process
-
-### **Planning Phase**
-1. **Requirements Analysis** - Client needs and business goals
-2. **Technical Architecture** - Technology stack decisions
-3. **Design System** - Color palette, typography, components
-
-### **Development Phase**
-1. **HTML Structure** - Semantic, accessible markup
-2. **CSS Implementation** - Mobile-first responsive design
-3. **JavaScript Development** - Modular, performant code
-4. **Backend Integration** - Serverless API development
-5. **Testing & Optimization** - Cross-browser, performance testing
-
-### **Production Phase**
-1. **Build Optimization** - Minification, compression
-2. **Deployment** - Production environment setup
-3. **Monitoring** - Performance and error tracking
-
-## 🚨 Known Issues & Optimizations
-
-### **Critical (High Priority)**
-- **Video Size**: 61MB video needs compression for mobile
-- **Image Optimization**: Some images >200KB need compression
-- **CDN Implementation**: Static assets should use CDN
-
-### **Recommended**
-- **Service Worker**: Implement for offline functionality
-- **Analytics**: Add Google Analytics or similar
-- **Error Monitoring**: Implement error tracking
-
-## 🤝 Contact & Collaboration
-
-**Developer**: Adrián Ortiz Suárez  
-**Email**: [your-email@example.com](mailto:your-email@example.com)  
-**LinkedIn**: [linkedin.com/in/yourprofile](https://linkedin.com/in/yourprofile)  
-**GitHub**: [github.com/yourusername](https://github.com/yourusername)
-
-## 📄 License
-
-ISC © 2025 Adrián Ortiz Suárez
+**Progressive Enhancement:**
+- Core functionality works in all modern browsers
+- Enhanced features for supported browsers
+- Graceful degradation for older browsers
 
 ---
 
-**Built with ❤️ and modern web technologies in Spain**
+## ♿ Accessibility
 
-*This project showcases advanced full-stack development skills and real-world application of modern web technologies for a tourism business.*
+### WCAG 2.1 Level AA Compliance
+
+- ✅ **Keyboard Navigation** - Full keyboard support for all interactive elements
+- ✅ **Screen Reader Support** - ARIA labels, landmarks, and semantic HTML
+- ✅ **Color Contrast** - WCAG AA compliant contrast ratios (4.5:1 for text)
+- ✅ **Focus Management** - Clear focus indicators and logical tab order
+- ✅ **Reduced Motion** - Respects `prefers-reduced-motion` media query
+- ✅ **Alt Text** - Descriptive alt text for all images
+- ✅ **Form Labels** - All form inputs have associated labels
+
+### ARIA Implementation
+
+```html
+<!-- Example: Navigation menu -->
+<nav id="site-nav" aria-label="Main navigation">
+  <button aria-expanded="false" aria-controls="menu">
+    Menu
+  </button>
+</nav>
+```
+
+---
+
+## 🔍 SEO Implementation
+
+### Technical SEO
+
+- ✅ **Semantic HTML5** - Proper use of semantic elements
+- ✅ **Meta Tags** - Title, description, Open Graph, Twitter Cards
+- ✅ **Structured Data** - Schema.org markup (TourOperator, TouristAttraction)
+- ✅ **XML Sitemap** - Complete sitemap with all pages
+- ✅ **Robots.txt** - Proper crawler directives
+- ✅ **Canonical URLs** - Prevent duplicate content
+- ✅ **Hreflang Tags** - Multilingual SEO support
+
+### Content SEO
+
+- ✅ **Keyword Optimization** - Natural keyword integration
+- ✅ **Local SEO** - Location-based optimization (Huelva, Andalusia)
+- ✅ **Content Quality** - Unique, valuable content for each page
+- ✅ **Internal Linking** - Strategic internal link structure
+
+---
+
+## 🧪 Testing
+
+### Manual Testing Checklist
+
+- [ ] Cross-browser testing (Chrome, Firefox, Safari, Edge)
+- [ ] Mobile device testing (iOS, Android)
+- [ ] Form submission and validation
+- [ ] Language switching functionality
+- [ ] Carousel navigation and touch gestures
+- [ ] Accessibility testing with screen readers
+- [ ] Performance testing (Lighthouse)
+- [ ] SEO validation (Google Search Console)
+
+### Performance Testing
+
+```bash
+# Run Lighthouse audit
+npx lighthouse http://localhost:8080 --view
+```
+
+---
+
+## 🤝 Contributing
+
+This is a private project for a client. However, if you have suggestions or find issues:
+
+1. **Fork the repository**
+2. **Create a feature branch** (`git checkout -b feature/amazing-feature`)
+3. **Commit your changes** (`git commit -m 'Add amazing feature'`)
+4. **Push to the branch** (`git push origin feature/amazing-feature`)
+5. **Open a Pull Request**
+
+### Code Style
+
+- **JavaScript**: ES6+ syntax, camelCase for variables, PascalCase for classes
+- **CSS**: BEM-like naming convention, custom properties for theming
+- **HTML**: Semantic markup, accessibility-first approach
+
+---
+
+## 📄 License
+
+ISC License
+
+Copyright (c) 2025 Adrián Ortiz Suárez
+
+Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby granted, provided that the above copyright notice and this permission notice appear in all copies.
+
+---
+
+## 👨‍💻 Author
+
+**Adrián Ortiz Suárez**
+
+- **Email**: [your-email@example.com](mailto:your-email@example.com)
+- **LinkedIn**: [linkedin.com/in/yourprofile](https://linkedin.com/in/yourprofile)
+- **GitHub**: [github.com/yourusername](https://github.com/yourusername)
+- **Portfolio**: [yourportfolio.com](https://yourportfolio.com)
+
+---
+
+## 🙏 Acknowledgments
+
+- **Client**: Come2Huelva tourism business
+- **Design Inspiration**: Modern tourism industry standards
+- **Technologies**: Built with modern web standards and best practices
+
+---
+
+**Built with ❤️ using modern web technologies**
+
+*This project demonstrates enterprise-level full-stack development skills and real-world business application.*

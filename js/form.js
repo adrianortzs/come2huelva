@@ -1,9 +1,9 @@
-import { $ as e, $$ as t, showToast as showToastUtil } from "./utils.js";
-import { CONFIG as r } from "./config.js";
+import { $, $$, showToast as showToastUtil } from "./utils.js";
+import { CONFIG } from "./config.js";
 
 export class ContactForm {
-  constructor(t = ".form") {
-    this.form = e(t);
+  constructor(selector = ".form") {
+    this.form = $(selector);
     if (this.form) {
       this.validationRules = {
         name: {
@@ -44,83 +44,83 @@ export class ContactForm {
   }
 
   setupRealTimeValidation() {
-    ["name", "email", "telf", "people", "message"].forEach(t => {
-      const r = e(`#${t}`);
-      if (!r) return;
+    ["name", "email", "telf", "people", "message"].forEach(fieldName => {
+      const field = $(`#${fieldName}`);
+      if (!field) return;
 
-      let s;
-      r.addEventListener("input", () => {
-        clearTimeout(s);
-        s = setTimeout(() => {
-          this.validateField(t, r);
+      let timeout;
+      field.addEventListener("input", () => {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => {
+          this.validateField(fieldName, field);
         }, 300);
       });
 
-      r.addEventListener("blur", () => {
-        this.validateField(t, r);
+      field.addEventListener("blur", () => {
+        this.validateField(fieldName, field);
       });
 
-      r.addEventListener("focus", () => {
-        this.clearFieldError(r);
+      field.addEventListener("focus", () => {
+        this.clearFieldError(field);
       });
 
-      if (t === "message") {
-        this.setupCharacterCounter(r);
+      if (fieldName === "message") {
+        this.setupCharacterCounter(field);
       }
     });
   }
 
-  setupCharacterCounter(e) {
-    const t = this.validationRules.message.maxLength;
-    if (!t) return;
+  setupCharacterCounter(field) {
+    const maxLength = this.validationRules.message.maxLength;
+    if (!maxLength) return;
 
-    const r = document.createElement("div");
-    r.className = "char-counter";
-    r.textContent = `0/${t}`;
-    e.parentNode.appendChild(r);
+    const counter = document.createElement("div");
+    counter.className = "char-counter";
+    counter.textContent = `0/${maxLength}`;
+    field.parentNode.appendChild(counter);
 
-    e.addEventListener("input", () => {
-      const s = e.value.length;
-      r.textContent = `${s}/${t}`;
-      r.classList.remove("warning", "error");
-      if (s > 0.8 * t) {
-        r.classList.add("warning");
+    field.addEventListener("input", () => {
+      const length = field.value.length;
+      counter.textContent = `${length}/${maxLength}`;
+      counter.classList.remove("warning", "error");
+      if (length > 0.8 * maxLength) {
+        counter.classList.add("warning");
       }
-      if (s > t) {
-        r.classList.add("error");
+      if (length > maxLength) {
+        counter.classList.add("error");
       }
     });
   }
 
-  validateField(e, t) {
-    const r = t.value.trim();
-    const s = this.validationRules[e === "telf" ? "phone" : e];
-    if (!s) return true;
+  validateField(fieldName, field) {
+    const value = field.value.trim();
+    const rule = this.validationRules[fieldName === "telf" ? "phone" : fieldName];
+    if (!rule) return true;
 
-    let o = true;
-    let a = "";
+    let isValid = true;
+    let errorMessage = "";
 
-    if (s.required && !r) {
-      o = false;
-      a = "Este campo es obligatorio";
+    if (rule.required && !value) {
+      isValid = false;
+      errorMessage = "Este campo es obligatorio";
     } else if (
-      (r && s.minLength && r.length < s.minLength) ||
-      (r && s.maxLength && r.length > s.maxLength) ||
-      (r && s.pattern && !s.pattern.test(r)) ||
-      (r && s.min !== undefined && parseInt(r) < s.min) ||
-      (r && s.max !== undefined && parseInt(r) > s.max)
+      (value && rule.minLength && value.length < rule.minLength) ||
+      (value && rule.maxLength && value.length > rule.maxLength) ||
+      (value && rule.pattern && !rule.pattern.test(value)) ||
+      (value && rule.min !== undefined && parseInt(value) < rule.min) ||
+      (value && rule.max !== undefined && parseInt(value) > rule.max)
     ) {
-      o = false;
-      a = s.message;
+      isValid = false;
+      errorMessage = rule.message;
     }
 
-    if (o) {
-      this.showFieldSuccess(t);
+    if (isValid) {
+      this.showFieldSuccess(field);
     } else {
-      this.showFieldError(t, a);
+      this.showFieldError(field, errorMessage);
     }
 
-    return o;
+    return isValid;
   }
 
   showFieldError(e, t) {
@@ -145,31 +145,31 @@ export class ContactForm {
     e.setAttribute("aria-invalid", "false");
   }
 
-  clearFieldError(e) {
-    const t = e.parentNode.querySelector(".field-error");
-    if (t) {
-      t.remove();
+  clearFieldError(field) {
+    const error = field.parentNode.querySelector(".field-error");
+    if (error) {
+      error.remove();
     }
-    e.classList.remove("error");
+    field.classList.remove("error");
   }
 
-  async handleSubmit(e) {
-    e.preventDefault();
-    const t = this.getFormData();
+  async handleSubmit(event) {
+    event.preventDefault();
+    const formData = this.getFormData();
 
     if (!this.validateAllFields()) {
       this.showError("Por favor, corrige los errores en el formulario.");
       return;
     }
 
-    const r = this.form.querySelector('button[type="submit"]');
-    const s = r.textContent;
+    const submitButton = this.form.querySelector('button[type="submit"]');
+    const originalText = submitButton.textContent;
 
     try {
-      r.disabled = true;
-      r.textContent = "Enviando...";
+      submitButton.disabled = true;
+      submitButton.textContent = "Enviando...";
 
-      const result = await this.sendEmail(t);
+      const result = await this.sendEmail(formData);
       if (result.includes("guardado para envío")) {
         this.showSuccess("¡Formulario guardado! Se enviará automáticamente cuando tengas conexión.");
       } else {
@@ -178,138 +178,138 @@ export class ContactForm {
 
       this.form.reset();
       this.clearAllFieldStates();
-    } catch (e) {
-      console.error("Form submission error:", e);
+    } catch (error) {
+      console.error("Form submission error:", error);
       this.showError("Hubo un error al enviar el correo. Por favor, inténtalo de nuevo.");
     } finally {
-      r.disabled = false;
-      r.textContent = s;
+      submitButton.disabled = false;
+      submitButton.textContent = originalText;
     }
   }
 
   validateAllFields() {
-    let t = true;
-    ["name", "email", "telf", "people", "message"].forEach(r => {
-      const s = e(`#${r}`);
-      if (s && !this.validateField(r, s)) {
-        t = false;
+    let isValid = true;
+    ["name", "email", "telf", "people", "message"].forEach(fieldName => {
+      const field = $(`#${fieldName}`);
+      if (field && !this.validateField(fieldName, field)) {
+        isValid = false;
       }
     });
-    return t;
+    return isValid;
   }
 
   clearAllFieldStates() {
-    ["name", "email", "telf", "people", "message"].forEach(t => {
-      const r = e(`#${t}`);
-      if (r) {
-        this.clearFieldError(r);
-        r.classList.remove("success", "error");
-        r.removeAttribute("aria-invalid");
+    ["name", "email", "telf", "people", "message"].forEach(fieldName => {
+      const field = $(`#${fieldName}`);
+      if (field) {
+        this.clearFieldError(field);
+        field.classList.remove("success", "error");
+        field.removeAttribute("aria-invalid");
       }
     });
   }
 
   getFormData() {
     return {
-      name: e("#name")?.value || "",
-      email: e("#email")?.value || "",
-      phone: e("#telf")?.value || "",
-      people: e("#people")?.value || "",
-      message: e("#message")?.value || ""
+      name: $("#name")?.value || "",
+      email: $("#email")?.value || "",
+      phone: $("#telf")?.value || "",
+      people: $("#people")?.value || "",
+      message: $("#message")?.value || ""
     };
   }
 
-  validateForm(e) {
-    return e.name && e.email && e.phone && e.people && this.isValidEmail(e.email);
+  validateForm(data) {
+    return data.name && data.email && data.phone && data.people && this.isValidEmail(data.email);
   }
 
-  isValidEmail(e) {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e);
+  isValidEmail(email) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   }
 
-  async sendEmail(e) {
+  async sendEmail(data) {
     if (!navigator.onLine) {
-      return this.handleOfflineSubmission(e);
+      return this.handleOfflineSubmission(data);
     }
 
-    const t = new AbortController();
-    const s = setTimeout(() => t.abort(), r.API.TIMEOUT);
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), CONFIG.API.TIMEOUT);
 
     try {
-      const o = await fetch(r.API.EMAIL_ENDPOINT, {
+      const response = await fetch(CONFIG.API.EMAIL_ENDPOINT, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
         },
-        body: JSON.stringify(e),
-        signal: t.signal
+        body: JSON.stringify(data),
+        signal: controller.signal
       });
 
-      clearTimeout(s);
+      clearTimeout(timeout);
 
-      if (!o.ok) {
-        throw new Error(`HTTP error! status: ${o.status}`);
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
       }
 
-      return await o.text();
-    } catch (t) {
-      clearTimeout(s);
+      return await response.text();
+    } catch (error) {
+      clearTimeout(timeout);
 
-      if (t.name === "AbortError") {
+      if (error.name === "AbortError") {
         throw new Error("La solicitud ha superado el tiempo de espera");
       }
 
-      if (t.name === "TypeError" || t.message.includes("fetch")) {
-        return this.handleOfflineSubmission(e);
+      if (error.name === "TypeError" || error.message.includes("fetch")) {
+        return this.handleOfflineSubmission(data);
       }
 
-      throw t;
+      throw error;
     }
   }
 
-  async handleOfflineSubmission(e) {
+  async handleOfflineSubmission(data) {
     try {
-      await this.storeOfflineSubmission(e);
+      await this.storeOfflineSubmission(data);
 
       if (
         "serviceWorker" in navigator &&
         "sync" in window.ServiceWorkerRegistration.prototype
       ) {
-        const e = await navigator.serviceWorker.ready;
-        await e.sync.register("form-submission");
+        const registration = await navigator.serviceWorker.ready;
+        await registration.sync.register("form-submission");
       }
 
       return "Formulario guardado para envío cuando tengas conexión";
-    } catch (e) {
-      console.error("Failed to store offline submission:", e);
+    } catch (error) {
+      console.error("Failed to store offline submission:", error);
       throw new Error("No se pudo guardar el formulario. Inténtalo de nuevo cuando tengas conexión.");
     }
   }
 
-  async storeOfflineSubmission(e) {
-    return new Promise((t, r) => {
-      const s = indexedDB.open("Come2HuelvaDB", 1);
+  async storeOfflineSubmission(data) {
+    return new Promise((resolve, reject) => {
+      const request = indexedDB.open("Come2HuelvaDB", 1);
 
-      s.onerror = () => r(s.error);
+      request.onerror = () => reject(request.error);
 
-      s.onsuccess = () => {
-        const o = s.result
+      request.onsuccess = () => {
+        const transaction = request.result
           .transaction(["pendingSubmissions"], "readwrite")
           .objectStore("pendingSubmissions")
           .add({
-            data: e,
+            data: data,
             timestamp: Date.now(),
             attempts: 0
           });
 
-        o.onsuccess = () => t(o.result);
-        o.onerror = () => r(o.error);
+        transaction.onsuccess = () => resolve(transaction.result);
+        transaction.onerror = () => reject(transaction.error);
       };
 
-      s.onupgradeneeded = () => {
-        const e = s.result;
-        if (!e.objectStoreNames.contains("pendingSubmissions")) {
-          e.createObjectStore("pendingSubmissions", {
+      request.onupgradeneeded = () => {
+        const db = request.result;
+        if (!db.objectStoreNames.contains("pendingSubmissions")) {
+          db.createObjectStore("pendingSubmissions", {
             keyPath: "id",
             autoIncrement: true
           });
@@ -318,12 +318,12 @@ export class ContactForm {
     });
   }
 
-  showSuccess(e) {
-    this.showToast(e, "success");
+  showSuccess(message) {
+    this.showToast(message, "success");
   }
 
-  showError(e) {
-    this.showToast(e, "error");
+  showError(message) {
+    this.showToast(message, "error");
   }
 
   showToast(message, type = "info") {

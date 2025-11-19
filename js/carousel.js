@@ -1,34 +1,34 @@
-import { $ as t, debounce as e } from "./utils.js";
-import { CONFIG as s } from "./config.js";
+import { $, debounce } from "./utils.js";
+import { CONFIG } from "./config.js";
 
 export class Carousel {
   constructor({
-    trackSelector: e,
-    prevBtnSelector: i,
-    nextBtnSelector: r,
-    slidesPerView: n = { mobile: 1, tablet: 2, desktop: 4 },
-    auto: o = true,
-    interval: a = s.CAROUSEL.DEFAULT_INTERVAL,
-    enableMouseSwipe: l = false,
-    enableDragScroll: c = false
+    trackSelector,
+    prevBtnSelector,
+    nextBtnSelector,
+    slidesPerView = { mobile: 1, tablet: 2, desktop: 4 },
+    auto = true,
+    interval = CONFIG.CAROUSEL.DEFAULT_INTERVAL,
+    enableMouseSwipe = false,
+    enableDragScroll = false
   }) {
-    this.track = t(e);
-    this.prevBtn = t(i);
-    this.nextBtn = t(r);
+    this.track = $(trackSelector);
+    this.prevBtn = $(prevBtnSelector);
+    this.nextBtn = $(nextBtnSelector);
     this.boundHandlers = new Map();
     this._cachedDimensions = null;
     this._dimensionsDirty = true;
     if (this.track) {
       this.slides = Array.from(this.track.querySelectorAll(".carousel-slide"));
       if (this.slides.length) {
-        this.slidesPerView = n;
-        this.auto = o;
-        this.interval = a;
+        this.slidesPerView = slidesPerView;
+        this.auto = auto;
+        this.interval = interval;
         this.currentIndex = 0;
         this.autoScrollInterval = null;
         this.resumeTimer = null;
-        this.enableMouseSwipe = l;
-        this.enableDragScroll = c;
+        this.enableMouseSwipe = enableMouseSwipe;
+        this.enableDragScroll = enableDragScroll;
         this.mouseX = null;
         this.mouseMoveThreshold = 50;
         this.isDragging = false;
@@ -64,11 +64,11 @@ export class Carousel {
       this.nextBtn.addEventListener("click", nextHandler);
     }
     
-    const resizeHandler = e(() => {
+    const resizeHandler = debounce(() => {
       this._dimensionsDirty = true;
       this.updatePosition();
       if (this.auto) this.startAuto();
-    }, s.CAROUSEL.RESIZE_DEBOUNCE);
+    }, CONFIG.CAROUSEL.RESIZE_DEBOUNCE);
     this.boundHandlers.set("resize", resizeHandler);
     window.addEventListener("resize", resizeHandler);
     
@@ -125,18 +125,39 @@ export class Carousel {
   }
 
   setupDragScroll() {
-    const container = this.track.closest(".places-carousel-container") || 
-                      this.track.closest(".opinions-carousel-container") || 
-                      this.track.parentElement;
+    // Solo activar drag scroll en móvil o para places carousel
+    const isMobile = window.innerWidth <= 768;
+    const isPlaces = this.track.closest(".places-carousel-container");
+    
+    // En desktop (excepto places), no usar drag scroll
+    if (!isMobile && !isPlaces) {
+      return;
+    }
+    
+    // Para places, usar el contenedor padre
+    // Para activities, gastronomy, plans y opinions en móvil, usar el track directamente
+    const container = isPlaces 
+      ? this.track.closest(".places-carousel-container")
+      : this.track; // Para el resto en móvil, usar el track directamente
     if (!container || !this.slides.length) return;
     
     container.style.cursor = "grab";
     container.style.userSelect = "none";
     container.setAttribute('tabindex', '0');
     container.setAttribute('role', 'region');
-    const isPlaces = container.classList.contains("places-carousel-container");
-    const isOpinions = container.classList.contains("opinions-carousel-container");
-    container.setAttribute('aria-label', isPlaces ? 'Carousel de lugares' : 'Carousel de opiniones');
+    const isPlacesContainer = container.classList.contains("places-carousel-container");
+    const isOpinionsContainer = container.classList.contains("opinions-carousel-container");
+    const isActivities = this.track.classList.contains("activities");
+    const isGastronomy = this.track.classList.contains("gastronomy");
+    const isPlans = this.track.classList.contains("plans");
+    const isOpinions = this.track.classList.contains("opinions");
+    let ariaLabel = 'Carousel';
+    if (isPlacesContainer) ariaLabel = 'Carousel de lugares';
+    else if (isOpinionsContainer || isOpinions) ariaLabel = 'Carousel de opiniones';
+    else if (isActivities) ariaLabel = 'Carousel de actividades';
+    else if (isGastronomy) ariaLabel = 'Carousel de gastronomía';
+    else if (isPlans) ariaLabel = 'Carousel de planes';
+    container.setAttribute('aria-label', ariaLabel);
     
     let isScrolling = false;
     let scrollTimeout = null;
@@ -150,16 +171,31 @@ export class Carousel {
       if (this.slides.length === 0) return;
       const slideWidth = this.slides[0].getBoundingClientRect().width;
       const scrollLeft = container.scrollLeft;
-      const slideIndex = Math.round(scrollLeft / slideWidth);
+      // Usar un umbral más bajo (20% de la slide) para cambiar más fácilmente
+      const threshold = slideWidth * 0.2;
+      const slideIndex = Math.round((scrollLeft + threshold) / slideWidth);
       this.currentIndex = Math.max(0, Math.min(slideIndex, this.slides.length - 1));
     };
     
-    const snapToSlide = (immediate = false) => {
+    const snapToSlide = (immediate = false, direction = null) => {
       if (isScrolling) return;
       isScrolling = true;
       
-      updateCurrentIndex();
       const slideWidth = getSlideWidth();
+      const scrollLeft = container.scrollLeft;
+      
+      // Si hay una dirección específica (swipe), usarla directamente
+      if (direction === 'left' && this.currentIndex < this.slides.length - 1) {
+        this.currentIndex++;
+      } else if (direction === 'right' && this.currentIndex > 0) {
+        this.currentIndex--;
+      } else {
+        // Calcular basándose en la posición actual con umbral más bajo
+        const threshold = slideWidth * 0.3;
+        const slideIndex = Math.round((scrollLeft + threshold) / slideWidth);
+        this.currentIndex = Math.max(0, Math.min(slideIndex, this.slides.length - 1));
+      }
+      
       const targetScroll = this.currentIndex * slideWidth;
       
       if (immediate) {
@@ -174,7 +210,7 @@ export class Carousel {
         clearTimeout(scrollTimeout);
         scrollTimeout = setTimeout(() => {
           isScrolling = false;
-        }, 500);
+        }, 300);
       }
     };
     
@@ -219,10 +255,13 @@ export class Carousel {
     // Touch events para móviles
     let touchStartX = 0;
     let touchStartScrollLeft = 0;
+    let touchStartTime = 0;
+    let minSwipeDistance = 30; // Reducido de 50 a 30 píxeles
     
     const handleTouchStart = (e) => {
       touchStartX = e.touches[0].pageX;
       touchStartScrollLeft = container.scrollLeft;
+      touchStartTime = Date.now();
     };
     
     const handleTouchMove = (e) => {
@@ -233,11 +272,25 @@ export class Carousel {
       e.preventDefault();
     };
     
-    const handleTouchEnd = () => {
-      if (touchStartX) {
-        snapToSlide();
-        touchStartX = 0;
+    const handleTouchEnd = (e) => {
+      if (!touchStartX) return;
+      
+      const touchEndX = e.changedTouches[0].pageX;
+      const touchEndTime = Date.now();
+      const deltaX = touchStartX - touchEndX;
+      const deltaTime = touchEndTime - touchStartTime;
+      const distance = Math.abs(deltaX);
+      const velocity = distance / deltaTime;
+      
+      // Determinar dirección del swipe
+      let direction = null;
+      if (distance > minSwipeDistance || velocity > 0.3) {
+        direction = deltaX > 0 ? 'left' : 'right';
       }
+      
+      snapToSlide(false, direction);
+      touchStartX = 0;
+      touchStartTime = 0;
     };
     
     // Keyboard navigation
@@ -428,31 +481,47 @@ export class Carousel {
   }
 
   getStepSize() {
-    if (this.enableDragScroll) {
-      const container = this.track.closest(".places-carousel-container") || this.track.parentElement;
+    // Solo usar scroll para places carousel o en móvil
+    const isMobile = window.innerWidth <= 768;
+    const isPlaces = this.track.closest(".places-carousel-container");
+    
+    if (this.enableDragScroll && (isPlaces || isMobile)) {
+      const container = isPlaces 
+        ? this.track.closest(".places-carousel-container")
+        : this.track;
       if (container) {
         return container.getBoundingClientRect().width;
       }
     }
-    const t = this.slides[0];
-    if (!t) return 0;
-    const e = t.getBoundingClientRect().width;
-    const s = window.getComputedStyle(this.track);
-    const i = parseFloat(s.columnGap || s.gap || "0");
+    const slide = this.slides[0];
+    if (!slide) return 0;
+    const slideWidth = slide.getBoundingClientRect().width;
+    const trackStyle = window.getComputedStyle(this.track);
+    const gap = parseFloat(trackStyle.columnGap || trackStyle.gap || "0");
     // Para opinions carousel, solo el ancho del slide (sin padding)
-    return e + (Number.isNaN(i) ? 0 : i);
+    return slideWidth + (Number.isNaN(gap) ? 0 : gap);
   }
 
   updatePosition() {
-    if (this.enableDragScroll) {
-      const container = this.track.closest(".places-carousel-container") || 
-                        this.track.closest(".opinions-carousel-container") || 
-                        this.track.parentElement;
+    // Solo usar scroll para places carousel o en móvil
+    const isMobile = window.innerWidth <= 768;
+    const isPlaces = this.track.closest(".places-carousel-container");
+    const isOpinions = this.track.closest(".opinions-carousel-container");
+    
+    if (this.enableDragScroll && (isPlaces || isOpinions || isMobile)) {
+      const container = isPlaces 
+        ? this.track.closest(".places-carousel-container")
+        : (isOpinions 
+          ? this.track.closest(".opinions-carousel-container")
+          : this.track);
       if (container) {
-        const t = this.getStepSize();
-        container.scrollLeft = this.currentIndex * t;
+        const stepSize = this.getStepSize();
+        container.scrollLeft = this.currentIndex * stepSize;
+        return;
       }
-    } else {
+    }
+    
+    if (!this.enableDragScroll || (!isPlaces && !isOpinions && !isMobile)) {
       // Para opinions carousel, calcular el desplazamiento correctamente
       if (this.track.classList.contains("opinions")) {
         const container = this.track.closest(".opinions-carousel-container");
@@ -471,34 +540,34 @@ export class Carousel {
           // Transform final: offset inicial + desplazamiento por índice
           this.track.style.transform = `translateX(calc(${initialOffset}px - ${slideOffset}px))`;
         } else {
-          const t = this.getStepSize();
-          this.track.style.transform = `translateX(-${this.currentIndex * t}px)`;
+          const stepSize = this.getStepSize();
+          this.track.style.transform = `translateX(-${this.currentIndex * stepSize}px)`;
         }
       } else {
-        const t = this.getStepSize();
-        this.track.style.transform = `translateX(-${this.currentIndex * t}px)`;
+        const stepSize = this.getStepSize();
+        this.track.style.transform = `translateX(-${this.currentIndex * stepSize}px)`;
       }
     }
   }
 
   getSlidesToShow() {
-    const t = window.innerWidth;
-    return t <= s.BREAKPOINTS.MOBILE
+    const width = window.innerWidth;
+    return width <= CONFIG.BREAKPOINTS.MOBILE
       ? this.slidesPerView.mobile ?? 1
-      : t <= s.BREAKPOINTS.TABLET
+      : width <= CONFIG.BREAKPOINTS.TABLET
       ? this.slidesPerView.tablet ?? this.slidesPerView.mobile ?? 1
       : this.slidesPerView.desktop ?? 4;
   }
 
-  changeSlide(t) {
-    const e = this.slides.length;
-    const s = this.getSlidesToShow();
-    const i = Math.max(0, e - s);
-    this.currentIndex += t;
-    if (this.currentIndex > i) {
+  changeSlide(direction) {
+    const totalSlides = this.slides.length;
+    const slidesToShow = this.getSlidesToShow();
+    const maxIndex = Math.max(0, totalSlides - slidesToShow);
+    this.currentIndex += direction;
+    if (this.currentIndex > maxIndex) {
       this.currentIndex = 0;
     } else if (this.currentIndex < 0) {
-      this.currentIndex = i;
+      this.currentIndex = maxIndex;
     }
     this.updateActiveSlide();
     this.updatePosition();
@@ -531,10 +600,10 @@ export class Carousel {
     }
   }
 
-  pauseTemporarily(t = s.CAROUSEL.PAUSE_DURATION) {
+  pauseTemporarily(duration = CONFIG.CAROUSEL.PAUSE_DURATION) {
     this.stopAuto();
     if (this.resumeTimer) clearTimeout(this.resumeTimer);
-    this.resumeTimer = setTimeout(() => this.startAuto(), t);
+    this.resumeTimer = setTimeout(() => this.startAuto(), duration);
   }
 
   destroy() {
@@ -609,18 +678,21 @@ export const initCarousels = () => [
   new Carousel({
     trackSelector: ".carousel-track.activities",
     prevBtnSelector: ".prev-btn-activities",
-    nextBtnSelector: ".next-btn-activities"
+    nextBtnSelector: ".next-btn-activities",
+    enableDragScroll: true
   }),
   new Carousel({
     trackSelector: ".carousel-track.gastronomy",
     prevBtnSelector: ".prev-btn-gastronomy",
-    nextBtnSelector: ".next-btn-gastronomy"
+    nextBtnSelector: ".next-btn-gastronomy",
+    enableDragScroll: true
   }),
   new Carousel({
     trackSelector: ".carousel-track.plans",
     prevBtnSelector: ".prev-btn-plans",
     nextBtnSelector: ".next-btn-plans",
-    slidesPerView: { mobile: 1, tablet: 1, desktop: 4 }
+    slidesPerView: { mobile: 1, tablet: 1, desktop: 4 },
+    enableDragScroll: true
   }),
   new Carousel({
     trackSelector: ".carousel-track.places",
@@ -639,6 +711,6 @@ export const initCarousels = () => [
     auto: true,
     interval: 5000,
     enableMouseSwipe: true,
-    enableDragScroll: false
+    enableDragScroll: true
   })
 ];

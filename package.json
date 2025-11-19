@@ -7,13 +7,14 @@
     "node": ">=20"
   },
   "scripts": {
-    "build": "node build-production.js",
-    "minify": "node build-production.js",
+    "build": "node js/build-production.js",
+    "minify": "node js/build-production.js",
     "start": "npx http-server -p 8080 -c-1",
     "test-render": "node test-render-locally.js",
     "validate": "echo 'Running validation...' && node -c main.js",
     "dev": "vercel dev",
-    "deploy": "vercel --prod"
+    "deploy": "vercel --prod",
+    "vercel-build": "npm run build"
   },
   "keywords": [
     "huelva",

@@ -1,13 +1,13 @@
-import { $ as e, $$ as t, setExpanded as s } from "./utils.js";
-import { CONFIG as n } from "./config.js";
+import { $, $$, setExpanded } from "./utils.js";
+import { CONFIG } from "./config.js";
 
 export class Navigation {
   constructor() {
-    this.header = e("header");
-    this.menuToggle = e(".menu-toggle");
+    this.header = $("header");
+    this.menuToggle = $(".menu-toggle");
     this.languageSelector = {
-      button: e(".selected-language"),
-      menu: e(".language-options")
+      button: $(".selected-language"),
+      menu: $(".language-options")
     };
     if (this.header && this.menuToggle) {
       this.initMobileMenu();
@@ -20,7 +20,6 @@ export class Navigation {
   }
 
   initGlobalEventDelegation() {
-    // Event delegation para acciones globales
     document.addEventListener("click", (event) => {
       const target = event.target.closest("[data-action]");
       if (target) {
@@ -41,32 +40,15 @@ export class Navigation {
         window.changeLanguage(lang);
       }
     }, true);
-
-    // Soporte para teclado en elementos con data-action
-    document.addEventListener("keydown", (event) => {
-      if (event.key !== "Enter" && event.key !== " ") return;
-      
-      const target = event.target.closest("[data-action]");
-      if (target) {
-        const action = target.dataset.action;
-        if (action === "scroll-to-form") {
-          event.preventDefault();
-          scrollToForm();
-        } else if (action === "go-home") {
-          event.preventDefault();
-          window.location.href = "index.html#introduction";
-        }
-      }
-    });
   }
 
   initMobileMenu() {
     this.menuToggle.addEventListener("click", () => {
       const isOpen = this.header.classList.toggle("nav-open");
-      s(this.menuToggle, isOpen);
+      setExpanded(this.menuToggle, isOpen);
     });
     
-    t("nav a", this.header).forEach(link => {
+    $$("nav a", this.header).forEach(link => {
       link.addEventListener("click", () => this.closeMenu());
     });
     
@@ -76,14 +58,8 @@ export class Navigation {
       }
     });
     
-    document.addEventListener("keydown", (event) => {
-      if (event.key === "Escape" && this.header.classList.contains("nav-open")) {
-        this.closeMenu();
-      }
-    });
-    
     window.addEventListener("resize", () => {
-      if (window.innerWidth > n.BREAKPOINTS.MOBILE) {
+      if (window.innerWidth > CONFIG.BREAKPOINTS.MOBILE) {
         this.closeMenu();
       }
     });
@@ -93,7 +69,7 @@ export class Navigation {
     if (this.header) {
       this.header.classList.remove("nav-open");
       if (this.menuToggle) {
-        s(this.menuToggle, false);
+        setExpanded(this.menuToggle, false);
       }
     }
   }
@@ -104,27 +80,20 @@ export class Navigation {
     button.addEventListener("click", () => {
       const isExpanded = !menu.classList.contains("show");
       menu.classList.toggle("show");
-      s(button, isExpanded);
+      setExpanded(button, isExpanded);
     });
     
     document.addEventListener("click", (event) => {
       if (!event.target.closest(".language-selector") && menu.classList.contains("show")) {
         menu.classList.remove("show");
-        s(button, false);
-      }
-    });
-    
-    document.addEventListener("keydown", (event) => {
-      if (event.key === "Escape" && menu.classList.contains("show")) {
-        menu.classList.remove("show");
-        s(button, false);
+        setExpanded(button, false);
       }
     });
   }
 
   markCurrentPage() {
     const currentPage = location.pathname.split("/").pop() || "index.html";
-    t("nav a").forEach(link => {
+    $$("nav a").forEach(link => {
       const href = link.getAttribute("href");
       if (href) {
         const page = href.includes("#") ? href.split("#")[0] : href;
@@ -137,10 +106,8 @@ export class Navigation {
 }
 
 export const scrollToForm = () => {
-  const formContainer = e(".form-container");
+  const formContainer = $(".form-container");
   if (formContainer) {
     formContainer.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 };
-
-window.scrollToForm = scrollToForm;

@@ -41,6 +41,11 @@ coverage/
 dist/
 build/
 
+# Note: Minified files are committed to repo for simplicity
+# If you want to exclude them, uncomment the following:
+# *.min.js
+# *.min.css
+
 # Temporary folders
 tmp/
 temp/

@@ -84,7 +84,7 @@ body {
   position: relative;
 }
 
-.about-us-container span, .activities-container span, .gastronomy-container span, .our-secret-container span, .place-container span, .plans-container span {
+.about-us-container span, .our-secret-container span, .plans-container span {
   color: var(--ink);
   display: block;
   font-family: var(--font-primary);
@@ -96,6 +96,29 @@ body {
   text-align-last: left;
 }
 
+.place-container span {
+  color: var(--ink);
+  display: block;
+  font-family: var(--font-primary);
+  font-size: clamp(1.6rem, .7vw + 1.3rem, 2rem);
+  line-height: 1.8;
+  margin: 0;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 5vw;
+  text-align: justify;
+  text-align-last: left;
+}
+
+.place-container .places-carousel-container + span {
+  margin-top: 3.5rem;
+}
+
+.place-container span + span {
+  margin-top: 1.2rem;
+}
+
 .activities-container span + span,
 .gastronomy-container span + span,
 .plans-container span + span {
@@ -103,12 +126,51 @@ body {
 }
 
 .activities-container span,
-.gastronomy-container span {
-  max-width: 100%;
-  margin-left: 0;
+.activities-container span#bold,
+.gastronomy-container span,
+.gastronomy-container span#bold {
+  color: var(--ink);
+  display: block;
+  font-family: var(--font-primary);
+  font-size: clamp(1.6rem, .7vw + 1.3rem, 2rem);
+  line-height: 1.8;
+  margin: 0;
+  width: 100%;
+  max-width: 1400px;
+  margin-left: auto;
   margin-right: auto;
-  text-align: left;
+  padding: 0 5vw;
+  text-align: justify;
   text-align-last: left;
+  align-self: stretch;
+}
+
+.activities-container span#italic-yellow,
+.gastronomy-container span#italic-yellow {
+  color: var(--gold-brown);
+  display: block;
+  font-family: var(--font-primary);
+  font-size: clamp(1.6rem, .7vw + 1.3rem, 2rem);
+  line-height: 1.8;
+  margin: 0;
+  width: 100%;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 1.2rem;
+  padding: 0 5vw;
+  text-align: justify;
+  text-align-last: left;
+  align-self: stretch;
+  font-style: italic;
+  font-weight: 500;
+}
+
+.activities-container .carousel-container + span,
+.activities-container .carousel-container + span#bold,
+.gastronomy-container .carousel-container + span,
+.gastronomy-container .carousel-container + span#bold {
+  margin-top: 3.5rem;
 }
 
 .section-divider {
@@ -660,7 +722,7 @@ nav li a:hover {
 /* PLACES */
 
 .place-container {
-  padding: 4rem 0 8rem;
+  padding: 4rem 0 6rem;
   margin: 0 auto;
   max-width: 100%;
   width: 100%;
@@ -722,14 +784,14 @@ nav li a:hover {
   -webkit-scroll-snap-stop: always;
   width: 100vw;
   box-sizing: border-box;
-  height: 100vh;
-  max-height: 800px;
+  height: 70vh;
+  max-height: 600px;
 }
 
 .places-carousel-container .place {
   width: 100%;
   height: 100%;
-  max-height: 800px;
+  max-height: 600px;
 }
 
 .place {
@@ -882,7 +944,10 @@ nav li a:hover {
 
 
 .activities-container, .gastronomy-container {
-  padding: 6rem 8vw;
+  padding: 4rem 0 6rem;
+  margin: 0 auto;
+  max-width: 100%;
+  width: 100%;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -894,7 +959,7 @@ nav li a:hover {
 .activities-container h1,
 .gastronomy-container h1 {
   text-align: center;
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
   align-self: center;
   width: 100%;
   position: relative;
@@ -926,6 +991,17 @@ nav li a:hover {
   max-width: 1400px;
 }
 
+.activities-container .carousel-container,
+.gastronomy-container .carousel-container {
+  position: relative;
+}
+
+@media (max-width: 768px) {
+  .activities-container .carousel-container,
+  .gastronomy-container .carousel-container {
+    overflow: visible;
+  }
+}
 
 .carousel-track {
   display: flex;
@@ -980,7 +1056,6 @@ nav li a:hover {
 
 .activity-card:hover, .gastronomy-card:hover {
   transform: translateY(-8px) scale(1.02);
-  box-shadow: 0 16px 60px rgba(18, 39, 30, .25);
   border-color: rgba(175, 141, 84, .3);
 }
 
@@ -1023,14 +1098,32 @@ nav li a:hover {
 }
 
 .carousel-buttons-wrapper {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  gap: 4rem;
-  margin-top: 3rem;
   width: 100%;
-  align-self: center;
-  padding-top: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 5vw;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.activities-container .carousel-buttons-wrapper,
+.gastronomy-container .carousel-buttons-wrapper {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  width: 100%;
+  max-width: 1600px;
+  padding: 0;
+  top: calc(4rem + 40%);
+  z-index: 20;
 }
 
 .carousel-btn {
@@ -1065,7 +1158,7 @@ nav li a:hover {
 .activities-container .next-btn-activities,
 .gastronomy-container .prev-btn-gastronomy,
 .gastronomy-container .next-btn-gastronomy {
-  position: static;
+  position: relative;
   margin: 0;
   display: inline-flex;
   background: var(--white);
@@ -1073,6 +1166,27 @@ nav li a:hover {
   border-radius: 50%;
   box-shadow: 0 4px 12px rgba(18, 39, 30, .1);
   transition: all var(--transition);
+  pointer-events: auto;
+}
+
+.activities-container .prev-btn-activities {
+  position: absolute;
+  left: 5rem;
+}
+
+.activities-container .next-btn-activities {
+  position: absolute;
+  right: 5rem;
+}
+
+.gastronomy-container .prev-btn-gastronomy {
+  position: absolute;
+  left: 5rem;
+}
+
+.gastronomy-container .next-btn-gastronomy {
+  position: absolute;
+  right: 5rem;
 }
 
 .prev-btn-activities:hover, .prev-btn-gastronomy:hover,
@@ -1606,6 +1720,149 @@ footer .footer-bottom p {
 }
 
 
+/* LEGAL PAGES STYLES */
+
+.legal-container {
+  padding: 6rem 5vw;
+  margin: 0 auto;
+  max-width: 1000px;
+  width: 100%;
+}
+
+.legal-container h1 {
+  font-family: var(--font-secondary);
+  font-size: clamp(3rem, 2vw + 2rem, 4rem);
+  color: var(--dark-green);
+  text-align: center;
+  margin-bottom: 4rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  position: relative;
+}
+
+.legal-container h1::after {
+  content: '';
+  position: absolute;
+  bottom: -1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold-brown), transparent);
+  opacity: 0.6;
+}
+
+.legal-content {
+  background: var(--white);
+  padding: 4rem;
+  border-radius: var(--radius-lg);
+  box-shadow: 0 8px 32px rgba(18, 39, 30, 0.08);
+  border: 1px solid rgba(175, 141, 84, 0.1);
+}
+
+.legal-content h2 {
+  font-family: var(--font-secondary);
+  font-size: clamp(2rem, 1.5vw + 1.5rem, 2.5rem);
+  color: var(--dark-green);
+  margin-top: 3rem;
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+}
+
+.legal-content h2:first-of-type {
+  margin-top: 0;
+}
+
+.legal-content h3 {
+  font-family: var(--font-secondary);
+  font-size: clamp(1.6rem, 1.2vw + 1.2rem, 2rem);
+  color: var(--dark-green);
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.legal-content p {
+  font-family: var(--font-primary);
+  font-size: clamp(1.4rem, 0.7vw + 1.1rem, 1.6rem);
+  color: var(--ink);
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+  text-align: justify;
+  text-align-last: left;
+}
+
+.legal-content ul {
+  font-family: var(--font-primary);
+  font-size: clamp(1.4rem, 0.7vw + 1.1rem, 1.6rem);
+  color: var(--ink);
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+  padding-left: 2rem;
+}
+
+.legal-content ul li {
+  margin-bottom: 0.8rem;
+}
+
+.legal-content a {
+  color: var(--gold-brown);
+  text-decoration: underline;
+  transition: color var(--transition);
+}
+
+.legal-content a:hover {
+  color: var(--dark-green);
+}
+
+.legal-content table {
+  margin: 2rem 0;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.legal-content table th {
+  font-family: var(--font-secondary);
+  font-weight: 600;
+  color: var(--dark-green);
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 2px solid var(--gold-brown);
+  background: rgba(175, 141, 84, 0.05);
+}
+
+.legal-content table td {
+  padding: 1rem;
+  border-bottom: 1px solid rgba(175, 141, 84, 0.1);
+  font-family: var(--font-primary);
+  color: var(--ink);
+}
+
+@media (max-width: 768px) {
+  .legal-container {
+    padding: 4rem 4vw;
+  }
+
+  .legal-content {
+    padding: 2.5rem 2rem;
+  }
+
+  .legal-content h2 {
+    margin-top: 2rem;
+  }
+
+  .legal-content table {
+    font-size: 1.2rem;
+  }
+
+  .legal-content table th,
+  .legal-content table td {
+    padding: 0.8rem;
+  }
+}
+
+
 /* ABOUT US STYLES */
 
 
@@ -1697,16 +1954,12 @@ footer .footer-bottom p {
   }
 }
 
-/* ============================================
-   MEDIA QUERIES - MÓVIL
-   ============================================ */
 
 @media (max-width: 768px) {
   html {
     font-size: 60%;
   }
 
-  /* Header responsive */
   header {
     align-items: center;
     display: grid;
@@ -1816,18 +2069,32 @@ footer .footer-bottom p {
     transform: none;
   }
 
-  /* Secciones principales */
   main > section {
     margin: 2rem auto;
     padding: 2rem 4vw;
   }
 
-  /* Carouseles - Todos muestran 1 slide en móvil */
   .carousel-track.activities,
   .carousel-track.gastronomy,
   .carousel-track.plans,
   .carousel-track.opinions {
     gap: 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    touch-action: pan-x;
+    width: 100%;
+  }
+
+  .carousel-track.activities::-webkit-scrollbar,
+  .carousel-track.gastronomy::-webkit-scrollbar,
+  .carousel-track.plans::-webkit-scrollbar,
+  .carousel-track.opinions::-webkit-scrollbar {
+    display: none;
   }
 
   .carousel-track.activities .carousel-slide,
@@ -1838,6 +2105,8 @@ footer .footer-bottom p {
     flex: 0 0 100% !important;
     max-width: 100% !important;
     padding: 0 1rem;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
   }
 
   .carousel-track.opinions {
@@ -1855,6 +2124,16 @@ footer .footer-bottom p {
     margin: 0 auto;
     max-width: 90vw;
     width: 100%;
+    box-shadow: none !important;
+  }
+
+  .activity-card:hover, .gastronomy-card:hover,
+  .plan_card:hover, .opinion-card:hover {
+    box-shadow: none !important;
+  }
+
+  .opinion-card {
+    box-shadow: none !important;
   }
 
   .activity-card img, .gastronomy-card img {
@@ -1866,7 +2145,6 @@ footer .footer-bottom p {
     margin: 2.5rem auto 0;
   }
 
-  /* Places carousel */
   .carousel-track.places .carousel-slide {
     min-width: 100vw;
     flex: 0 0 100vw;
@@ -1896,7 +2174,6 @@ footer .footer-bottom p {
     font-size: clamp(1.2rem, 0.5vw + 1rem, 1.5rem);
   }
 
-  /* Footer */
   footer {
     padding: 2.5rem 4vw 0;
   }
@@ -1946,6 +2223,11 @@ footer .footer-bottom p {
     margin-top: 2.5rem;
     padding: 0;
     font-size: clamp(1.2rem, 0.45vw + 1rem, 1.5rem);
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    align-items: center;
   }
 
   footer .footer-policies a {
@@ -1958,7 +2240,6 @@ footer .footer-bottom p {
     font-size: clamp(1.1rem, 0.4vw + 0.9rem, 1.3rem);
   }
 
-  /* Formulario */
   .form {
     padding: 3.2rem 5vw;
   }
@@ -1971,18 +2252,19 @@ footer .footer-bottom p {
     max-width: 100%;
   }
 
-  /* Botones de carousel */
+  .activities-container .carousel-buttons-wrapper,
+  .gastronomy-container .carousel-buttons-wrapper,
+  .plans-container .prev-btn-plans,
+  .plans-container .next-btn-plans {
+    display: none !important;
+  }
+
   .carousel-btn {
     font-size: 1.6rem;
     height: 3rem;
     width: 3rem;
   }
 
-  .plans-container .prev-btn-plans,
-  .plans-container .next-btn-plans {
-    left: 1rem;
-    right: 1rem;
-  }
 }
 
 @media (max-width: 450px) {

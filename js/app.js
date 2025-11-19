@@ -3,8 +3,6 @@ import { initLanguageManager } from "./language.js";
 import { initCarousels } from "./carousel.js";
 import { initForm } from "./form.js";
 import { initScrollReveal } from "./scroll-reveal.js";
-import { initVideoPlayer } from "./video.js";
-import { initServiceWorker } from "./sw-register.js";
 
 class App {
   constructor() {
@@ -27,8 +25,6 @@ class App {
       this.modules.carousels = initCarousels();
       this.modules.form = initForm();
       this.modules.scrollReveal = initScrollReveal();
-      this.modules.videoPlayer = initVideoPlayer();
-      this.modules.serviceWorker = initServiceWorker();
       this.handleHashNavigation();
     } catch (error) {
       console.error("Error initializing app:", error);
@@ -67,9 +63,6 @@ class App {
     }
     if (this.modules.scrollReveal && typeof this.modules.scrollReveal.destroy === "function") {
       this.modules.scrollReveal.destroy();
-    }
-    if (this.modules.videoPlayer && typeof this.modules.videoPlayer.destroy === "function") {
-      this.modules.videoPlayer.destroy();
     }
   }
 }

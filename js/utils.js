@@ -1,1 +1,90 @@
-export const $=(t,e=document)=>e.querySelector(t);export const $$=(t,e=document)=>Array.from(e.querySelectorAll(t));export const debounce=(t,e)=>{let o;return function(...r){clearTimeout(o),o=setTimeout(()=>t.apply(this,r),e)}};export const setExpanded=(t,e)=>{t&&t.setAttribute("aria-expanded",e?"true":"false")};export const storage={get(t){try{return localStorage.getItem(t)}catch(t){return console.warn("localStorage not available:",t),null}},set(t,e){try{return localStorage.setItem(t,e),!0}catch(t){return console.warn("localStorage not available:",t),!1}}};export const showToast=(t,e="info",o=3e3)=>{const r=$("#toast-container");if(!r)return;const n=document.createElement("div");n.className=`toast toast-${e}`,n.textContent=t,n.setAttribute("role","alert"),n.setAttribute("aria-live","polite"),r.appendChild(n),setTimeout(()=>n.classList.add("show"),10),setTimeout(()=>{n.classList.remove("show"),setTimeout(()=>r.removeChild(n),300)},o)};export const formatPhoneNumber=t=>t.replace(/(\d{3})(\d{3})(\d{3})/,"$1 $2 $3");export const validateEmail=t=>/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(t);export const validatePhone=t=>/^[6-9]\d{8}$/.test(t.replace(/\s/g,""));export const throttle=(t,e)=>{let o;return function(){o||(t.apply(this,arguments),o=!0,setTimeout(()=>o=!1,e))}};export const updateText=(t,e)=>{t&&(t.textContent=e)};export const updateHTML=(t,e)=>{t&&(t.innerHTML=e)};export const updateMultiple=(t,e)=>{Array.isArray(t)&&t.length>0&&t[0].nodeType?t.forEach((t,o)=>{e&&e[o]&&(t.textContent=e[o])}):"object"!=typeof t||Array.isArray(t)||Object.entries(t).forEach(([t,e])=>{const o=$(t);o&&("string"==typeof e?o.textContent=e:e.html?o.innerHTML=e.html:e.text&&(o.textContent=e.text))})};
+export const $ = (selector, element = document) => element.querySelector(selector);
+
+export const $$ = (selector, element = document) => Array.from(element.querySelectorAll(selector));
+
+export const debounce = (func, wait) => {
+  let timeout;
+  return function (...args) {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => func.apply(this, args), wait);
+  };
+};
+
+export const setExpanded = (element, expanded) => {
+  if (element) {
+    element.setAttribute("aria-expanded", expanded ? "true" : "false");
+  }
+};
+
+export const storage = {
+  get(key) {
+    try {
+      return localStorage.getItem(key);
+    } catch (error) {
+      console.warn("localStorage not available:", error);
+      return null;
+    }
+  },
+  set(key, value) {
+    try {
+      localStorage.setItem(key, value);
+      return true;
+    } catch (error) {
+      console.warn("localStorage not available:", error);
+      return false;
+    }
+  }
+};
+
+export const showToast = (message, type = "info", duration = 3000) => {
+  const container = $("#toast-container");
+  if (!container) return;
+
+  const toast = document.createElement("div");
+  toast.className = `toast toast-${type}`;
+  toast.textContent = message;
+  toast.setAttribute("role", "alert");
+  toast.setAttribute("aria-live", "polite");
+  container.appendChild(toast);
+
+  setTimeout(() => toast.classList.add("show"), 10);
+  setTimeout(() => {
+    toast.classList.remove("show");
+    setTimeout(() => container.removeChild(toast), 300);
+  }, duration);
+};
+
+export const updateText = (element, text) => {
+  if (element) {
+    element.textContent = text;
+  }
+};
+
+export const updateHTML = (element, html) => {
+  if (element) {
+    element.innerHTML = html;
+  }
+};
+
+export const updateMultiple = (elements, updates) => {
+  if (Array.isArray(elements) && elements.length > 0 && elements[0].nodeType) {
+    elements.forEach((element, index) => {
+      if (updates && updates[index]) {
+        element.textContent = updates[index];
+      }
+    });
+  } else if (typeof elements === "object" && !Array.isArray(elements)) {
+    Object.entries(elements).forEach(([selector, update]) => {
+      const element = $(selector);
+      if (element) {
+        if (typeof update === "string") {
+          element.textContent = update;
+        } else if (update.html) {
+          element.innerHTML = update.html;
+        } else if (update.text) {
+          element.textContent = update.text;
+        }
+      }
+    });
+  }
+};
