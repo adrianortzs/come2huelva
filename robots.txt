@@ -1,18 +1,20 @@
-# Controla que pueden rastrear los buscadores (Google, Bing...)
+# robots.txt for come2huelva.com
+# Controls which pages search engines can crawl
+
 User-agent: *
 Allow: /
 
-# Sitemap
-Sitemap: https://www.come2huelva.com/sitemap.xml
-
-# Disallow
+# Disallow directories
 Disallow: /node_modules/
 Disallow: /.git/
 Disallow: /api/
+Disallow: /.vercel/
+Disallow: /tmp/
+Disallow: /temp/
 
-# Allow
+# Allow images
 User-agent: Googlebot-Image
-Allow: /images/
+Allow: /img/
 
-# Crawl delay (optional, remove if not needed)
-# Crawl-delay: 1
+# Sitemap location
+Sitemap: https://www.come2huelva.com/sitemap.xml
