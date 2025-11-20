@@ -104,14 +104,16 @@ export class Carousel {
           const slideWidth = this.slides[0]?.getBoundingClientRect().width || container.getBoundingClientRect().width;
           const scrollLeft = container.scrollLeft;
           const slideIndex = Math.round(scrollLeft / slideWidth);
-          this.currentIndex = Math.max(0, Math.min(slideIndex, this.slides.length - 1));
+          // Para places carousel, usar bucle infinito
+          this.currentIndex = ((slideIndex % this.slides.length) + this.slides.length) % this.slides.length;
           
           // Actualizar índice cuando se hace scroll
           const scrollHandler = () => {
             const slideWidth = this.slides[0]?.getBoundingClientRect().width || container.getBoundingClientRect().width;
             const scrollLeft = container.scrollLeft;
             const slideIndex = Math.round(scrollLeft / slideWidth);
-            this.currentIndex = Math.max(0, Math.min(slideIndex, this.slides.length - 1));
+            // Para places carousel, usar bucle infinito
+            this.currentIndex = ((slideIndex % this.slides.length) + this.slides.length) % this.slides.length;
           };
           this.boundHandlers.set("scroll", scrollHandler);
           container.addEventListener("scroll", scrollHandler, { passive: true });
@@ -143,6 +145,7 @@ export class Carousel {
     
     container.style.cursor = "grab";
     container.style.userSelect = "none";
+    container.style.touchAction = "pan-y pan-x"; // Permitir scroll vertical y horizontal
     container.setAttribute('tabindex', '0');
     container.setAttribute('role', 'region');
     const isPlacesContainer = container.classList.contains("places-carousel-container");
@@ -171,10 +174,21 @@ export class Carousel {
       if (this.slides.length === 0) return;
       const slideWidth = this.slides[0].getBoundingClientRect().width;
       const scrollLeft = container.scrollLeft;
+      const isPlacesCarousel = container.classList.contains("places-carousel-container");
+      const isMobile = window.innerWidth <= 768;
+      const isActivities = this.track.classList.contains("activities");
+      const isGastronomy = this.track.classList.contains("gastronomy");
+      const isOpinions = this.track.classList.contains("opinions");
+      const shouldUseInfiniteLoop = isPlacesCarousel || (isMobile && (isActivities || isGastronomy || isOpinions));
       // Usar un umbral más bajo (20% de la slide) para cambiar más fácilmente
       const threshold = slideWidth * 0.2;
       const slideIndex = Math.round((scrollLeft + threshold) / slideWidth);
-      this.currentIndex = Math.max(0, Math.min(slideIndex, this.slides.length - 1));
+      if (shouldUseInfiniteLoop) {
+        // Para places carousel o activities/gastronomy/opinions en móvil, usar bucle infinito
+        this.currentIndex = ((slideIndex % this.slides.length) + this.slides.length) % this.slides.length;
+      } else {
+        this.currentIndex = Math.max(0, Math.min(slideIndex, this.slides.length - 1));
+      }
     };
     
     const snapToSlide = (immediate = false, direction = null) => {
@@ -183,17 +197,38 @@ export class Carousel {
       
       const slideWidth = getSlideWidth();
       const scrollLeft = container.scrollLeft;
+      const isPlacesCarousel = container.classList.contains("places-carousel-container");
+      const isMobile = window.innerWidth <= 768;
+      const isActivities = this.track.classList.contains("activities");
+      const isGastronomy = this.track.classList.contains("gastronomy");
+      const isOpinions = this.track.classList.contains("opinions");
+      const shouldUseInfiniteLoop = isPlacesCarousel || (isMobile && (isActivities || isGastronomy || isOpinions));
       
       // Si hay una dirección específica (swipe), usarla directamente
-      if (direction === 'left' && this.currentIndex < this.slides.length - 1) {
-        this.currentIndex++;
-      } else if (direction === 'right' && this.currentIndex > 0) {
-        this.currentIndex--;
+      if (direction === 'left') {
+        if (shouldUseInfiniteLoop) {
+          // Bucle infinito: si está en el último, ir al primero
+          this.currentIndex = (this.currentIndex + 1) % this.slides.length;
+        } else if (this.currentIndex < this.slides.length - 1) {
+          this.currentIndex++;
+        }
+      } else if (direction === 'right') {
+        if (shouldUseInfiniteLoop) {
+          // Bucle infinito: si está en el primero, ir al último
+          this.currentIndex = (this.currentIndex - 1 + this.slides.length) % this.slides.length;
+        } else if (this.currentIndex > 0) {
+          this.currentIndex--;
+        }
       } else {
         // Calcular basándose en la posición actual con umbral más bajo
         const threshold = slideWidth * 0.3;
         const slideIndex = Math.round((scrollLeft + threshold) / slideWidth);
-        this.currentIndex = Math.max(0, Math.min(slideIndex, this.slides.length - 1));
+        if (shouldUseInfiniteLoop) {
+          // Para places o activities/gastronomy/opinions en móvil, asegurar que el índice esté en el rango válido con bucle
+          this.currentIndex = ((slideIndex % this.slides.length) + this.slides.length) % this.slides.length;
+        } else {
+          this.currentIndex = Math.max(0, Math.min(slideIndex, this.slides.length - 1));
+        }
       }
       
       const targetScroll = this.currentIndex * slideWidth;
@@ -254,43 +289,79 @@ export class Carousel {
     
     // Touch events para móviles
     let touchStartX = 0;
+    let touchStartY = 0;
     let touchStartScrollLeft = 0;
     let touchStartTime = 0;
+    let isHorizontalSwipe = null; // null = aún no determinado, true = horizontal, false = vertical
     let minSwipeDistance = 30; // Reducido de 50 a 30 píxeles
+    let swipeThreshold = 10; // Distancia mínima para determinar dirección
     
     const handleTouchStart = (e) => {
       touchStartX = e.touches[0].pageX;
+      touchStartY = e.touches[0].pageY;
       touchStartScrollLeft = container.scrollLeft;
       touchStartTime = Date.now();
+      isHorizontalSwipe = null; // Resetear la dirección al iniciar un nuevo toque
     };
     
     const handleTouchMove = (e) => {
       if (!touchStartX) return;
+      
       const touchX = e.touches[0].pageX;
-      const walk = (touchStartX - touchX);
-      container.scrollLeft = touchStartScrollLeft + walk;
-      e.preventDefault();
+      const touchY = e.touches[0].pageY;
+      const deltaX = Math.abs(touchX - touchStartX);
+      const deltaY = Math.abs(touchY - touchStartY);
+      
+      // Determinar si el gesto es horizontal o vertical solo una vez
+      if (isHorizontalSwipe === null && (deltaX > swipeThreshold || deltaY > swipeThreshold)) {
+        isHorizontalSwipe = deltaX > deltaY;
+        
+        // Si es un gesto vertical, resetear todo y permitir el scroll vertical
+        if (isHorizontalSwipe === false) {
+          touchStartX = 0;
+          touchStartY = 0;
+          touchStartScrollLeft = 0;
+          touchStartTime = 0;
+          isHorizontalSwipe = null;
+          return; // No interferir con el scroll vertical
+        }
+      }
+      
+      // Solo prevenir el comportamiento por defecto y mover el carousel si es un gesto horizontal
+      if (isHorizontalSwipe === true) {
+        const walk = (touchStartX - touchX);
+        container.scrollLeft = touchStartScrollLeft + walk;
+        e.preventDefault();
+      }
+      // Si es vertical, ya reseteamos y retornamos arriba, permitiendo el scroll vertical normal
     };
     
     const handleTouchEnd = (e) => {
       if (!touchStartX) return;
       
-      const touchEndX = e.changedTouches[0].pageX;
-      const touchEndTime = Date.now();
-      const deltaX = touchStartX - touchEndX;
-      const deltaTime = touchEndTime - touchStartTime;
-      const distance = Math.abs(deltaX);
-      const velocity = distance / deltaTime;
-      
-      // Determinar dirección del swipe
-      let direction = null;
-      if (distance > minSwipeDistance || velocity > 0.3) {
-        direction = deltaX > 0 ? 'left' : 'right';
+      // Solo procesar el swipe si fue un gesto horizontal
+      if (isHorizontalSwipe === true) {
+        const touchEndX = e.changedTouches[0].pageX;
+        const touchEndTime = Date.now();
+        const deltaX = touchStartX - touchEndX;
+        const deltaTime = touchEndTime - touchStartTime;
+        const distance = Math.abs(deltaX);
+        const velocity = distance / deltaTime;
+        
+        // Determinar dirección del swipe
+        let direction = null;
+        if (distance > minSwipeDistance || velocity > 0.3) {
+          direction = deltaX > 0 ? 'left' : 'right';
+        }
+        
+        snapToSlide(false, direction);
       }
       
-      snapToSlide(false, direction);
+      // Resetear todas las variables
       touchStartX = 0;
+      touchStartY = 0;
       touchStartTime = 0;
+      isHorizontalSwipe = null;
     };
     
     // Keyboard navigation
@@ -298,16 +369,32 @@ export class Carousel {
       if (container !== document.activeElement && !container.contains(document.activeElement)) return;
       
       const slideWidth = getSlideWidth();
+      const isPlacesCarousel = container.classList.contains("places-carousel-container");
+      const isMobile = window.innerWidth <= 768;
+      const isActivities = this.track.classList.contains("activities");
+      const isGastronomy = this.track.classList.contains("gastronomy");
+      const isOpinions = this.track.classList.contains("opinions");
+      const shouldUseInfiniteLoop = isPlacesCarousel || (isMobile && (isActivities || isGastronomy || isOpinions));
       let newIndex = this.currentIndex;
       
       switch(e.key) {
         case 'ArrowLeft':
           e.preventDefault();
-          newIndex = Math.max(0, this.currentIndex - 1);
+          if (shouldUseInfiniteLoop) {
+            // Bucle infinito: si está en 0, ir al último
+            newIndex = (this.currentIndex - 1 + this.slides.length) % this.slides.length;
+          } else {
+            newIndex = Math.max(0, this.currentIndex - 1);
+          }
           break;
         case 'ArrowRight':
           e.preventDefault();
-          newIndex = Math.min(this.slides.length - 1, this.currentIndex + 1);
+          if (shouldUseInfiniteLoop) {
+            // Bucle infinito: si está en el último, ir al primero
+            newIndex = (this.currentIndex + 1) % this.slides.length;
+          } else {
+            newIndex = Math.min(this.slides.length - 1, this.currentIndex + 1);
+          }
           break;
         case 'Home':
           e.preventDefault();
@@ -342,12 +429,23 @@ export class Carousel {
         const newScroll = currentScroll + scrollDelta;
         const slideIndex = Math.round(newScroll / slideWidth);
         const targetScroll = slideIndex * slideWidth;
+        const isPlacesCarousel = container.classList.contains("places-carousel-container");
+        const isMobile = window.innerWidth <= 768;
+        const isActivities = this.track.classList.contains("activities");
+        const isGastronomy = this.track.classList.contains("gastronomy");
+        const isOpinions = this.track.classList.contains("opinions");
+        const shouldUseInfiniteLoop = isPlacesCarousel || (isMobile && (isActivities || isGastronomy || isOpinions));
         
         container.scrollTo({
           left: targetScroll,
           behavior: 'smooth'
         });
-        this.currentIndex = Math.max(0, Math.min(slideIndex, this.slides.length - 1));
+        if (shouldUseInfiniteLoop) {
+          // Para places carousel o activities/gastronomy/opinions en móvil, usar bucle infinito
+          this.currentIndex = ((slideIndex % this.slides.length) + this.slides.length) % this.slides.length;
+        } else {
+          this.currentIndex = Math.max(0, Math.min(slideIndex, this.slides.length - 1));
+        }
       }
     };
     
@@ -440,8 +538,8 @@ export class Carousel {
     
     if (isPlacesCarousel) {
       if (mouseX < leftZone && deltaX < 0) {
-        // Mover a slide anterior
-        const newIndex = Math.max(0, this.currentIndex - 1);
+        // Mover a slide anterior (bucle infinito: si está en 0, ir al último)
+        const newIndex = (this.currentIndex - 1 + this.slides.length) % this.slides.length;
         if (newIndex !== this.currentIndex) {
           this.currentIndex = newIndex;
           container.scrollTo({
@@ -451,8 +549,8 @@ export class Carousel {
           this.mouseX = null;
         }
       } else if (mouseX > rightZone && deltaX > 0) {
-        // Mover a slide siguiente
-        const newIndex = Math.min(this.slides.length - 1, this.currentIndex + 1);
+        // Mover a slide siguiente (bucle infinito: si está en el último, ir al primero)
+        const newIndex = (this.currentIndex + 1) % this.slides.length;
         if (newIndex !== this.currentIndex) {
           this.currentIndex = newIndex;
           container.scrollTo({
@@ -561,13 +659,31 @@ export class Carousel {
 
   changeSlide(direction) {
     const totalSlides = this.slides.length;
-    const slidesToShow = this.getSlidesToShow();
-    const maxIndex = Math.max(0, totalSlides - slidesToShow);
-    this.currentIndex += direction;
-    if (this.currentIndex > maxIndex) {
-      this.currentIndex = 0;
-    } else if (this.currentIndex < 0) {
-      this.currentIndex = maxIndex;
+    const isPlaces = this.track.closest(".places-carousel-container");
+    const isMobile = window.innerWidth <= 768;
+    const isActivities = this.track.classList.contains("activities");
+    const isGastronomy = this.track.classList.contains("gastronomy");
+    const isOpinions = this.track.classList.contains("opinions");
+    const shouldUseInfiniteLoop = isPlaces || (isMobile && (isActivities || isGastronomy || isOpinions));
+    
+    // Para places o activities/gastronomy/opinions en móvil, hacer bucle infinito
+    if (shouldUseInfiniteLoop) {
+      this.currentIndex += direction;
+      if (this.currentIndex >= totalSlides) {
+        this.currentIndex = 0;
+      } else if (this.currentIndex < 0) {
+        this.currentIndex = totalSlides - 1;
+      }
+    } else {
+      // Para otros carousels, usar la lógica original
+      const slidesToShow = this.getSlidesToShow();
+      const maxIndex = Math.max(0, totalSlides - slidesToShow);
+      this.currentIndex += direction;
+      if (this.currentIndex > maxIndex) {
+        this.currentIndex = 0;
+      } else if (this.currentIndex < 0) {
+        this.currentIndex = maxIndex;
+      }
     }
     this.updateActiveSlide();
     this.updatePosition();

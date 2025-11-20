@@ -234,9 +234,9 @@ export class LanguageManager {
     let legalData = null;
 
     if (currentPath.includes("aviso-legal") || currentPath.includes("legal-notice")) {
-      legalData = translations.legalNotice;
+      legalData = translations.legalNoticeContent;
     } else if (currentPath.includes("politica-privacidad") || currentPath.includes("privacy-policy") || currentPath.includes("politique-de-confidentialite")) {
-      legalData = translations.privacyPolicy;
+      legalData = translations.privacyPolicyContent;
     } else if (currentPath.includes("politica-cookies") || currentPath.includes("cookie-policy") || currentPath.includes("politique-de-cookies")) {
       legalData = translations.cookiePolicy;
     }

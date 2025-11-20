@@ -1,62 +1,18 @@
 # Dependencies
 node_modules/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
-# Environment variables
-.env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
 
 # Vercel
 .vercel
 
-# IDE
-.vscode/
-.idea/
-*.swp
-*.swo
-
-# OS
+# OS files
 .DS_Store
 Thumbs.db
 
 # Logs
-logs
 *.log
+npm-debug.log*
 
-# Runtime data
-pids
-*.pid
-*.seed
-*.pid.lock
 
-# Coverage directory used by tools like istanbul
-coverage/
-
-# Build outputs
-dist/
-build/
-
-# Note: Minified files are committed to repo for simplicity
-# If you want to exclude them, uncomment the following:
-# *.min.js
-# *.min.css
-
-# Temporary folders
-tmp/
-temp/
-
-# Video files (large)
-video/
-*.mp4
-*.mov
-*.avi
-*.mkv
-
-# Backup files
-*.bak
-*.backup
+# Video files (large) - but allow optimized video
+videos/*
+!videos/video_optimized.mp4

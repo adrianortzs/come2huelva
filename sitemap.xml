@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  
-  <!-- Homepage -->
   <url>
     <loc>https://www.come2huelva.com/</loc>
-    <lastmod>2025-11-19</lastmod>
+    <lastmod>2025-11-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="es" href="https://www.come2huelva.com/"/>
@@ -13,11 +11,9 @@
     <xhtml:link rel="alternate" hreflang="fr" href="https://www.come2huelva.com/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.come2huelva.com/"/>
   </url>
-  
-  <!-- About Us -->
   <url>
     <loc>https://www.come2huelva.com/about-us.html</loc>
-    <lastmod>2025-11-19</lastmod>
+    <lastmod>2025-11-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="es" href="https://www.come2huelva.com/about-us.html"/>
@@ -25,11 +21,9 @@
     <xhtml:link rel="alternate" hreflang="fr" href="https://www.come2huelva.com/about-us.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.come2huelva.com/about-us.html"/>
   </url>
-  
-  <!-- Legal Notice -->
   <url>
     <loc>https://www.come2huelva.com/aviso-legal.html</loc>
-    <lastmod>2025-11-19</lastmod>
+    <lastmod>2025-11-20</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
     <xhtml:link rel="alternate" hreflang="es" href="https://www.come2huelva.com/aviso-legal.html"/>
@@ -37,11 +31,9 @@
     <xhtml:link rel="alternate" hreflang="fr" href="https://www.come2huelva.com/aviso-legal.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.come2huelva.com/aviso-legal.html"/>
   </url>
-  
-  <!-- Privacy Policy -->
   <url>
     <loc>https://www.come2huelva.com/politica-privacidad.html</loc>
-    <lastmod>2025-11-19</lastmod>
+    <lastmod>2025-11-20</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
     <xhtml:link rel="alternate" hreflang="es" href="https://www.come2huelva.com/politica-privacidad.html"/>
@@ -49,11 +41,9 @@
     <xhtml:link rel="alternate" hreflang="fr" href="https://www.come2huelva.com/politica-privacidad.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.come2huelva.com/politica-privacidad.html"/>
   </url>
-  
-  <!-- Cookie Policy -->
   <url>
     <loc>https://www.come2huelva.com/politica-cookies.html</loc>
-    <lastmod>2025-11-19</lastmod>
+    <lastmod>2025-11-20</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
     <xhtml:link rel="alternate" hreflang="es" href="https://www.come2huelva.com/politica-cookies.html"/>
@@ -61,5 +51,4 @@
     <xhtml:link rel="alternate" hreflang="fr" href="https://www.come2huelva.com/politica-cookies.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.come2huelva.com/politica-cookies.html"/>
   </url>
-
 </urlset>

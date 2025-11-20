@@ -231,7 +231,7 @@ export const translations = {
       "3. Guías locales: Los guías serán personas locales enamoradas de Huelva. Imprescindible para vivir Huelva con su cultura, su historia y sus tradiciones.",
       "Nota: Si buscas recorrer Huelva solo para hacer fotos de los lugares, podemos recomendarte otras agencias o incluso ayudarte a organizar una ruta para hacerlo por tu cuenta. Nuestra propuesta es diferente."
     ],
-    legalNotice: {
+    legalNoticeContent: {
       title: "Aviso Legal",
       sections: [
         {
@@ -304,7 +304,7 @@ export const translations = {
         }
       ]
     },
-    privacyPolicy: {
+    privacyPolicyContent: {
       title: "Política de Privacidad",
       sections: [
         {
@@ -752,7 +752,7 @@ export const translations = {
       "3. Local guides: Our guides are locals who are passionate about Huelva. This is essential to truly experience Huelva's culture, history, and traditions.",
       "Note: If you're just looking to tour Huelva to take photos of the sights, we can recommend other agencies or even help you plan a route to do it on your own. What we offer is different."
     ],
-    legalNotice: {
+    legalNoticeContent: {
       title: "Legal Notice",
       sections: [
         {
@@ -825,7 +825,7 @@ export const translations = {
         }
       ]
     },
-    privacyPolicy: {
+    privacyPolicyContent: {
       title: "Privacy Policy",
       sections: [
         {
@@ -1273,7 +1273,7 @@ export const translations = {
       "3. Guides locaux : Nos guides sont des locaux passionnés par Huelva. C'est essentiel pour vraiment vivre Huelva avec sa culture, son histoire et ses traditions.",
       "Note : Si vous souhaitez parcourir Huelva uniquement pour prendre des photos des lieux, nous pouvons vous recommander d'autres agences ou même vous aider à planifier un itinéraire pour le faire par vous-même. Ce que nous proposons est différent."
     ],
-    legalNotice: {
+    legalNoticeContent: {
       title: "Avis Légal",
       sections: [
         {
@@ -1346,7 +1346,7 @@ export const translations = {
         }
       ]
     },
-    privacyPolicy: {
+    privacyPolicyContent: {
       title: "Politique de Confidentialité",
       sections: [
         {

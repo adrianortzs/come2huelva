@@ -2,6 +2,12 @@
   "version": 2,
   "buildCommand": "npm run build",
   "outputDirectory": ".",
+  "functions": {
+    "api/send-email.js": {
+      "maxDuration": 10,
+      "memory": 1024
+    }
+  },
   "headers": [
     {
       "source": "/(.*)",
@@ -15,8 +21,16 @@
           "value": "DENY"
         },
         {
+          "key": "X-XSS-Protection",
+          "value": "1; mode=block"
+        },
+        {
           "key": "Referrer-Policy",
           "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "geolocation=(), microphone=(), camera=()"
         },
         {
           "key": "Strict-Transport-Security",
@@ -25,15 +39,15 @@
       ]
     },
     {
-      "source": "/sw.js",
+      "source": "/api/(.*)",
       "headers": [
         {
           "key": "Cache-Control",
-          "value": "public, max-age=0, must-revalidate"
+          "value": "no-store, no-cache, must-revalidate, proxy-revalidate"
         },
         {
-          "key": "Service-Worker-Allowed",
-          "value": "/"
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
         }
       ]
     },
@@ -47,7 +61,7 @@
       ]
     },
     {
-      "source": "/(.*)\\.(webp|jpg|jpeg|png|gif|svg|ico|mp4|webm|mp3)",
+      "source": "/(.*)\\.(webp|jpg|ico|mp4)",
       "headers": [
         {
           "key": "Cache-Control",
@@ -67,8 +81,15 @@
   ],
   "rewrites": [
     {
-      "source": "/offline",
-      "destination": "/offline.html"
+      "source": "/api/send-email",
+      "destination": "/api/send-email.js"
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/home",
+      "destination": "/",
+      "permanent": true
     }
   ]
 }
