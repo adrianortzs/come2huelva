@@ -175,11 +175,11 @@ main > section:not(#form) {
   padding: 3rem 5vw;
 }
 
-#bold {
+.bold {
   font-weight: 600;
 }
 
-#italic-yellow {
+.italic-yellow {
   color: var(--gold-brown);
   font-style: italic;
 }
