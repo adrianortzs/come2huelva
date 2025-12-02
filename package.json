@@ -1,6 +1,6 @@
 {
   "name": "come2huelva",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Página web premium de turismo en Huelva, tours con guías locales.",
   "main": "main.js",
   "engines": {
