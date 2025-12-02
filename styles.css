@@ -1652,6 +1652,12 @@ footer .footer-contact {
   font-size: clamp(1.4rem, 0.5vw + 1.2rem, 1.8rem);
 }
 
+footer .footer-contact span.contact-title {
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--gold-brown);
+}
+
 footer .footer-contact span,
 footer .footer-contact a {
   color: var(--light-grey);
@@ -2287,4 +2293,134 @@ footer .footer-bottom p {
   .activity-card img, .gastronomy-card img {
     height: 180px;
   }
+
+  .cookie-banner {
+    padding: 1.5rem;
+  }
+
+  .cookie-banner-content {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .cookie-icon {
+    font-size: 2.4rem;
+  }
+
+  .cookie-text {
+    text-align: center;
+  }
+
+  .cookie-actions {
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+  }
+
+  .cookie-accept {
+    width: 100%;
+  }
+}
+
+/* Cookie Banner Styles */
+.cookie-banner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--white);
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15);
+  z-index: var(--z-modal);
+  padding: 2rem;
+  transform: translateY(100%);
+  transition: transform var(--transition);
+  border-top: 3px solid var(--gold-brown);
+}
+
+.cookie-banner.show {
+  transform: translateY(0);
+}
+
+.cookie-banner-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.cookie-icon {
+  font-size: 3rem;
+  color: var(--gold-brown);
+  flex-shrink: 0;
+}
+
+.cookie-text {
+  flex: 1;
+  min-width: 250px;
+}
+
+.cookie-text p {
+  margin: 0;
+  font-size: clamp(1.4rem, 0.5vw + 1.2rem, 1.6rem);
+  line-height: 1.6;
+  color: var(--ink);
+}
+
+.cookie-text a {
+  color: var(--gold-brown);
+  text-decoration: underline;
+  transition: color var(--transition-fast);
+}
+
+.cookie-text a:hover {
+  color: var(--dark-green);
+}
+
+.cookie-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-shrink: 0;
+}
+
+.cookie-policy-link {
+  color: var(--ink);
+  text-decoration: underline;
+  font-size: clamp(1.4rem, 0.5vw + 1.2rem, 1.6rem);
+  transition: color var(--transition-fast);
+}
+
+.cookie-policy-link:hover {
+  color: var(--gold-brown);
+}
+
+.cookie-accept {
+  background: var(--gold-brown);
+  color: var(--white);
+  border: none;
+  padding: 1rem 2.5rem;
+  font-size: clamp(1.4rem, 0.5vw + 1.2rem, 1.6rem);
+  font-family: var(--font-primary);
+  font-weight: 600;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+}
+
+.cookie-accept:hover {
+  background: var(--dark-green);
+  transform: translateY(-2px);
+  box-shadow: var(--sombra-light);
+}
+
+.cookie-accept:active {
+  transform: translateY(0);
+}
+
+.cookie-accept:focus {
+  outline: 2px solid var(--gold-brown);
+  outline-offset: 2px;
 }

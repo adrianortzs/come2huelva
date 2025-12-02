@@ -1,0 +1,26 @@
+{
+  "name": "Come2Huelva - Tours y Experiencias en Huelva",
+  "short_name": "Come2Huelva",
+  "description": "Descubre Huelva como un local. Tours guiados a Doñana, Minas de Riotinto, El Rocío y más.",
+  "icons": [
+    {
+      "src": "/img/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/img/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "theme_color": "#12271e",
+  "background_color": "#fdfbf7",
+  "display": "standalone",
+  "start_url": "/",
+  "scope": "/",
+  "orientation": "portrait-primary"
+}
+

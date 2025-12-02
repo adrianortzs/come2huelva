@@ -193,6 +193,11 @@ export const translations = {
     privacyConsentLabel: "Acepto la {privacyPolicy} y el {legalNotice}",
     privacyPolicy: "Política de Privacidad",
     legalNotice: "Aviso Legal",
+    cookieBanner: {
+      message: "Utilizamos cookies para mejorar su experiencia de navegación y analizar el tráfico del sitio. Al hacer clic en \"Aceptar\", usted consiente el uso de cookies según nuestra <a href=\"politica-cookies.html\" target=\"_blank\" rel=\"noopener noreferrer\">Política de Cookies</a>.",
+      acceptButton: "Aceptar",
+      policyLink: "Más información"
+    },
     footerContactLabel: "Contacto",
     footerPolicies: [
       "Aviso Legal",
@@ -713,6 +718,11 @@ export const translations = {
     privacyConsentLabel: "I accept the {privacyPolicy} and the {legalNotice}",
     privacyPolicy: "Privacy Policy",
     legalNotice: "Legal Notice",
+    cookieBanner: {
+      message: "We use cookies to enhance your browsing experience and analyze site traffic. By clicking \"Accept\", you consent to the use of cookies according to our <a href=\"politica-cookies.html\" target=\"_blank\" rel=\"noopener noreferrer\">Cookie Policy</a>.",
+      acceptButton: "Accept",
+      policyLink: "Learn more"
+    },
     footerContactLabel: "Contact",
     footerPolicies: [
       "Legal Notice",
@@ -1234,6 +1244,11 @@ export const translations = {
     privacyConsentLabel: "J'accepte la {privacyPolicy} et les {legalNotice}",
     privacyPolicy: "Politique de Confidentialité",
     legalNotice: "Mentions Légales",
+    cookieBanner: {
+      message: "Nous utilisons des cookies pour améliorer votre expérience de navigation et analyser le trafic du site. En cliquant sur \"Accepter\", vous consentez à l'utilisation de cookies conformément à notre <a href=\"politica-cookies.html\" target=\"_blank\" rel=\"noopener noreferrer\">Politique des Cookies</a>.",
+      acceptButton: "Accepter",
+      policyLink: "En savoir plus"
+    },
     footerContactLabel: "Contact",
     footerPolicies: [
       "Mentions Légales",
