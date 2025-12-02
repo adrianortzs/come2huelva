@@ -988,6 +988,44 @@ nav li a:hover {
   .gastronomy-container .carousel-container {
     overflow: visible;
   }
+
+  /* Cookie Banner para tablets y móviles */
+  .cookie-banner {
+    padding: 1.8rem;
+    z-index: 9999;
+  }
+
+  .cookie-banner-content {
+    gap: 1.5rem;
+  }
+
+  .cookie-icon {
+    font-size: 2.8rem;
+  }
+
+  .cookie-text {
+    min-width: 0;
+  }
+
+  .cookie-text p {
+    font-size: clamp(1.3rem, 2vw + 1rem, 1.5rem);
+  }
+
+  .cookie-actions {
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .cookie-policy-link {
+    font-size: clamp(1.3rem, 2vw + 1rem, 1.5rem);
+    -webkit-tap-highlight-color: rgba(175, 141, 84, 0.3);
+  }
+
+  .cookie-accept {
+    padding: 1.1rem 2rem;
+    font-size: clamp(1.4rem, 2vw + 1.1rem, 1.6rem);
+    min-height: 48px;
+  }
 }
 
 .carousel-track {
@@ -2296,6 +2334,7 @@ footer .footer-bottom p {
 
   .cookie-banner {
     padding: 1.5rem;
+    z-index: 9999;
   }
 
   .cookie-banner-content {
@@ -2309,6 +2348,7 @@ footer .footer-bottom p {
 
   .cookie-text {
     text-align: center;
+    min-width: 0;
   }
 
   .cookie-actions {
@@ -2319,6 +2359,16 @@ footer .footer-bottom p {
 
   .cookie-accept {
     width: 100%;
+    padding: 1.2rem 2rem;
+    font-size: 1.6rem;
+    -webkit-tap-highlight-color: rgba(175, 141, 84, 0.3);
+  }
+
+  .cookie-policy-link {
+    display: block;
+    text-align: center;
+    padding: 0.5rem 0;
+    -webkit-tap-highlight-color: rgba(175, 141, 84, 0.3);
   }
 }
 
@@ -2330,11 +2380,14 @@ footer .footer-bottom p {
   right: 0;
   background: var(--white);
   box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15);
-  z-index: var(--z-modal);
+  z-index: 9999;
   padding: 2rem;
   transform: translateY(100%);
   transition: transform var(--transition);
   border-top: 3px solid var(--gold-brown);
+  width: 100%;
+  box-sizing: border-box;
+  -webkit-overflow-scrolling: touch;
 }
 
 .cookie-banner.show {
@@ -2358,7 +2411,7 @@ footer .footer-bottom p {
 
 .cookie-text {
   flex: 1;
-  min-width: 250px;
+  min-width: 0;
 }
 
 .cookie-text p {
@@ -2408,6 +2461,9 @@ footer .footer-bottom p {
   cursor: pointer;
   transition: all var(--transition-fast);
   white-space: nowrap;
+  min-height: 44px;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: rgba(175, 141, 84, 0.3);
 }
 
 .cookie-accept:hover {

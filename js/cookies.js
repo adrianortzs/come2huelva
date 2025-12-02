@@ -75,12 +75,20 @@ class CookieConsent {
     if (!banner) {
       banner = this.createBanner();
       document.body.appendChild(banner);
+      
+      // Asegurar que el banner esté visible en móviles
+      // Forzar un reflow para asegurar que el navegador renderice
+      banner.offsetHeight;
     }
 
     // Mostrar el banner con animación
+    // Reducir el delay en móviles para mejor UX
+    const delay = window.innerWidth <= 768 ? 300 : 500;
     setTimeout(() => {
-      banner.classList.add("show");
-    }, 500);
+      if (banner && !banner.classList.contains("show")) {
+        banner.classList.add("show");
+      }
+    }, delay);
   }
 
   createBanner() {
