@@ -184,6 +184,12 @@ main > section:not(#form) {
   font-style: italic;
 }
 
+.about-us-container .italic-yellow,
+.our-secret-container .italic-yellow {
+  color: var(--gold-brown) !important;
+  font-style: italic;
+}
+
 .reveal {
   opacity: 0;
   transform: translateY(18px);
@@ -2479,4 +2485,130 @@ footer .footer-bottom p {
 .cookie-accept:focus {
   outline: 2px solid var(--gold-brown);
   outline-offset: 2px;
+}
+
+/* 404 Error Page Styles */
+body.error-page {
+  font-family: var(--font-primary);
+  background: var(--light-grey);
+  color: var(--ink);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  margin: 0;
+}
+
+.error-container {
+  max-width: 600px;
+  text-align: center;
+  background: var(--white);
+  padding: 4rem 3rem;
+  border-radius: var(--radius-lg);
+  box-shadow: 0 20px 60px rgba(18, 39, 30, 0.12);
+  border: 1px solid rgba(175, 141, 84, .1);
+}
+
+.error-code {
+  font-size: clamp(6rem, 8vw, 8rem);
+  font-weight: 700;
+  color: var(--gold-brown);
+  line-height: 1;
+  margin-bottom: 1.5rem;
+  font-family: var(--font-secondary);
+  text-shadow: 0 2px 8px rgba(175, 141, 84, 0.2);
+}
+
+.error-container h1 {
+  font-size: clamp(2rem, 3vw, 2.5rem);
+  color: var(--dark-green);
+  margin-bottom: 1.5rem;
+  font-family: var(--font-secondary);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.error-container p {
+  font-size: clamp(1.1rem, 1.5vw, 1.2rem);
+  color: var(--ink);
+  margin-bottom: 2.5rem;
+  line-height: 1.8;
+  opacity: 0.85;
+}
+
+.error-container .btn {
+  display: inline-block;
+  padding: 1rem 2.5rem;
+  background: var(--dark-green);
+  color: var(--white);
+  text-decoration: none;
+  border-radius: 999px;
+  font-size: clamp(1rem, 1.2vw, 1.1rem);
+  font-weight: 600;
+  font-family: var(--font-primary);
+  transition: all var(--transition);
+  box-shadow: 0 4px 16px rgba(18, 39, 30, 0.2);
+  letter-spacing: 0.03em;
+}
+
+.error-container .btn:hover {
+  background: var(--gold-brown);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(175, 141, 84, 0.3);
+}
+
+/* Language selector styles for error page */
+body.error-page .language-selector {
+  position: fixed;
+  top: 2rem;
+  right: 2rem;
+  z-index: 1000;
+}
+
+body.error-page .selected-language {
+  background: var(--white);
+  color: var(--dark-green);
+  border: 1px solid rgba(18, 39, 30, 0.2);
+  box-shadow: 0 4px 16px rgba(18, 39, 30, 0.1);
+}
+
+body.error-page .selected-language:hover {
+  color: var(--gold-brown);
+  border-color: var(--gold-brown);
+  background: var(--white);
+  box-shadow: 0 6px 20px rgba(175, 141, 84, 0.2);
+}
+
+body.error-page .language-options {
+  background: var(--white);
+  border: 1px solid rgba(18, 39, 30, 0.1);
+  box-shadow: 0 8px 32px rgba(18, 39, 30, 0.15);
+}
+
+@media (max-width: 768px) {
+  body.error-page {
+    padding: 1.5rem;
+  }
+  
+  body.error-page .language-selector {
+    top: 1rem;
+    right: 1rem;
+  }
+  
+  .error-container {
+    padding: 3rem 2rem;
+  }
+  
+  .error-code {
+    margin-bottom: 1rem;
+  }
+  
+  .error-container h1 {
+    margin-bottom: 1rem;
+  }
+  
+  .error-container p {
+    margin-bottom: 2rem;
+  }
 }

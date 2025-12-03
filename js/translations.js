@@ -207,6 +207,12 @@ export const translations = {
     footerCtaIndex: "Conócenos",
     footerCtaAbout: "Ver planes",
     footerBottom: "© 2025 Come2Huelva. Todos los derechos reservados.",
+    error404: {
+      title: "Página no encontrada",
+      message: "Lo sentimos, la página que buscas no existe o ha sido movida.",
+      message2: "Vuelve al inicio y descubre las maravillas de Huelva.",
+      button: "Volver al inicio"
+    },
     notifications: {
       success: {"title":"¡Mensaje enviado!","message":"Tu mensaje ha sido enviado correctamente. Te contactaremos pronto."},
       errorTitle: "Error de envío",
@@ -733,6 +739,12 @@ export const translations = {
     footerCtaIndex: "Get to know us",
     footerCtaAbout: "View plans",
     footerBottom: "© 2025 Come2Huelva. All rights reserved.",
+    error404: {
+      title: "Page not found",
+      message: "Sorry, the page you are looking for does not exist or has been moved.",
+      message2: "Return to the homepage and discover the wonders of Huelva.",
+      button: "Back to homepage"
+    },
     notifications: {
       success: {"title":"Message sent!","message":"Your message has been sent successfully. We'll contact you soon."},
       errorTitle: "Sending error",
@@ -1259,6 +1271,12 @@ export const translations = {
     footerCtaIndex: "Faites-nous connaissance",
     footerCtaAbout: "Voir les plans",
     footerBottom: "© 2025 Come2Huelva. Tous droits réservés.",
+    error404: {
+      title: "Page non trouvée",
+      message: "Désolé, la page que vous recherchez n'existe pas ou a été déplacée.",
+      message2: "Retournez à l'accueil et découvrez les merveilles de Huelva.",
+      button: "Retour à l'accueil"
+    },
     notifications: {
       success: {"title":"Message envoyé !","message":"Votre message a été envoyé avec succès. Nous vous contacterons bientôt."},
       errorTitle: "Erreur d'envoi",

@@ -1,5 +1,4 @@
-// { 'IP': [timestamp1, timestamp2, ...], 'IP2': [...] }
-const requestLog = {};
+const requestLog = {}; // { 'IP': [timestamp1, timestamp2, ...], 'IP2': [...] }
 
 // Escapa caracteres peligrosos
 function sanitize(str) {
@@ -18,56 +17,49 @@ function checkRateLimit(ip) {
   const now = Date.now();
   const oneHourAgo = now - (60 * 60 * 1000);
   
-  // Si esta IP no existe, crear array vacío
   if (!requestLog[ip]) requestLog[ip] = [];
-  
-  // Limpia solicitudes antiguas (más de 1 hora)
-  requestLog[ip] = requestLog[ip].filter(timestamp => timestamp > oneHourAgo);
+  requestLog[ip] = requestLog[ip].filter(timestamp => timestamp > oneHourAgo); // Limpia solicitudes antiguas (más de 1 hora)
   
   if (requestLog[ip].length >= 5) return false;
   
-  // Registra nueva solicitud
   requestLog[ip].push(now);
   return true;
 }
 
-// Obtener IP del cliente
 function getClientIp(req) {
   return req.headers['x-forwarded-for']?.split(',')[0] || req.headers['x-real-ip'] || req.socket.remoteAddress || 'unknown';
 }
 
 module.exports = async function handler(req, res) {
-  // CORS Headers
   res.setHeader('Access-Control-Allow-Credentials', true);
   res.setHeader('Access-Control-Allow-Origin', process.env.ALLOWED_ORIGIN || '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
   res.setHeader('Access-Control-Allow-Headers', 'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version');
 
-  // Por seguridad
   if (req.method === 'OPTIONS') {
     res.status(200).end();
     return;
   }
+
   if (req.method !== 'POST')  return res.status(405).json({ error: 'Method not allowed' });
 
   try {
     const clientIp = getClientIp(req);
-    if (!checkRateLimit(clientIp)) return res.status(429).json({ error: 'Too many requests', message: 'Máximo 5 mensajes por hora. Por favor intenta más tarde.', retryAfter: 3600 });
+    if (!checkRateLimit(clientIp)) return res.status(429).json({ error: 'Too many requests', message: 'Máximo 5 mensajes por hora. Por favor intentalo de nuevo más tarde.', retryAfter: 3600 });
 
-    let { name, email, phone, people, message } = req.body; // Sanitizar inputs
+    let { name, email, phone, people, message } = req.body;
     name = sanitize(name);
     email = sanitize(email);
     phone = sanitize(phone);
     people = sanitize(people);
     message = sanitize(message);
 
-    // Validaciones
     if (!name || !email || !phone || !people || !message) return res.status(400).json({ error: 'Missing required fields', required: ['name', 'email', 'phone', 'people', 'message'] });
 
-    if (name.length > 100) return res.status(400).json({ error: 'Name too long (max 100 chars)' });
-    if (phone.length > 20) return res.status(400).json({ error: 'Phone too long (max 20 chars)' });
-    if (people.length > 10) return res.status(400).json({ error: 'People number too long' });
-    if (message.length > 5000) return res.status(400).json({ error: 'Message too long (max 5000 chars)' });
+    if (name.length > 30) return res.status(400).json({ error: 'Name too long (max 30 characters)' });
+    if (phone.length > 20) return res.status(400).json({ error: 'Phone too long (max 20 characters)' });
+    if (people.length > 10) return res.status(400).json({ error: 'Maximum number of people is 10' });
+    if (message.length > 500) return res.status(400).json({ error: 'Message too long (max 500 characters)' });
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) return res.status(400).json({ error: 'Invalid email format' });
@@ -75,7 +67,7 @@ module.exports = async function handler(req, res) {
     const phoneRegex = /^[0-9+\-\s()]+$/;
     if (!phoneRegex.test(phone)) return res.status(400).json({ error: 'Invalid phone format' });
 
-    if (isNaN(people) || people < 1 || people > 100) return res.status(400).json({ error: 'Invalid number of people' });
+    if (isNaN(people) || people < 1 || people > 10) return res.status(400).json({ error: 'Invalid number of people' });
 
     if (!process.env.EMAIL || !process.env.PASSWORD) return res.status(500).json({ error: 'Email service not configured', message: 'Please contact the administrator' });
 
@@ -89,7 +81,6 @@ module.exports = async function handler(req, res) {
       }
     });
 
-    // Configuración del email
     const mailOptions = {
       from: process.env.EMAIL,
       to: process.env.EMAIL,
@@ -129,7 +120,6 @@ module.exports = async function handler(req, res) {
         - Email: ${email}
         - Teléfono: ${phone}
         - Número de personas: ${people}
-
         - Mensaje: ${message}
 
         Detalles del mensaje:

@@ -90,6 +90,7 @@ export class LanguageManager {
     this.updateCTAButtons(translations);
     this.updateFooter(translations);
     this.updateLegalPages(translations);
+    this.updateErrorPage(translations);
   }
 
   updatePlacesOverlays(translations) {
@@ -212,6 +213,20 @@ export class LanguageManager {
     if (footerBottom && translations.footerBottom) {
       updateText(footerBottom, translations.footerBottom);
     }
+  }
+
+  updateErrorPage(translations) {
+    if (!translations.error404) return;
+
+    const titleEl = $("#error-title");
+    const messageEl = $("#error-message");
+    const message2El = $("#error-message-2");
+    const buttonEl = $("#error-button");
+
+    if (titleEl) updateText(titleEl, translations.error404.title);
+    if (messageEl) updateText(messageEl, translations.error404.message);
+    if (message2El) updateText(message2El, translations.error404.message2);
+    if (buttonEl) updateText(buttonEl, translations.error404.button);
   }
 
   closeLangMenu() {

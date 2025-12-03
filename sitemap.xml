@@ -3,7 +3,7 @@
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://www.come2huelva.com/</loc>
-    <lastmod>2025-11-20</lastmod>
+    <lastmod>2025-12-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="es" href="https://www.come2huelva.com/"/>
@@ -12,18 +12,18 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.come2huelva.com/"/>
   </url>
   <url>
-    <loc>https://www.come2huelva.com/about-us.html</loc>
-    <lastmod>2025-11-20</lastmod>
+    <loc>https://www.come2huelva.com/sobre-nosotros.html</loc>
+    <lastmod>2025-12-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.come2huelva.com/about-us.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.come2huelva.com/about-us.html"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://www.come2huelva.com/about-us.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.come2huelva.com/about-us.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.come2huelva.com/sobre-nosotros.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.come2huelva.com/sobre-nosotros.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.come2huelva.com/sobre-nosotros.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.come2huelva.com/sobre-nosotros.html"/>
   </url>
   <url>
     <loc>https://www.come2huelva.com/aviso-legal.html</loc>
-    <lastmod>2025-11-20</lastmod>
+    <lastmod>2025-12-03</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
     <xhtml:link rel="alternate" hreflang="es" href="https://www.come2huelva.com/aviso-legal.html"/>
@@ -33,7 +33,7 @@
   </url>
   <url>
     <loc>https://www.come2huelva.com/politica-privacidad.html</loc>
-    <lastmod>2025-11-20</lastmod>
+    <lastmod>2025-12-03</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
     <xhtml:link rel="alternate" hreflang="es" href="https://www.come2huelva.com/politica-privacidad.html"/>
@@ -43,7 +43,7 @@
   </url>
   <url>
     <loc>https://www.come2huelva.com/politica-cookies.html</loc>
-    <lastmod>2025-11-20</lastmod>
+    <lastmod>2025-12-03</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
     <xhtml:link rel="alternate" hreflang="es" href="https://www.come2huelva.com/politica-cookies.html"/>
