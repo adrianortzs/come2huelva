@@ -67,23 +67,25 @@ export const updateHTML = (element, html) => {
 };
 
 export const updateMultiple = (elements, updates) => {
-  if (Array.isArray(elements) && elements.length > 0 && elements[0].nodeType) {
+  if (!updates) return;
+  
+  if (Array.isArray(elements) && elements.length > 0 && elements[0]?.nodeType) {
     elements.forEach((element, index) => {
-      if (updates && updates[index]) {
+      if (updates[index]) {
         element.textContent = updates[index];
       }
     });
   } else if (typeof elements === "object" && !Array.isArray(elements)) {
     Object.entries(elements).forEach(([selector, update]) => {
       const element = $(selector);
-      if (element) {
-        if (typeof update === "string") {
-          element.textContent = update;
-        } else if (update.html) {
-          element.innerHTML = update.html;
-        } else if (update.text) {
-          element.textContent = update.text;
-        }
+      if (!element) return;
+      
+      if (typeof update === "string") {
+        element.textContent = update;
+      } else if (update?.html) {
+        element.innerHTML = update.html;
+      } else if (update?.text) {
+        element.textContent = update.text;
       }
     });
   }

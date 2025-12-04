@@ -4,6 +4,7 @@ import { initCarousels } from "./carousel.js";
 import { initForm } from "./form.js";
 import { initScrollReveal } from "./scroll-reveal.js";
 import { CookieConsent } from "./cookies.js";
+import { CONFIG } from "./config.js";
 
 class App {
   constructor() {
@@ -23,14 +24,13 @@ class App {
     try {
       this.modules.navigation = new Navigation();
       this.modules.languageManager = initLanguageManager();
-      // Inicializar cookies después del languageManager para obtener el idioma correcto
       setTimeout(() => {
         this.modules.cookieConsent = new CookieConsent();
-        // Sincronizar el idioma del banner con el idioma actual
         if (this.modules.languageManager && this.modules.cookieConsent) {
           this.modules.cookieConsent.setLanguage(this.modules.languageManager.currentLang);
         }
-      }, 100);
+      }, CONFIG.COOKIE_INIT_DELAY || 100);
+      
       this.modules.carousels = initCarousels();
       this.modules.form = initForm();
       this.modules.scrollReveal = initScrollReveal();
@@ -42,8 +42,9 @@ class App {
   }
 
   setupLanguageChangeListener() {
-    // Actualizar el banner de cookies cuando cambie el idioma
-    const originalChangeLanguage = this.modules.languageManager.changeLanguage.bind(this.modules.languageManager);
+    const originalChangeLanguage = this.modules.languageManager.changeLanguage.bind(
+      this.modules.languageManager
+    );
     this.modules.languageManager.changeLanguage = (lang) => {
       originalChangeLanguage(lang);
       if (this.modules.cookieConsent) {

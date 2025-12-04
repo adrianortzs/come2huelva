@@ -6,19 +6,15 @@ class CookieConsent {
   constructor() {
     this.cookieName = "come2huelva_cookie_consent";
     this.cookieExpiryDays = 365;
-    // Obtener el idioma actual del localStorage o usar el predeterminado
     const savedLang = storage.get(CONFIG.STORAGE_KEYS.LANGUAGE);
     this.currentLang = savedLang && translations[savedLang] ? savedLang : CONFIG.DEFAULT_LANGUAGE;
     this.init();
   }
 
   init() {
-    // Verificar si el usuario ya ha aceptado las cookies
     if (this.hasConsent()) {
       return;
     }
-
-    // Esperar a que el DOM esté listo
     if (document.readyState === "loading") {
       document.addEventListener("DOMContentLoaded", () => this.showBanner());
     } else {
@@ -65,24 +61,18 @@ class CookieConsent {
   }
 
   showBanner() {
-    // Verificar nuevamente por si acaso
     if (this.hasConsent()) {
       return;
     }
 
-    // Crear el banner si no existe
     let banner = document.getElementById("cookie-banner");
     if (!banner) {
       banner = this.createBanner();
       document.body.appendChild(banner);
       
-      // Asegurar que el banner esté visible en móviles
-      // Forzar un reflow para asegurar que el navegador renderice
       banner.offsetHeight;
     }
 
-    // Mostrar el banner con animación
-    // Reducir el delay en móviles para mejor UX
     const delay = window.innerWidth <= 768 ? 300 : 500;
     setTimeout(() => {
       if (banner && !banner.classList.contains("show")) {
@@ -116,7 +106,6 @@ class CookieConsent {
       </div>
     `;
 
-    // Añadir evento al botón de aceptar
     const acceptBtn = banner.querySelector(".cookie-accept");
     acceptBtn.addEventListener("click", () => this.acceptCookies());
 
@@ -141,4 +130,3 @@ class CookieConsent {
 }
 
 export { CookieConsent };
-

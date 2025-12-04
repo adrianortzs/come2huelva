@@ -1,37 +1,51 @@
-#Configuración Apache: Seguridad, Aumento de rendimiendo, SEO
+#Para ajustar el comportamineto del servidor sin modificar la configuración principal
 
 <IfModule mod_headers.c>
-  Header always set X-Content-Type-Options nosniff # No permite cambiar el tipo de contenido
-  Header always set X-Frame-Options DENY # No permite que se muestre en un iframe
-  Header always set X-XSS-Protection "1; mode=block" # Bloquea scripts maliciosos
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "DENY"
+  Header always set X-XSS-Protection "1; mode=block"
   Header always set Referrer-Policy "strict-origin-when-cross-origin"
   Header always set Permissions-Policy "geolocation=(), microphone=(), camera=()"
   
-  # Permite solo contenido seguro
-  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net; font-src 'self' https://fonts.gstatic.com https://cdn.jsdelivr.net; img-src 'self' data:; connect-src 'self' https://mihuelva-hw2j.onrender.com; frame-ancestors 'none';"
+  # Define qué recursos pueden cargarse desde dónde
+  # - default-src 'self': Solo recursos del mismo origen por defecto
+  # - script-src: Permite scripts propios, inline (necesario para algunos casos) y cdn.jsdelivr.net
+  # - style-src: Permite estilos propios, inline, Google Fonts y cdn.jsdelivr.net
+  # - font-src: Permite fuentes propias, Google Fonts y cdn.jsdelivr.net
+  # - img-src: Permite imágenes propias y data URIs
+  # - connect-src: Permite conexiones AJAX/fetch a origen propio y API externa
+  # - frame-ancestors 'none': No permite que la página se muestre en iframes
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net; font-src 'self' https://fonts.gstatic.com https://cdn.jsdelivr.net; img-src 'self' data:; connect-src 'self'; frame-ancestors 'none';"
   
-  # HTTPS siempre
   Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+  
+  # Cache-Control: Control de caché del navegador
+  <FilesMatch "\.(jpg|jpeg|png|webp|ico|mp4)$">
+    Header set Cache-Control "max-age=31536000, public, immutable"
+  </FilesMatch>
+  <FilesMatch "\.(css|js)$">
+    Header set Cache-Control "max-age=2592000, public"
+  </FilesMatch>
+  <FilesMatch "\.(html|htm)$">
+    Header set Cache-Control "max-age=0, must-revalidate"
+  </FilesMatch>
 </IfModule>
 
 <IfModule mod_deflate.c>
-  # Comprime archivos para que se descarguen más rápido
-  AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css
+  # Comprime archivos antes de enviarlos al cliente para reducir ancho de banda
+  # Reduce significativamente el tiempo de carga, especialmente en conexiones lentas
+  
+  AddOutputFilterByType DEFLATE text/html text/plain text/css
   AddOutputFilterByType DEFLATE application/javascript application/x-javascript
-  AddOutputFilterByType DEFLATE application/json application/xml
-  AddOutputFilterByType DEFLATE image/svg+xml
 </IfModule>
 
 <IfModule mod_expires.c>
-# Tiempo que el navegador guarda en caché
+  # Activa el sistema de expiración de archivos
   ExpiresActive On
   
   ExpiresByType image/jpeg "access plus 1 year"
-  ExpiresByType image/jpg "access plus 1 year"
   ExpiresByType image/png "access plus 1 year"
-  ExpiresByType image/gif "access plus 1 year"
   ExpiresByType image/webp "access plus 1 year"
-  ExpiresByType image/svg+xml "access plus 1 year"
   ExpiresByType image/x-icon "access plus 1 year"
   
   ExpiresByType text/css "access plus 1 month"
@@ -39,63 +53,49 @@
   
   ExpiresByType text/html "access plus 0 seconds"
   
-  ExpiresByType font/woff "access plus 1 year"
-  ExpiresByType font/woff2 "access plus 1 year"
-  ExpiresByType application/font-woff "access plus 1 year"
-  ExpiresByType application/font-woff2 "access plus 1 year"
-  
   ExpiresByType video/mp4 "access plus 1 year"
-  ExpiresByType video/webm "access plus 1 year"
 </IfModule>
 
-# Bloquea el listado de directorios
-Options -Indexes
-
-# Bloquea archivos ocultos
+# Bloquea el listado de directorios (evita que se vea el contenido de carpetas)
 <FilesMatch "^\.">
-  Order allow,deny
-  Deny from all
+  Require all denied
 </FilesMatch>
 
-# Bloquea archivos de configuración
-<FilesMatch "(package\.json|package-lock\.json|\.gitignore|\.gitattributes)$">
-  Order allow,deny
-  Deny from all
+<FilesMatch "(package\.json|package-lock\.json|\.gitignore|\.gitattributes|\.env|\.htaccess|vercel\.json)$">
+  Require all denied
 </FilesMatch>
 
-# Fuerza HTTPS (descomentar cuando SSL esté activo)
-# <IfModule mod_rewrite.c>
-#   RewriteEngine On
-#   RewriteCond %{HTTPS} off
-#   RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
-# </IfModule>
-
-# Redirige www a no-www
-# <IfModule mod_rewrite.c>
-#   RewriteEngine On
-#   RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
-#   RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
-# </IfModule>
-
-# Le indica a apache que tipo de archivos son
-<IfModule mod_mime.c>
-  AddType application/javascript js
-  
-  AddType image/webp webp
-  AddType image/svg+xml svg
-  
-  AddType font/woff woff
-  AddType font/woff2 woff2
+# Fuerza HTTPS (redirige todas las peticiones HTTP a HTTPS)
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{HTTPS} off
+  RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
 </IfModule>
 
-# Página de error 404
- ErrorDocument 404 /404.html
+# Redirige www a sin www
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+  RewriteRule ^(.*)$ https://%1%{REQUEST_URI} [R=301,L]
+</IfModule>
 
+<IfModule mod_mime.c>
+  # Define tipos MIME para extensiones que Apache podría no reconocer
+  # Asegura que el navegador interprete correctamente los archivos
+  
+  AddType application/javascript js
+  AddType image/webp webp
+</IfModule>
+
+# Define páginas personalizadas para códigos de error HTTP
+ErrorDocument 404 /404.html
+ErrorDocument 403 /404.html
+ErrorDocument 500 /404.html
+
+# Define el charset por defecto para todas las respuestas
 AddDefaultCharset UTF-8
 
-# Mantiene la conexión abierta entre el cliente y el servidor
-<IfModule mod_headers.c>
-  Header set Connection keep-alive
-</IfModule>
-
+# ETags: Identificadores únicos para versiones de archivos
+# MTime Size: Usa fecha de modificación y tamaño para generar ETags
+# Útil para validación de caché
 FileETag MTime Size

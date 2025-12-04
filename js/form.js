@@ -123,26 +123,26 @@ export class ContactForm {
     return isValid;
   }
 
-  showFieldError(e, t) {
-    this.clearFieldError(e);
-    e.classList.add("error");
-    e.classList.remove("success");
+  showFieldError(field, errorMessage) {
+    this.clearFieldError(field);
+    field.classList.add("error");
+    field.classList.remove("success");
 
-    const r = document.createElement("div");
-    r.className = "field-error";
-    r.textContent = t;
-    r.setAttribute("role", "alert");
-    e.parentNode.appendChild(r);
+    const errorElement = document.createElement("div");
+    errorElement.className = "field-error";
+    errorElement.textContent = errorMessage;
+    errorElement.setAttribute("role", "alert");
+    field.parentNode.appendChild(errorElement);
 
-    e.setAttribute("aria-invalid", "true");
-    e.setAttribute("aria-describedby", r.id || `error-${e.id}`);
+    field.setAttribute("aria-invalid", "true");
+    field.setAttribute("aria-describedby", errorElement.id || `error-${field.id}`);
   }
 
-  showFieldSuccess(e) {
-    this.clearFieldError(e);
-    e.classList.add("success");
-    e.classList.remove("error");
-    e.setAttribute("aria-invalid", "false");
+  showFieldSuccess(field) {
+    this.clearFieldError(field);
+    field.classList.add("success");
+    field.classList.remove("error");
+    field.setAttribute("aria-invalid", "false");
   }
 
   clearFieldError(field) {

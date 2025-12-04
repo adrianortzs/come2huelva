@@ -23,6 +23,31 @@ async function minifyCSS(targetFile) {
   console.log(`CSS minified: ${targetFile}  ${formatBytes(before)} → ${formatBytes(after)} (-${(((before - after) / before) * 100).toFixed(1)}%)`);
 }
 
+const MINIFY_OPTIONS = {
+  module: true,
+  compress: {
+    passes: 2,
+    pure_getters: true,
+    unsafe_arrows: true
+  },
+  mangle: true,
+  format: {
+    comments: false
+  }
+};
+
+async function minifyJSFile(filePath, displayName) {
+  if (!fs.existsSync(filePath)) return;
+  const code = fs.readFileSync(filePath, 'utf8');
+  const before = Buffer.byteLength(code);
+  const result = await minify(code, MINIFY_OPTIONS);
+  if (result.code) {
+    fs.writeFileSync(filePath, result.code, 'utf8');
+    const after = Buffer.byteLength(result.code);
+    console.log(`JS minified: ${displayName}  ${formatBytes(before)} → ${formatBytes(after)} (-${(((before - after) / before) * 100).toFixed(1)}%)`);
+  }
+}
+
 async function minifyJS(dir) {
   const dirPath = path.resolve(dir);
   if (!fs.existsSync(dirPath)) return;
@@ -32,45 +57,14 @@ async function minifyJS(dir) {
     const stat = fs.statSync(full);
     if (stat.isDirectory()) continue;
     if (!entry.endsWith('.js')) continue;
-    const code = fs.readFileSync(full, 'utf8');
-    const before = Buffer.byteLength(code);
-    const result = await minify(code, {
-      module: true,
-      compress: {
-        passes: 2,
-        pure_getters: true,
-        unsafe_arrows: true
-      },
-      mangle: true,
-      format: {
-        comments: false
-      }
-    });
-    if (result.code) {
-      fs.writeFileSync(full, result.code, 'utf8');
-      const after = Buffer.byteLength(result.code);
-      console.log(`JS minified: js/${entry}  ${formatBytes(before)} → ${formatBytes(after)} (-${(((before - after) / before) * 100).toFixed(1)}%)`);
-    }
+    await minifyJSFile(full, `js/${entry}`);
   }
 }
 
 async function minifyJSFiles(files) {
   for (const file of files) {
     const jsPath = path.resolve(file);
-    if (!fs.existsSync(jsPath)) continue;
-    const code = fs.readFileSync(jsPath, 'utf8');
-    const before = Buffer.byteLength(code);
-    const result = await minify(code, {
-      module: true,
-      compress: { passes: 2, pure_getters: true, unsafe_arrows: true },
-      mangle: true,
-      format: { comments: false }
-    });
-    if (result.code) {
-      fs.writeFileSync(jsPath, result.code, 'utf8');
-      const after = Buffer.byteLength(result.code);
-      console.log(`JS minified: ${file}  ${formatBytes(before)} → ${formatBytes(after)} (-${(((before - after) / before) * 100).toFixed(1)}%)`);
-    }
+    await minifyJSFile(jsPath, file);
   }
 }
 

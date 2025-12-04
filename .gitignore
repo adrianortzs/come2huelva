@@ -1,18 +1,11 @@
-# Dependencies
 node_modules/
-
-# Vercel
 .vercel
-
-# OS files
+.vscode
+# Archivos del sistema que pueden aparecer
 .DS_Store
 Thumbs.db
-
 # Logs
 *.log
-npm-debug.log*
-
-
-# Video files (large) - but allow optimized video
-videos/*
-!videos/video_optimized.mp4
+# Excepto el video optimizado
+video/*
+!video/optimizado.mp4

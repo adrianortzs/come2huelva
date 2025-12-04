@@ -244,7 +244,6 @@ export class LanguageManager {
     const legalContent = $(".legal-content");
     if (!h1 || !legalContent) return;
 
-    // Detect which legal page we're on
     const currentPath = window.location.pathname;
     let legalData = null;
 
@@ -258,22 +257,18 @@ export class LanguageManager {
 
     if (!legalData) return;
 
-    // Update title
     if (legalData.title) {
       updateText(h1, legalData.title);
     }
 
-    // Clear and rebuild content
     legalContent.innerHTML = "";
 
     if (legalData.sections && legalData.sections.length) {
       legalData.sections.forEach((section) => {
-        // Create h2 for section title
         const h2 = document.createElement("h2");
         updateText(h2, section.title);
         legalContent.appendChild(h2);
 
-        // Add subsections if they exist
         if (section.subsections && section.subsections.length) {
           section.subsections.forEach((subsection) => {
             const h3 = document.createElement("h3");
@@ -290,7 +285,6 @@ export class LanguageManager {
           });
         }
 
-        // Add paragraphs before lists
         if (section.paragraphs && section.paragraphs.length) {
           section.paragraphs.forEach((para) => {
             const p = document.createElement("p");
@@ -299,7 +293,6 @@ export class LanguageManager {
           });
         }
 
-        // Add lists if they exist
         if (section.lists && section.lists.length) {
           section.lists.forEach((listItems) => {
             const ul = document.createElement("ul");
@@ -312,7 +305,6 @@ export class LanguageManager {
           });
         }
 
-        // Add paragraphs after lists
         if (section.paragraphsAfter && section.paragraphsAfter.length) {
           section.paragraphsAfter.forEach((para) => {
             const p = document.createElement("p");
@@ -320,8 +312,7 @@ export class LanguageManager {
             legalContent.appendChild(p);
           });
         }
-
-        // Add table if it exists
+        
         if (section.table) {
           const table = document.createElement("table");
           table.style.width = "100%";

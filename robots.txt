@@ -1,25 +1,17 @@
-# robots.txt for come2huelva.com
-# This file tells search engines which pages they can and cannot crawl
-
-# Allow all search engines to crawl the entire site
+# Indica a los buscadores que pueden rastrear y qué no
+# Todos los buscadores
 User-agent: *
 Allow: /
-
-# Block access to development and system directories
 Disallow: /node_modules/
-Disallow: /.git/
 Disallow: /api/
 Disallow: /.vercel/
-
-# Block access to configuration files
 Disallow: /package.json
 Disallow: /package-lock.json
 Disallow: /vercel.json
 
-# Allow Google Image Bot to crawl images
+# Google Bot Image
 User-agent: Googlebot-Image
 Allow: /img/
-Allow: /videos/
+Allow: /video/
 
-# Sitemap location - tells search engines where to find your sitemap
 Sitemap: https://www.come2huelva.com/sitemap.xml

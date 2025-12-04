@@ -35,8 +35,12 @@
           "value": "geolocation=(), microphone=(), camera=()"
         },
         {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net; font-src 'self' https://fonts.gstatic.com https://cdn.jsdelivr.net; img-src 'self' data:; connect-src 'self'; frame-ancestors 'none';"
+        },
+        {
           "key": "Strict-Transport-Security",
-          "value": "max-age=63072000; includeSubDomains; preload"
+          "value": "max-age=31536000; includeSubDomains; preload"
         }
       ]
     },
@@ -45,7 +49,7 @@
       "headers": [
         {
           "key": "Cache-Control",
-          "value": "no-store, no-cache, must-revalidate, proxy-revalidate"
+          "value": "no-store, no-cache, must-revalidate"
         },
         {
           "key": "X-Content-Type-Options",
@@ -54,7 +58,7 @@
       ]
     },
     {
-      "source": "/(.*)\\.(webp|jpg|ico|mp4)",
+      "source": "/(.*)\\.(jpg|jpeg|png|webp|ico|mp4)$",
       "headers": [
         {
           "key": "Cache-Control",
@@ -63,44 +67,20 @@
       ]
     },
     {
-      "source": "/(.*)\\.(html)",
+      "source": "/(.*)\\.(css|js)$",
       "headers": [
         {
           "key": "Cache-Control",
-          "value": "no-cache, no-store, must-revalidate, proxy-revalidate, max-age=0, s-maxage=0"
-        },
-        {
-          "key": "Pragma",
-          "value": "no-cache"
-        },
-        {
-          "key": "Expires",
-          "value": "0"
-        },
-        {
-          "key": "X-Cache-Control",
-          "value": "no-cache"
+          "value": "public, max-age=2592000"
         }
       ]
     },
     {
-      "source": "/(.*)\\.(css|js)",
+      "source": "/(.*)\\.(html|htm)$",
       "headers": [
         {
           "key": "Cache-Control",
-          "value": "no-cache, no-store, must-revalidate, proxy-revalidate, max-age=0"
-        },
-        {
-          "key": "Pragma",
-          "value": "no-cache"
-        },
-        {
-          "key": "Expires",
-          "value": "0"
-        },
-        {
-          "key": "X-Cache-Control",
-          "value": "no-cache"
+          "value": "no-cache, must-revalidate, max-age=0"
         }
       ]
     }

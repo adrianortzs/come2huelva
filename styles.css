@@ -41,7 +41,7 @@ html {
 body {
   background: var(--light-grey);
   color: var(--ink);
-  font-family: Source Sans Pro, sans-serif;
+  font-family: var(--font-primary);
   margin: 0;
   padding: 0;
   -webkit-font-smoothing: antialiased;
@@ -63,18 +63,26 @@ body {
   }
 }
 
-@media (prefers-reduced-motion:reduce) {
+@media (prefers-reduced-motion: reduce) {
   *, :after, :before {
-    animation-duration: .01ms!important;
-    animation-iteration-count: 1!important;
-    scroll-behavior: auto!important;
-    transition-duration: .01ms!important;
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
   }
 }
 
-.about-us-container h1, .activities-container h1, .gastronomy-container h1, .form h1, .opinions h1, .our-secret-container h1, .place-container h1, .plans-container h1 {
+.section-title,
+.about-us-container h1,
+.activities-container h1,
+.gastronomy-container h1,
+.form h1,
+.opinions h1,
+.our-secret-container h1,
+.place-container h1,
+.plans-container h1 {
   color: var(--ink);
-  font-family: Cormorant Garamond, serif;
+  font-family: var(--font-secondary);
   font-size: clamp(2.2rem, 1.3vw + 1.6rem, 2.8rem);
   font-weight: 700;
   letter-spacing: .12rem;
@@ -84,19 +92,12 @@ body {
   position: relative;
 }
 
-.about-us-container span, .our-secret-container span, .plans-container span {
-  color: var(--ink);
-  display: block;
-  font-family: var(--font-primary);
-  font-size: clamp(1.6rem, .7vw + 1.3rem, 2rem);
-  line-height: 1.8;
-  margin: 0;
-  max-width: 100%;
-  text-align: justify;
-  text-align-last: left;
-}
-
-.place-container span {
+.about-us-container span,
+.our-secret-container span,
+.plans-container span,
+.place-container span,
+.activities-container span,
+.gastronomy-container span {
   color: var(--ink);
   display: block;
   font-family: var(--font-primary);
@@ -122,41 +123,23 @@ body {
   margin-top: 1.2rem;
 }
 
-.activities-container span,
-.activities-container span#bold,
-.gastronomy-container span,
-.gastronomy-container span#bold {
-  color: var(--ink);
-  display: block;
-  font-family: var(--font-primary);
-  font-size: clamp(1.6rem, .7vw + 1.3rem, 2rem);
-  line-height: 1.8;
-  margin: 0;
-  max-width: 100%;
-  text-align: justify;
-  text-align-last: left;
+.activities-container span.bold,
+.gastronomy-container span.bold {
+  font-weight: 600;
 }
 
-.activities-container span#italic-yellow,
-.gastronomy-container span#italic-yellow {
+.activities-container span.italic-yellow,
+.gastronomy-container span.italic-yellow {
   color: var(--gold-brown);
-  display: block;
-  font-family: var(--font-primary);
-  font-size: clamp(1.6rem, .7vw + 1.3rem, 2rem);
-  line-height: 1.8;
-  margin: 0;
-  max-width: 100%;
-  margin-top: 1.2rem;
-  text-align: justify;
-  text-align-last: left;
   font-style: italic;
   font-weight: 500;
+  margin-top: 1.2rem;
 }
 
 .activities-container .carousel-container + span,
-.activities-container .carousel-container + span#bold,
+.activities-container .carousel-container + span.bold,
 .gastronomy-container .carousel-container + span,
-.gastronomy-container .carousel-container + span#bold {
+.gastronomy-container .carousel-container + span.bold {
   margin-top: 3.5rem;
 }
 
@@ -184,9 +167,9 @@ main > section:not(#form) {
   font-style: italic;
 }
 
-.about-us-container .italic-yellow,
-.our-secret-container .italic-yellow {
-  color: var(--gold-brown) !important;
+.about-us-container span.italic-yellow,
+.our-secret-container span.italic-yellow {
+  color: var(--gold-brown);
   font-style: italic;
 }
 
@@ -200,10 +183,6 @@ main > section:not(#form) {
   opacity: 1;
   transform: translateY(0);
 }
-
-
-/* TOAST STYLES */
-
 
 .toast-container {
   pointer-events: none;
@@ -259,7 +238,7 @@ main > section:not(#form) {
 
 .toast-title {
   color: var(--ink);
-  font-family: Cormorant Garamond, serif;
+  font-family: var(--font-secondary);
   font-size: 1.8rem;
   font-weight: 700;
   margin-bottom: .3rem;
@@ -356,10 +335,6 @@ main > section:not(#form) {
   }
 }
 
-
-/* HEADER STYLES */
-
-
 header {
   align-items: center;
   background-color: var(--dark-green);
@@ -433,10 +408,14 @@ nav li a:hover {
 .header-cta {
   border: 1px solid rgba(175, 141, 84, .6);
   border-radius: 999px;
-  color: var(--gold-brown)!important;
+  color: var(--gold-brown);
   font-size: clamp(1.5rem, .55vw + 1.3rem, 1.9rem);
   padding: 0.8rem 2.2rem;
   transition: background var(--transition), color var(--transition), box-shadow var(--transition), transform var(--transition);
+}
+
+nav .header-cta {
+  color: var(--gold-brown);
 }
 
 .header-cta:hover {
@@ -556,10 +535,6 @@ nav li a:hover {
   display: block;
 }
 
-
-/* VIDEO STYLES */
-
-
 .video-container {
   padding: 4rem 10vw;
   position: relative;
@@ -602,10 +577,6 @@ nav li a:hover {
   object-fit: cover;
   background: #000;
 }
-
-
-/* INTRODUCTION STYLES */
-
 
 .introduction-container {
   background: var(--white);
@@ -710,9 +681,6 @@ nav li a:hover {
   position: relative;
   text-transform: uppercase;
 }
-
-
-/* PLACES */
 
 .place-container {
   padding: 4rem 10vw;
@@ -859,7 +827,6 @@ nav li a:hover {
   opacity: 1;
   overflow: visible;
   padding: 4rem 5vw 3.5rem;
-  padding-bottom: 3.5rem;
   position: absolute;
   right: auto;
   text-align: left;
@@ -876,7 +843,6 @@ nav li a:hover {
 
 .place:hover .overlay {
   padding: 5rem 5vw 4.5rem;
-  padding-bottom: 4.5rem;
   backdrop-filter: blur(4px);
 }
 
@@ -932,10 +898,6 @@ nav li a:hover {
   text-shadow: 0 1px 4px rgba(175, 141, 84, 0.3);
 }
 
-
-/* ACTIVITIES AND GASTRONOMY STYLES */
-
-
 .activities-container, .gastronomy-container {
   padding: 4rem 10vw;
   margin: 0 auto;
@@ -987,51 +949,6 @@ nav li a:hover {
 .activities-container .carousel-container,
 .gastronomy-container .carousel-container {
   position: relative;
-}
-
-@media (max-width: 768px) {
-  .activities-container .carousel-container,
-  .gastronomy-container .carousel-container {
-    overflow: visible;
-  }
-
-  /* Cookie Banner para tablets y móviles */
-  .cookie-banner {
-    padding: 1.8rem;
-    z-index: 9999;
-  }
-
-  .cookie-banner-content {
-    gap: 1.5rem;
-  }
-
-  .cookie-icon {
-    font-size: 2.8rem;
-  }
-
-  .cookie-text {
-    min-width: 0;
-  }
-
-  .cookie-text p {
-    font-size: clamp(1.3rem, 2vw + 1rem, 1.5rem);
-  }
-
-  .cookie-actions {
-    flex-wrap: wrap;
-    gap: 1rem;
-  }
-
-  .cookie-policy-link {
-    font-size: clamp(1.3rem, 2vw + 1rem, 1.5rem);
-    -webkit-tap-highlight-color: rgba(175, 141, 84, 0.3);
-  }
-
-  .cookie-accept {
-    padding: 1.1rem 2rem;
-    font-size: clamp(1.4rem, 2vw + 1.1rem, 1.6rem);
-    min-height: 48px;
-  }
 }
 
 .carousel-track {
@@ -1229,10 +1146,6 @@ nav li a:hover {
   box-shadow: 0 6px 20px rgba(18, 39, 30, .2);
 }
 
-
-/* PLANS STYLES */
-
-
 .plans-container {
   position: relative;
   padding: 4rem 10vw;
@@ -1353,10 +1266,6 @@ nav li a:hover {
   transform: translateY(-1px);
 }
 
-
-/* OPINIONS STYLES */
-
-
 .opinions {
   padding-top: 0;
   position: relative;
@@ -1453,10 +1362,6 @@ nav li a:hover {
   color: var(--gold-brown);
   font-weight: 400;
 }
-
-
-/* FORM STYLES */
-
 
 .form-container {
   width: 100%;
@@ -1632,10 +1537,6 @@ nav li a:hover {
   transform: translateY(-1px);
 }
 
-
-/* FOOTER STYLES */
-
-
 footer {
   background-color: var(--dark-green);
   border-bottom: .3rem solid var(--gold-brown);
@@ -1756,9 +1657,6 @@ footer .footer-bottom p {
   margin: 0;
 }
 
-
-/* LEGAL PAGES STYLES */
-
 .legal-container {
   padding: 6rem 5vw;
   margin: 0 auto;
@@ -1876,33 +1774,6 @@ footer .footer-bottom p {
   color: var(--ink);
 }
 
-@media (max-width: 768px) {
-  .legal-container {
-    padding: 4rem 4vw;
-  }
-
-  .legal-content {
-    padding: 2.5rem 2rem;
-  }
-
-  .legal-content h2 {
-    margin-top: 2rem;
-  }
-
-  .legal-content table {
-    font-size: 1.2rem;
-  }
-
-  .legal-content table th,
-  .legal-content table td {
-    padding: 0.8rem;
-  }
-}
-
-
-/* ABOUT US STYLES */
-
-
 .about-us-container {
   border: 1px solid rgba(175, 141, 84, .1);
   box-shadow: 0 8px 32px rgba(18, 39, 30, .12);
@@ -1967,7 +1838,210 @@ footer .footer-bottom p {
   margin-top: 0.8rem;
 }
 
+.cookie-banner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--white);
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15);
+  z-index: 9999;
+  padding: 2rem;
+  transform: translateY(100%);
+  transition: transform var(--transition);
+  border-top: 3px solid var(--gold-brown);
+  width: 100%;
+  box-sizing: border-box;
+  -webkit-overflow-scrolling: touch;
+}
 
+.cookie-banner.show {
+  transform: translateY(0);
+}
+
+.cookie-banner-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.cookie-icon {
+  font-size: 3rem;
+  color: var(--gold-brown);
+  flex-shrink: 0;
+}
+
+.cookie-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.cookie-text p {
+  margin: 0;
+  font-size: clamp(1.4rem, 0.5vw + 1.2rem, 1.6rem);
+  line-height: 1.6;
+  color: var(--ink);
+}
+
+.cookie-text a {
+  color: var(--gold-brown);
+  text-decoration: underline;
+  transition: color var(--transition-fast);
+}
+
+.cookie-text a:hover {
+  color: var(--dark-green);
+}
+
+.cookie-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-shrink: 0;
+}
+
+.cookie-policy-link {
+  color: var(--ink);
+  text-decoration: underline;
+  font-size: clamp(1.4rem, 0.5vw + 1.2rem, 1.6rem);
+  transition: color var(--transition-fast);
+}
+
+.cookie-policy-link:hover {
+  color: var(--gold-brown);
+}
+
+.cookie-accept {
+  background: var(--gold-brown);
+  color: var(--white);
+  border: none;
+  padding: 1rem 2.5rem;
+  font-size: clamp(1.4rem, 0.5vw + 1.2rem, 1.6rem);
+  font-family: var(--font-primary);
+  font-weight: 600;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+  min-height: 44px;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: rgba(175, 141, 84, 0.3);
+}
+
+.cookie-accept:hover {
+  background: var(--dark-green);
+  transform: translateY(-2px);
+  box-shadow: var(--sombra-light);
+}
+
+.cookie-accept:active {
+  transform: translateY(0);
+}
+
+.cookie-accept:focus {
+  outline: 2px solid var(--gold-brown);
+  outline-offset: 2px;
+}
+
+body.error-page {
+  font-family: var(--font-primary);
+  background: var(--light-grey);
+  color: var(--ink);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  margin: 0;
+}
+
+.error-container {
+  max-width: 600px;
+  text-align: center;
+  background: var(--white);
+  padding: 4rem 3rem;
+  border-radius: var(--radius-lg);
+  box-shadow: 0 20px 60px rgba(18, 39, 30, 0.12);
+  border: 1px solid rgba(175, 141, 84, .1);
+}
+
+.error-code {
+  font-size: clamp(6rem, 8vw, 8rem);
+  font-weight: 700;
+  color: var(--gold-brown);
+  line-height: 1;
+  margin-bottom: 1.5rem;
+  font-family: var(--font-secondary);
+  text-shadow: 0 2px 8px rgba(175, 141, 84, 0.2);
+}
+
+.error-container h1 {
+  font-size: clamp(2rem, 3vw, 2.5rem);
+  color: var(--dark-green);
+  margin-bottom: 1.5rem;
+  font-family: var(--font-secondary);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.error-container p {
+  font-size: clamp(1.1rem, 1.5vw, 1.2rem);
+  color: var(--ink);
+  margin-bottom: 2.5rem;
+  line-height: 1.8;
+  opacity: 0.85;
+}
+
+.error-container .btn {
+  display: inline-block;
+  padding: 1rem 2.5rem;
+  background: var(--dark-green);
+  color: var(--white);
+  text-decoration: none;
+  border-radius: 999px;
+  font-size: clamp(1rem, 1.2vw, 1.1rem);
+  font-weight: 600;
+  font-family: var(--font-primary);
+  transition: all var(--transition);
+  box-shadow: 0 4px 16px rgba(18, 39, 30, 0.2);
+  letter-spacing: 0.03em;
+}
+
+.error-container .btn:hover {
+  background: var(--gold-brown);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(175, 141, 84, 0.3);
+}
+
+body.error-page .language-selector {
+  position: fixed;
+  top: 2rem;
+  right: 2rem;
+  z-index: 1000;
+}
+
+body.error-page .selected-language {
+  background: var(--white);
+  color: var(--dark-green);
+  border: 1px solid rgba(18, 39, 30, 0.2);
+  box-shadow: 0 4px 16px rgba(18, 39, 30, 0.1);
+}
+
+body.error-page .selected-language:hover {
+  color: var(--gold-brown);
+  border-color: var(--gold-brown);
+  background: var(--white);
+  box-shadow: 0 6px 20px rgba(175, 141, 84, 0.2);
+}
+
+body.error-page .language-options {
+  background: var(--white);
+  border: 1px solid rgba(18, 39, 30, 0.1);
+  box-shadow: 0 8px 32px rgba(18, 39, 30, 0.15);
+}
 
 @media (min-width: 1400px) {
   main > section:not(#form) {
@@ -1990,7 +2064,6 @@ footer .footer-bottom p {
     max-width: 1400px;
   }
 }
-
 
 @media (max-width: 768px) {
   html {
@@ -2095,9 +2168,9 @@ footer .footer-bottom p {
     color: var(--ink);
   }
 
-  .header-cta {
+  nav .header-cta {
     border: none;
-    color: var(--ink) !important;
+    color: var(--ink);
     padding: 1rem 2rem;
   }
 
@@ -2109,6 +2182,11 @@ footer .footer-bottom p {
   main > section {
     margin: 2rem auto;
     padding: 2rem 4vw;
+  }
+
+  .activities-container .carousel-container,
+  .gastronomy-container .carousel-container {
+    overflow: visible;
   }
 
   .place-container,
@@ -2145,9 +2223,9 @@ footer .footer-bottom p {
   .carousel-track.gastronomy .carousel-slide,
   .carousel-track.plans .carousel-slide,
   .carousel-track.opinions .carousel-slide {
-    min-width: 100% !important;
-    flex: 0 0 100% !important;
-    max-width: 100% !important;
+    min-width: 100%;
+    flex: 0 0 100%;
+    max-width: 100%;
     padding: 0 1rem;
     scroll-snap-align: start;
     scroll-snap-stop: always;
@@ -2158,26 +2236,27 @@ footer .footer-bottom p {
   }
 
   .carousel-track.opinions .carousel-slide {
-    min-width: 100% !important;
-    flex: 0 0 100% !important;
+    min-width: 100%;
+    flex: 0 0 100%;
     opacity: 1;
     transform: scale(1);
   }
 
-  .activity-card, .gastronomy-card, .plan_card {
+  .activity-card,
+  .gastronomy-card,
+  .plan_card,
+  .opinion-card {
     margin: 0 auto;
     max-width: 90vw;
     width: 100%;
-    box-shadow: none !important;
+    box-shadow: none;
   }
 
-  .activity-card:hover, .gastronomy-card:hover,
-  .plan_card:hover, .opinion-card:hover {
-    box-shadow: none !important;
-  }
-
-  .opinion-card {
-    box-shadow: none !important;
+  .activity-card:hover,
+  .gastronomy-card:hover,
+  .plan_card:hover,
+  .opinion-card:hover {
+    box-shadow: none;
   }
 
   .activity-card img, .gastronomy-card img {
@@ -2300,7 +2379,7 @@ footer .footer-bottom p {
   .gastronomy-container .carousel-buttons-wrapper,
   .plans-container .prev-btn-plans,
   .plans-container .next-btn-plans {
-    display: none !important;
+    display: none;
   }
 
   .carousel-btn {
@@ -2309,6 +2388,88 @@ footer .footer-bottom p {
     width: 3rem;
   }
 
+  .cookie-banner {
+    padding: 1.8rem;
+    z-index: 9999;
+  }
+
+  .cookie-banner-content {
+    gap: 1.5rem;
+  }
+
+  .cookie-icon {
+    font-size: 2.8rem;
+  }
+
+  .cookie-text {
+    min-width: 0;
+  }
+
+  .cookie-text p {
+    font-size: clamp(1.3rem, 2vw + 1rem, 1.5rem);
+  }
+
+  .cookie-actions {
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .cookie-policy-link {
+    font-size: clamp(1.3rem, 2vw + 1rem, 1.5rem);
+    -webkit-tap-highlight-color: rgba(175, 141, 84, 0.3);
+  }
+
+  .cookie-accept {
+    padding: 1.1rem 2rem;
+    font-size: clamp(1.4rem, 2vw + 1.1rem, 1.6rem);
+    min-height: 48px;
+  }
+
+  .legal-container {
+    padding: 4rem 4vw;
+  }
+
+  .legal-content {
+    padding: 2.5rem 2rem;
+  }
+
+  .legal-content h2 {
+    margin-top: 2rem;
+  }
+
+  .legal-content table {
+    font-size: 1.2rem;
+  }
+
+  .legal-content table th,
+  .legal-content table td {
+    padding: 0.8rem;
+  }
+
+  body.error-page {
+    padding: 1.5rem;
+  }
+  
+  body.error-page .language-selector {
+    top: 1rem;
+    right: 1rem;
+  }
+  
+  .error-container {
+    padding: 3rem 2rem;
+  }
+  
+  .error-code {
+    margin-bottom: 1rem;
+  }
+  
+  .error-container h1 {
+    margin-bottom: 1rem;
+  }
+  
+  .error-container p {
+    margin-bottom: 2rem;
+  }
 }
 
 @media (max-width: 450px) {
@@ -2375,240 +2536,5 @@ footer .footer-bottom p {
     text-align: center;
     padding: 0.5rem 0;
     -webkit-tap-highlight-color: rgba(175, 141, 84, 0.3);
-  }
-}
-
-/* Cookie Banner Styles */
-.cookie-banner {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: var(--white);
-  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15);
-  z-index: 9999;
-  padding: 2rem;
-  transform: translateY(100%);
-  transition: transform var(--transition);
-  border-top: 3px solid var(--gold-brown);
-  width: 100%;
-  box-sizing: border-box;
-  -webkit-overflow-scrolling: touch;
-}
-
-.cookie-banner.show {
-  transform: translateY(0);
-}
-
-.cookie-banner-content {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  gap: 2rem;
-  flex-wrap: wrap;
-}
-
-.cookie-icon {
-  font-size: 3rem;
-  color: var(--gold-brown);
-  flex-shrink: 0;
-}
-
-.cookie-text {
-  flex: 1;
-  min-width: 0;
-}
-
-.cookie-text p {
-  margin: 0;
-  font-size: clamp(1.4rem, 0.5vw + 1.2rem, 1.6rem);
-  line-height: 1.6;
-  color: var(--ink);
-}
-
-.cookie-text a {
-  color: var(--gold-brown);
-  text-decoration: underline;
-  transition: color var(--transition-fast);
-}
-
-.cookie-text a:hover {
-  color: var(--dark-green);
-}
-
-.cookie-actions {
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
-  flex-shrink: 0;
-}
-
-.cookie-policy-link {
-  color: var(--ink);
-  text-decoration: underline;
-  font-size: clamp(1.4rem, 0.5vw + 1.2rem, 1.6rem);
-  transition: color var(--transition-fast);
-}
-
-.cookie-policy-link:hover {
-  color: var(--gold-brown);
-}
-
-.cookie-accept {
-  background: var(--gold-brown);
-  color: var(--white);
-  border: none;
-  padding: 1rem 2.5rem;
-  font-size: clamp(1.4rem, 0.5vw + 1.2rem, 1.6rem);
-  font-family: var(--font-primary);
-  font-weight: 600;
-  border-radius: var(--radius-md);
-  cursor: pointer;
-  transition: all var(--transition-fast);
-  white-space: nowrap;
-  min-height: 44px;
-  touch-action: manipulation;
-  -webkit-tap-highlight-color: rgba(175, 141, 84, 0.3);
-}
-
-.cookie-accept:hover {
-  background: var(--dark-green);
-  transform: translateY(-2px);
-  box-shadow: var(--sombra-light);
-}
-
-.cookie-accept:active {
-  transform: translateY(0);
-}
-
-.cookie-accept:focus {
-  outline: 2px solid var(--gold-brown);
-  outline-offset: 2px;
-}
-
-/* 404 Error Page Styles */
-body.error-page {
-  font-family: var(--font-primary);
-  background: var(--light-grey);
-  color: var(--ink);
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 2rem;
-  margin: 0;
-}
-
-.error-container {
-  max-width: 600px;
-  text-align: center;
-  background: var(--white);
-  padding: 4rem 3rem;
-  border-radius: var(--radius-lg);
-  box-shadow: 0 20px 60px rgba(18, 39, 30, 0.12);
-  border: 1px solid rgba(175, 141, 84, .1);
-}
-
-.error-code {
-  font-size: clamp(6rem, 8vw, 8rem);
-  font-weight: 700;
-  color: var(--gold-brown);
-  line-height: 1;
-  margin-bottom: 1.5rem;
-  font-family: var(--font-secondary);
-  text-shadow: 0 2px 8px rgba(175, 141, 84, 0.2);
-}
-
-.error-container h1 {
-  font-size: clamp(2rem, 3vw, 2.5rem);
-  color: var(--dark-green);
-  margin-bottom: 1.5rem;
-  font-family: var(--font-secondary);
-  font-weight: 700;
-  letter-spacing: 0.05em;
-}
-
-.error-container p {
-  font-size: clamp(1.1rem, 1.5vw, 1.2rem);
-  color: var(--ink);
-  margin-bottom: 2.5rem;
-  line-height: 1.8;
-  opacity: 0.85;
-}
-
-.error-container .btn {
-  display: inline-block;
-  padding: 1rem 2.5rem;
-  background: var(--dark-green);
-  color: var(--white);
-  text-decoration: none;
-  border-radius: 999px;
-  font-size: clamp(1rem, 1.2vw, 1.1rem);
-  font-weight: 600;
-  font-family: var(--font-primary);
-  transition: all var(--transition);
-  box-shadow: 0 4px 16px rgba(18, 39, 30, 0.2);
-  letter-spacing: 0.03em;
-}
-
-.error-container .btn:hover {
-  background: var(--gold-brown);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(175, 141, 84, 0.3);
-}
-
-/* Language selector styles for error page */
-body.error-page .language-selector {
-  position: fixed;
-  top: 2rem;
-  right: 2rem;
-  z-index: 1000;
-}
-
-body.error-page .selected-language {
-  background: var(--white);
-  color: var(--dark-green);
-  border: 1px solid rgba(18, 39, 30, 0.2);
-  box-shadow: 0 4px 16px rgba(18, 39, 30, 0.1);
-}
-
-body.error-page .selected-language:hover {
-  color: var(--gold-brown);
-  border-color: var(--gold-brown);
-  background: var(--white);
-  box-shadow: 0 6px 20px rgba(175, 141, 84, 0.2);
-}
-
-body.error-page .language-options {
-  background: var(--white);
-  border: 1px solid rgba(18, 39, 30, 0.1);
-  box-shadow: 0 8px 32px rgba(18, 39, 30, 0.15);
-}
-
-@media (max-width: 768px) {
-  body.error-page {
-    padding: 1.5rem;
-  }
-  
-  body.error-page .language-selector {
-    top: 1rem;
-    right: 1rem;
-  }
-  
-  .error-container {
-    padding: 3rem 2rem;
-  }
-  
-  .error-code {
-    margin-bottom: 1rem;
-  }
-  
-  .error-container h1 {
-    margin-bottom: 1rem;
-  }
-  
-  .error-container p {
-    margin-bottom: 2rem;
   }
 }
