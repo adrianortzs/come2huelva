@@ -89,6 +89,10 @@
     {
       "source": "/api/send-email",
       "destination": "/api/send-email.js"
+    },
+    {
+      "source": "/favicon.ico",
+      "destination": "/img/favicon.ico"
     }
   ],
   "redirects": [
