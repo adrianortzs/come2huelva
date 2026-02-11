@@ -34,16 +34,88 @@ export class Carousel {
         this.isDragging = false;
         this.startX = 0;
         this.scrollLeft = 0;
+        this.isVisible = true;
+        this._visibilityObserver = null;
         this.init();
       }
     }
   }
 
   init() {
+    this.setupVisibilityObserver();
     this.setupEventListeners();
     this.updateActiveSlide();
     this.updatePosition();
     if (this.auto) this.startAuto();
+  }
+
+  /**
+   * Observa si el carrusel está visible en el viewport.
+   * Pausa el auto-scroll cuando sale y re-sincroniza al volver.
+   */
+  setupVisibilityObserver() {
+    const target = this._getScrollContainer() || this.track;
+    if (!target || !("IntersectionObserver" in window)) return;
+
+    this._visibilityObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const wasVisible = this.isVisible;
+          this.isVisible = entry.isIntersecting;
+
+          if (!this.isVisible && wasVisible) {
+            // Carousel acaba de salir del viewport: pausar auto-scroll
+            this.stopAuto();
+          } else if (this.isVisible && !wasVisible) {
+            // Carousel acaba de volver al viewport: re-sincronizar posición
+            this._syncScrollPosition();
+            if (this.auto) this.startAuto();
+          }
+        });
+      },
+      { threshold: 0.05 }
+    );
+
+    this._visibilityObserver.observe(target);
+  }
+
+  /**
+   * Obtiene el contenedor scrollable del carrusel.
+   */
+  _getScrollContainer() {
+    if (this._isPlacesCarousel()) {
+      return this.track.closest(".places-carousel-container");
+    }
+    if (this._isOpinionsCarousel()) {
+      return this.track.closest(".opinions-carousel-container");
+    }
+    if (this._isMobile() && this.enableDragScroll) {
+      return this.track;
+    }
+    return null;
+  }
+
+  /**
+   * Re-sincroniza la posición del scroll con el currentIndex actual.
+   * Se llama cuando el carrusel vuelve a ser visible.
+   */
+  _syncScrollPosition() {
+    const usesScrollPositioning = this.enableDragScroll &&
+      (this._isPlacesCarousel() || this._isOpinionsCarousel() || this._isMobile());
+
+    if (usesScrollPositioning) {
+      const container = this._getScrollContainer();
+      if (container) {
+        const stepSize = this.getStepSize();
+        const targetScroll = this.currentIndex * stepSize;
+        // Usar scrollTo instant para evitar conflicto con scroll-snap
+        container.scrollTo({ left: targetScroll, behavior: "instant" });
+      }
+    } else {
+      // Para desktop con transform, simplemente re-aplicar
+      this.updatePosition();
+    }
+    this.updateActiveSlide();
   }
 
   _isPlacesCarousel() {
@@ -98,8 +170,10 @@ export class Carousel {
     
     const resizeHandler = debounce(() => {
       this._dimensionsDirty = true;
-      this.updatePosition();
-      if (this.auto) this.startAuto();
+      if (this.isVisible) {
+        this._syncScrollPosition();
+      }
+      if (this.auto && this.isVisible) this.startAuto();
     }, CONFIG.CAROUSEL.RESIZE_DEBOUNCE);
     this.boundHandlers.set("resize", resizeHandler);
     window.addEventListener("resize", resizeHandler);
@@ -109,7 +183,7 @@ export class Carousel {
     this.track.addEventListener("mouseenter", mouseEnterHandler);
     
     const mouseLeaveHandler = () => {
-      this.startAuto();
+      if (this.isVisible) this.startAuto();
       this.mouseX = null;
     };
     this.boundHandlers.set("mouseleave", mouseLeaveHandler);
@@ -166,15 +240,11 @@ export class Carousel {
     
     container.style.cursor = "grab";
     container.style.userSelect = "none";
-    container.style.touchAction = "pan-y pan-x";
+    container.style.webkitUserSelect = "none";
     container.setAttribute('tabindex', '0');
     container.setAttribute('role', 'region');
     const isPlacesContainer = container.classList.contains("places-carousel-container");
     const isOpinionsContainer = container.classList.contains("opinions-carousel-container");
-    const isActivities = this.track.classList.contains("activities");
-    const isGastronomy = this.track.classList.contains("gastronomy");
-    const isPlans = this.track.classList.contains("plans");
-    const isOpinions = this.track.classList.contains("opinions");
     let ariaLabel = 'Carousel';
     if (isPlacesContainer) ariaLabel = 'Carousel de lugares';
     else if (isOpinionsContainer || this._isOpinions()) ariaLabel = 'Carousel de opiniones';
@@ -194,10 +264,10 @@ export class Carousel {
     const updateCurrentIndex = () => {
       if (this.slides.length === 0) return;
       const slideWidth = this.slides[0].getBoundingClientRect().width;
+      if (slideWidth === 0) return; // Element not laid out yet
       const scrollLeft = container.scrollLeft;
       const shouldUseInfiniteLoop = this._shouldUseInfiniteLoop(container);
-      const threshold = slideWidth * 0.2;
-      const slideIndex = Math.round((scrollLeft + threshold) / slideWidth);
+      const slideIndex = Math.round(scrollLeft / slideWidth);
       if (shouldUseInfiniteLoop) {
         this.currentIndex = ((slideIndex % this.slides.length) + this.slides.length) % this.slides.length;
       } else {
@@ -210,6 +280,10 @@ export class Carousel {
       isScrolling = true;
       
       const slideWidth = getSlideWidth();
+      if (slideWidth === 0) {
+        isScrolling = false;
+        return;
+      }
       const scrollLeft = container.scrollLeft;
       const shouldUseInfiniteLoop = this._shouldUseInfiniteLoop(container);
       
@@ -238,7 +312,7 @@ export class Carousel {
       const targetScroll = this.currentIndex * slideWidth;
       
       if (immediate) {
-        container.scrollLeft = targetScroll;
+        container.scrollTo({ left: targetScroll, behavior: "instant" });
         isScrolling = false;
       } else {
         container.scrollTo({
@@ -249,7 +323,7 @@ export class Carousel {
         clearTimeout(scrollTimeout);
         scrollTimeout = setTimeout(() => {
           isScrolling = false;
-        }, 300);
+        }, 350);
       }
     };
     
@@ -272,7 +346,7 @@ export class Carousel {
       }
     };
     
-    const handleMouseUp = (e) => {
+    const handleMouseUp = () => {
       if (this.isDragging) {
         this.isDragging = false;
         container.style.cursor = "grab";
@@ -495,7 +569,7 @@ export class Carousel {
       this._dimensionsDirty = false;
     }
     
-    const { containerWidth, leftZone, rightZone, slideWidth } = this._cachedDimensions;
+    const { leftZone, rightZone, slideWidth } = this._cachedDimensions;
     const mouseX = e.clientX - container.getBoundingClientRect().left;
     
     if (this.mouseX === null) {
@@ -564,15 +638,18 @@ export class Carousel {
   }
 
   updatePosition() {
+    // No actualizar scroll de elementos fuera del viewport en móvil
+    // Esto previene el bug de Chrome Android con scrollLeft en offscreen elements
+    if (!this.isVisible) return;
+
     if (this.enableDragScroll && (this._isPlacesCarousel() || this._isOpinionsCarousel() || this._isMobile())) {
-      const container = this._isPlacesCarousel()
-        ? this.track.closest(".places-carousel-container")
-        : (this._isOpinionsCarousel()
-          ? this.track.closest(".opinions-carousel-container")
-          : this.track);
+      const container = this._getScrollContainer();
       if (container) {
         const stepSize = this.getStepSize();
-        container.scrollLeft = this.currentIndex * stepSize;
+        if (stepSize === 0) return; // Element not laid out
+        const targetScroll = this.currentIndex * stepSize;
+        // Usar scrollTo con behavior instant para evitar conflicto con scroll-snap
+        container.scrollTo({ left: targetScroll, behavior: "instant" });
         return;
       }
     }
@@ -649,9 +726,14 @@ export class Carousel {
   }
 
   startAuto() {
-    if (this.auto) {
+    if (this.auto && this.isVisible) {
       this.stopAuto();
-      this.autoScrollInterval = setInterval(() => this.changeSlide(1), this.interval);
+      this.autoScrollInterval = setInterval(() => {
+        // Doble comprobación: no auto-scroll si no está visible
+        if (this.isVisible) {
+          this.changeSlide(1);
+        }
+      }, this.interval);
     }
   }
 
@@ -665,7 +747,9 @@ export class Carousel {
   pauseTemporarily(duration = CONFIG.CAROUSEL.PAUSE_DURATION) {
     this.stopAuto();
     if (this.resumeTimer) clearTimeout(this.resumeTimer);
-    this.resumeTimer = setTimeout(() => this.startAuto(), duration);
+    this.resumeTimer = setTimeout(() => {
+      if (this.isVisible) this.startAuto();
+    }, duration);
   }
 
   destroy() {
@@ -673,6 +757,11 @@ export class Carousel {
     if (this.resumeTimer) {
       clearTimeout(this.resumeTimer);
       this.resumeTimer = null;
+    }
+    
+    if (this._visibilityObserver) {
+      this._visibilityObserver.disconnect();
+      this._visibilityObserver = null;
     }
     
     if (this.prevBtn && this.boundHandlers.has("prevBtn")) {
@@ -712,7 +801,7 @@ export class Carousel {
     }
     
     if (this.enableDragScroll) {
-      const container = this.track.closest(".places-carousel-container");
+      const container = this._getScrollContainer() || this.track.closest(".places-carousel-container");
       if (container && this.boundHandlers.has("dragHandlers")) {
         const handlers = this.boundHandlers.get("dragHandlers");
         if (handlers.mousedown) container.removeEventListener("mousedown", handlers.mousedown);

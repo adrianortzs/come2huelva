@@ -46,6 +46,10 @@ body {
   padding: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 :focus, a:focus, button:focus {
@@ -706,6 +710,8 @@ nav .header-cta {
   -ms-overflow-style: none;
   scroll-snap-type: x mandatory;
   -webkit-scroll-snap-type: x mandatory;
+  overscroll-behavior-x: contain;
+  overflow-anchor: none;
   cursor: grab;
   outline: none;
 }
@@ -746,6 +752,7 @@ nav .header-cta {
   width: 100vw;
   box-sizing: border-box;
   height: 70vh;
+  height: 70dvh;
   max-height: 600px;
 }
 
@@ -796,9 +803,8 @@ nav .header-cta {
   height: 100%;
   object-fit: cover;
   object-position: center;
-  image-rendering: -webkit-optimize-contrast;
-  image-rendering: crisp-edges;
   image-rendering: auto;
+  -webkit-image-rendering: -webkit-optimize-contrast;
   transition: transform 1.5s cubic-bezier(0.4, 0, 0.2, 1),
     filter 0.8s cubic-bezier(0.4, 0, 0.2, 1);
   will-change: transform;
@@ -838,6 +844,7 @@ nav .header-cta {
   z-index: 3;
   pointer-events: none;
   box-sizing: border-box;
+  min-height: -webkit-fit-content;
   min-height: fit-content;
 }
 
@@ -944,6 +951,7 @@ nav .header-cta {
   position: relative;
   width: 100%;
   max-width: 1400px;
+  overflow-anchor: none;
 }
 
 .activities-container .carousel-container,
@@ -1278,6 +1286,7 @@ nav .header-cta {
   position: relative;
   overflow: hidden;
   border-radius: 1rem;
+  overflow-anchor: none;
 }
 
 .carousel-track.opinions {
@@ -2208,7 +2217,9 @@ body.error-page .language-options {
     scroll-behavior: smooth;
     scrollbar-width: none;
     -ms-overflow-style: none;
-    touch-action: pan-y pan-x;
+    touch-action: pan-x pan-y;
+    overscroll-behavior-x: contain;
+    overflow-anchor: none;
     width: 100%;
   }
 
@@ -2272,12 +2283,16 @@ body.error-page .language-options {
     min-width: 100vw;
     flex: 0 0 100vw;
     max-height: 70vh;
+    max-height: 70dvh;
     height: 70vh;
+    height: 70dvh;
   }
 
   .places-carousel-container .place {
     max-height: 70vh;
+    max-height: 70dvh;
     height: 70vh;
+    height: 70dvh;
   }
 
   .places-carousel-container .place img {
@@ -2286,6 +2301,11 @@ body.error-page .language-options {
 
   .places-carousel-container .place .overlay {
     padding: 2rem 4vw 1.5rem;
+  }
+
+  .overlay {
+    min-height: -webkit-fit-content;
+    min-height: fit-content;
   }
 
   .overlay h3 {
@@ -2475,12 +2495,16 @@ body.error-page .language-options {
 @media (max-width: 450px) {
   .carousel-track.places .carousel-slide {
     max-height: 65vh;
+    max-height: 65dvh;
     height: 65vh;
+    height: 65dvh;
   }
 
   .places-carousel-container .place {
     max-height: 65vh;
+    max-height: 65dvh;
     height: 65vh;
+    height: 65dvh;
   }
 
   .places-carousel-container .place .overlay {
